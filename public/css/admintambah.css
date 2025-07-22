@@ -1,0 +1,17 @@
+header .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 5rem;
+    height: 100%;
+    /* position: relative; */
+    
+}
+
+
+.nav-profile {
+    justify-content: center;
+    align-items: center;
+    gap: 1.1rem;
+    color: #fff;
+}
