@@ -423,12 +423,34 @@ class AdminController extends Controller
     public function news()
     {
         if (Auth::user()->role == 'admin') {
-            $org = Auth::user()->nama_organisasi;
+
+            $userId = Auth::id();
+
+            $org = DB::table('users')
+                ->join('admin', 'admin.user_id', '=', 'users.id')
+                ->where('users.id', $userId)
+                ->value('admin.nama_organisasi');
+
+
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
-            $anggota = User::where('nama_organisasi', $org)->get();
+            $anggota = DB::table('users')
+                     ->join('anggota', 'anggota.user_id', '=', 'users.id')
+                     ->where('anggota.nama_organisasi', $org)
+                     ->select('users.*', 'anggota.*')  // select fields from both tables as needed
+                     ->get();
+
+
             $rutin = Rutin::all();
             // $anggota = User::orderBy('name')->get();
-            $user = Admin::find(Auth::user()->id);
+            $user = DB::table('users')
+               ->join('admin', 'admin.user_id', '=', 'users.id')
+               ->where('users.id', $userId)
+               ->first();
+
+
+
+
+
             return view('admin.news.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
@@ -443,12 +465,35 @@ class AdminController extends Controller
     public function arsip()
     {
         if (Auth::user()->role == 'admin') {
-            $org = Auth::user()->nama_organisasi;
-            $kegiatan = Agenda::where('nama_organisasi', $org)->get();
-            $anggota = User::where('nama_organisasi', $org)->get();
+
+            $userId = Auth::id();
+
+            $org = DB::table('users')
+                ->join('admin', 'admin.user_id', '=', 'users.id')
+                ->where('users.id', $userId)
+                ->value('admin.nama_organisasi');
+
+
+
+            $anggota = DB::table('users')
+                     ->join('anggota', 'anggota.user_id', '=', 'users.id')
+                     ->where('anggota.nama_organisasi', $org)
+                     ->select('users.*', 'anggota.*')  // select fields from both tables as needed
+                     ->get();
+
+
             $rutin = Rutin::all();
             // $anggota = User::orderBy('name')->get();
-            $user = Admin::find(Auth::user()->id);
+            $user = DB::table('users')
+               ->join('admin', 'admin.user_id', '=', 'users.id')
+               ->where('users.id', $userId)
+               ->first();
+
+
+            $kegiatan = Agenda::where('nama_organisasi', $org)->get();
+
+            $rutin = Rutin::all();
+
             return view('admin.arsip.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
@@ -463,13 +508,78 @@ class AdminController extends Controller
     public function absensi()
     {
         if (Auth::user()->role == 'admin') {
-            $org = Auth::user()->nama_organisasi;
+
+            $userId = Auth::id();
+
+            $org = DB::table('users')
+                ->join('admin', 'admin.user_id', '=', 'users.id')
+                ->where('users.id', $userId)
+                ->value('admin.nama_organisasi');
+
+
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
-            $anggota = User::where('nama_organisasi', $org)->get();
+            $results = DB::table('users')
+    ->join('anggota', 'anggota.user_id', '=', 'users.id')
+    ->join('anggota_agenda', 'anggota_agenda.user_id', '=', 'users.id')
+    ->join('agendas', 'agendas.id', '=', 'anggota_agenda.agenda_id')
+    ->where('anggota.nama_organisasi', $org)
+    ->select(
+        'users.id as user_id',
+        'users.name as user_name',
+        'users.email',
+        'anggota.nama_organisasi',
+        'anggota.jabatan',
+        'anggota.status',
+        'agendas.id as agenda_id',
+        'agendas.nama_kegiatan',
+        'agendas.tanggal_mulai',
+        'agendas.tempat_kegiatan',
+        'agendas.gambar',
+        'agendas.proposal',
+        'agendas.lpj'
+    )
+    ->get();
+
+
+            $grouped = $results->groupBy('user_id')->map(function ($items) {
+                $first = $items->first();
+
+                return [
+                    'user' => [
+                        'id' => $first->user_id,
+                        'name' => $first->user_name,
+                        'email' => $first->email,
+                        'jabatan' => $first->jabatan,
+                        'status' => $first->status,
+                        'nama_organisasi' => $first->nama_organisasi,
+                    ],
+                    'agendas' => $items->map(function ($item) {
+                        return [
+                            'id' => $item->agenda_id,
+                            'nama_kegiatan' => $item->nama_kegiatan,
+                            'tanggal_mulai' => $item->tanggal_mulai,
+                            'tempat_kegiatan' => $item->tempat_kegiatan,
+                            'gambar' => $item->gambar,
+                            'proposal' => $item->proposal,
+                            'lpj' => $item->lpj,
+                        ];
+                    })->values()
+                ];
+            })->values(); // reset index keys
+
+
+
+
+
             $rutin = Rutin::all();
             // $anggota = User::orderBy('name')->get();
-            $user = Admin::find(Auth::user()->id);
-            return view('admin.pengurus.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
+            $user = DB::table('users')
+               ->join('admin', 'admin.user_id', '=', 'users.id')
+               ->where('users.id', $userId)
+               ->first();
+
+
+            return view('admin.pengurus.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $grouped, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
