@@ -11,7 +11,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,22 +23,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'nim',
-        'prodi',
         'email',
         'password',
-        'semester',
-        'nomor',
-        'nama_organisasi',
-        'jabatan',
-        'ktm',
         'foto',
-        'riwayat_studi',
-        'sertif',
-        'status',
-        'keterangan',
-        'tempat_wawancara',
-        'tgl_wawancara',
-        'jam_wawancara',
         'email_verified_at',
     ];
 
@@ -72,4 +61,21 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new VerifyEmailNotification());
     }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->role === 'superadmin';
+    }
+
+    public function isUser()
+    {
+        return $this->role === 'user';
+    }
+
+
 }

@@ -56,18 +56,17 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'loginAdmin'])->name('admin.login');
     Route::post('/login', [AdminController::class, 'login'])->name('admin.login.submit');
     Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
-    Route::middleware('auth:admin')->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'adminView'])->name('admin.dashboard');
-        Route::get('/news', [AdminController::class, 'news'])->name('admin.news');
-        Route::get('/arsip', [AdminController::class, 'arsip'])->name('admin.arsip');
-        Route::get('/rutinitas', [AdminController::class, 'rutinitas'])->name('admin.rutinitas');
-        Route::get('/pengurus', [AdminController::class, 'absensi'])->name('admin.absensi');
-        Route::get('/calon', [AdminController::class, 'calon'])->name('admin.calon');
-        Route::get('/wawancara', [AdminController::class, 'wawancara'])->name('admin.wawancara');
-        Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
-        Route::get('/tambahAdminView', [AdminController::class, 'tambahAdminView'])->name('admin.tambahAdminView');
+    Route::get('/dashboard', [AdminController::class, 'adminView'])->name('admin.dashboard');
+    Route::get('/news', [AdminController::class, 'news'])->name('admin.news');
+    Route::get('/arsip', [AdminController::class, 'arsip'])->name('admin.arsip');
+    Route::get('/rutinitas', [AdminController::class, 'rutinitas'])->name('admin.rutinitas');
+    Route::get('/pengurus', [AdminController::class, 'absensi'])->name('admin.absensi');
+    Route::get('/calon', [AdminController::class, 'calon'])->name('admin.calon');
+    Route::get('/wawancara', [AdminController::class, 'wawancara'])->name('admin.wawancara');
+    Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('/tambahAdminView', [AdminController::class, 'tambahAdminView'])->name('admin.tambahAdminView');
 
-    });
+
 
 
     // agenda Routes
@@ -110,6 +109,3 @@ Route::prefix('admin')->group(function () {
     Route::post('rutin/update/{id}', [RutinController::class, 'update'])->name('rutin.update');
     Route::delete('rutin/destroy/{id}', [RutinController::class, 'destroy']);
 });
-
-
-

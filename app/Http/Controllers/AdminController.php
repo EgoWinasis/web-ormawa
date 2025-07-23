@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\AcceptedNotification;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -46,7 +47,7 @@ class AdminController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-        ],[
+        ], [
             'password.required' => 'Password Harus di isi',
             'email.required' => 'Email Harus di isi',
         ]);
@@ -209,13 +210,13 @@ class AdminController extends Controller
             'jam_wawancara' => $jamWawancara
         ]);
 
-         // Simpan riwayat
-         Riwayat::create([
-            'user_id' => $calon->id,
-            'organisasi_tujuan' => $calon->nama_organisasi,
-            'status' => 'aktif',
-            'keterangan' => $additionalData,
-            'created_at' => now()
+        // Simpan riwayat
+        Riwayat::create([
+           'user_id' => $calon->id,
+           'organisasi_tujuan' => $calon->nama_organisasi,
+           'status' => 'aktif',
+           'keterangan' => $additionalData,
+           'created_at' => now()
         ]);
 
         // Tentukan URL website untuk notifikasi
@@ -253,13 +254,13 @@ class AdminController extends Controller
             'jam_wawancara' => $jamWawancara
         ]);
 
-         // Simpan riwayat
-         Riwayat::create([
-            'user_id' => $calon->id,
-            'organisasi_tujuan' => $calon->nama_organisasi,
-            'status' => 'Lolos Ke Wawancara',
-            'keterangan' => $additionalData,
-            'created_at' => now()
+        // Simpan riwayat
+        Riwayat::create([
+           'user_id' => $calon->id,
+           'organisasi_tujuan' => $calon->nama_organisasi,
+           'status' => 'Lolos Ke Wawancara',
+           'keterangan' => $additionalData,
+           'created_at' => now()
         ]);
 
         // Tentukan URL website untuk notifikasi
@@ -360,41 +361,59 @@ class AdminController extends Controller
 
 
 
-    function adminView()
+    public function adminView()
     {
+
         if (Auth::user()->role == 'admin') {
-            $org = Auth::user()->nama_organisasi;
+            $userId = Auth::id();
+
+            $org = DB::table('users')
+                ->join('admin', 'admin.user_id', '=', 'users.id')
+                ->where('users.id', $userId)
+                ->value('admin.nama_organisasi');
+
+
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
-            $anggota = User::where('nama_organisasi', $org)->get();
+            $anggota = DB::table('users')
+                     ->join('anggota', 'anggota.user_id', '=', 'users.id')
+                     ->where('anggota.nama_organisasi', $org)
+                     ->select('users.*', 'anggota.*')  // select fields from both tables as needed
+                     ->get();
+
+
             $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get(); 
-            $user = Admin::find(Auth::user()->id);
+            // $anggota = User::orderBy('name')->get();
+            $user = DB::table('users')
+               ->join('admin', 'admin.user_id', '=', 'users.id')
+               ->where('users.id', $userId)
+               ->first();
+
             return view('admin.dashboard.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
             return view('superadmin.dashboard.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
         }
     }
 
-    function tambahAdminView()
+    public function tambahAdminView()
     {
         if (Auth::user()->role == 'admin') {
             $org = Auth::user()->nama_organisasi;
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
             $anggota = User::where('nama_organisasi', $org)->get();
             $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = Admin::find(Auth::user()->id);
             return view('admin.dashboard.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
             return view('superadmin.createuser.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
         }
@@ -408,14 +427,14 @@ class AdminController extends Controller
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
             $anggota = User::where('nama_organisasi', $org)->get();
             $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = Admin::find(Auth::user()->id);
             return view('admin.news.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
             return view('superadmin.news.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
         }
@@ -428,14 +447,14 @@ class AdminController extends Controller
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
             $anggota = User::where('nama_organisasi', $org)->get();
             $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = Admin::find(Auth::user()->id);
             return view('admin.arsip.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
             return view('superadmin.arsip.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
         }
@@ -448,14 +467,14 @@ class AdminController extends Controller
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
             $anggota = User::where('nama_organisasi', $org)->get();
             $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = Admin::find(Auth::user()->id);
             return view('admin.pengurus.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
             return view('superadmin.dataormawa.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
         }
@@ -468,14 +487,14 @@ class AdminController extends Controller
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
             $anggota = User::where('nama_organisasi', $org)->get();
             $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = Admin::find(Auth::user()->id);
             return view('admin.calon.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
             return view('superadmin.dashboard.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
         }
@@ -488,14 +507,14 @@ class AdminController extends Controller
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
             $anggota = User::where('nama_organisasi', $org)->get();
             $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = Admin::find(Auth::user()->id);
             return view('admin.wawancara.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
             return view('superadmin.dashboard.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
         }
@@ -508,14 +527,14 @@ class AdminController extends Controller
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
             $anggota = User::where('nama_organisasi', $org)->get();
             $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = Admin::find(Auth::user()->id);
             return view('admin.profile.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
             return view('superadmin.dashboard.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
         }
