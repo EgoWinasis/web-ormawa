@@ -3,22 +3,22 @@
 @section('title', 'Beranda ORMAWA')
 
 @section('dropdown-options')
-   <div class="dropdown-list" style="width: 250px; border: 1px solid #ccc; border-radius: 4px; padding: 8px; background: #fff;">
-    <div id="dropdownItems" style="max-height: 200px; overflow-y: auto;">
-        @php $uniqueOrganisasi = []; @endphp
-        @foreach ($user as $u)
-            @if ($u->nama_organisasi !== 'kesiswaan' && !in_array($u->nama_organisasi, $uniqueOrganisasi))
-                @php $uniqueOrganisasi[] = $u->nama_organisasi; @endphp
-                <div class="dropdown-item text-dark list-org" style="padding: 8px; cursor: pointer;" data-name="{{ Str::slug($u->nama_organisasi) }}">
-                    {{ Str::title($u->nama_organisasi) }}
-                </div>
-            @endif
-        @endforeach
-    </div>
+<div class="dropdown-menu show" style="width: 250px; max-height: 200px; overflow-y: auto;">
+    @php $uniqueOrganisasi = []; @endphp
+    @foreach ($user as $u)
+        @if ($u->nama_organisasi !== 'kesiswaan' && !in_array($u->nama_organisasi, $uniqueOrganisasi))
+            @php $uniqueOrganisasi[] = $u->nama_organisasi; @endphp
+            <div href="#" 
+            onclick="return false;" 
+               class="dropdown-item text-dark list-org" style="cursor: pointer;" 
+               data-name="{{ Str::slug($u->nama_organisasi) }}">
+               {{ Str::title($u->nama_organisasi) }}
+            </div>
+        @endif
+    @endforeach
 </div>
-
-
 @endsection
+
 
 
 @section('content')
@@ -252,17 +252,16 @@
 @endsection
 
 @section('css')
- <style>
-  =
-.list-org:hover {
-    background-color: #f0f0f0; 
-}
+<style>
+    .dropdown-item.list-org:hover {
+        background-color: #f0f0f0; /* Light gray */
+        color: #000; /* Text color on hover */
+    }
 
-.list-org.active {
-    background-color: #007bff; 
-    color: white; 
-}
-
+    .dropdown-item.list-org:active {
+        background-color: #dcdcdc; /* Slightly darker for active state */
+        color: #000;
+    }
 </style>
 
 
