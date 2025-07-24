@@ -1,42 +1,60 @@
 @extends('superadmin.layoutsuper.main')
-@section('konten')
-    <div class="container-profile d-flex active">
-        <div class="form-container">
-            <form method="post" enctype="multipart/form-data" action="{{ route('tambahAdmin') }}">
-                @csrf
 
-                <div class="form-box">
-                    <div class="input-box">
-                        <label for="name-input">Nama: </label>
-                        <input type="text" id="name-input" name="name" value="{{ old('name') }}">
-                        @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="input-box">
-                        <label for="email-input">Email: </label>
-                        <input type="email" id="email-input" name="email" value="{{ old('email') }}">
-                        @error('email')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+@section('konten')
+<div class="container-arsip d-flex active">
+
+    <div class="container" style="padding-top: 70px">    <div class="row justify-content-center">
+        <div class="col-md-8">
+            
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Tambah Admin Baru</h5>
                 </div>
-                <div class="form-box">
-                    <div class="input-box">
-                        <label for="organisasi-input">Unit: </label>
-                        <input type="text" id="organisasi-input" name="nama_organisasi" value="{{ old('nama_organisasi') }}">
-                        @error('nama_organisasi')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="input-box">
-                        <button style="color: white; width: 12rem; border-radius: 6px;" class="edit">
-                            <span class="material-symbols-outlined">edit</span>Tambah
-                        </button>
-                    </div>
+
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('tambahAdmin') }}">
+                        @csrf
+
+                        {{-- Nama --}}
+                        <div class="mb-3">
+                            <label for="name-input" class="form-label">Nama</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name-input" name="name" value="{{ old('name') }}">
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Email --}}
+                        <div class="mb-3">
+                            <label for="email-input" class="form-label">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email-input" name="email" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Unit / Organisasi --}}
+                        <div class="mb-3">
+                            <label for="organisasi-input" class="form-label">Unit / Organisasi</label>
+                            <input type="text" class="form-control @error('nama_organisasi') is-invalid @enderror" id="organisasi-input" name="nama_organisasi" value="{{ old('nama_organisasi') }}">
+                            @error('nama_organisasi')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Submit Button --}}
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-info text-white">
+                                <i class="fa-solid fa-user-plus me-2"></i> Tambah Admin
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+
+            <p class="mt-3 text-muted fst-italic text-center">Note: Tolong double check untuk data yang di-input 🙌</p>
+
         </div>
-        <p style="font-style: italic">Note: Tolong double check untuk data yang di input🙌</p>
     </div>
+</div>
 @endsection

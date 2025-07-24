@@ -9,6 +9,7 @@ use App\Models\Riwayat;
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -19,7 +20,17 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','verified']);
+        // Ensure the user is authenticated
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && Auth::user()->role !== 'user') {
+                // Redirect if role is 'user'
+
+
+                return redirect('/admin/dashboard'); // or '/home', etc.
+            }
+
+            return $next($request);
+        });
     }
 
     /**
@@ -31,14 +42,25 @@ class HomeController extends Controller
     {
         $admin = Admin::all();
         $user = Auth::user();
-        return view('user.index', compact('user','admin'));
+
+        // Check if user has an active riwayat
+        $hasAktif = DB::table('riwayat')
+            ->where('user_id', $user->id)
+            ->where('status', 'aktif')
+            ->exists();
+
+        if ($hasAktif) {
+            // Redirect if active riwayat found
+            return redirect('/riwayat')->with('swal_success', 'Anda sudah menjadi anggota aktif!');
+        }
+        return view('user.index', compact('user', 'admin'));
     }
 
     public function history()
     {
         $admin = Admin::all();
         $user = Auth::user();
-        return view('user.history', compact('user','admin'));
+        return view('user.history', compact('user', 'admin'));
     }
 
     public function riwayat()
@@ -46,6 +68,6 @@ class HomeController extends Controller
         $admin = Admin::all();
         $user = Auth::user();
         $riwayat = Riwayat::where('user_id', $user->id)->get();
-        return view('user.riwayatdaftar', compact('user','admin','riwayat'));
+        return view('user.riwayatdaftar', compact('user', 'admin', 'riwayat'));
     }
 }

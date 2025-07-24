@@ -83,15 +83,15 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.show-agendas-btn');
-
+  
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
-            const agendas = JSON.parse(btn.getAttribute('data-agendas'));
+            const anggotas = JSON.parse(btn.getAttribute('data-anggota'));
 
-            console.log(agendas);
-            
-            if (agendas.length === 0) {
-                Swal.fire('Belum Ada Kegiatan');
+            // console.log(anggotas);
+              index = 1;
+            if (anggotas.length === 0) {
+                Swal.fire('Belum Ada Panitia');
                 return;
             }
 
@@ -99,21 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
                     <thead>
                         <tr style="background-color: #f0f0f0;">
-                            <th style="border: 1px solid #ddd; padding: 8px;">Kegiatan</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Tanggal</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">No</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Nama</th>
                         </tr>
                     </thead>
                     <tbody>
             `;
 
-            agendas.forEach(agenda => {
-                const date = new Date(agenda.tanggal_mulai);
-                const formattedDate = date.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
-
+            anggotas.forEach(anggota => {
                 htmlTable += `
                     <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${agenda.nama_kegiatan}</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${formattedDate}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${index++}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${anggota.name}</td>
                     </tr>
                 `;
             });
@@ -121,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             htmlTable += '</tbody></table>';
 
             Swal.fire({
-                title: 'Daftar Kegiatan',
+                title: 'Daftar Panitia',
                 html: htmlTable,
                 width: '600px',
                 confirmButtonText: 'Tutup',

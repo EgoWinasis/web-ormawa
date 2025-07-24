@@ -116,5 +116,16 @@
     </div>
     {{-- <script src={{ asset('js/user.js') }}></script> --}}
 </body>
+@if(session('swal_success'))
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Sukses!',
+        text: '{{ session('swal_success') }}',
+        confirmButtonColor: '#3085d6'
+    });
+</script>
+@endif
 
 </html>

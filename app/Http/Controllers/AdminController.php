@@ -16,6 +16,20 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        // Ensure the user is authenticated
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && Auth::user()->role === 'user') {
+                // Redirect if role is 'user'
+                return redirect('/home'); // or '/home', etc.
+            }
+
+            return $next($request);
+        });
+    }
+
+
     public function loginAdmin()
     {
         return view('admin.login');
@@ -582,7 +596,9 @@ class AdminController extends Controller
             return view('admin.pengurus.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $grouped, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
-            $anggota = User::all();
+            $anggota = DB::table('users')
+                    ->join('anggota', 'anggota.user_id', '=', 'users.id')
+                    ->get();
             $admin = Admin::all();
             // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
