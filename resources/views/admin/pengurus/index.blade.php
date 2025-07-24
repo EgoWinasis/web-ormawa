@@ -33,7 +33,7 @@
                             @foreach ($anggota as $p)
                                 @if ($p['user']['status'] === 'aktif')
                                     @php($count++)
-                                    <tr>
+                                    <tr data-user-id="{{ $p['user']['id'] }}">
                                         <td>{{ $count }}</td>
                                         <td>{{ $p['user']['name'] }}</td>
                                         <td>{{ $p['user']['jabatan'] }}</td>
@@ -47,6 +47,12 @@
                                             @endif
                                         </td>
                                         <td>
+
+                                             <button class="btn btn-sm btn-warning btn-edit-jabatan mx-2" title="Edit Jabatan">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+
+
                                             <form action="{{ url('kegiatan/panitia/' . $p['user']['id'] . '/destroy') }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus anggota?')" style="display:inline;">
                                                 @csrf
                                                 @method('delete')

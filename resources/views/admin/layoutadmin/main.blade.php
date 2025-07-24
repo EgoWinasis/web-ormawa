@@ -132,5 +132,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+$(document).ready(function() {
+    $('.btn-edit-jabatan').click(function() {
+        const $row = $(this).closest('tr');
+        const userId = $row.data('user-id');
+        const currentJabatan = $row.find('.jabatan').text().trim();
+
+        Swal.fire({
+            title: 'Edit Jabatan',
+            input: 'text',
+            inputLabel: 'Jabatan',
+            inputValue: currentJabatan,
+            showCancelButton: true,
+            confirmButtonText: 'Simpan',
+            cancelButtonText: 'Batal',
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'Jabatan tidak boleh kosong!';
+                }
+            }
+        }).then((result) => {
+            if (result.value) {
+                const newJabatan = result.value;
+
+                $.ajax({
+                     url: `/admin/kegiatan/panitia/${userId}/update-jabatan`, // Your route to update jabatan
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        jabatan: newJabatan
+                    },
+                   success: function(response) {
+    if(response.success) {
+        // Update the jabatan text in the current row
+        $row.find('.jabatan').text(newJabatan);
+
+        Swal.fire('Berhasil!', 'Jabatan telah diupdate.', 'success').then(() => {
+            // Reload the page after user clicks OK
+            location.reload();
+        });
+    } else {
+        Swal.fire('Gagal!', response.message || 'Terjadi kesalahan.', 'error');
+    }
+}
+,
+                    error: function() {
+                        Swal.fire('Gagal!', 'Terjadi kesalahan pada server.', 'error');
+                    }
+                });
+            }
+        });
+    });
+});
 </script>
+
 </html>

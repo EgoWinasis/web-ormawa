@@ -42,6 +42,9 @@
                 <span class="material-symbols-outlined">person</span>Data Profile
             </a>
         </li>
+    
+
+
         <li>
             <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf

@@ -1,48 +1,72 @@
 @extends('admin.layoutadmin.main')
+
 @section('konten')
-<div class="container-calon d-flex active">
-    <h2>Daftar calon Anggota</h2>
-    <div class="table-wrapper">
-        <table class="fl-table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Nomer Whatsapp</th>
-                    <th>Aksi</th>
+<div class="container-arsip d-flex active">
 
-                </tr>
-            </thead>
-            <tbody>
-                @php($count = 0)
-                @foreach ($anggota as $p)
-                    @if ($p->status == 'calon')
-                        <tr>
-                            @php($count++)
-                            <td>{{ $count }}</td>
-                            <td>{{ $p->name }}</td>
-                            <td>{{ $p->nomor }}</td>
-                            <td style="display: flex; justify-content:center; gap:1rem">
-                                <form action="kegiatan/panitia/{{ $p->id }}/view" method="get">
-                                    @csrf
-                                    <button><span class="material-symbols-outlined">edit</span>
-                                    </button>
-                                </form>
-                                <form action="kegiatan/panitia/{{ $p->id }}/destroy" method="post">
-                                    @csrf @method('delete')
-                                    <button onclick="return confirm('yakin ingin menghapus anggota?')"><span
-                                            class="material-symbols-outlined">delete</span>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endif
-                @endforeach
+    <div class="container" style="padding-top: 70px">
+        <h2 class="text-center mb-4">Daftar Calon Anggota</h2>
 
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow mb-4">
+                    <!-- Card Header with optional button -->
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Data</h5>
 
-            <tbody>
-        </table>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
+                            <thead class="table-light text-center">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Nomor Whatsapp</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                @php($count = 0)
+                                @foreach ($anggota as $p)
+                                @if ($p->status === 'calon')
+                                @php($count++)
+                                <tr>
+                                    <td>{{ $count }}</td>
+                                    <td>{{ $p->name }}</td>
+                                    <td>{{ $p->nomor }}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <!-- Edit button -->
+                                            <form action="{{ url('kegiatan/panitia/' . $p->id . '/view') }}"
+                                                method="GET" class="m-0">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-warning" title="Edit">
+                                                    <span class="material-symbols-outlined align-middle">edit</span>
+                                                </button>
+                                            </form>
+
+                                            <!-- Delete button -->
+                                            <form action="{{ url('kegiatan/panitia/' . $p->id . '/destroy') }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Yakin ingin menghapus anggota?')" class="m-0">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
+                                                    <span class="material-symbols-outlined align-middle">delete</span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div> <!-- /.card-body -->
+                </div> <!-- /.card -->
+            </div>
+        </div>
     </div>
 </div>
-    
 @endsection

@@ -716,4 +716,23 @@ class AdminController extends Controller
         }
     }
 
+    public function updateJabatan(Request $request, $userId)
+    {
+        $request->validate([
+            'jabatan' => 'required|string|max:255',
+        ]);
+
+        // Update jabatan in anggota table where user_id = $userId
+        $updated = DB::table('anggota')
+            ->where('user_id', $userId)
+            ->update(['jabatan' => $request->jabatan]);
+
+        if ($updated) {
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Gagal update jabatan.']);
+        }
+    }
+
+
 }

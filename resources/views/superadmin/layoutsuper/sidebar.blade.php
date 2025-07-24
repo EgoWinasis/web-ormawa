@@ -25,6 +25,13 @@
                 <span class="material-symbols-outlined">person</span>Create User
             </a>
         </li>
+        
+        <li class="nav-item {{ Route::is('admin.setting') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.setting') }}">
+                <span class="material-symbols-outlined">settings</span>
+                Pengaturan
+            </a>
+        </li>
         <li>
             <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf

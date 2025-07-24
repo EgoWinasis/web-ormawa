@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RutinController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,8 +65,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/calon', [AdminController::class, 'calon'])->name('admin.calon');
     Route::get('/wawancara', [AdminController::class, 'wawancara'])->name('admin.wawancara');
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
-    Route::get('/tambahAdminView', [AdminController::class, 'tambahAdminView'])->name('admin.tambahAdminView');
+    // setting
+    Route::get('/setting', [SettingController::class, 'index'])->name('admin.setting');
+    Route::post('/setting/update-brand-image', [SettingController::class, 'updateBrandImage'])->name('admin.setting.updateBrandImage');
 
+    Route::get('/tambahAdminView', [AdminController::class, 'tambahAdminView'])->name('admin.tambahAdminView');
+    Route::post('/kegiatan/panitia/{user}/update-jabatan', [AdminController::class, 'updateJabatan']);
 
 
 
