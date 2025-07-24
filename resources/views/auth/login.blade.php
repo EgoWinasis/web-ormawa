@@ -36,7 +36,7 @@
                     </div>
                     <p>Belum Punya Akun? <span><a href="/register">Buat Akun</a></span></p>
 
-                    <p>Kamu Admin? jika iya masuk sini min hihi <span><a href="/admin/login">Login Admin</a></span></p>
+                    {{-- <p>Kamu Admin? jika iya masuk sini min hihi <span><a href="/admin/login">Login Admin</a></span></p> --}}
                     <a href="/" class="btn btn-secondary">Kembali</a>
                 </form>
 

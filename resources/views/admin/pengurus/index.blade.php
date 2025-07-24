@@ -1,65 +1,69 @@
 @extends('admin.layoutadmin.main')
+
 @section('konten')
-    <div class="container " style="padding-top: 70px">
-        <h2>Daftar Anggota Aktif</h2>
-     
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <table class="table table-hovered table-bordered fl-table" id="anggotaTable">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Jabatan</th>
-                                                <th>kegiatan Diikuti</th>
-                                                <th>Aksi</th>
+<div class="container-arsip d-flex active">
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php($count = 0)
-                                            @foreach ($anggota as $p)
-                                                @if ($p['user']['status'] == 'aktif')
-                                                    <tr>
-                                                        @php($count++)
-                                                        <td>{{ $count }}</td>
-                                                        <td>{{ $p['user']['name'] }}</td>
-                                                        <td>{{ $p['user']['jabatan'] }}</td>
-                                                        <td class="kegiatan">
-                                                            @if (count($p['agendas']) != 0)
-                                                                <span style="display: flex; justify-content: center">
-                                                                <button class="btn btn-sm btn-primary show-agendas-btn" 
-                            data-agendas='@json($p["agendas"])'>
-                            {{ count($p["agendas"]) }}
-                        </button>
+<div class="container" style="padding-top: 70px">
+    <h2 class="text-center">Daftar Anggota Aktif</h2>
 
-                                    @else
-                                        Belum Ada Kegiatan
-                                    @endif
-                                </td>
-                                <td>
-                                    <form action="kegiatan/panitia/{{ $p['user']['id'] }}/destroy" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button onclick="return confirm('yakin ingin menghapus anggota?')">
-                                            <span class="material-symbols-outlined">delete</span>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endif
-                    @endforeach
-
-
-
-                <tbody>
-            </table>
-                    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <!-- Card Header -->
+                <div class="card-header  d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        Data
+                    </h5>
                 </div>
-            </div>
-            
-        
-    </div>
 
+                <!-- Card Body -->
+                <div class="card-body">
+                    <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Jabatan</th>
+                                <th>Kegiatan Diikuti</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php($count = 0)
+                            @foreach ($anggota as $p)
+                                @if ($p['user']['status'] === 'aktif')
+                                    @php($count++)
+                                    <tr>
+                                        <td>{{ $count }}</td>
+                                        <td>{{ $p['user']['name'] }}</td>
+                                        <td>{{ $p['user']['jabatan'] }}</td>
+                                        <td class="kegiatan text-center">
+                                            @if (count($p['agendas']) > 0)
+                                                <button class="btn btn-sm btn-primary show-agendas-btn" data-agendas='@json($p["agendas"])'>
+                                                    {{ count($p["agendas"]) }}
+                                                </button>
+                                            @else
+                                                <span class="text-muted">Belum Ada Kegiatan</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <form action="{{ url('kegiatan/panitia/' . $p['user']['id'] . '/destroy') }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus anggota?')" style="display:inline;">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash-alt"></i> Hapus
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div> <!-- /.card-body -->
+            </div> <!-- /.card -->
+        </div>
+    </div>
+</div>
+</div>
 @endsection

@@ -593,12 +593,33 @@ class AdminController extends Controller
     public function calon()
     {
         if (Auth::user()->role == 'admin') {
-            $org = Auth::user()->nama_organisasi;
-            $kegiatan = Agenda::where('nama_organisasi', $org)->get();
-            $anggota = User::where('nama_organisasi', $org)->get();
+            $userId = Auth::id();
+
+            $org = DB::table('users')
+                ->join('admin', 'admin.user_id', '=', 'users.id')
+                ->where('users.id', $userId)
+                ->value('admin.nama_organisasi');
+
+
+
+            $anggota = DB::table('users')
+                     ->join('anggota', 'anggota.user_id', '=', 'users.id')
+                     ->where('anggota.nama_organisasi', $org)
+                     ->select('users.*', 'anggota.*')  // select fields from both tables as needed
+                     ->get();
+
+
             $rutin = Rutin::all();
             // $anggota = User::orderBy('name')->get();
-            $user = Admin::find(Auth::user()->id);
+            $user = DB::table('users')
+               ->join('admin', 'admin.user_id', '=', 'users.id')
+               ->where('users.id', $userId)
+               ->first();
+
+
+            $kegiatan = Agenda::where('nama_organisasi', $org)->get();
+
+            $rutin = Rutin::all();
             return view('admin.calon.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
@@ -613,12 +634,33 @@ class AdminController extends Controller
     public function wawancara()
     {
         if (Auth::user()->role == 'admin') {
-            $org = Auth::user()->nama_organisasi;
-            $kegiatan = Agenda::where('nama_organisasi', $org)->get();
-            $anggota = User::where('nama_organisasi', $org)->get();
+            $userId = Auth::id();
+
+            $org = DB::table('users')
+                ->join('admin', 'admin.user_id', '=', 'users.id')
+                ->where('users.id', $userId)
+                ->value('admin.nama_organisasi');
+
+
+
+            $anggota = DB::table('users')
+                     ->join('anggota', 'anggota.user_id', '=', 'users.id')
+                     ->where('anggota.nama_organisasi', $org)
+                     ->select('users.*', 'anggota.*')  // select fields from both tables as needed
+                     ->get();
+
+
             $rutin = Rutin::all();
             // $anggota = User::orderBy('name')->get();
-            $user = Admin::find(Auth::user()->id);
+            $user = DB::table('users')
+               ->join('admin', 'admin.user_id', '=', 'users.id')
+               ->where('users.id', $userId)
+               ->first();
+
+
+            $kegiatan = Agenda::where('nama_organisasi', $org)->get();
+
+            $rutin = Rutin::all();
             return view('admin.wawancara.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
@@ -633,12 +675,36 @@ class AdminController extends Controller
     public function profile()
     {
         if (Auth::user()->role == 'admin') {
-            $org = Auth::user()->nama_organisasi;
-            $kegiatan = Agenda::where('nama_organisasi', $org)->get();
-            $anggota = User::where('nama_organisasi', $org)->get();
+
+            $userId = Auth::id();
+
+            $org = DB::table('users')
+                ->join('admin', 'admin.user_id', '=', 'users.id')
+                ->where('users.id', $userId)
+                ->value('admin.nama_organisasi');
+
+
+
+            $anggota = DB::table('users')
+                     ->join('anggota', 'anggota.user_id', '=', 'users.id')
+                     ->where('anggota.nama_organisasi', $org)
+                     ->select('users.*', 'anggota.*')  // select fields from both tables as needed
+                     ->get();
+
+
             $rutin = Rutin::all();
             // $anggota = User::orderBy('name')->get();
-            $user = Admin::find(Auth::user()->id);
+            $user = DB::table('users')
+               ->join('admin', 'admin.user_id', '=', 'users.id')
+               ->where('users.id', $userId)
+               ->first();
+
+
+            $kegiatan = Agenda::where('nama_organisasi', $org)->get();
+
+            $rutin = Rutin::all();
+
+
             return view('admin.profile.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
