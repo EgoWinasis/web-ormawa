@@ -21,7 +21,7 @@
 
           @php
     $imagePath = $brandImage
-        ? asset('storage/' . $brandImage)
+        ? asset('storage/file-logo/' . $brandImage)
         : asset('storage/file-logo/landing-page.png');
 @endphp
 
