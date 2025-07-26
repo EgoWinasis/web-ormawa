@@ -7,10 +7,9 @@
 <div class="nav-container">
     <div class="nav-logo">
         <div class="logo-container">
-           <img class="logo-ormawa"
-     src="{{ Storage::url('file-logo/' . ($brandImage->path ?? 'landing-page.png')) }}"
-     alt="Logo Ormawa" width="100px">
-
+            <img class="logo-ormawa"
+                src="{{ asset('storage/file-logo/' . ($brandImage->path ?? 'landing-page.png')) }}"
+                alt="Logo Ormawa" width="100px">
         </div>
     </div>
     <div class="nav-profile d-flex">
