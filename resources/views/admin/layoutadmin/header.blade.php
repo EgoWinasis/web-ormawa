@@ -9,7 +9,7 @@
     <div class="nav-logo">
         <div class="logo-container">
            <img class="logo-ormawa"
-                src="{{ asset('storage/' . ($brandImage->path ?? 'file-logo/landing-page.png')) }}"
+                src="{{ asset('storage/file-logo/' . ($brandImage->path ?? 'landing-page.png')) }}"
                 alt="Logo Ormawa" width="100px">
         </div>
     </div>

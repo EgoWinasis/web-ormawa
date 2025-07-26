@@ -27,13 +27,20 @@ class SettingController extends Controller
             'brand_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Store in the same folder as default image
+        // Get the uploaded file
         $image = $request->file('brand_image');
-        $path = $image->store('file-logo', 'public'); // saved to storage/app/public/file-logo
 
-        // Save to DB
+        // Generate timestamped filename with original extension
+        $timestamp = Carbon::now()->format('Ymd_His');
+        $extension = $image->getClientOriginalExtension();
+        $filename = $timestamp . '.' . $extension;
+
+        // Store the file manually
+        $path = $image->storeAs('file-logo', $filename, 'public'); // stored in storage/app/public/file-logo
+
+        // Save just the filename to the DB
         DB::table('brand_image')->insert([
-            'path' => $path,
+            'path' => $filename,  // Only the filename
             'created_at' => now(),
         ]);
 
