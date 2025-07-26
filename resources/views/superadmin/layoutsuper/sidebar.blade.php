@@ -26,6 +26,12 @@
             </a>
         </li>
         
+        <li class="nav-item {{ Route::is('mahasiswa') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('mahasiswa') }}">
+                <span class="material-symbols-outlined">person</span>
+                Data Mahasiswa
+            </a>
+        </li>
         <li class="nav-item {{ Route::is('admin.setting') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('admin.setting') }}">
                 <span class="material-symbols-outlined">settings</span>

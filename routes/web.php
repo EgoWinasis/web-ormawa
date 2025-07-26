@@ -13,6 +13,7 @@ use App\Http\Controllers\RutinController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +73,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/tambahAdminView', [AdminController::class, 'tambahAdminView'])->name('admin.tambahAdminView');
     Route::post('/kegiatan/panitia/{user}/update-jabatan', [AdminController::class, 'updateJabatan']);
 
-
+    // import data
+    Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
+    Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
+    Route::post('/mahasiswa/import', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
+    Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
 
     // agenda Routes
     Route::get('/kegiatan/{id}', [AgendaController::class, 'detail'])->middleware('auth:admin');
