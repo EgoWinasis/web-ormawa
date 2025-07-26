@@ -203,11 +203,10 @@ $(document).ready(function() {
             parsedData = []; // reset data
             const tbody = document.querySelector('#anggotaTable tbody');
             tbody.innerHTML = ''; // clear table
-            
+
             rows.slice(1).forEach((row, index) => {
                 if (row.length === 0 || !row[2]) return; // skip invalid
-                
-                console.log(row[1]);
+
                 parsedData.push({
                     prodi: row[1] || '',
                     nim: row[2] || '',
