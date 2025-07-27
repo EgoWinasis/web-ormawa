@@ -141,15 +141,27 @@ header .nav-container {
     color: white;
 }
 /* {{-- update --}} */
-.container-kegiatan,.container-absensi,.container-rutinitas, .container-calon,.container-wawancara, .container-arsip, .container-profile, .container-keuangan, .container-create-user {
+.container-kegiatan,
+.container-absensi,
+.container-rutinitas,
+.container-calon,
+.container-wawancara,
+.container-arsip,
+.container-profile,
+.container-keuangan,
+.container-create-user {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1rem;
     gap: 2rem;
 
-
+    /* Add scrolling */
+    overflow-y: auto;
+    max-height: 100vh; /* Ensures it scrolls if content exceeds viewport height */
+    box-sizing: border-box;
 }
+
 .container-kegiatans {
     flex-direction: column;
     justify-content: center;

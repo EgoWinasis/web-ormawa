@@ -234,7 +234,7 @@
 
                         <!-- Kolom Logo -->
                         <div class="col-md-4">
-                            <img src="storage/{{ $u->logo }}" alt="Logo {{ $u->nama_organisasi }}"
+                            <img src="storage/{{ $u->foto }}" alt="Logo {{ $u->nama_organisasi }}"
                                 class="img-fluid mx-auto d-block" style="max-width: 200px;">
                         </div>
 
@@ -271,7 +271,6 @@
 @section('js')
 
 <script>
-   <script>
     document.addEventListener('DOMContentLoaded', function () {
         const items = document.querySelectorAll('.list-org');
 
@@ -285,7 +284,7 @@
             });
         });
     });
-</script>
+
 
 </script>
 

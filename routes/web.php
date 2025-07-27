@@ -14,6 +14,7 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::post('/anggota/store/{userId}', [AnggotaController::class, 'store'])->nam
 Route::get('/home', [HomeController::class, 'index'])->name('user.index')->middleware('auth');
 Route::get('/history', [HomeController::class, 'history'])->name('user.history')->middleware('auth');
 Route::get('/riwayat', [HomeController::class, 'riwayat'])->name('user.riwayat')->middleware('auth');
+Route::post('/check-nim', [RegisterController::class, 'checkNim'])->name('check.nim');
 
 
 
@@ -101,7 +103,7 @@ Route::prefix('admin')->group(function () {
     Route::get('kegiatan/panitia/{id}/wawancara', [AnggotaController::class, 'wawancaraView']);
 
     // users
-    Route::post('user/{id}/edit', [AdminController::class, 'userUpdate']);
+    Route::post('user/{id}/edit', [AdminController::class, 'userUpdate'])->name('user.update');
     Route::post('nextSession/{id}', [AdminController::class, 'nextSession'])->name('admin.nextSession');
     Route::post('accept/{id}', [AdminController::class, 'accept'])->name('admin.accept');
     Route::post('reject/{id}', [AdminController::class, 'reject'])->name('admin.reject');

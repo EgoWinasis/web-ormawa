@@ -143,27 +143,37 @@ class AdminController extends Controller
 
     public function userUpdate($id, Request $request)
     {
-        $user = Admin::find($id);
-        if ($request->logo) {
-            $logo = request()->file('logo')->store('file-logo');
-        } else {
-            $logo = $user->logo;
-        }
-        if ($request->password) {
-            $password = bcrypt($request->password);
-        } else {
-            $password = $user->password;
-        }
-        ;
-        Admin::find($id)->update([
-            'name' => $request->name,
-            'password' => $password,
-            'email' => $request->email,
-            'visi' => $request->visi,
+       
+        $user = User::findOrFail($id);
+    $admin = Admin::where('user_id', $id)->first();
+
+   
+    if ($request->hasFile('logo')) {
+        $logo = $request->file('logo')->store('file-logo', 'public');
+    } else {
+    
+        $logo = $user->foto;
+    }
+
+    
+    $password = $request->filled('password') ? bcrypt($request->password) : $user->password;
+
+    
+    $user->update([
+        'name'     => $request->name,
+        'email'    => $request->email,
+        'password' => $password,
+        'foto'     => $logo, 
+    ]);
+
+    if ($admin) {
+        $admin->update([
+            'visi'    => $request->visi,
+            'misi'    => $request->misi,
             'tupoksi' => $request->tupoksi,
-            'logo' => $logo,
-            'misi' => $request->misi,
         ]);
+    }
+
 
         return redirect()->back()->with('success', 'Berhasil Edit Profile!');
 
@@ -720,7 +730,7 @@ class AdminController extends Controller
 
             $rutin = Rutin::all();
 
-
+          
             return view('admin.profile.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();

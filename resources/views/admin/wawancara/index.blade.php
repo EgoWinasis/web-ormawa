@@ -3,15 +3,14 @@
 @section('konten')
 <div class="container-arsip d-flex active">
 
-    <div class="container" style="padding-top: 70px">
-        <h2 class="text-center mb-4">Daftar Calon Anggota Lolos Ke Wawancara</h2>
+    <div class="container"  style="padding-top:7%">
 
         <div class="row">
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <!-- Card Header -->
                     <div class="card-header d-flex justify-content-start align-items-center">
-                        <h5 class="mb-0">Data</h5>
+                        <h5 class="mb-0">Daftar Calon Anggota Lolos Ke Wawancara</h5>
                     </div>
 
                     <!-- Card Body -->

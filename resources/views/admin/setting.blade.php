@@ -1,7 +1,8 @@
 @extends('superadmin.layoutsuper.main')
 
 @section('konten')
-<div class="container py-5">
+<div class="container-arsip d-flex active">
+<div class="container " style="padding-top: 3vh">
     <h2 class="mb-4 text-center">Pengaturan Brand Image</h2>
 
     @if(session('success'))
@@ -35,5 +36,6 @@
             <button type="submit" class="btn btn-primary">Update Brand Image</button>
         </form>
     </div>
+</div>
 </div>
 @endsection

@@ -41,13 +41,20 @@ class HomeController extends Controller
     public function index()
     {
         $admin = Admin::all();
-        $user = Auth::user();
+        $userId = Auth::user()->id;
 
-        // Check if user has an active riwayat
-        $hasAktif = DB::table('riwayat')
-            ->where('user_id', $user->id)
-            ->where('status', 'aktif')
-            ->exists();
+$user = DB::table('users')
+    ->join('anggota', 'anggota.user_id', '=', 'users.id')
+    ->select('users.*', 'anggota.*') 
+    ->where('users.id', $userId)
+    ->first(); 
+
+
+$hasAktif = DB::table('riwayat')
+    ->where('user_id', $userId)
+    ->where('status', 'aktif')
+    ->exists();
+
 
         if ($hasAktif) {
             // Redirect if active riwayat found

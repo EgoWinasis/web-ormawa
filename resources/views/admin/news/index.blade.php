@@ -3,15 +3,14 @@
 @section('konten')
 <div class="container-arsip d-flex active">
 
-<div class="container" style="padding-top: 70px">
-    <h2 class="text-center">Berita Acara</h2>
+<div class="container"  style="padding-top:7%">
 
     <div class="row">
     <div class="col-12">
         <div class="card shadow mb-4">
             <!-- Card Header -->
             <div class="card-header d-flex justify-content-start align-items-center">
-                <h5>Data</h5>
+                <h5>Data Berita Acara</h5>
             </div>
 
             <!-- Card Body -->
@@ -35,9 +34,12 @@
                                 <tr>
                                     <td>{{ $count }}</td>
                                     <td>{{ $k->tanggal_mulai }}</td>
-                                    <td class="img">
-                                        <img src="{{ asset('storage/' . $k->gambar) }}" alt="Gambar" width="60" height="60" style="object-fit: cover; border-radius: 4px;">
+                                    <td class="text-center">
+                                        <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank">
+                                            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
+                                        </a>
                                     </td>
+                                    
                                     <td>{{ $k->nama_kegiatan }}</td>
                                     <td>{{ $k->tempat_kegiatan }}</td>
                                     <td>

@@ -12,7 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Anggota extends Authenticatable  
 {
     use HasFactory;
-    protected $table = 'anggotas';
+    protected $table = 'anggota';
     protected $guarded = ['id'];
 
     public function agendas() {

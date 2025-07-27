@@ -10,7 +10,10 @@
     <!-- link ke css landing -->
     <link rel="stylesheet" href='{{ asset('/css/admin.css') }}'>
 
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- google icons -->
     <link rel="stylesheet"
@@ -73,153 +76,140 @@
             </div>
         </div>
         <div class="container-content" id="container-dashboard-anggota">
-            <div id="form" class="container-form d-flex active">
-                <h2>FORM PENDAFTARAN</h2>
-                <div class="form-container">
-                    <form method="post" enctype="multipart/form-data" action="/anggota/store/{{ $user->id }}">
-                        @csrf
-                        <div class="form-box">
-                            <div class="input-box">
-                                <label for="name">Nama Lengkap: </label>
-                                <input type="text" id="name" name="name" value="{{ $user->name }}"
-                                    disabled>
-                                @if ($errors->has('name'))
-                                    <div class="text-danger">
-                                        {{ $errors->first('name') }}
-                                    </div>
-                                @endif
+            <div class="container py-4" >
+                <div class="row justify-content-center" style="padding-top: 7%;padding-bottom: 7%">
+                    <div class="col-md-8">
+                        <div class="card shadow" >
+                            <div class="card-header bg-primary text-white text-center">
+                                <h4 class="mb-0">Form Pendaftaran Anggota</h4>
                             </div>
-                            <div class="input-box">
-                                <label for="nim">NIM: </label>
-                                <input type="text" id="nim" maxlength="9" name="nim" value="{{ $user->nim }}"
-                                    disabled>
-                                @if ($errors->has('nim'))
-                                    <div class="text-danger">
-                                        {{ $errors->first('nim') }}
+                            <div class="card-body">
+                                <form method="post" enctype="multipart/form-data" action="/anggota/store/{{ $user->id }}">
+                                    @csrf
+            
+                                    <!-- Nama Lengkap -->
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control w-100" id="name" name="name" value="{{ $user->name }}" disabled>
+                                        @error('name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-box">
-                                <label for="nomor">Whatsapp: </label>
-                                <input type="text" id="nomor" maxlength="13" name="nomor"
-                                    value="{{ $user->nomor }}" disabled>
-                                @if ($errors->has('nomor'))
-                                    <div class="text-danger">
-                                        {{ $errors->first('nomor') }}
+            
+                                    <!-- NIM -->
+                                    <div class="mb-3">
+                                        <label for="nim" class="form-label">NIM</label>
+                                        <input type="text" class="form-control w-100" id="nim" maxlength="9" name="nim" value="{{ $user->nim }}" disabled>
+                                        @error('nim')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                @endif
-                            </div>
-                            <div class="input-box">
-                                <label for="semester">Semester: </label>
-                                <input type="text" id="semester" maxlength="2" name="semester"
-                                    value="{{ $user->semester }}" disabled>
-                                @if ($errors->has('semester'))
-                                    <div class="text-danger">
-                                        {{ $errors->first('semester') }}
+                                     <!-- Program Studi -->
+                                     <div class="mb-3">
+                                        <label for="prodi" class="form-label">Program Studi</label>
+                                        <input type="text" class="form-control w-100" id="prodi" name="prodi" value="{{ $user->prodi }}" disabled>
+                                        @error('prodi')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                @endif
+            
+                                    <!-- WhatsApp -->
+                                    <div class="mb-3">
+                                        <label for="nomor" class="form-label">WhatsApp</label>
+                                        <input type="text" class="form-control w-100" id="nomor" maxlength="13" name="nomor" value="{{ $user->nomor }}" disabled>
+                                        @error('nomor')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+            
+                                    <!-- Semester -->
+                                    <div class="mb-3">
+                                        <label for="semester" class="form-label">Semester</label>
+                                        <input type="text" class="form-control w-100" id="semester" maxlength="2" name="semester" value="{{ $user->semester }}" disabled>
+                                        @error('semester')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+            
+                                    <!-- Pas Foto -->
+                                    <div class="mb-3">
+                                        <label for="foto" class="form-label">Pas Foto <span class="text-danger">*</span></label>
+                                        <input type="file" class="form-control w-100" id="foto" name="foto" accept="image/*">
+                                        <small class="text-muted">File harus .jpg atau .png, max 2MB.</small>
+                                        @error('foto')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+            
+                                    <!-- Riwayat Studi -->
+                                    <div class="mb-3">
+                                        <label for="riwayat_studi" class="form-label">Riwayat Studi <span class="text-danger">*</span></label>
+                                        <input type="file" class="form-control w-100" id="riwayat_studi"
+                                            accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                            name="riwayat_studi">
+                                        <small class="text-muted">Hanya file PDF dari OASE:
+                                            <a href="https://oase.poltekharber.ac.id/" target="_blank" class="text-primary">Klik di sini</a>
+                                        </small>
+                                        @error('riwayat_studi')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+            
+                                    <!-- KTM -->
+                                    <div class="mb-3">
+                                        <label for="ktm" class="form-label">Kartu Tanda Mahasiswa <span class="text-danger">*</span></label>
+                                        <input type="file" class="form-control w-100" id="ktm"
+                                            accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                            name="ktm">
+                                        <small class="text-muted">File harus .pdf.</small>
+                                        @error('ktm')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+            
+                                    <!-- Sertifikasi -->
+                                    <div class="mb-3">
+                                        <label for="sertif" class="form-label">Sertifikasi <span class="text-danger">*</span></label>
+                                        <input type="file" class="form-control w-100" id="sertif" name="sertif" multiple
+                                            accept=".rar,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                        <small class="text-muted">File harus .pdf.</small>
+                                        @error('sertif')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+            
+                                   
+            
+                                    <!-- Organisasi Tujuan -->
+                                    <div class="mb-3">
+                                        <label for="nama_organisasi" class="form-label">Organisasi Tujuan</label>
+                                        <select class="form-select w-100" name="nama_organisasi" id="nama_organisasi">
+                                            @php $uniqueOrganisasi = []; @endphp
+                                            @foreach ($admin as $u)
+                                                @if ($u->nama_organisasi !== 'kesiswaan' && !in_array($u->nama_organisasi, $uniqueOrganisasi))
+                                                    @php $uniqueOrganisasi[] = $u->nama_organisasi; @endphp
+                                                    <option value="{{ $u->nama_organisasi }}">{{ Str::upper($u->nama_organisasi) }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        @error('nama_organisasi')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+            
+                                    <!-- Submit -->
+                                    <div class="text-center mt-3">
+                                        <button type="submit" class="btn btn-primary px-4" {{ $user->status == 'calon' ? 'disabled' : '' }}>
+                                            Daftar
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="form-box">
-                            <div class="input-box">
-                                <label for="foto">Pas Foto: <span style="color:red;">*</span></label>
-                                <input type="file" id="foto" accept="image/*" name="foto" value="">
-                                <p>*Pastikan memasukan File berkestensi jpg atau png saja. Max: 2MB</p>
-                                @if ($errors->has('foto'))
-                                    <div class="text-danger">
-                                        {{ $errors->first('foto') }}
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="input-box">
-                                <label for="riwayat_studi">Riwayat Studi: <span style="color:red;">*</span></label>
-                                <input type="file" id="riwayat_studi"
-                                    accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"
-                                    {{-- accept="image/*" --}}
-                                    name="riwayat_studi" value="">
-                                <p>*Pastikan File Screenshots berkestensi PDF saja, dapat dilihat di oase
-                                <p>
-                                    <a href="https://oase.poltekharber.ac.id/" style="color: red ">Klik disini</a> 
-                                </p>
-                                @if ($errors->has('riwayat_studi'))
-                                    <div class="text-danger">
-                                        {{ $errors->first('riwayat_studi') }}
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="input-box">
-                                <label for="ktm">Kartu Tanda Mahasiswa: <span style="color:red;">*</span></label>
-                                <input type="file" id="ktm"
-                                    accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"
-                                    name="ktm" value="">
-                                <p>*Pastikan memasukan File berkestensi pdf saja</p>
-                                @if ($errors->has('ktm'))
-                                    <div class="text-danger">
-                                        {{ $errors->first('ktm') }}
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="input-box">
-                                <label for="sertif">Sertifikasi: <span style="color:red;">*</span></label>
-                                <input type="file" id="sertif" multiple class="mb-4"
-                                    accept=".rar,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"
-                                    name="sertif" value="">
-                                <p>*Pastikan memasukan File berkestensi pdf saja</p>
-                                @if ($errors->has('sertif'))
-                                    <div class="text-danger">
-                                        {{ $errors->first('sertif') }}
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-box">
-                            <div class="input-box">
-                                <label for="prodi">Program Studi : </label>
-                                <input type="text" id="prodi" name="prodi" value="{{ $user->prodi }}"
-                                    disabled>
-                                @if ($errors->has('prodi'))
-                                    <div class="text-danger">
-                                        {{ $errors->first('prodi') }}
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="input-box">
-                                <label for="nama_organisasi">Organisasi Tujuan</label>
-                                <select name="nama_organisasi" id="nama_organisasi">
-                                    @php
-                                        $uniqueOrganisasi = [];
-                                    @endphp
-
-                                    @foreach ($admin as $u)
-                                        @if ($u->nama_organisasi == 'kesiswaan')
-                                            @php
-                                                continue;
-                                            @endphp
-                                        @elseif (!in_array($u->nama_organisasi, $uniqueOrganisasi))
-                                            @php
-                                                $uniqueOrganisasi[] = $u->nama_organisasi;
-                                            @endphp
-                                            <option style="text-align: center; padding-bottom: 5px;"
-                                                value="{{ $u->nama_organisasi }}">
-                                                {{ Str::upper($u->nama_organisasi) }}
-                                            </option>
-                                        @endif
-                                    @endforeach
-
-                                </select>
-                                @if ($errors->has('nama_organisasi'))
-                                    <div class="text-danger">
-                                        {{ $errors->first('nama_organisasi') }}
-                                    </div>
-                                @endif
-                            </div>
-                            <button class="submitButton btn"
-                                {{ $user->status == 'calon' ? 'disabled' : '' }}>Daftar</button>
-                                
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
+            
 
         </div>
     </div>

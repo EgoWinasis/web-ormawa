@@ -3,7 +3,7 @@
 @section('konten')
 <div class="container-arsip d-flex active">
 
-<div class="container" style="padding-top: 70px">
+<div class="container"  style="padding-top:7%">
     <h2 class="text-center">Import Data Mahasiswa</h2>
 
     <div class="row">
@@ -23,7 +23,7 @@
             <i class="bi bi-save"></i> Simpan
         </button>
 
-       <a href="{{ asset('template_mahasiswa.xlsx') }}" class="btn btn-info btn-sm" download>
+       <a href="{{ asset('storage/template_mahasiswa.xlsx') }}" class="btn btn-info btn-sm" download>
     <i class="bi bi-download"></i> Download Template
 </a>
 

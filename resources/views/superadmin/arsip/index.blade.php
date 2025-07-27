@@ -4,15 +4,15 @@
 
 <div class="container-arsip d-flex active">
 
-    <div class="container" style="padding-top: 70px">
-        <h2 class="text-center">ARSIP SEMUA UNIT ORMAWA</h2>
+    <div class="container"  style="padding-top:7%">
+        <h2 class="text-center"></h2>
 
         <div class="row">
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <!-- Card Header -->
                     <div class="card-header d-flex justify-content-start align-items-center">
-                        <h5>Data</h5>
+                        <h5>ARSIP SEMUA UNIT ORMAWA</h5>
                     </div>
 
                     <!-- Card Body -->
@@ -39,9 +39,9 @@
             <td>{{ $k->tempat_kegiatan }}</td>
 
           
-            <td>
-                <a download="{{ $k->slug }}" href="{{ asset('storage/' . $k->gambar) }}" title="Unduh Gambar">
-                    <img class="img" src="{{ asset('storage/' . $k->gambar) }}" alt="{{ $k->nama_kegiatan }}" width="60px">
+            <td class="text-center">
+                <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
+                    <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
                 </a>
             </td>
 

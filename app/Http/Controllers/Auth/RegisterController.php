@@ -7,7 +7,10 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use App\Models\MahasiswaImport;
+use App\Models\Anggota;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class RegisterController extends Controller
 {
     /*
@@ -52,19 +55,12 @@ class RegisterController extends Controller
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
-        'nim' => ['required', 'string', 'max:20', 'unique:users,nim'], // NIM wajib unik
-        'prodi' => ['required', 'string', 'max:100'], // Program studi
-        'semester' => ['required', 'integer', 'min:1', 'max:14'], // Semester minimal 1 dan maksimal 14
+        'nim' => ['required', 'string', 'max:20', 'unique:anggota'],
         'nomor' => ['required', 'string', 'regex:/^(\+62|0)[0-9]{9,13}$/'], // Validasi nomor telepon
     ], [
         // Custom error messages
         'nim.required' => 'Nim harus di isi.',
         'nim.unique' => 'Nim sudah digunakan.',
-        'prodi.required' => 'Program studi harus di isi.',
-        'semester.required' => 'Semester harus di isi.',
-        'semester.integer' => 'Semester harus berupa angka.',
-        'semester.min' => 'Semester tidak boleh kurang dari 1.',
-        'semester.max' => 'Semester tidak boleh lebih dari 14.',
         'nomor.required' => 'Nomor telepon harus di isi.',
         'nomor.regex' => 'Format nomor telepon tidak valid.',
         'name.required' => 'Nama harus di isi',
@@ -81,27 +77,66 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
-        $userData = [
-            'name' => $data['name'],
-            'email' => $data['email'],
+{
+    return DB::transaction(function () use ($data) {
+        // 1. Create User
+        $user = User::create([
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => Hash::make($data['password']),
-        ];
-    
-        // Cek dan masukkan data yang ada (jika tidak null)
-        if (isset($data['nim'])) {
-            $userData['nim'] = $data['nim'];
+        ]);
+
+        // 2. Get Mahasiswa data by NIM
+        $mahasiswa = DB::table('mahasiswas')->where('nim', $data['nim'])->first();
+
+        // 3. Insert to Anggota
+        if ($mahasiswa) {
+            $anggotaInserted = DB::table('anggota')->insert([
+                'user_id'  => $user->id,
+                'nim'      => $mahasiswa->nim,
+                'prodi'    => $mahasiswa->prodi,
+                'semester' => $mahasiswa->semester,
+                'nomor'    => $data['nomor']
+            ]);
+
+            if (! $anggotaInserted) {
+                // Throw exception to rollback transaction
+                throw new \Exception('Failed to insert into anggota.');
+            }
+        } else {
+            // Mahasiswa not found, rollback
+            throw new \Exception('Mahasiswa not found for NIM: ' . $data['nim']);
         }
-        if (isset($data['prodi'])) {
-            $userData['prodi'] = $data['prodi'];
-        }
-        if (isset($data['semester'])) {
-            $userData['semester'] = $data['semester'];
-        }
-        if (isset($data['nomor'])) {
-            $userData['nomor'] = $data['nomor'];
-        }
-    
-        return User::create($userData);
+
+        return $user;
+    });
+}
+
+    public function checkNim(Request $request)
+{
+    $nim = $request->nim;
+
+    // Find MahasiswaImport record by NIM
+    $user = MahasiswaImport::where('nim', $nim)->first();
+
+    if (!$user) {
+        return response()->json([
+            'exists' => false,
+            'message' => 'NIM tidak ditemukan.'
+        ]);
     }
+
+    return response()->json([
+        'exists'   => true,
+        'message'  => 'NIM ditemukan.',
+        'nama'     => $user->nama,
+        'nim'      => $user->nim,
+        'prodi'    => $user->prodi,
+        'semester' => $user->semester,
+        'kelas'    => $user->kelas,
+        'jk'       => $user->jk,
+    ]);
+}
+
+
 }
