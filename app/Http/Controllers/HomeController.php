@@ -71,7 +71,14 @@ $hasAktif = DB::table('riwayat')
     public function history()
     {
         $admin = Admin::all();
-        $user = Auth::user();
+        $userId = Auth::user()->id;
+
+        $user = DB::table('users')
+            ->join('anggota', 'anggota.user_id', '=', 'users.id')
+            ->select('users.*', 'anggota.*') 
+            ->where('users.id', $userId)
+            ->first(); 
+            
         return view('user.history', compact('user', 'admin'));
     }
 
