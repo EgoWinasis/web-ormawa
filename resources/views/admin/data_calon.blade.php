@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../../../css/admin.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <!-- google icons -->
     <link rel="stylesheet"
@@ -28,34 +29,40 @@
             
         <div class="card shadow mb-5">
             <div class="card-header bg-primary text-white text-center">
-                <h4>Detail Calon Anggota: {{ $panitia->name }}</h4>
+                <h4>Detail Calon Anggota</h4>
             </div>
     
             <div class="card-body">
                 <!-- Photo -->
-                <div class="text-center mb-4">
+                <div class="mb-4 d-flex justify-content-center">
                     <img src="{{ asset('storage/' . $panitia->foto) }}" 
                          alt="foto calon anggota" 
-                         class="img-thumbnail" 
-                         style="width: 180px; height: 240px; object-fit: cover;">
+                         class="img-thumbnail shadow-sm" 
+                         style=" object-fit: cover; border-radius: 8px;">
                 </div>
-    
+            
                 <!-- Single Table -->
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped align-middle">
                         <tbody>
                             <tr>
-                                <th style="width: 200px;">Prodi</th>
-                                <td>{{ $panitia->prodi }}</td>
-                            </tr>
-                            <tr>
                                 <th>NIM</th>
                                 <td>{{ $panitia->nim }}</td>
+                            </tr>
+                            <tr>
+                                <th>NAMA</th>
+                                <td>{{ $panitia->name }}</td>
+                            </tr>
+                            
+                            <tr>
+                                <th>Prodi</th>
+                                <td>{{ $panitia->prodi }}</td>
                             </tr>
                             <tr>
                                 <th>Semester</th>
                                 <td>{{ $panitia->semester }}</td>
                             </tr>
+                          
                             <tr>
                                 <th>Nomor WA</th>
                                 <td>{{ $panitia->nomor }}</td>
@@ -66,8 +73,8 @@
                                 <td>
                                     <a download="{{ $panitia->ktm }}" 
                                        href="{{ asset('storage/' . $panitia->ktm) }}" 
-                                       class="text-decoration-none">
-                                       {{ Str::limit($panitia->ktm, 25) }}
+                                       class="btn btn-sm btn-outline-primary">
+                                       <i class="fas fa-download"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -76,8 +83,8 @@
                                 <td>
                                     <a download="{{ $panitia->riwayat_studi }}" 
                                        href="{{ asset('storage/' . $panitia->riwayat_studi) }}" 
-                                       class="text-decoration-none">
-                                       {{ Str::limit($panitia->riwayat_studi, 25) }}
+                                       class="btn btn-sm btn-outline-primary">
+                                       <i class="fas fa-download"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -86,15 +93,15 @@
                                 <td>
                                     <a download="{{ $panitia->sertif }}" 
                                        href="{{ asset('storage/' . $panitia->sertif) }}" 
-                                       class="text-decoration-none">
-                                       {{ Str::limit($panitia->sertif, 25) }}
+                                       class="btn btn-sm btn-outline-primary">
+                                       <i class="fas fa-download"></i>
                                     </a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-    
+            
                 <!-- Buttons -->
                 <div class="d-flex justify-content-center gap-3 mt-4">
                     <form id="dataForm" action="{{ route('admin.nextSession', ['id' => $panitia->id]) }}" method="post">
@@ -106,12 +113,13 @@
                         <button type="button" class="btn btn-danger" id="rejectButton">Tolak</button>
                     </form>
                 </div>
-    
+            
                 <!-- Back Button -->
                 <div class="text-center mt-3">
                     <a href="/admin/dashboard" class="btn btn-outline-secondary">Kembali</a>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
@@ -156,159 +164,7 @@
     
     <script src="../../js/admin.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    {{-- <script>
-        let aksi = '';
-        document.getElementById('acceptButton').onclick = function() {
-            var myModal = new bootstrap.Modal(document.getElementById('inputModal'));
-            aksi = 'terima'
-            myModal.show();
 
-        };
-        document.getElementById('rejectButton').onclick = function() {
-            var myModal = new bootstrap.Modal(document.getElementById('inputModal'));
-            aksi = 'ditolak'
-            myModal.show();
-        };
-
-        // document.getElementById('confirmButton').onclick = function() {
-        //     var additionalData = document.getElementById('additionalData').value;
-
-        //     // Append additionalData ke form jika diperlukan  
-        //     var input = document.createElement('input');
-        //     input.type = 'hidden';
-        //     input.name = 'additional_data'; // Sesuaikan nama input sesuai backend Anda  
-        //     input.value = additionalData;
-        //     if (aksi == 'terima') {
-        //         document.getElementById('dataForm').appendChild(input);
-
-        //         // Submit form  
-        //         document.getElementById('dataForm').submit();
-        //     } else {
-        //         document.getElementById('dataFormReject').appendChild(input);
-
-        //         // Submit form  
-        //         document.getElementById('dataFormReject').submit();
-        //     }
-        // };
-
-        document.getElementById('confirmButton').onclick = function() {
-            var additionalData = document.getElementById('additionalData').value;
-            var tempatWawancara = document.getElementById('tempat_wawancara').value;
-            var tglWawancara = document.getElementById('tgl_wawancara').value;
-            var jamWawancara = document.getElementById('jam_wawancara').value; // Ambil nilai jam
-
-            // Append additionalData, tempat_wawancara, tgl_wawancara, dan jam_wawancara ke form
-            var inputAlasan = document.createElement('input');
-            inputAlasan.type = 'hidden';
-            inputAlasan.name = 'additional_data'; // Sesuaikan nama input sesuai backend Anda  
-            inputAlasan.value = additionalData;
-
-            var inputTempat = document.createElement('input');
-            inputTempat.type = 'hidden';
-            inputTempat.name = 'tempat_wawancara';
-            inputTempat.value = tempatWawancara;
-
-            var inputTanggal = document.createElement('input');
-            inputTanggal.type = 'hidden';
-            inputTanggal.name = 'tgl_wawancara';
-            inputTanggal.value = tglWawancara;
-
-            var inputJam = document.createElement('input'); // Input untuk jam wawancara
-            inputJam.type = 'hidden';
-            inputJam.name = 'jam_wawancara'; // Nama input untuk jam
-            inputJam.value = jamWawancara;
-
-            if (aksi == 'terima') {
-                document.getElementById('dataForm').appendChild(inputAlasan);
-                document.getElementById('dataForm').appendChild(inputTempat);
-                document.getElementById('dataForm').appendChild(inputTanggal);
-                document.getElementById('dataForm').appendChild(inputJam); // Menambahkan jam wawancara
-
-                // Submit form  
-                document.getElementById('dataForm').submit();
-            } else {
-                document.getElementById('dataFormReject').appendChild(inputAlasan);
-                document.getElementById('dataFormReject').appendChild(inputTempat);
-                document.getElementById('dataFormReject').appendChild(inputTanggal);
-                document.getElementById('dataFormReject').appendChild(inputJam); // Menambahkan jam wawancara
-
-                // Submit form  
-                document.getElementById('dataFormReject').submit();
-            }
-        };
-    </script> --}}
-
-    {{-- <script>
-        let aksi = '';
-        document.getElementById('acceptButton').onclick = function() {
-            var myModal = new bootstrap.Modal(document.getElementById('inputModal'));
-            aksi = 'terima'; // Set aksi ke "terima"
-            // Tampilkan input untuk tempat, tanggal, dan jam wawancara
-            document.getElementById('tempat_wawancara').parentElement.style.display = 'block';
-            document.getElementById('tgl_wawancara').parentElement.style.display = 'block';
-            document.getElementById('jam_wawancara').parentElement.style.display = 'block';
-            myModal.show();
-        };
-
-        document.getElementById('rejectButton').onclick = function() {
-            var myModal = new bootstrap.Modal(document.getElementById('inputModal'));
-            aksi = 'ditolak'; // Set aksi ke "ditolak"
-            // Sembunyikan input untuk tempat, tangga
-            // l, dan jam wawancara
-            document.getElementById('tempat_wawancara').parentElement.style.display = 'none';
-            document.getElementById('tgl_wawancara').parentElement.style.display = 'none';
-            document.getElementById('jam_wawancara').parentElement.style.display = 'none';
-            myModal.show();
-        };
-
-        document.getElementById('confirmButton').onclick = function() {
-            var additionalData = document.getElementById('additionalData').value;
-
-            // Buat input tersembunyi untuk alasan
-            var inputAlasan = document.createElement('input');
-            inputAlasan.type = 'hidden';
-            inputAlasan.name = 'additional_data'; // Nama sesuai backend
-            inputAlasan.value = additionalData;
-
-            if (aksi === 'terima') {
-                // Ambil nilai tempat, tanggal, dan jam wawancara
-                var tempatWawancara = document.getElementById('tempat_wawancara').value;
-                var tglWawancara = document.getElementById('tgl_wawancara').value;
-                var jamWawancara = document.getElementById('jam_wawancara').value;
-
-                // Buat input tambahan
-                var inputTempat = document.createElement('input');
-                inputTempat.type = 'hidden';
-                inputTempat.name = 'tempat_wawancara';
-                inputTempat.value = tempatWawancara;
-
-                var inputTanggal = document.createElement('input');
-                inputTanggal.type = 'hidden';
-                inputTanggal.name = 'tgl_wawancara';
-                inputTanggal.value = tglWawancara;
-
-                var inputJam = document.createElement('input');
-                inputJam.type = 'hidden';
-                inputJam.name = 'jam_wawancara';
-                inputJam.value = jamWawancara;
-
-                // Tambahkan input ke form
-                document.getElementById('dataForm').appendChild(inputAlasan);
-                document.getElementById('dataForm').appendChild(inputTempat);
-                document.getElementById('dataForm').appendChild(inputTanggal);
-                document.getElementById('dataForm').appendChild(inputJam);
-
-                // Submit form
-                document.getElementById('dataForm').submit();
-            } else {
-                // Tambahkan hanya input alasan untuk Reject
-                document.getElementById('dataFormReject').appendChild(inputAlasan);
-
-                // Submit form
-                document.getElementById('dataFormReject').submit();
-            }
-        };
-    </script> --}}
 
     <script>
         let aksi = '';

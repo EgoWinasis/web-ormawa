@@ -85,12 +85,14 @@ class AnggotaController extends Controller
 		[
     		'status' => 'calon',
     		'nama_organisasi' => $request->nama_organisasi,
-    		'foto' => $foto,
     		'riwayat_studi' => $studi,
     		'ktm' => $ktm,
     		'sertif' => $sertif,
     		
-    	]);
+        ]);
+        User::where('id', $user->user_id)->update([
+            'foto' => $foto
+        ]);
  
     
 		return redirect ()->back() -> with('succes','Berhasil Mendaftar');
