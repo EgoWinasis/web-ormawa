@@ -179,107 +179,83 @@ class AdminController extends Controller
 
     }
 
-    // public function accept($id, Request $request)
-    // {
-    //     $additionalData = $request->input('additional_data');
-    //     $calon = User::find($id)->update([
-    //         'status' => 'aktif',
-    //         'keterangan' => $additionalData,
-    //     ]);
-
-    //     return redirect('/admin/dashboard')->with('success', 'Anggota berhasil diterima!');
-    // }
-    // public function nextSession($id, Request $request)
-    // {
-    //     $additionalData = $request->input('additional_data');
-    //     $calon = User::find($id)->update([
-    //         'status' => 'Lolos ke Wawancara',
-    //         'keterangan' => $additionalData,
-    //     ]);
-
-    //     return redirect('/admin/dashboard')->with('success', 'Anggota berhasil diterima!');
-    // }
-    // public function reject($id, Request $request)
-    // {
-    //     $additionalData = $request->input('additional_data');
-    //     $calon = User::find($id)->update([
-    //         'status' => 'ditolak',
-    //         'keterangan' => $additionalData,
-    //     ]);
-
-    //     return redirect('/admin/dashboard')->with('success', 'Anggota Di Tolak!');
-    // }
+   
 
     public function accept($id, Request $request)
     {
-        $additionalData = $request->input('additional_data');
-        $tempatWawancara = $request->input('tempat_wawancara');
-        $tglWawancara = $request->input('tgl_wawancara');
-        $jamWawancara = $request->input('jam_wawancara');
-
-        // Temukan user berdasarkan id
-        $calon = DB::table('users')
-        ->join('anggota', 'anggota.user_id', '=', 'users.id')
-        ->select('users.*', 'anggota.*') 
-        ->where('users.id', $id)
-        ->first(); 
-        dd($calon);
-        if (!$calon) {
-            // Jika calon tidak ditemukan, redirect dengan pesan error
+        $additionalData   = $request->input('additional_data');
+        $tempatWawancara  = $request->input('tempat_wawancara');
+        $tglWawancara     = $request->input('tgl_wawancara');
+        $jamWawancara     = $request->input('jam_wawancara');
+    
+        // Ambil user dengan Eloquent
+        $user = User::find($id);
+    
+        if (!$user) {
             return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
         }
-
-       
+    
+        // Ambil data anggota
+        $anggota = DB::table('anggota')->where('user_id', $id)->first();
+        if (!$anggota) {
+            return redirect('/admin/dashboard')->with('error', 'Data anggota tidak ditemukan!');
+        }
+    
+        // Update status anggota
         DB::table('anggota')
-        ->where('user_id', $id)
-        ->update([
-            'status' => 'aktif',
-            'keterangan' => $additionalData,
-            'tempat_wawancara' => $tempatWawancara,
-            'tgl_wawancara' => $tglWawancara,
-            'jam_wawancara' => $jamWawancara
-        ]);
-
-        // Simpan riwayat
-        Riwayat::create([
-           'user_id' => $calon->user_id,
-           'organisasi_tujuan' => $calon->nama_organisasi,
-           'status' => 'aktif',
-           'keterangan' => $additionalData,
-           'created_at' => now()
-        ]);
-
-        // Tentukan URL website untuk notifikasi
+            ->where('user_id', $id)
+            ->update([
+                'status'           => 'aktif',
+                'keterangan'       => $additionalData,
+                'tempat_wawancara' => $tempatWawancara,
+                'tgl_wawancara'    => $tglWawancara,
+                'jam_wawancara'    => $jamWawancara
+            ]);
+    
+        // Simpan riwayat (update or create)
+        Riwayat::updateOrCreate(
+            [
+                'user_id' => $user->id,
+                'status'  => 'aktif'
+            ],
+            [
+                'organisasi_tujuan' => $anggota->nama_organisasi,
+                'keterangan'        => $additionalData,
+                'created_at'        => now()
+            ]
+        );
+    
+        // URL website untuk notifikasi
         $websiteUrl = url('/home');
-
-        // Kirim notifikasi kepada calon
-        $calon->notify(new AcceptedNotification($calon, $websiteUrl));
-
-        // Redirect dengan pesan sukses
+    
+        // Kirim notifikasi
+        $user->notify(new AcceptedNotification($user, $websiteUrl));
+    
         return redirect('/admin/wawancara')->with('success', 'Anggota berhasil diterima!');
     }
 
 
-    public function nextSession($id, Request $request)
-    {
-        $additionalData = $request->input('additional_data');
-        $tempatWawancara = $request->input('tempat_wawancara');
-        $tglWawancara = $request->input('tgl_wawancara');
-        $jamWawancara = $request->input('jam_wawancara');
+public function nextSession($id, Request $request)
+{
+    $additionalData = $request->input('additional_data');
+    $tempatWawancara = $request->input('tempat_wawancara');
+    $tglWawancara = $request->input('tgl_wawancara');
+    $jamWawancara = $request->input('jam_wawancara');
 
-        // Temukan user berdasarkan id
-        $calon = DB::table('users')
-        ->join('anggota', 'anggota.user_id', '=', 'users.id')
-        ->select('users.*', 'anggota.*') 
-        ->where('users.id', $id)
-        ->first(); 
+    // Ambil user dengan Eloquent
+    $user = User::find($id);
 
-        if (!$calon) {
-            // Jika calon tidak ditemukan, redirect dengan pesan error
-            return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
-        }
+    if (!$user) {
+        return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
+    }
 
-        DB::table('anggota')
+  
+    $anggota = DB::table('anggota')->where('user_id', $id)->first();
+    if (!$anggota) {
+        return redirect('/admin/dashboard')->with('error', 'Data anggota tidak ditemukan!');
+    }
+
+    DB::table('anggota')
         ->where('user_id', $id)
         ->update([
             'status' => 'Lolos ke Wawancara',
@@ -289,122 +265,135 @@ class AdminController extends Controller
             'jam_wawancara' => $jamWawancara
         ]);
 
-        // Simpan riwayat
-        Riwayat::create([
-           'user_id' => $calon->user_id,
-           'organisasi_tujuan' => $calon->nama_organisasi,
-           'status' => 'Lolos Ke Wawancara',
-           'keterangan' => $additionalData,
-           'created_at' => now()
-        ]);
+   
+        Riwayat::updateOrCreate(
+            [
+                'user_id' => $user->id, // Kondisi unik
+                'status' => 'Lolos Ke Wawancara'
+            ],
+            [
+                'organisasi_tujuan' => $anggota->nama_organisasi,
+                'keterangan' => $additionalData,
+                'created_at' => now()
+            ]
+        );
+        
 
-        // Tentukan URL website untuk notifikasi
-        $websiteUrl = url('/home');
+    $websiteUrl = url('/home');
 
-        // Kirim notifikasi kepada calon
-        $calon->notify(new AcceptedNotification($calon, $websiteUrl));
+    $user->notify(new AcceptedNotification($user, $websiteUrl));
 
-        // Redirect dengan pesan sukses
-        return redirect('/admin/calon')->with('success', 'Anggota lolos ke wawancara!');
+    return redirect('/admin/calon')->with('success', 'Anggota lolos ke wawancara!');
+}
+
+
+
+public function reject($id, Request $request)
+{
+    $additionalData   = $request->input('additional_data');
+    $tempatWawancara  = $request->input('tempat_wawancara');
+    $tglWawancara     = $request->input('tgl_wawancara');
+    $jamWawancara     = $request->input('jam_wawancara');
+
+    // Ambil user dengan Eloquent
+    $user = User::find($id);
+
+    if (!$user) {
+        return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
     }
 
-    public function reject($id, Request $request)
-    {
-        $additionalData = $request->input('additional_data');
-        $tempatWawancara = $request->input('tempat_wawancara');
-        $tglWawancara = $request->input('tgl_wawancara');
-        $jamWawancara = $request->input('jam_wawancara');
+    // Ambil data anggota
+    $anggota = DB::table('anggota')->where('user_id', $id)->first();
+    if (!$anggota) {
+        return redirect('/admin/dashboard')->with('error', 'Data anggota tidak ditemukan!');
+    }
 
-        // Temukan user berdasarkan id
-        $calon = DB::table('users')
-        ->join('anggota', 'anggota.user_id', '=', 'users.id')
-        ->select('users.*', 'anggota.*') 
-        ->where('users.id', $id)
-        ->first(); 
-
-        if (!$calon) {
-            // Jika calon tidak ditemukan, redirect dengan pesan error
-            return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
-        }
-
-       
-        DB::table('anggota')
+    // Update status anggota
+    DB::table('anggota')
         ->where('user_id', $id)
         ->update([
-            'status' => 'gagal tahap administrasi',
-            'keterangan' => $additionalData,
-            'tempat_wawancara' => $tempatWawancara,
-            'tgl_wawancara' => $tglWawancara,
-            'jam_wawancara' => $jamWawancara
+            'status'          => 'Gagal Tahap Administrasi',
+            'keterangan'      => $additionalData,
+            'tempat_wawancara'=> $tempatWawancara,
+            'tgl_wawancara'   => $tglWawancara,
+            'jam_wawancara'   => $jamWawancara
         ]);
 
-        // Simpan riwayat
-        Riwayat::create([
-            'user_id' => $calon->user_id,
-            'organisasi_tujuan' => $calon->nama_organisasi,
-            'status' => 'gagal tahap administrasi',
-            'keterangan' => $additionalData,
-            'created_at' => now()
-        ]);
+    // Simpan riwayat (create or update)
+    Riwayat::updateOrCreate(
+        [
+            'user_id' => $user->id,
+            'status'  => 'Gagal Tahap Administrasi'
+        ],
+        [
+            'organisasi_tujuan' => $anggota->nama_organisasi,
+            'keterangan'        => $additionalData,
+            'created_at'        => now()
+        ]
+    );
 
-        // Tentukan URL website untuk notifikasi
-        $websiteUrl = url('/home');
+    // URL website untuk notifikasi
+    $websiteUrl = url('/home');
 
-        // Kirim notifikasi kepada calon
-        $calon->notify(new AcceptedNotification($calon, $websiteUrl));
+    // Kirim notifikasi (gunakan User model)
+    $user->notify(new AcceptedNotification($user, $websiteUrl));
 
-        // Redirect dengan pesan sukses
-        return redirect('/admin/calon')->with('success', 'Anggota Ditolak!');
+    return redirect('/admin/calon')->with('success', 'Anggota ditolak!');
+}
+
+
+public function rejectWawancara($id, Request $request)
+{
+    $additionalData   = $request->input('additional_data');
+    $tempatWawancara  = $request->input('tempat_wawancara');
+    $tglWawancara     = $request->input('tgl_wawancara');
+    $jamWawancara     = $request->input('jam_wawancara');
+
+    // Ambil user dengan Eloquent
+    $user = User::find($id);
+
+    if (!$user) {
+        return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
     }
 
-    public function rejectWawancara($id, Request $request)
-    {
-        $additionalData = $request->input('additional_data');
-        $tempatWawancara = $request->input('tempat_wawancara');
-        $tglWawancara = $request->input('tgl_wawancara');
-        $jamWawancara = $request->input('jam_wawancara');
+    // Ambil data anggota
+    $anggota = DB::table('anggota')->where('user_id', $id)->first();
+    if (!$anggota) {
+        return redirect('/admin/dashboard')->with('error', 'Data anggota tidak ditemukan!');
+    }
 
-        // Temukan user berdasarkan id
-        $calon = DB::table('users')
-        ->join('anggota', 'anggota.user_id', '=', 'users.id')
-        ->select('users.*', 'anggota.*') 
-        ->where('users.id', $id)
-        ->first(); 
-
-        if (!$calon) {
-            // Jika calon tidak ditemukan, redirect dengan pesan error
-            return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
-        }
-
-      
-        DB::table('anggota')
+    // Update status anggota
+    DB::table('anggota')
         ->where('user_id', $id)
         ->update([
-            'status' => 'gagal tahap wawancara',
-            'keterangan' => $additionalData,
+            'status'           => 'Gagal Tahap Wawancara',
+            'keterangan'       => $additionalData,
             'tempat_wawancara' => $tempatWawancara,
-            'tgl_wawancara' => $tglWawancara,
-            'jam_wawancara' => $jamWawancara
+            'tgl_wawancara'    => $tglWawancara,
+            'jam_wawancara'    => $jamWawancara
         ]);
 
-        // Simpan riwayat
-        Riwayat::create([
-            'user_id' => $calon->id,
-            'organisasi_tujuan' => $calon->nama_organisasi,
-            'status' => 'gagal tahap wawancara',
-            'keterangan' => $additionalData,
-            'created_at' => now()
-        ]);
+    // Simpan riwayat (update or create)
+    Riwayat::updateOrCreate(
+        [
+            'user_id' => $user->id,
+            'status'  => 'Gagal Tahap Wawancara'
+        ],
+        [
+            'organisasi_tujuan' => $anggota->nama_organisasi,
+            'keterangan'        => $additionalData,
+            'created_at'        => now()
+        ]
+    );
 
-        // Tentukan URL website untuk notifikasi
-        $websiteUrl = url('/home');
+    // Tentukan URL website untuk notifikasi
+    $websiteUrl = url('/home');
 
-        // Kirim notifikasi kepada calon
-        $calon->notify(new AcceptedNotification($calon, $websiteUrl));
+    // Kirim notifikasi kepada calon
+    $user->notify(new AcceptedNotification($user, $websiteUrl));
 
-        // Redirect dengan pesan sukses
-        return redirect('/admin/wawancara')->with('success', 'Anggota Ditolak!');
-    }
+    return redirect('/admin/wawancara')->with('success', 'Anggota ditolak!');
+}
 
 
 
