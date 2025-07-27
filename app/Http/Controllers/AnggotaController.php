@@ -59,7 +59,7 @@ class AnggotaController extends Controller
         ->select('users.*', 'anggota.*') 
         ->where('users.id', $id)
         ->first(); 
-
+        dd($panitia);
         // return view ('kegiatan');
         return view('/admin/data_calon_wawancara', [
             'panitia' => $panitia,
