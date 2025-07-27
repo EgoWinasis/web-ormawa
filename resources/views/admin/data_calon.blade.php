@@ -104,11 +104,11 @@
             
                 <!-- Buttons -->
                 <div class="d-flex justify-content-center gap-3 mt-4">
-                    <form id="dataForm" action="{{ route('admin.nextSession', ['id' => $panitia->id]) }}" method="post">
+                    <form id="dataForm" action="{{ route('admin.nextSession', ['id' => $panitia->user_id]) }}" method="post">
                         @csrf
                         <button type="button" class="btn btn-primary" id="acceptButton">Terima</button>
                     </form>
-                    <form id="dataFormReject" action="{{ route('admin.reject', ['id' => $panitia->id]) }}" method="post">
+                    <form id="dataFormReject" action="{{ route('admin.reject', ['id' => $panitia->user_id]) }}" method="post">
                         @csrf
                         <button type="button" class="btn btn-danger" id="rejectButton">Tolak</button>
                     </form>

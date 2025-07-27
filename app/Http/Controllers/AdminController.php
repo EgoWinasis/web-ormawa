@@ -218,15 +218,21 @@ class AdminController extends Controller
         $jamWawancara = $request->input('jam_wawancara');
 
         // Temukan user berdasarkan id
-        $calon = User::find($id);
-
+        $calon = DB::table('users')
+        ->join('anggota', 'anggota.user_id', '=', 'users.id')
+        ->select('users.*', 'anggota.*') 
+        ->where('users.id', $id)
+        ->first(); 
+        dd($calon);
         if (!$calon) {
             // Jika calon tidak ditemukan, redirect dengan pesan error
             return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
         }
 
-        // Update status dan keterangan calon
-        $calon->update([
+       
+        DB::table('anggota')
+        ->where('user_id', $id)
+        ->update([
             'status' => 'aktif',
             'keterangan' => $additionalData,
             'tempat_wawancara' => $tempatWawancara,
@@ -236,7 +242,7 @@ class AdminController extends Controller
 
         // Simpan riwayat
         Riwayat::create([
-           'user_id' => $calon->id,
+           'user_id' => $calon->user_id,
            'organisasi_tujuan' => $calon->nama_organisasi,
            'status' => 'aktif',
            'keterangan' => $additionalData,
@@ -262,15 +268,20 @@ class AdminController extends Controller
         $jamWawancara = $request->input('jam_wawancara');
 
         // Temukan user berdasarkan id
-        $calon = User::find($id);
+        $calon = DB::table('users')
+        ->join('anggota', 'anggota.user_id', '=', 'users.id')
+        ->select('users.*', 'anggota.*') 
+        ->where('users.id', $id)
+        ->first(); 
 
         if (!$calon) {
             // Jika calon tidak ditemukan, redirect dengan pesan error
             return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
         }
 
-        // Update status dan keterangan calon
-        $calon->update([
+        DB::table('anggota')
+        ->where('user_id', $id)
+        ->update([
             'status' => 'Lolos ke Wawancara',
             'keterangan' => $additionalData,
             'tempat_wawancara' => $tempatWawancara,
@@ -280,7 +291,7 @@ class AdminController extends Controller
 
         // Simpan riwayat
         Riwayat::create([
-           'user_id' => $calon->id,
+           'user_id' => $calon->user_id,
            'organisasi_tujuan' => $calon->nama_organisasi,
            'status' => 'Lolos Ke Wawancara',
            'keterangan' => $additionalData,
@@ -305,15 +316,21 @@ class AdminController extends Controller
         $jamWawancara = $request->input('jam_wawancara');
 
         // Temukan user berdasarkan id
-        $calon = User::find($id);
+        $calon = DB::table('users')
+        ->join('anggota', 'anggota.user_id', '=', 'users.id')
+        ->select('users.*', 'anggota.*') 
+        ->where('users.id', $id)
+        ->first(); 
 
         if (!$calon) {
             // Jika calon tidak ditemukan, redirect dengan pesan error
             return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
         }
 
-        // Update status dan keterangan calon
-        $calon->update([
+       
+        DB::table('anggota')
+        ->where('user_id', $id)
+        ->update([
             'status' => 'gagal tahap administrasi',
             'keterangan' => $additionalData,
             'tempat_wawancara' => $tempatWawancara,
@@ -323,7 +340,7 @@ class AdminController extends Controller
 
         // Simpan riwayat
         Riwayat::create([
-            'user_id' => $calon->id,
+            'user_id' => $calon->user_id,
             'organisasi_tujuan' => $calon->nama_organisasi,
             'status' => 'gagal tahap administrasi',
             'keterangan' => $additionalData,
@@ -348,15 +365,21 @@ class AdminController extends Controller
         $jamWawancara = $request->input('jam_wawancara');
 
         // Temukan user berdasarkan id
-        $calon = User::find($id);
+        $calon = DB::table('users')
+        ->join('anggota', 'anggota.user_id', '=', 'users.id')
+        ->select('users.*', 'anggota.*') 
+        ->where('users.id', $id)
+        ->first(); 
 
         if (!$calon) {
             // Jika calon tidak ditemukan, redirect dengan pesan error
             return redirect('/admin/dashboard')->with('error', 'User tidak ditemukan!');
         }
 
-        // Update status dan keterangan calon
-        $calon->update([
+      
+        DB::table('anggota')
+        ->where('user_id', $id)
+        ->update([
             'status' => 'gagal tahap wawancara',
             'keterangan' => $additionalData,
             'tempat_wawancara' => $tempatWawancara,
