@@ -33,7 +33,7 @@
                         <img src="{{ asset('storage/' . $panitia->foto) }}" 
                              alt="Foto Calon Anggota"
                              class="img-thumbnail"
-                             style="width: 180px; height: 240px; object-fit: cover;">
+                             style=" object-fit: cover;">
                     </div>
         
                     <!-- Detail Table -->
