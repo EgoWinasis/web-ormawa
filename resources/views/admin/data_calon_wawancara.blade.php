@@ -19,23 +19,53 @@
 </head>
 <body>
     <div class="container-calon d-flex">
-        <h2>{{$panitia->name}}</h2>
-        <img src="../../../../storage/{{$panitia->foto}}" alt="foto calon anggota" width="180px" height="240px">
-        <div style="flex-direction: column;" class="container-both d-flex">
-        <div>
-            <P>Prodi: {{$panitia->prodi}}</P>
-            <P>NIM: {{$panitia->nim}}</P>
-            <P>Semester: {{$panitia->semester}}</P>
-            <P>Nomor Wa: {{$panitia->nomor}}</P>
-            
+        <div class="card shadow-lg border-0">
+            <div class="card-body">
+                <!-- Nama -->
+                <h2 class="card-title text-center mb-4">{{ $panitia->name }}</h2>
+                
+                <div class="row g-4">
+                    <!-- Foto -->
+                    <div class="col-md-4 d-flex justify-content-center align-items-start">
+                        <img src="{{ asset('storage/' . $panitia->foto) }}" 
+                             alt="Foto Calon Anggota" 
+                             class="img-thumbnail"
+                             style=" object-fit: cover;">
+                    </div>
+    
+                    <!-- Detail Table -->
+                    <div class="col-md-8">
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 150px;">Prodi</th>
+                                    <td>{{ $panitia->prodi }}</td>
+                                </tr>
+                                <tr>
+                                    <th>NIM</th>
+                                    <td>{{ $panitia->nim }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Semester</th>
+                                    <td>{{ $panitia->semester }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nomor WA</th>
+                                    <td>{{ $panitia->nomor }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="container-document d-flex" >
             
            <div style="gap: 1rem" class="d-flex"> 
-            <form class="d-flex" id='dataForm' style="gap: 1rem" action="{{ route('admin.accept', ['id' => $panitia->id]) }}" method="post"> @csrf
+            <form class="d-flex" id='dataForm' style="gap: 1rem" action="{{ route('admin.accept', ['id' => $panitia->user_id]) }}" method="post"> @csrf
                 <button type="button" class="btn btn-primary" id="acceptButton">Terima</button>
             </form>
-            <form class="d-flex" id="dataFormReject" style="gap: 1rem" action="{{ route('admin.rejectWawancara', ['id' => $panitia->id]) }}" method="post"> @csrf
+            <form class="d-flex" id="dataFormReject" style="gap: 1rem" action="{{ route('admin.rejectWawancara', ['id' => $panitia->user_id]) }}" method="post"> @csrf
                 <button type="button" class="btn btn-danger" id="rejectButton">Gagal</button>
             </form>
         </div>
