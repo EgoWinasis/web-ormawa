@@ -22,6 +22,11 @@ class HomeController extends Controller
     {
         // Ensure the user is authenticated
         $this->middleware(function ($request, $next) {
+            if (Auth::check() && is_null(Auth::user()->email_verified_at)) {
+                // Redirect user ke halaman verifikasi
+                return redirect()->route('verification.notice'); 
+            }
+            
             if (Auth::check() && Auth::user()->role !== 'user') {
                 // Redirect if role is 'user'
 

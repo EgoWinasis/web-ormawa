@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>VERIVIKASI</title>
+<title>VERIFIKASI</title>
 @section('content')
 <div class="container py-5">
     <h1 class="text-center">Verifikasi Alamat Email Anda</h1>
