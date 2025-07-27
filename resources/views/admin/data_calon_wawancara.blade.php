@@ -26,14 +26,16 @@
             <div class="card-body">
                 <!-- Nama -->
                 <h2 class="card-title text-center mb-4">{{ $panitia->name }}</h2>
-
+        
                 <div class="row g-4">
                     <!-- Foto -->
                     <div class="col-md-4 d-flex justify-content-center align-items-start">
-                        <img src="{{ asset('storage/' . $panitia->foto) }}" alt="Foto Calon Anggota"
-                            class="img-thumbnail" style=" object-fit: cover;">
+                        <img src="{{ asset('storage/' . $panitia->foto) }}" 
+                             alt="Foto Calon Anggota"
+                             class="img-thumbnail"
+                             style="width: 180px; height: 240px; object-fit: cover;">
                     </div>
-
+        
                     <!-- Detail Table -->
                     <div class="col-md-8">
                         <table class="table table-bordered table-striped">
@@ -59,21 +61,29 @@
                     </div>
                 </div>
             </div>
-
-            <div style="gap: 1rem" class="d-flex">
-                <form class="d-flex" id='dataForm' style="gap: 1rem"
-                    action="{{ route('admin.accept', ['id' => $panitia->user_id]) }}" method="post"> @csrf
-                    <button type="button" class="btn btn-primary" id="acceptButton">Terima</button>
+        
+            <!-- Tombol Aksi -->
+            <div class="card-footer d-flex justify-content-center gap-3">
+                <form action="{{ route('admin.accept', ['id' => $panitia->user_id]) }}" method="post">
+                    @csrf
+                    <button type="button" class="btn btn-primary" id="acceptButton">
+                        <i class="bi bi-check-circle"></i> Terima
+                    </button>
                 </form>
-                <form class="d-flex" id="dataFormReject" style="gap: 1rem"
-                    action="{{ route('admin.rejectWawancara', ['id' => $panitia->user_id]) }}" method="post"> @csrf
-                    <button type="button" class="btn btn-danger" id="rejectButton">Gagal</button>
+        
+                <form action="{{ route('admin.rejectWawancara', ['id' => $panitia->user_id]) }}" method="post">
+                    @csrf
+                    <button type="button" class="btn btn-danger" id="rejectButton">
+                        <i class="bi bi-x-circle"></i> Gagal
+                    </button>
                 </form>
-                <a style=" width: 100%; text-align:center;" class="btn btn-info" href="/admin/dashboard"> Kembali</a>
+        
+                <a class="btn btn-secondary" href="/admin/dashboard">
+                    <i class="bi bi-arrow-left"></i> Kembali
+                </a>
             </div>
-
-            
         </div>
+        
         <div class="container-document d-flex">
 
          
