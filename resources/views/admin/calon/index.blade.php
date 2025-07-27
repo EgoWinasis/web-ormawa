@@ -37,7 +37,7 @@
                                     <td>
                                         <div class="d-flex justify-content-center gap-2">
                                             <!-- Edit button -->
-                                            <form action="{{ url('kegiatan/panitia/' . $p->id . '/view') }}"
+                                            <form action="{{ url('admin/kegiatan/panitia/' . $p->user_id . '/view') }}"
                                                 method="GET" class="m-0">
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-warning" title="Edit">
@@ -46,7 +46,7 @@
                                             </form>
 
                                             <!-- Delete button -->
-                                            <form action="{{ url('kegiatan/panitia/' . $p->id . '/destroy') }}"
+                                            <form action="{{ url('admin/kegiatan/panitia/' . $p->id . '/destroy') }}"
                                                 method="POST"
                                                 onsubmit="return confirm('Yakin ingin menghapus anggota?')" class="m-0">
                                                 @csrf

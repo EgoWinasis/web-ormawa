@@ -6,6 +6,7 @@ use App\Models\Anggota;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PhpParser\Node\NullableType;
+use Illuminate\Support\Facades\DB;
 
 class AnggotaController extends Controller
 { // {{-- update --}}
@@ -36,7 +37,13 @@ class AnggotaController extends Controller
 
     public function panitiaView($id) {
      
-        $panitia = User::find($id);
+        $panitia = DB::table('users')
+        ->join('anggota', 'anggota.user_id', '=', 'users.id')
+        ->select('users.*', 'anggota.*') 
+        ->where('users.id', $id)
+        ->first(); 
+
+       
 
         // return view ('kegiatan');
         return view('/admin/data_calon', [
@@ -66,14 +73,15 @@ class AnggotaController extends Controller
     		'riwayat_studi' => 'required',
     		'sertif' => 'required',
     	]);
-		$foto = request()->file('foto')->store('file-foto');
-		$studi = request()->file('riwayat_studi')->store('file-studi');
-		$ktm = request()->file('ktm')->store('file-ktm');
-		$user = User::find($id);
-		$sertif = request()->file('sertif')->store('file-sertif');
-        User::updateOrCreate([
-			'name' => $user->name,
-		],
+        $foto = request()->file('foto')->store('file-foto', 'public');
+        $studi = request()->file('riwayat_studi')->store('file-studi', 'public');
+        $ktm  = request()->file('ktm')->store('file-ktm', 'public');
+        $sertif = request()->file('sertif')->store('file-sertif', 'public');
+        
+        
+		$user = Anggota::find($id);
+        Anggota::updateOrCreate(
+            ['id' => $id],
 		[
     		'status' => 'calon',
     		'nama_organisasi' => $request->nama_organisasi,
@@ -84,9 +92,7 @@ class AnggotaController extends Controller
     		
     	]);
  
-    	// $anggota = Anggota::all();
-        // $users = User::all();
-        // return view('/dashboard-pendaftaran', ['user'=> $user, 'users' => $users, 'anggota' => $anggota]);
+    
 		return redirect ()->back() -> with('succes','Berhasil Mendaftar');
 
     }

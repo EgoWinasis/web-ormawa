@@ -21,87 +21,139 @@
 </head>
 
 <body>
-    <div class="container-calon d-flex">
-        <h2>{{ $panitia->name }}</h2>
-        <img src="../../../../storage/{{ $panitia->foto }}" alt="foto calon anggota" width="180px" height="240px">
-        <div class="container-both d-flex">
-            <div class="container-data d-flex">
-                <P>Prodi: {{ $panitia->prodi }}</P>
-                <P>NIM: {{ $panitia->nim }}</P>
-                <P>Semester: {{ $panitia->semester }}</P>
-                <P>Nomor Wa: {{ $panitia->nomor }}</P>
-                <a href="/admin/dashboard"> Kembali</a>
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+
+            
+        <div class="card shadow mb-5">
+            <div class="card-header bg-primary text-white text-center">
+                <h4>Detail Calon Anggota: {{ $panitia->name }}</h4>
             </div>
-            <hr style="width: 1px; height: 100%; color:black; margin:1rem">
-            <div class="container-document d-flex">
-                <p style="display: flex;">Downlaod: <span><a download="{{ $panitia->foto }}"
-                            href="../../../../storage/{{ $panitia->foto }}"
-                            title="{{ $panitia->nama }}_ktm">{{ Str::limit($panitia->foto, 10) }}_pas-foto</a></span>
-                </p>
-                <p style="display: flex;">Downlaod: <span><a download="{{ $panitia->ktm }}"
-                            href="../../../../storage/{{ $panitia->ktm }}"
-                            title="{{ $panitia->nama }}_ktm">{{ Str::limit($panitia->ktm, 10) }}_ktm</a></span></p>
-                <p style="display: flex;">Downlaod: <span><a download="{{ $panitia->riwayat_studi }}"
-                            href="../../../../storage/{{ $panitia->riwayat_studi }}"
-                            title="{{ $panitia->riwayat_studi }}_studi">{{ Str::limit($panitia->riwayat_studi, 10) }}_studi</a></span>
-                </p>
-                <p style="display: flex;">Downlaod: <span><a download="{{ $panitia->sertif }}"
-                            href="../../../../storage/{{ $panitia->sertif }}"
-                            title="{{ $panitia->sertif }}_studi">{{ Str::limit($panitia->sertif, 10) }}_sertif</a></span>
-                </p>
-                <div style="gap: 1rem" class="d-flex">
-                    <form class="d-flex" id='dataForm' style="gap: 1rem"
-                        action="{{ route('admin.nextSession', ['id' => $panitia->id]) }}" method="post"> @csrf
+    
+            <div class="card-body">
+                <!-- Photo -->
+                <div class="text-center mb-4">
+                    <img src="{{ asset('storage/' . $panitia->foto) }}" 
+                         alt="foto calon anggota" 
+                         class="img-thumbnail" 
+                         style="width: 180px; height: 240px; object-fit: cover;">
+                </div>
+    
+                <!-- Single Table -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped align-middle">
+                        <tbody>
+                            <tr>
+                                <th style="width: 200px;">Prodi</th>
+                                <td>{{ $panitia->prodi }}</td>
+                            </tr>
+                            <tr>
+                                <th>NIM</th>
+                                <td>{{ $panitia->nim }}</td>
+                            </tr>
+                            <tr>
+                                <th>Semester</th>
+                                <td>{{ $panitia->semester }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nomor WA</th>
+                                <td>{{ $panitia->nomor }}</td>
+                            </tr>
+                            
+                            <tr>
+                                <th>KTM</th>
+                                <td>
+                                    <a download="{{ $panitia->ktm }}" 
+                                       href="{{ asset('storage/' . $panitia->ktm) }}" 
+                                       class="text-decoration-none">
+                                       {{ Str::limit($panitia->ktm, 25) }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Riwayat Studi</th>
+                                <td>
+                                    <a download="{{ $panitia->riwayat_studi }}" 
+                                       href="{{ asset('storage/' . $panitia->riwayat_studi) }}" 
+                                       class="text-decoration-none">
+                                       {{ Str::limit($panitia->riwayat_studi, 25) }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Sertifikasi</th>
+                                <td>
+                                    <a download="{{ $panitia->sertif }}" 
+                                       href="{{ asset('storage/' . $panitia->sertif) }}" 
+                                       class="text-decoration-none">
+                                       {{ Str::limit($panitia->sertif, 25) }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <!-- Buttons -->
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <form id="dataForm" action="{{ route('admin.nextSession', ['id' => $panitia->id]) }}" method="post">
+                        @csrf
                         <button type="button" class="btn btn-primary" id="acceptButton">Terima</button>
                     </form>
-                    <form class="d-flex" id="dataFormReject" style="gap: 1rem"
-                        action="{{ route('admin.reject', ['id' => $panitia->id]) }}" method="post"> @csrf
+                    <form id="dataFormReject" action="{{ route('admin.reject', ['id' => $panitia->id]) }}" method="post">
+                        @csrf
                         <button type="button" class="btn btn-danger" id="rejectButton">Tolak</button>
                     </form>
                 </div>
-                <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="inputModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="inputModalLabel">Masukan Keterangan Aksi</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <input type="text" id="additionalData" class="form-control"
-                                    placeholder="Masukan Alasan">
-
-                                <!-- Tempat Wawancara -->
-                                <div class="mt-3">
-                                    <label for="tempat_wawancara" class="form-label">Tempat Wawancara</label>
-                                    <input type="text" id="tempat_wawancara" name="tempat_wawancara"
-                                        class="form-control" placeholder="Masukkan tempat wawancara">
-                                </div>
-
-                                <!-- Tanggal Wawancara -->
-                                <div class="mt-3">
-                                    <label for="tgl_wawancara" class="form-label">Tanggal Wawancara</label>
-                                    <input type="date" id="tgl_wawancara" name="tgl_wawancara" class="form-control">
-                                </div>
-
-                                <!-- Jam Wawancara -->
-                                <div class="mt-3">
-                                    <label for="jam_wawancara" class="form-label">Jam Wawancara</label>
-                                    <input type="time" id="jam_wawancara" name="jam_wawancara" class="form-control">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                <button type="button" class="btn btn-primary" id="confirmButton">Kirim</button>
-                            </div>
-                        </div>
-                    </div>
+    
+                <!-- Back Button -->
+                <div class="text-center mt-3">
+                    <a href="/admin/dashboard" class="btn btn-outline-secondary">Kembali</a>
                 </div>
-
             </div>
         </div>
     </div>
+</div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="inputModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inputModalLabel">Masukan Keterangan Aksi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="additionalData" class="form-control mb-3" placeholder="Masukan Alasan">
+    
+                    <div class="mb-3">
+                        <label for="tempat_wawancara" class="form-label">Tempat Wawancara</label>
+                        <input type="text" id="tempat_wawancara" name="tempat_wawancara" class="form-control"
+                               placeholder="Masukkan tempat wawancara">
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="tgl_wawancara" class="form-label">Tanggal Wawancara</label>
+                        <input type="date" id="tgl_wawancara" name="tgl_wawancara" class="form-control">
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="jam_wawancara" class="form-label">Jam Wawancara</label>
+                        <input type="time" id="jam_wawancara" name="jam_wawancara" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" id="confirmButton">Kirim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
     <script src="../../js/admin.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     {{-- <script>
