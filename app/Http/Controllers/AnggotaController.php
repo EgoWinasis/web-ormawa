@@ -54,7 +54,11 @@ class AnggotaController extends Controller
     
     public function wawancaraView($id) {
      
-        $panitia = User::find($id);
+        $panitia = DB::table('users')
+        ->join('anggota', 'anggota.user_id', '=', 'users.id')
+        ->select('users.*', 'anggota.*') 
+        ->where('users.id', $id)
+        ->first(); 
 
         // return view ('kegiatan');
         return view('/admin/data_calon_wawancara', [
