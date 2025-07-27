@@ -64,14 +64,14 @@
         
             <!-- Tombol Aksi -->
             <div class="card-footer d-flex justify-content-center gap-3">
-                <form action="{{ route('admin.accept', ['id' => $panitia->user_id]) }}" method="post">
+                <form id='dataForm' action="{{ route('admin.accept', ['id' => $panitia->user_id]) }}" method="post">
                     @csrf
                     <button type="button" class="btn btn-primary" id="acceptButton">
                         <i class="bi bi-check-circle"></i> Terima
                     </button>
                 </form>
         
-                <form action="{{ route('admin.rejectWawancara', ['id' => $panitia->user_id]) }}" method="post">
+                <form id='dataFormReject' action="{{ route('admin.rejectWawancara', ['id' => $panitia->user_id]) }}" method="post">
                     @csrf
                     <button type="button" class="btn btn-danger" id="rejectButton">
                         <i class="bi bi-x-circle"></i> Gagal
