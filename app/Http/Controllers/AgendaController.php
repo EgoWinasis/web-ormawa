@@ -202,7 +202,21 @@ class AgendaController extends Controller
     public function detail($id)
     {
         $kegiatan = Agenda::find($id);
-        $panitia = User::all();
+          $userId = Auth::id();
+
+        $org = DB::table('users')
+            ->join('admin', 'admin.user_id', '=', 'users.id')
+            ->where('users.id', $userId)
+            ->value('admin.nama_organisasi');
+
+
+
+            $panitia = DB::table('users')
+                 ->join('anggota', 'anggota.user_id', '=', 'users.id')
+                 ->where('anggota.nama_organisasi', $org)
+                 ->where('anggota.status', 'aktif')
+                 ->select('users.*', 'anggota.*')  
+                 ->get();
 
         // return view ('kegiatan');
         return view('admin/kegiatan', [
