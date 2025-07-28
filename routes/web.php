@@ -84,9 +84,13 @@ Route::prefix('admin')->group(function () {
     // agenda Routes
     Route::get('/kegiatan/{id}', [AgendaController::class, 'detail'])->middleware('auth:admin');
     // Route::post('/tambah/kegiatan', [AgendaController::class, 'storeKegiatan'])->middleware('auth');
-    Route::middleware('auth:admin')->group(function () {
-        Route::get('/arsip/create', [AgendaController::class, 'arsipCreate'])->name('arsip.create');
-        // Route::get('/arsip', [AgendaController::class, 'arsipIndex'])->name('arsip.index');
+    Route::middleware('auth')->group(function () {
+        Route::get('/arsip/create', function () {
+            if (!Auth::user()->isAdmin()) {
+                abort(403, 'Unauthorized action.');
+            }
+            return app(App\Http\Controllers\AgendaController::class)->arsipCreate();
+        })->name('arsip.create');
     });
     Route::post('/arsip/store', [AgendaController::class, 'arsipStore'])->name('arsip.store');
     Route::post('/kegiatan/{id}/edit', [AgendaController::class, 'arsipUpdate']);
