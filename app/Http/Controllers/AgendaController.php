@@ -102,8 +102,9 @@ class AgendaController extends Controller
         $proposal = request()->file('proposal')->store('file-proposal', 'public');
         
         // Ambil data admin berdasarkan user_id
-        $organisasi = Admin::where('user_id', Auth::guard('admin')->user()->id)->first();
-        
+        $organisasi = Admin::where('user_id', Auth::user()->id)->first();
+
+
         Agenda::create([
             'nama_organisasi' => $organisasi->nama_organisasi,
             'nama_kegiatan' => $request->nama_kegiatan,
