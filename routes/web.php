@@ -82,7 +82,12 @@ Route::prefix('admin')->group(function () {
     Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
 
     // agenda Routes
-    Route::get('/kegiatan/{id}', [AgendaController::class, 'detail'])->middleware('auth:admin');
+    Route::get('/kegiatan/{id}', function ($id) {
+        if (!Auth::check() || !Auth::user()->isAdmin()) {
+            abort(403, 'Unauthorized action.');
+        }
+        return app(App\Http\Controllers\AgendaController::class)->detail($id);
+    })->middleware('auth');
     // Route::post('/tambah/kegiatan', [AgendaController::class, 'storeKegiatan'])->middleware('auth');
     Route::middleware('auth')->group(function () {
         Route::get('/arsip/create', function () {
