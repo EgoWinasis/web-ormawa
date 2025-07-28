@@ -78,7 +78,7 @@
                                 </button>
                             </div>
                             <small class="form-text">Kekuatan password: 
-                                <span id="power-point" class="fw-bold text-muted">Masukan min 6 karakter</span>
+                                <span id="power-point-password" class="fw-bold text-muted">Masukan min 6 karakter</span>
                             </small>
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Password strength
-    const power = document.getElementById("power-point");
+    const power = document.getElementById("power-point-password");
     passwordField.oninput = function() {
     let point = 0;
     let value = passwordField.value;
