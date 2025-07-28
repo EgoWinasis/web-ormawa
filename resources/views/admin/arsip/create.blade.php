@@ -96,27 +96,5 @@
 </div>
 </div>
 
-<script>
-    const inputTanggal = document.getElementById('date-start-input');
-    const today = new Date();
 
-    // Fungsi untuk format tanggal ke "YYYY-MM-DD"
-    function formatDate(date) {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }
-
-    // Hitung batas minimum dan maksimum
-    const minDate = new Date(today);
-    minDate.setMonth(minDate.getMonth() - 3);
-
-    const maxDate = new Date(today);
-    maxDate.setMonth(maxDate.getMonth() + 3);
-
-    // Set atribut min dan max ke input
-    inputTanggal.min = formatDate(minDate);
-    inputTanggal.max = formatDate(maxDate);
-</script>
 @endsection
