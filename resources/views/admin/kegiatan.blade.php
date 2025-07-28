@@ -155,7 +155,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#table-panitia').DataTable();
+            $('#table-panitia').DataTable({
+                "ordering": false,
+            });
         });
     </script>
 </body>
