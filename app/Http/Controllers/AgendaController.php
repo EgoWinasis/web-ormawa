@@ -75,7 +75,13 @@ class AgendaController extends Controller
     // bagian Arsip
     public function arsipCreate()
     {
-        $user = Admin::find(Auth::user()->id);
+        $userId = Auth::user()->id;
+
+        $user = DB::table('users')
+        ->join('admin', 'admin.user_id', '=', 'users.id')
+        ->where('users.id', $userId)
+        ->first();
+
         return view('admin.arsip.create', compact('user'));
 
     }
