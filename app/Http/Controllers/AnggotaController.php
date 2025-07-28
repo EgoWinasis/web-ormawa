@@ -31,9 +31,11 @@ class AnggotaController extends Controller
     }
 
     public function panitiaDestroy($id) {
+        DB::table('anggota')->where('user_id', $id)->delete();
         User::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Data user dan anggota berhasil dihapus!');
     }
+    
 
     public function panitiaView($id) {
      
