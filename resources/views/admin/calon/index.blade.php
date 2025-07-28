@@ -46,7 +46,7 @@
                                             </form>
 
                                             <!-- Delete button -->
-                                            <form action="{{ url('admin/kegiatan/panitia/' . $p->id . '/destroy') }}"
+                                            <form action="{{ url('admin/kegiatan/panitia/' . $p->user_id . '/destroy') }}"
                                                 method="POST"
                                                 onsubmit="return confirm('Yakin ingin menghapus anggota?')" class="m-0">
                                                 @csrf
