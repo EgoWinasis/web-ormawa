@@ -217,18 +217,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Password strength
     const power = document.getElementById("power-point");
     passwordField.oninput = function() {
-        let point = 0;
-        let value = passwordField.value;
-        let widthPower = ["Sangat Lemah", "Lemah", "Cukup", "Kuat", "Sangat Kuat"];
-        let colorPower = ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"];
-        if (value.length >= 6) {
-            let arrayTest = [/[0-9]/, /[a-z]/, /[A-Z]/, /[^0-9a-zA-Z]/];
-            arrayTest.forEach((item) => { if (item.test(value)) point += 1; });
-        }
-        power.textContent = widthPower[point];
-        power.style.color = colorPower[point];
-        checkPasswordMatch();
-    };
+    let point = 0;
+    let value = passwordField.value;
+    let widthPower = ["Sangat Lemah", "Lemah", "Cukup", "Kuat", "Sangat Kuat"];
+    let colorPower = ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"];
+
+    if (value.length > 0) {
+        // Tambahkan poin untuk panjang minimal
+        if (value.length >= 6) point++;
+
+        // Tes karakter angka, huruf kecil, huruf besar, dan simbol
+        if (/[0-9]/.test(value)) point++;
+        if (/[a-z]/.test(value)) point++;
+        if (/[A-Z]/.test(value)) point++;
+        if (/[^0-9a-zA-Z]/.test(value)) point++;
+        
+        // Batasi maksimal 4 agar tidak melebihi array
+        if (point > 4) point = 4;
+    }
+
+    power.textContent = widthPower[point];
+    power.style.color = colorPower[point];
+    checkPasswordMatch();
+};
+
 
     // Show/hide password
     document.getElementById('toggle-password').addEventListener('click', function() {
