@@ -122,8 +122,8 @@
                                                     <td>{{ $p->name }}</td>
                                                     <td>{{ $p->jabatan }}</td>
                                                     <td>
-                                                        <input type="checkbox" name="panitia[]" value="{{ $p->id }}"
-                                                            {{ $kegiatan->users->contains($p->id) ? 'checked' : '' }}>
+                                                        <input type="checkbox" name="panitia[]" value="{{ $p->user_id }}"
+                                                            {{ $kegiatan->users->contains($p->user_id) ? 'checked' : '' }}>
                                                     </td>
                                                 </tr>
                                             @endif
