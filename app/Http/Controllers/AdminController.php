@@ -129,27 +129,28 @@ class AdminController extends Controller
             DB::beginTransaction(); // Mulai transaksi
         
             try {
+                $now = Carbon::now();
+        
                 // Insert ke tabel users
-                $user = User::create([
+                $userId = DB::table('users')->insertGetId([
                     'name' => $request->nama_organisasi,
                     'email' => $request->email,
                     'password' => Hash::make('123456'),
                     'role' => 'admin',
-                    'email_verified_at' => Carbon::now(),
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
+                    'email_verified_at' => $now,
+                    'created_at' => $now,
+                    'updated_at' => $now,
                 ]);
         
                 // Insert ke tabel admin
-                Admin::create([
-                    'user_id' => $user->id,
-                    'nama_organisasi' => $user->name,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
+                DB::table('admin')->insert([
+                    'user_id' => $userId,
+                    'nama_organisasi' => $request->nama_organisasi,
+                    'created_at' => $now,
+                    'updated_at' => $now,
                 ]);
         
-                DB::commit(); // Commit transaksi
-        
+                DB::commit();
                 return redirect()->back()->with('success', 'Berhasil Tambah Admin!');
             } catch (\Exception $e) {
                 DB::rollBack(); // Rollback jika error
