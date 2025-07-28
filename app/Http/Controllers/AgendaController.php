@@ -98,10 +98,12 @@ class AgendaController extends Controller
             'keterangan' => 'required',
         ]);
         $slug = SlugService::createSlug(Agenda::class, 'slug', $request->nama_kegiatan);
-        $gambar = request()->file('gambar')->store('file-gambar');
-        $proposal = request()->file('proposal')->store('file-proposal');
-        // $organisasi = User::find(Auth::user()->id);
-        $organisasi = Admin::find(Auth::guard('admin')->user()->id);
+        $gambar = request()->file('gambar')->store('file-gambar', 'public');
+        $proposal = request()->file('proposal')->store('file-proposal', 'public');
+        
+        // Ambil data admin berdasarkan user_id
+        $organisasi = Admin::where('user_id', Auth::guard('admin')->user()->id)->first();
+        
         Agenda::create([
             'nama_organisasi' => $organisasi->nama_organisasi,
             'nama_kegiatan' => $request->nama_kegiatan,
