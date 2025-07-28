@@ -112,21 +112,24 @@ class AgendaController extends Controller
             'tanggal_mulai' => 'required',
         ]);
         $kegiatan = Agenda::find($id);
-        if ($request->gambar) {
-            $gambar = request()->file('gambar')->store('file-gambar');
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar')->store('file-gambar', 'public');
         } else {
             $gambar = $kegiatan->gambar;
         }
-        if ($request->proposal) {
-            $proposal = request()->file('proposal')->store('file-proposal');
+        
+        if ($request->hasFile('proposal')) {
+            $proposal = $request->file('proposal')->store('file-proposal', 'public');
         } else {
             $proposal = $kegiatan->proposal;
         }
-        if ($request->lpj) {
-            $lpj = request()->file('lpj')->store('file-lpj');
+        
+        if ($request->hasFile('lpj')) {
+            $lpj = $request->file('lpj')->store('file-lpj', 'public');
         } else {
             $lpj = $kegiatan->lpj;
         }
+        
 
 
         $slug = SlugService::createSlug(Agenda::class, 'slug', request()->nama_kegiatan);
