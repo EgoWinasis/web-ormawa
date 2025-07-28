@@ -1,7 +1,8 @@
 @extends('admin.layoutadmin.main')
 
 @section('konten')
-<div class="container mt-4">
+<div class="container-arsip d-flex active">
+    <div class="container "  style="padding-top:7%">
     <div class="row justify-content-center">
         <div class="col-lg-8">
 
@@ -23,6 +24,34 @@
                             @error('nama_kegiatan')
                                 <div class="invalid-feedback">*wajib diisi</div>
                             @enderror
+                            </div>
+                            <!-- Tanggal Kegiatan -->
+                            <div class="mb-3">
+                                <label for="date-start-input" class="form-label">Tanggal Kegiatan</label>
+                                <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror" 
+                                    id="date-start-input" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}">
+                                @error('tanggal_mulai')
+                                    <div class="invalid-feedback">*wajib diisi</div>
+                                @enderror
+                            </div>
+
+                              <!-- Tempat Kegiatan -->
+                        <div class="mb-3">
+                            <label for="tempat-input" class="form-label">Tempat Kegiatan</label>
+                            <input type="text" class="form-control @error('tempat_kegiatan') is-invalid @enderror" 
+                                   id="tempat-input" name="tempat_kegiatan" value="{{ old('tempat_kegiatan') }}">
+                            @error('tempat_kegiatan')
+                                <div class="invalid-feedback">*wajib diisi</div>
+                            @enderror
+                        </div>
+                        <!-- Keterangan -->
+                        <div class="mb-3">
+                            <label for="keterangan" class="form-label">Keterangan</label>
+                            <input type="text" class="form-control @error('keterangan') is-invalid @enderror" 
+                                id="keterangan" name="keterangan" value="{{ old('keterangan') }}">
+                            @error('keterangan')
+                                <div class="invalid-feedback">*wajib diisi</div>
+                            @enderror
                         </div>
 
                         <!-- Gambar -->
@@ -35,25 +64,9 @@
                             </div>
                         </div>
 
-                        <!-- Tempat Kegiatan -->
-                        <div class="mb-3">
-                            <label for="tempat-input" class="form-label">Tempat Kegiatan</label>
-                            <input type="text" class="form-control @error('tempat_kegiatan') is-invalid @enderror" 
-                                   id="tempat-input" name="tempat_kegiatan" value="{{ old('tempat_kegiatan') }}">
-                            @error('tempat_kegiatan')
-                                <div class="invalid-feedback">*wajib diisi</div>
-                            @enderror
-                        </div>
+                      
 
-                        <!-- Tanggal Kegiatan -->
-                        <div class="mb-3">
-                            <label for="date-start-input" class="form-label">Tanggal Kegiatan</label>
-                            <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror" 
-                                   id="date-start-input" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}">
-                            @error('tanggal_mulai')
-                                <div class="invalid-feedback">*wajib diisi</div>
-                            @enderror
-                        </div>
+                     
 
                         <!-- Proposal -->
                         <div class="mb-3">
@@ -66,15 +79,7 @@
                             </div>
                         </div>
 
-                        <!-- Keterangan -->
-                        <div class="mb-3">
-                            <label for="keterangan" class="form-label">Keterangan</label>
-                            <input type="text" class="form-control @error('keterangan') is-invalid @enderror" 
-                                   id="keterangan" name="keterangan" value="{{ old('keterangan') }}">
-                            @error('keterangan')
-                                <div class="invalid-feedback">*wajib diisi</div>
-                            @enderror
-                        </div>
+                       
 
                         <!-- Buttons -->
                         <div class="d-flex justify-content-between">
@@ -88,6 +93,7 @@
 
         </div>
     </div>
+</div>
 </div>
 
 <script>
