@@ -50,27 +50,7 @@ class AgendaController extends Controller
         return redirect('/admin');
     }
 
-    // public function arsipIndex()
-    // {
-    //     if (Auth::user()->role == 'admin') {
-    //         $org = Auth::user()->nama_organisasi;
-    //         $kegiatan = Agenda::where('nama_organisasi', $org)->get();
-    //         $anggota = User::where('nama_organisasi', $org)->get();
-    //         $rutin = Rutin::all();
-    //         // $anggota = User::orderBy('name')->get(); 
-    //         $user = Admin::find(Auth::user()->id);
-    //         return view('admin.arsip.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
-    //     } elseif (Auth::user()->role == 'super_admin') {
-    //         $kegiatan = Agenda::all();
-    //         $anggota = User::all();
-    //         $admin = Admin::all();
-    //         // $anggota = User::orderBy('name')->get(); 
-    //         $user = User::find(Auth::user()->id);
-    //         return view('admin.super.admin2', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
-    //     }
-    // }
-
-
+  
 
 
     // bagian Arsip
