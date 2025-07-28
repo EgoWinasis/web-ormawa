@@ -113,32 +113,49 @@ class AdminController extends Controller
     }
 
 
-    // percobaan input
-    public function tambahAdmin(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|max:50',
-            'email' => 'required|email',
-            'nama_organisasi' => 'required|max:100'
-        ], [
-            'name.required' => 'Nama wajib diisi.',
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'email.unique' => 'Email sudah terdaftar.',
-            'nama_organisasi.required' => 'Unit wajib diisi.'
-        ]);
-
-        Admin::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt('123456'),
-            'nama_organisasi' => $request->nama_organisasi,
-            'role' => 'admin',
-
-        ]);
-
-        return redirect()->back()->with('success', 'Berhasil Tambah Admin!');
-    }
+        // percobaan input
+        public function tambahAdmin(Request $request)
+        {
+            $this->validate($request, [
+                'email' => 'required|email|unique:users,email',
+                'nama_organisasi' => 'required|max:100'
+            ], [
+                'email.required' => 'Email wajib diisi.',
+                'email.email' => 'Format email tidak valid.',
+                'email.unique' => 'Email sudah terdaftar.',
+                'nama_organisasi.required' => 'Unit wajib diisi.'
+            ]);
+        
+            DB::beginTransaction(); // Mulai transaksi
+        
+            try {
+                // Insert ke tabel users
+                $user = User::create([
+                    'name' => $request->nama_organisasi,
+                    'email' => $request->email,
+                    'password' => Hash::make('123456'),
+                    'role' => 'admin',
+                    'email_verified_at' => Carbon::now(),
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ]);
+        
+                // Insert ke tabel admin
+                Admin::create([
+                    'user_id' => $user->id,
+                    'nama_organisasi' => $user->name,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ]);
+        
+                DB::commit(); // Commit transaksi
+        
+                return redirect()->back()->with('success', 'Berhasil Tambah Admin!');
+            } catch (\Exception $e) {
+                DB::rollBack(); // Rollback jika error
+                return redirect()->back()->with('error', 'Gagal Tambah Admin! Pesan: ' . $e->getMessage());
+            }
+        }
 
 
     public function userUpdate($id, Request $request)
