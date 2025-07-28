@@ -3,7 +3,7 @@
 @section('konten')
 <div class="container-arsip d-flex active">
     <div class="container "  style="padding-top:7%">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="padding-bottom: 4%">
         <div class="col-lg-8">
 
             <!-- Card -->
