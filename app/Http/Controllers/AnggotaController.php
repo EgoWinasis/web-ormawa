@@ -31,10 +31,26 @@ class AnggotaController extends Controller
     }
 
     public function panitiaDestroy($id) {
-        DB::table('anggota')->where('user_id', $id)->delete();
-        User::destroy($id);
-        return redirect()->back()->with('success', 'Data user dan anggota berhasil dihapus!');
+        try {
+            // Cek apakah user ada
+            $user = User::find($id);
+            if (!$user) {
+                return redirect()->back()->with('error', 'User tidak ditemukan!');
+            }
+    
+            // Hapus data anggota
+            DB::table('anggota')->where('user_id', $id)->delete();
+    
+            // Hapus user
+            $user->delete();
+    
+            return redirect()->back()->with('success', 'Data anggota berhasil dihapus!');
+        } catch (\Exception $e) {
+            // Tangkap error dan tampilkan pesan
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus data: ' . $e->getMessage());
+        }
     }
+    
     
 
     public function panitiaView($id) {
