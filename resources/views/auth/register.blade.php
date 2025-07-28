@@ -220,26 +220,30 @@ document.addEventListener('DOMContentLoaded', function() {
     let point = 0;
     let value = passwordField.value;
     let widthPower = ["Sangat Lemah", "Lemah", "Cukup", "Kuat", "Sangat Kuat"];
-    let colorPower = ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"];
 
     if (value.length > 0) {
-        // Tambahkan poin untuk panjang minimal
         if (value.length >= 6) point++;
-
-        // Tes karakter angka, huruf kecil, huruf besar, dan simbol
         if (/[0-9]/.test(value)) point++;
         if (/[a-z]/.test(value)) point++;
         if (/[A-Z]/.test(value)) point++;
         if (/[^0-9a-zA-Z]/.test(value)) point++;
-        
-        // Batasi maksimal 4 agar tidak melebihi array
         if (point > 4) point = 4;
     }
 
     power.textContent = widthPower[point];
-    power.style.color = colorPower[point];
+
+    // Hapus semua class warna sebelumnya
+    power.className = "fw-bold";
+
+    // Tambahkan class warna sesuai kekuatan password
+    if (point === 0) power.classList.add("text-danger");
+    else if (point === 1) power.classList.add("text-warning");
+    else if (point === 2) power.classList.add("text-info");
+    else if (point >= 3) power.classList.add("text-success");
+
     checkPasswordMatch();
 };
+
 
 
     // Show/hide password
