@@ -555,31 +555,32 @@ public function rejectWawancara($id, Request $request)
 
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
             $results = DB::table('users')
-    ->join('anggota', 'anggota.user_id', '=', 'users.id')
-    ->join('anggota_agenda', 'anggota_agenda.user_id', '=', 'users.id')
-    ->join('agendas', 'agendas.id', '=', 'anggota_agenda.agenda_id')
-    ->where('anggota.nama_organisasi', $org)
-    ->select(
-        'users.id as user_id',
-        'users.name as user_name',
-        'users.email',
-        'anggota.nama_organisasi',
-        'anggota.jabatan',
-        'anggota.status',
-        'agendas.id as agenda_id',
-        'agendas.nama_kegiatan',
-        'agendas.tanggal_mulai',
-        'agendas.tempat_kegiatan',
-        'agendas.gambar',
-        'agendas.proposal',
-        'agendas.lpj'
-    )
-    ->get();
+            ->join('anggota', 'anggota.user_id', '=', 'users.id')
+            ->leftJoin('anggota_agenda', 'anggota_agenda.user_id', '=', 'users.id')
+            ->leftJoin('agendas', 'agendas.id', '=', 'anggota_agenda.agenda_id')
+            ->where('anggota.nama_organisasi', $org)
+            ->select(
+                'users.id as user_id',
+                'users.name as user_name',
+                'users.email',
+                'anggota.nama_organisasi',
+                'anggota.jabatan',
+                'anggota.status',
+                'agendas.id as agenda_id',
+                'agendas.nama_kegiatan',
+                'agendas.tanggal_mulai',
+                'agendas.tempat_kegiatan',
+                'agendas.gambar',
+                'agendas.proposal',
+                'agendas.lpj'
+            )
+            ->get();
+        
 
 
             $grouped = $results->groupBy('user_id')->map(function ($items) {
                 $first = $items->first();
-
+            
                 return [
                     'user' => [
                         'id' => $first->user_id,
@@ -589,7 +590,9 @@ public function rejectWawancara($id, Request $request)
                         'status' => $first->status,
                         'nama_organisasi' => $first->nama_organisasi,
                     ],
-                    'agendas' => $items->map(function ($item) {
+                    'agendas' => $items->filter(function ($item) {
+                        return $item->agenda_id !== null; // Hanya ambil agenda jika ada
+                    })->map(function ($item) {
                         return [
                             'id' => $item->agenda_id,
                             'nama_kegiatan' => $item->nama_kegiatan,
@@ -601,7 +604,8 @@ public function rejectWawancara($id, Request $request)
                         ];
                     })->values()
                 ];
-            })->values(); // reset index keys
+            })->values();
+            
 
 
 
