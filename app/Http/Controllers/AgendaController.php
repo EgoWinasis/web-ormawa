@@ -9,6 +9,7 @@ use App\Models\Agenda;
 use App\Models\Anggota;
 use Illuminate\Http\Request;
 use App\Models\Anggota_Agenda;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
 use function PHPUnit\Framework\isEmpty;
