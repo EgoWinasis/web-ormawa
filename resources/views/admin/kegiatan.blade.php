@@ -11,6 +11,10 @@
 
     <!-- DataTables Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+<!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
 
     <!-- Google Icons -->
     <link rel="stylesheet"
@@ -152,13 +156,24 @@
     <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         $(document).ready(function() {
             $('#table-panitia').DataTable({
                 "ordering": false,
             });
         });
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+        flatpickr("#tanggal_mulai", {
+            dateFormat: "Y-m-d",
+            minDate: new Date(new Date().setMonth(new Date().getMonth() - 3)),
+            maxDate: new Date(new Date().setMonth(new Date().getMonth() + 3))
+        });
+    });
+    
     </script>
 </body>
 
