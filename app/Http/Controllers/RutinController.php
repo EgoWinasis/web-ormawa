@@ -8,6 +8,7 @@ use App\Models\Rutin;
 use App\Models\Agenda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RutinController extends Controller
 {
