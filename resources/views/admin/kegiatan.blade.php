@@ -43,14 +43,16 @@
                                             <p class="text-danger small">*wajib di isi</p>
                                         @enderror
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="date-end-input" class="form-label">Tanggal Mulai:</label>
-                                        <input type="date" id="date-end-input" value="{{ $kegiatan->tanggal_mulai }}"
-                                            name="tanggal_mulai" class="form-control">
-                                        @error('tanggal_mulai')
-                                            <p class="text-danger small">*wajib di isi</p>
-                                        @enderror
-                                    </div>
+                                  <div class="mb-3">
+    <label for="tanggal_mulai" class="form-label">Tanggal Mulai:</label>
+    <input type="text" id="tanggal_mulai" 
+           name="tanggal_mulai" 
+           class="form-control"
+           value="{{ $kegiatan->tanggal_mulai }}">
+    @error('tanggal_mulai')
+        <p class="text-danger small">*wajib di isi</p>
+    @enderror
+</div>
                                     <div class="mb-3">
                                         <label for="tempat_kegiatan" class="form-label">Tempat Kegiatan:</label>
                                         <input type="text" id="tempat_kegiatan"
@@ -173,7 +175,7 @@
             maxDate: new Date(new Date().setMonth(new Date().getMonth() + 3))
         });
     });
-    
+
     </script>
 </body>
 
