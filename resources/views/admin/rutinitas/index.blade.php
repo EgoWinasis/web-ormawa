@@ -14,8 +14,8 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <table id="tabel-rutin" class="table table-bordered table-striped">
-                            <thead class="table-dark">
+                         <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
+                    <thead class="table-light">
                                 <tr>
                                     <th>No</th>
                                     <th>Hari</th>
