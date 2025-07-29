@@ -29,7 +29,10 @@ class RutinController extends Controller
      */
     public function rutinCreate()
     {
-        $user = Admin::find(Auth::user()->id);
+        $user = DB::table('users')
+              ->join('admin', 'admin.user_id', '=', 'users.id')
+              ->where('users.id', $userId)
+              ->first();
         return view('admin.rutinitas.create', compact('user'));
     }
 

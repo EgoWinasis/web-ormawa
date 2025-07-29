@@ -33,10 +33,10 @@
                                         <td>{{ $p->tempat_kegiatan }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
-                                                <a href="{{ url('rutin/update/' . $p->user_id . '/view') }}" class="btn btn-sm btn-warning">
+                                                <a href="{{ url('rutin/update/' . $p->id . '/view') }}" class="btn btn-sm btn-warning">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <form action="{{ url('rutin/destroy/' . $p->user_id) }}" method="post" onsubmit="return confirm('Yakin ingin menghapus kegiatan?')">
+                                                <form action="{{ url('rutin/destroy/' . $p->id) }}" method="post" onsubmit="return confirm('Yakin ingin menghapus kegiatan?')">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-sm btn-danger">
