@@ -121,10 +121,21 @@ Route::prefix('admin')->group(function () {
 
 
     // rutinitas
-    Route::middleware('auth:admin')->group(function () {
-        Route::get('/rutin/create', [RutinController::class, 'rutinCreate'])->name('rutin.create');
-        Route::get('/rutin', [RutinController::class, 'rutinIndex'])->name('rutin.index');
+    Route::middleware('auth')->group(function () {
+        Route::get('/rutin/create', function () {
+            if (!Auth::user()->isAdmin()) {
+                abort(403, 'Unauthorized action.');
+            }
+            return app(App\Http\Controllers\RutinController::class)->rutinCreate();
+        })->name('rutin.create');
+        Route::get('/rutin', function () {
+            if (!Auth::user()->isAdmin()) {
+                abort(403, 'Unauthorized action.');
+            }
+            return app(App\Http\Controllers\RutinController::class)->rutinIndex();
+        })->name('rutin.index');
     });
+
     Route::post('rutin/store', [RutinController::class, 'store'])->name('rutin.store');
     Route::get('rutin/update/{id}/view', [RutinController::class, 'edit']);
     Route::post('rutin/update/{id}', [RutinController::class, 'update'])->name('rutin.update');
