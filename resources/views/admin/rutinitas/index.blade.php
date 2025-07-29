@@ -1,7 +1,9 @@
 @extends('admin.layoutadmin.main')
 
 @section('konten')
-    <div class="container my-4">
+  <div class="container-arsip d-flex active">
+
+<div class="container"  style="padding-top:7%">
         <div class="row">
             <div class="col-12">
                 <div class="card shadow-sm">
@@ -51,6 +53,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     {{-- DataTables script --}}
