@@ -42,7 +42,8 @@ Route::post('/anggota/store/{userId}', [AnggotaController::class, 'store'])->nam
 
 
 //ini adalah route untuk dashboard user atau halaman home dari user
-Route::get('/home', [HomeController::class, 'index'])->name('user.index') ->middleware(['auth', 'verified']);;
+Route::get('/home', [HomeController::class, 'index'])->name('user.index') ->middleware(['auth', 'verified']);
+;
 Route::get('/history', [HomeController::class, 'history'])->name('user.history')->middleware('auth');
 Route::get('/riwayat', [HomeController::class, 'riwayat'])->name('user.riwayat')->middleware('auth');
 Route::post('/check-nim', [RegisterController::class, 'checkNim'])->name('check.nim');

@@ -29,24 +29,40 @@ class RutinController extends Controller
     public function rutinCreate()
     {
         $user = Admin::find(Auth::user()->id);
-        return view('admin.rutinitas.create',compact('user'));
+        return view('admin.rutinitas.create', compact('user'));
     }
 
     public function rutinIndex()
     {
         if (Auth::user()->role == 'admin') {
-            $org = Auth::user()->nama_organisasi;
+            $userId = Auth::id();
+
+            $org = DB::table('users')
+                ->join('admin', 'admin.user_id', '=', 'users.id')
+                ->where('users.id', $userId)
+                ->value('admin.nama_organisasi');
+
+
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
-            $anggota = User::where('nama_organisasi', $org)->get();
+            $anggota = DB::table('users')
+                     ->join('anggota', 'anggota.user_id', '=', 'users.id')
+                     ->where('anggota.nama_organisasi', $org)
+                     ->select('users.*', 'anggota.*')  // select fields from both tables as needed
+                     ->get();
+
+
             $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get(); 
-            $user = Admin::find(Auth::user()->id);
+            // $anggota = User::orderBy('name')->get();
+            $user = DB::table('users')
+               ->join('admin', 'admin.user_id', '=', 'users.id')
+               ->where('users.id', $userId)
+               ->first();
             return view('admin.rutinitas.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get(); 
+            // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
             return view('admin.super.admin2', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
         }
