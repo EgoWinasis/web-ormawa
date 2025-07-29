@@ -29,6 +29,8 @@ class RutinController extends Controller
      */
     public function rutinCreate()
     {
+
+        $userId = Auth::id();
         $user = DB::table('users')
               ->join('admin', 'admin.user_id', '=', 'users.id')
               ->where('users.id', $userId)
