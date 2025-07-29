@@ -25,7 +25,11 @@
                 <span class="material-symbols-outlined">person</span>Create User
             </a>
         </li>
-        
+         <li class="{{ Route::is('admin.profile') ? 'active' : '' }}">
+            <a href="{{ route('admin.profile') }}">
+                <span class="material-symbols-outlined">person</span>Data Profile
+            </a>
+        </li>
         <li class="nav-item {{ Route::is('mahasiswa') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('mahasiswa') }}">
                 <span class="material-symbols-outlined">person</span>
