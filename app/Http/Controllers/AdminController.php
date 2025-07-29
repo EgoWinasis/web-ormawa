@@ -782,7 +782,7 @@ class AdminController extends Controller
                ->first();
 
 
-            return view('admin.profile.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
+            return view('superadmin.profile.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
         }
     }
 
