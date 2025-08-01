@@ -303,7 +303,7 @@
                 addMessage(msg, 'bot');
                 activeMenu = null;
                 setTimeout(showMainMenu, 800);
-            }, 1200);
+            }, 5000);
         }
 
 
