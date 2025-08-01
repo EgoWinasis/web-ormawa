@@ -303,7 +303,7 @@
                 addMessage(msg, 'bot');
                 activeMenu = null;
                 setTimeout(showMainMenu, 800);
-            }, 5000);
+            }, 3000);
         }
 
 
@@ -315,9 +315,25 @@
             if (found) {
                 respondToKeyword(found.key);
             } else {
-                addMessage("Maaf, saya belum punya jawaban untuk itu.", 'bot');
-                showMainMenu();
-            }
+        // Tampilkan animasi mengetik selama 5 detik
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'd-flex mb-3 justify-content-start';
+        loadingDiv.id = 'typing-msg';
+        loadingDiv.innerHTML = `
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" class="chat-avatar me-2">
+            <div class="typing-indicator">
+                <span></span><span></span><span></span>
+            </div>
+        `;
+        chatbox.appendChild(loadingDiv);
+        scrollBottom();
+
+        setTimeout(() => {
+            loadingDiv.remove();
+            addMessage("Maaf, saya belum punya jawaban untuk itu.", 'bot');
+            showMainMenu();
+        }, 5000); // <-- 5 detik
+    }
         }
 
         sendBtn.addEventListener('click', () => {
