@@ -123,11 +123,11 @@
     {{-- Footer or additional scripts --}}
     <script src="{{ asset('js/landing.js') }}"></script>
 <script>
-    const chatbox = document.querySelector('.chatbox');
+   const chatbox = document.querySelector('.chatbox');
 const sendBtn = document.getElementById('send-btn');
 const userInput = document.getElementById('user-input');
 
-// Menu kategori dan sub-menu
+// Struktur menu
 const menuGroups = {
   "Tentang Organisasi": ["pengertian", "tujuan", "ciri"],
   "Struktur & Tugas": ["struktur", "tugas", "ketua"],
@@ -135,7 +135,10 @@ const menuGroups = {
   "Pendaftaran": ["daftar", "regist"]
 };
 
-// Balasan dari bot untuk tiap keyword
+// Semua keyword yang valid
+const allKeywords = Object.values(menuGroups).flat();
+
+// Balasan bot
 function getBotResponse(keyword) {
   const responses = {
     pengertian: "Organisasi adalah sekumpulan orang yang memiliki tujuan bersama.",
@@ -149,7 +152,7 @@ function getBotResponse(keyword) {
     daftar: "Untuk mendaftar, isi formulir dan kirim ke pengurus.",
     regist: "Silakan lakukan registrasi melalui link resmi atau hubungi admin."
   };
-  return responses[keyword.toLowerCase()] || "Maaf, saya belum punya jawaban untuk itu.";
+  return responses[keyword.toLowerCase()] || null;
 }
 
 // Tampilkan pesan user
@@ -170,25 +173,25 @@ function addBotMessage(message) {
   scrollToBottom();
 }
 
-// Scroll otomatis ke bawah
+// Scroll ke bawah otomatis
 function scrollToBottom() {
   chatbox.scrollTop = chatbox.scrollHeight;
 }
 
-// Tampilkan kategori utama
+// Tampilkan menu kategori
 function showMainCategories() {
   const li = document.createElement('li');
   li.className = 'chat incoming';
-  li.innerHTML = `<p>Silakan pilih kategori:</p>`;
+  li.innerHTML = `<p>Berikut beberapa topik yang bisa kamu tanyakan:</p>`;
 
   const buttonContainer = document.createElement('div');
   buttonContainer.className = 'quick-options';
 
-  for (const category in menuGroups) {
+  for (const [category, keywords] of Object.entries(menuGroups)) {
     const button = document.createElement('button');
     button.className = 'option-btn';
-    button.innerHTML = `${category} &#8250;`; // › arrow
-    button.onclick = () => showSubMenu(category);
+    button.textContent = category;
+    button.disabled = true; // hanya tampilkan, tidak bisa diklik
     buttonContainer.appendChild(button);
   }
 
@@ -197,51 +200,31 @@ function showMainCategories() {
   scrollToBottom();
 }
 
-// Tampilkan submenu berdasarkan kategori
-function showSubMenu(category) {
-  const li = document.createElement('li');
-  li.className = 'chat incoming';
-  li.innerHTML = `<p>Pilih topik dari kategori <b>${category}</b>:</p>`;
-
-  const buttonContainer = document.createElement('div');
-  buttonContainer.className = 'quick-options';
-
-  menuGroups[category].forEach(keyword => {
-    const button = document.createElement('button');
-    button.className = 'option-btn';
-    button.innerText = keyword.charAt(0).toUpperCase() + keyword.slice(1);
-    button.onclick = () => {
-      addUserMessage(keyword);
-      setTimeout(() => {
-        addBotMessage(getBotResponse(keyword));
-        setTimeout(showMainCategories, 800); // tampilkan menu lagi setelah bot jawab
-      }, 500);
-    };
-    buttonContainer.appendChild(button);
-  });
-
-  li.appendChild(buttonContainer);
-  chatbox.appendChild(li);
-  scrollToBottom();
-}
-
-// Proses input manual
+// Tangani input manual user
 sendBtn.addEventListener('click', () => {
-  const message = userInput.value.trim();
-  if (message) {
-    addUserMessage(message);
-    setTimeout(() => {
-      addBotMessage(getBotResponse(message));
-      setTimeout(showMainCategories, 800);
-    }, 500);
-    userInput.value = '';
-  }
+  const message = userInput.value.trim().toLowerCase();
+  if (!message) return;
+
+  addUserMessage(message);
+  userInput.value = '';
+
+  setTimeout(() => {
+    if (allKeywords.includes(message)) {
+      const response = getBotResponse(message);
+      addBotMessage(response);
+    } else {
+      addBotMessage("Maaf, saya belum punya jawaban untuk itu.");
+      showMainCategories();
+    }
+  }, 500);
 });
 
-// Inisialisasi awal
+// Inisialisasi
 window.addEventListener('DOMContentLoaded', () => {
-  showMainCategories();
+  addBotMessage("Hai, Silahkan bertanya seputar Organisasi 🙌");
+  setTimeout(showMainCategories, 500);
 });
+
 
 </script>
 
