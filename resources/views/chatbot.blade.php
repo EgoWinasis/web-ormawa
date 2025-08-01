@@ -124,143 +124,157 @@
 
 
 </style>
-
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const chatIcon = document.getElementById('chat-icon');
-        const chatBox = document.getElementById('chatbot-box');
-        const closeChat = document.getElementById('close-chat');
-        const sendBtn = document.getElementById('send-btn');
-        const chatbox = document.getElementById('chatbox');
-        const input = document.getElementById('user-input');
+document.addEventListener('DOMContentLoaded', function () {
+    const chatIcon = document.getElementById('chat-icon');
+    const chatBox = document.getElementById('chatbot-box');
+    const sendBtn = document.getElementById('send-btn');
+    const chatbox = document.getElementById('chatbox');
+    const input = document.getElementById('user-input');
 
-        const menuGroups = {
-            "Tentang Organisasi": ["pengertian", "tujuan", "ciri"],
-            "Struktur & Tugas": ["struktur", "tugas", "ketua"],
-            "Visi & Misi": ["visi", "misi"],
-            "Pendaftaran": ["daftar", "regist"]
-        };
-        const allKeywords = Object.values(menuGroups).flat();
-        const responses = {
-            pengertian: "Organisasi adalah sekumpulan orang yang memiliki tujuan bersama.",
-            tujuan: "Tujuan organisasi adalah untuk mencapai visi melalui misi tertentu.",
-            ciri: "Ciri organisasi: terstruktur, punya tujuan, ada peran masing-masing.",
-            struktur: "Struktur organisasi terdiri dari ketua, sekretaris, bendahara, dan divisi lainnya.",
-            tugas: "Setiap anggota memiliki tugas sesuai dengan struktur yang ada.",
-            ketua: "Ketua adalah pemimpin utama dalam organisasi.",
-            visi: "Visi adalah gambaran jangka panjang yang ingin dicapai oleh organisasi.",
-            misi: "Misi adalah langkah-langkah untuk mencapai visi.",
-            daftar: "Untuk mendaftar, isi formulir dan kirim ke pengurus.",
-            regist: "Silakan lakukan registrasi melalui link resmi atau hubungi admin."
-        };
+    let activeMenu = null;
 
-        function scrollBottom() {
-            chatbox.scrollTop = chatbox.scrollHeight;
-        }
+    const menuGroups = {
+        "Tentang Organisasi": [
+            { label: "Pengertian", key: "pengertian" },
+            { label: "Tujuan", key: "tujuan" },
+            { label: "Ciri", key: "ciri" }
+        ],
+        "Struktur & Tugas": [
+            { label: "Struktur", key: "struktur" },
+            { label: "Tugas", key: "tugas" },
+            { label: "Ketua", key: "ketua" }
+        ],
+        "Visi & Misi": [
+            { label: "Visi", key: "visi" },
+            { label: "Misi", key: "misi" }
+        ],
+        "Pendaftaran": [
+            { label: "Daftar", key: "daftar" },
+            { label: "Registrasi", key: "regist" }
+        ]
+    };
 
+    const responses = {
+        pengertian: "Organisasi adalah sekumpulan orang yang memiliki tujuan bersama.",
+        tujuan: "Tujuan organisasi adalah untuk mencapai visi melalui misi tertentu.",
+        ciri: "Ciri organisasi: terstruktur, punya tujuan, ada peran masing-masing.",
+        struktur: "Struktur organisasi terdiri dari ketua, sekretaris, bendahara, dan divisi lainnya.",
+        tugas: "Setiap anggota memiliki tugas sesuai dengan struktur yang ada.",
+        ketua: "Ketua adalah pemimpin utama dalam organisasi.",
+        visi: "Visi adalah gambaran jangka panjang yang ingin dicapai oleh organisasi.",
+        misi: "Misi adalah langkah-langkah untuk mencapai visi.",
+        daftar: "Untuk mendaftar, isi formulir dan kirim ke pengurus.",
+        regist: "Silakan lakukan registrasi melalui link resmi atau hubungi admin."
+    };
 
-        function showInitialMessage() {
-    // Bot greeting
-    addMessage('Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑', 'bot');
-
-    // List menu utama (topik yang bisa ditanyakan)
-    const topikHTML = `
-        Berikut beberapa topik yang bisa kamu tanyakan:
-        <div class="quick-options mt-2">
-            <button class="btn btn-outline-secondary" disabled>Tentang Organisasi</button>
-            <button class="btn btn-outline-secondary" disabled>Struktur & Tugas</button>
-            <button class="btn btn-outline-secondary" disabled>Visi & Misi</button>
-            <button class="btn btn-outline-secondary" disabled>Pendaftaran</button>
-        </div>
-    `;
-    addMessage(topikHTML, 'bot');
-}
-
-// Panggil fungsi ini setelah chat dibuka
-document.getElementById('chat-icon').addEventListener('click', function () {
-    chatboxContainer.classList.toggle('d-none');
-    if (!chatboxContainer.classList.contains('d-none') && chatbox.innerHTML.trim() === '') {
-        showInitialMessage(); // hanya muncul pertama kali
+    function scrollBottom() {
+        chatbox.scrollTop = chatbox.scrollHeight;
     }
-});
 
+    function addMessage(msg, type) {
+        const div = document.createElement('div');
+        div.className = `d-flex mb-3 ${type === 'user' ? 'justify-content-end' : 'justify-content-start'}`;
+        const avatarSrc = type === 'user'
+            ? 'https://cdn-icons-png.flaticon.com/512/1077/1077012.png'
+            : 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png';
 
+        div.innerHTML = `
+            ${type === 'bot' ? `<img src="${avatarSrc}" class="chat-avatar me-2">` : ''}
+            <div class="${type === 'user' ? 'user-msg' : 'bot-msg'}">${msg}</div>
+            ${type === 'user' ? `<img src="${avatarSrc}" class="chat-avatar ms-2">` : ''}
+        `;
+        chatbox.appendChild(div);
+        scrollBottom();
+    }
 
-       function addMessage(msg, type) {
-    const div = document.createElement('div');
-    div.className = `d-flex mb-3 ${type === 'user' ? 'justify-content-end' : 'justify-content-start'}`;
+    function showMainMenu() {
+        const html = `
+            Silakan pilih topik:
+            <div class="quick-options mt-2">
+                ${Object.keys(menuGroups).map(menu =>
+                    `<button class="btn btn-outline-secondary btn-sm menu-btn" data-menu="${menu}">${menu}</button>`
+                ).join('')}
+            </div>
+        `;
+        addMessage(html, 'bot');
+    }
 
-    const avatarSrc = type === 'user'
-        ? 'https://cdn-icons-png.flaticon.com/512/1077/1077012.png'
-        : 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png';
+    function showSubMenu(menu) {
+        const subItems = menuGroups[menu];
+        const html = `
+            Topik: <strong>${menu}</strong><br>
+            Pilih pertanyaan:
+            <div class="quick-options mt-2">
+                ${subItems.map(item =>
+                    `<button class="btn btn-outline-primary btn-sm submenu-btn" data-key="${item.key}">${item.label}</button>`
+                ).join('')}
+                <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
+            </div>
+        `;
+        addMessage(html, 'bot');
+    }
 
-    div.innerHTML = `
-        ${type === 'bot' ? `<img src="${avatarSrc}" class="chat-avatar me-2">` : ''}
-        <div class="${type === 'user' ? 'user-msg' : 'bot-msg'}">${msg}</div>
-        ${type === 'user' ? `<img src="${avatarSrc}" class="chat-avatar ms-2">` : ''}
-    `;
+    function respondToKeyword(key) {
+        const msg = responses[key] || "Maaf, belum ada jawaban untuk topik ini.";
+        addMessage(msg, 'bot');
+        activeMenu = null;
+        setTimeout(showMainMenu, 800);
+    }
 
-    chatbox.appendChild(div);
-    scrollBottom();
-}
-
-
-
-
-        function showMenu() {
-    const topikHTML = `
-        Berikut beberapa topik yang bisa kamu tanyakan:
-        <div class="quick-options mt-2">
-            <button class="btn btn-outline-secondary" disabled>Tentang Organisasi</button>
-            <button class="btn btn-outline-secondary" disabled>Struktur & Tugas</button>
-            <button class="btn btn-outline-secondary" disabled>Visi & Misi</button>
-            <button class="btn btn-outline-secondary" disabled>Pendaftaran</button>
-        </div>
-    `;
-    addMessage(topikHTML, 'bot');
-}
-
-
-        function handleUserInput(message) {
-            addMessage(message, 'user');
-            const lower = message.trim().toLowerCase();
-            setTimeout(() => {
-                if (allKeywords.includes(lower)) {
-                    addMessage(responses[lower], 'bot');
-                } else {
-                    addMessage("Maaf, saya belum punya jawaban untuk itu.", 'bot');
-                    showMenu();
-                }
-            }, 500);
-        }
-
-        sendBtn.addEventListener('click', () => {
-            const message = input.value.trim();
-            if (!message) return;
-            input.value = '';
-            handleUserInput(message);
-        });
-
-      chatIcon.addEventListener('click', function () {
-    chatBox.classList.toggle('d-none');
-    
-    const icon = chatIcon.querySelector('i');
-    if (chatBox.classList.contains('d-none')) {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-comment-dots');
-    } else {
-        icon.classList.remove('fa-comment-dots');
-        icon.classList.add('fa-times');
-
-        // Tampilkan pesan awal hanya sekali
-        if (chatbox.innerHTML.trim() === '') {
-            showInitialMessage();
+    function handleUserInput(message) {
+        addMessage(message, 'user');
+        const lower = message.trim().toLowerCase();
+        const found = Object.values(menuGroups).flat().find(item => item.key === lower);
+        if (found) {
+            respondToKeyword(found.key);
+        } else {
+            addMessage("Maaf, saya belum punya jawaban untuk itu.", 'bot');
+            showMainMenu();
         }
     }
-});
 
-
-
+    // Event Kirim pesan manual
+    sendBtn.addEventListener('click', () => {
+        const message = input.value.trim();
+        if (!message) return;
+        input.value = '';
+        handleUserInput(message);
     });
 
+    // Toggle kotak chatbot
+    chatIcon.addEventListener('click', () => {
+        chatBox.classList.toggle('d-none');
+
+        const icon = chatIcon.querySelector('i');
+        if (chatBox.classList.contains('d-none')) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-comment-dots');
+        } else {
+            icon.classList.remove('fa-comment-dots');
+            icon.classList.add('fa-times');
+
+            if (chatbox.innerHTML.trim() === '') {
+                addMessage('Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑', 'bot');
+                showMainMenu();
+            }
+        }
+    });
+
+    // Event click dari tombol menu/submenu
+    chatbox.addEventListener('click', function (e) {
+        if (e.target.classList.contains('menu-btn')) {
+            const menu = e.target.dataset.menu;
+            activeMenu = menu;
+            showSubMenu(menu);
+        } else if (e.target.classList.contains('submenu-btn')) {
+            const keyword = e.target.dataset.key;
+            addMessage(e.target.innerText, 'user');
+            respondToKeyword(keyword);
+        } else if (e.target.classList.contains('back-btn')) {
+            activeMenu = null;
+            showMainMenu();
+        }
+    });
+});
 </script>
