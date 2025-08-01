@@ -234,7 +234,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Event Kirim pesan manual
     sendBtn.addEventListener('click', () => {
         const message = input.value.trim();
         if (!message) return;
@@ -242,10 +241,8 @@ document.addEventListener('DOMContentLoaded', function () {
         handleUserInput(message);
     });
 
-    // Toggle kotak chatbot
     chatIcon.addEventListener('click', () => {
         chatBox.classList.toggle('d-none');
-
         const icon = chatIcon.querySelector('i');
         if (chatBox.classList.contains('d-none')) {
             icon.classList.remove('fa-times');
@@ -261,16 +258,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Event click dari tombol menu/submenu
     chatbox.addEventListener('click', function (e) {
         if (e.target.classList.contains('menu-btn')) {
             const menu = e.target.dataset.menu;
             activeMenu = menu;
-            showSubMenu(menu);
+            addMessage(menu, 'user');
+            setTimeout(() => {
+                showSubMenu(menu);
+            }, 400);
         } else if (e.target.classList.contains('submenu-btn')) {
             const keyword = e.target.dataset.key;
             addMessage(e.target.innerText, 'user');
-            respondToKeyword(keyword);
+            setTimeout(() => {
+                respondToKeyword(keyword);
+            }, 500);
         } else if (e.target.classList.contains('back-btn')) {
             activeMenu = null;
             showMainMenu();
@@ -278,3 +279,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+
