@@ -85,32 +85,59 @@
     width: 1.25em; /* or any fixed width */
     text-align: center;
 }
-
 .chat-avatar {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
+    align-self: flex-end;
 }
 
 .user-msg,
 .bot-msg {
-    max-width: 75%;
-    padding: 10px 15px;
-    border-radius: 20px;
-    margin-bottom: 0;
+    max-width: 70%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+.d-flex {
+    align-items: flex-end;
 }
 
 .bot-msg {
     background-color: #f1f1f1;
     color: #000;
-    border-top-left-radius: 0;
+    border-top-left-radius: 5px;
+    margin-left: 5px;
 }
 
 .user-msg {
     background-color: #0d6efd;
     color: #fff;
-    border-top-right-radius: 0;
+    border-top-right-radius: 5px;
+    margin-right: 5px;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.quick-options {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.quick-options button {
+    border-radius: 20px;
+    font-size: 13px;
+    padding: 6px 12px;
+    pointer-events: none;
 }
 
 
@@ -150,7 +177,7 @@
             chatbox.scrollTop = chatbox.scrollHeight;
         }
 
-        function addMessage(msg, type) {
+       function addMessage(msg, type) {
     const div = document.createElement('div');
     div.className = `d-flex mb-3 ${type === 'user' ? 'justify-content-end' : 'justify-content-start'}`;
 
@@ -167,6 +194,7 @@
     chatbox.appendChild(div);
     scrollBottom();
 }
+
 
 
 
