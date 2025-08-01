@@ -1,8 +1,9 @@
 <!-- Chatbot Toggle Button -->
 <div id="chat-toggle" class="position-fixed bottom-0 end-0 m-3 z-3">
-    <button class="btn btn-primary rounded-circle p-3 shadow" id="chat-icon">
-        <i class="fas fa-comment-dots fa-lg"></i>
-    </button>
+   <button class="btn btn-primary rounded-circle p-3 shadow" id="chat-icon">
+    <i class="fas fa-comment-dots fa-lg"></i>
+</button>
+
 </div>
 
 <!-- Chatbot Box -->
@@ -33,8 +34,8 @@
     position: fixed;
     bottom: 90px;
     right: 20px;
-    width: 350px;
-    max-height: 400px;
+    width: 500px;
+    max-height: 500px;
     z-index: 1040;
     display: flex;
     flex-direction: column;
@@ -155,12 +156,18 @@
     });
 
     chatIcon.addEventListener('click', () => {
-        chatBox.classList.toggle('d-none');
-    });
+    chatBox.classList.toggle('d-none');
 
-    closeChat.addEventListener('click', () => {
-        chatBox.classList.add('d-none');
-    });
+    const icon = chatIcon.querySelector('i');
+    if (chatBox.classList.contains('d-none')) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-comment-dots');
+    } else {
+        icon.classList.remove('fa-comment-dots');
+        icon.classList.add('fa-times');
+    }
+});
+
 });
 
 
