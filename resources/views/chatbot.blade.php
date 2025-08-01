@@ -90,7 +90,7 @@
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+   document.addEventListener('DOMContentLoaded', function () {
     const chatIcon = document.getElementById('chat-icon');
     const chatBox = document.getElementById('chatbot-box');
     const closeChat = document.getElementById('close-chat');
@@ -99,12 +99,12 @@
     const input = document.getElementById('user-input');
 
     const menuGroups = {
-        "Tentang Organisasi": ["pengertian", "tujuan", "ciri"],
-        "Struktur & Tugas": ["struktur", "tugas", "ketua"],
-        "Visi & Misi": ["visi", "misi"],
-        "Pendaftaran": ["daftar", "regist"]
+        "tentang organisasi": ["pengertian", "tujuan", "ciri"],
+        "struktur & tugas": ["struktur", "tugas", "ketua"],
+        "visi & misi": ["visi", "misi"],
+        "pendaftaran": ["daftar", "regist"]
     };
-    const allKeywords = Object.values(menuGroups).flat();
+
     const responses = {
         pengertian: "Organisasi adalah sekumpulan orang yang memiliki tujuan bersama.",
         tujuan: "Tujuan organisasi adalah untuk mencapai visi melalui misi tertentu.",
@@ -118,6 +118,8 @@
         regist: "Silakan lakukan registrasi melalui link resmi atau hubungi admin."
     };
 
+    let selectedMainMenu = null;
+
     function scrollBottom() {
         chatbox.scrollTop = chatbox.scrollHeight;
     }
@@ -130,35 +132,52 @@
         scrollBottom();
     }
 
-    function showMenu() {
-        let html = `<p>Berikut beberapa topik yang bisa kamu tanyakan:</p>`;
+    function showMainMenuHint() {
+        let html = `<p>Ketik salah satu topik utama berikut:</p><ul>`;
         for (const group in menuGroups) {
-            html += `<div><strong>${group}</strong><div class="quick-options mt-1 mb-2">`;
-            for (const keyword of menuGroups[group]) {
-                html += `<button class="btn btn-outline-secondary btn-sm me-1 mb-1 sub-btn" data-key="${keyword}">${keyword}</button>`;
-            }
-            html += `</div></div>`;
+            html += `<li><strong>${group}</strong></li>`;
         }
-        const wrapper = document.createElement('div');
-        wrapper.className = 'd-flex mb-2';
-        wrapper.innerHTML = `<div class="bot-msg">${html}</div>`;
-        chatbox.appendChild(wrapper);
-        scrollBottom();
+        html += `</ul>`;
+        addMessage(html, 'bot');
+    }
+
+    function showSubMenuHint(mainMenu) {
+        const subMenus = menuGroups[mainMenu];
+        let html = `<p>Kamu memilih <strong>${mainMenu}</strong>. Ketik salah satu sub topik berikut:</p><ul>`;
+        subMenus.forEach(sub => {
+            html += `<li>${sub}</li>`;
+        });
+        html += `</ul>`;
+        addMessage(html, 'bot');
     }
 
     function handleUserInput(message) {
-        if (!message.trim()) return;
+        const msg = message.trim().toLowerCase();
         addMessage(message, 'user');
-        const lower = message.trim().toLowerCase();
 
-        setTimeout(() => {
-            if (allKeywords.includes(lower)) {
-                addMessage(responses[lower], 'bot');
+        if (!selectedMainMenu) {
+            if (menuGroups[msg]) {
+                selectedMainMenu = msg;
+                showSubMenuHint(msg);
             } else {
-                addMessage("Maaf, saya belum punya jawaban untuk itu.", 'bot');
-                showMenu();
+                addMessage("Maaf, topik utama tidak dikenali. Coba ketik salah satu topik berikut.", 'bot');
+                showMainMenuHint();
             }
-        }, 400);
+        } else {
+            const subMenus = menuGroups[selectedMainMenu];
+            if (subMenus.includes(msg)) {
+                if (responses[msg]) {
+                    addMessage(responses[msg], 'bot');
+                } else {
+                    addMessage("Maaf, saya belum punya jawaban untuk itu.", 'bot');
+                }
+                selectedMainMenu = null;
+                setTimeout(showMainMenuHint, 800);
+            } else {
+                addMessage("Sub topik tidak dikenali. Coba ketik salah satu dari sub topik berikut.", 'bot');
+                showSubMenuHint(selectedMainMenu);
+            }
+        }
     }
 
     sendBtn.addEventListener('click', () => {
@@ -175,14 +194,6 @@
         }
     });
 
-    chatbox.addEventListener('click', function (e) {
-        if (e.target.classList.contains('sub-btn')) {
-            const keyword = e.target.dataset.key;
-            handleUserInput(keyword);
-        }
-    });
-
-    // Klik ikon chat bubble
     chatIcon.addEventListener('click', () => {
         chatBox.classList.toggle('d-none');
         const icon = chatIcon.querySelector('i');
@@ -196,7 +207,6 @@
         }
     });
 
-    // Tombol close (X)
     closeChat.addEventListener('click', () => {
         chatBox.classList.add('d-none');
         const icon = chatIcon.querySelector('i');
@@ -204,12 +214,13 @@
         icon.classList.add('fa-comment-dots');
     });
 
-    // Inisialisasi chatbot saat load
+    // Start with greeting and show main menu
     setTimeout(() => {
-        addMessage("Hai, ada yang bisa saya bantu? 😊", 'bot');
-        showMenu();
+        addMessage("Hai! Ada yang bisa saya bantu? 😊", 'bot');
+        showMainMenuHint();
     }, 500);
 });
+
 
 
 </script>
