@@ -1,5 +1,5 @@
 <!-- Chatbot Toggle Button -->
-<button class="btn btn-primary rounded-circle p-3 shadow" id="chat-icon">
+<button class="btn btn-primary rounded-circle p-3 shadow" id="chat-toggle">
     <i class="fas fa-comment-dots fa-fw fa-lg"></i>
 </button>
 
@@ -79,7 +79,7 @@
         pointer-events: none;
     }
 
-    #chat-icon i {
+    #chat-toggle i {
     width: 1.25em; /* or any fixed width */
     text-align: center;
 }
