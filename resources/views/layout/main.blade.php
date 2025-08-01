@@ -22,16 +22,66 @@
 }
 .option-btn {
     padding: 6px 12px;
-    background-color: #f1f1f1;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    bac<style>
+.chatbox {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-.option-btn:hover {
-    background-color: #dcdcdc;
+
+.chat-option {
+  background: #fff;
+  border-radius: 12px;
+  margin: 6px 0;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #eee;
+  transition: background 0.2s;
 }
-    </style>
+
+.chat-option:hover {
+  background: #f2f2f2;
+}
+
+.arrow {
+  font-weight: bold;
+  color: #888;
+  font-size: 16px;
+}
+
+.typing .dots {
+  display: flex;
+  gap: 4px;
+  padding: 10px;
+}
+
+.dots span {
+  width: 8px;
+  height: 8px;
+  background: #bbb;
+  border-radius: 50%;
+  animation: blink 1.4s infinite ease-in-out both;
+}
+
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% {
+    opacity: 0.2;
+    transform: scale(0.9);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+</style>
+
     <title>@yield('title', 'Website ORMAWA')</title>
 </head>
 
@@ -56,14 +106,15 @@
                 <span class="material-symbols-outlined">smart_toy</span>
                 <p>Hai, Silahkan bertanya seputar Organisasi🙌</p>
             </li>
-            <li class="chat incoming">
-            <div class="quick-options">
-                <button class="option-btn">Struktur Organisasi</button>
-                <button class="option-btn">Visi & Misi</button>
-                <button class="option-btn">Kegiatan</button>
-                <button class="option-btn">Kontak Pengurus</button>
-            </div>
-        </li>
+            <!-- Menu pilihan akan ditambahkan di sini lewat JS -->
+    <li class="chat incoming" id="menu-container"></li>
+
+    <!-- Typing animation -->
+    <li class="chat incoming typing">
+      <div class="dots">
+        <span></span><span></span><span></span>
+      </div>
+    </li>
         </ul>
         <div class="chat-input">
             <textarea placeholder="Masukan pertanyaan" required></textarea>
@@ -83,23 +134,49 @@
 
     {{-- Footer or additional scripts --}}
     <script src="{{ asset('js/landing.js') }}"></script>
-  <script>
-document.querySelectorAll('.option-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const message = this.textContent;
-        const chatbox = document.querySelector('.chatbox');
+ <script>
 
-        // Tampilkan pesan pengguna
-        const userMsg = `<li class="chat outgoing"><p>${message}</p></li>`;
-        chatbox.innerHTML += userMsg;
+const menuContainer = document.getElementById('menu-container');
+const menuWrapper = document.createElement('div');
 
-        // Auto scroll ke bawah
-        chatbox.scrollTop = chatbox.scrollHeight;
+keywords.forEach(keyword => {
+  const item = document.createElement('div');
+  item.className = 'chat-option';
+  item.innerHTML = `<span>${capitalize(keyword)}</span><span class="arrow">›</span>`;
+  
+  // Tambahkan event jika diklik
+  item.addEventListener('click', () => {
+    sendUserMessage(keyword);
+  });
 
-        // Kamu bisa kirim pesan ini ke backend, atau respon otomatis di sini
-    });
+  menuWrapper.appendChild(item);
 });
+
+menuContainer.appendChild(menuWrapper);
+
+// Fungsi bantu kapitalisasi awal kata
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Fungsi untuk menampilkan pesan user di chat
+function sendUserMessage(msg) {
+  const chatbox = document.querySelector('.chatbox');
+  const userMsg = `<li class="chat outgoing"><p>${msg}</p></li>`;
+  chatbox.innerHTML += userMsg;
+
+  // Scroll otomatis
+  chatbox.scrollTop = chatbox.scrollHeight;
+
+  // Simulasi bot berpikir
+  setTimeout(() => {
+    const botResponse = `<li class="chat incoming"><p>Kamu bertanya tentang: <strong>${msg}</strong></p></li>`;
+    chatbox.innerHTML += botResponse;
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }, 1000);
+}
 </script>
+
 
 </body>
 </html>
