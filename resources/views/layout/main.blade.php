@@ -122,113 +122,141 @@
 
     {{-- Footer or additional scripts --}}
     <script src="{{ asset('js/landing.js') }}"></script>
-  <script>
-    const menuGroups = {
-      "Tentang Organisasi": ["pengertian", "tujuan", "ciri"],
-      "Struktur & Tugas": ["struktur", "tugas", "ketua"],
-      "Visi & Misi": ["visi", "misi"],
-      "Pendaftaran": ["daftar", "regist"]
+ <script>
+  const chatbox = document.querySelector('.chatbox');
+  const input = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+
+  const menuGroups = {
+    "Tentang Organisasi": ["pengertian", "tujuan", "ciri"],
+    "Struktur & Tugas": ["struktur", "tugas", "ketua"],
+    "Visi & Misi": ["visi", "misi"],
+    "Pendaftaran": ["daftar", "regist"]
+  };
+
+  function scrollToBottom() {
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+
+  function addBotMessage(text) {
+    const li = document.createElement('li');
+    li.className = 'chat incoming';
+    li.innerHTML = `<p>${text}</p>`;
+    chatbox.appendChild(li);
+    scrollToBottom();
+  }
+
+  function addUserMessage(text) {
+    const li = document.createElement('li');
+    li.className = 'chat outgoing';
+    li.innerHTML = `<p>${text}</p>`;
+    chatbox.appendChild(li);
+    scrollToBottom();
+  }
+
+  function getBotResponse(keyword) {
+    const responses = {
+      "pengertian": "Organisasi adalah sekumpulan orang yang bekerja sama untuk mencapai tujuan tertentu.",
+      "tujuan": "Tujuan organisasi adalah untuk mencapai visi dan misi yang telah ditetapkan.",
+      "ciri": "Ciri organisasi antara lain: struktur jelas, tujuan bersama, pembagian tugas.",
+      "struktur": "Struktur organisasi biasanya terdiri dari ketua, sekretaris, bendahara, dan divisi-divisi.",
+      "tugas": "Tugas anggota organisasi tergantung pada posisi dan peran masing-masing.",
+      "ketua": "Ketua organisasi adalah pemimpin utama yang bertanggung jawab atas jalannya organisasi.",
+      "visi": "Visi adalah gambaran jangka panjang tentang tujuan besar organisasi.",
+      "misi": "Misi adalah langkah-langkah strategis yang dilakukan untuk mencapai visi.",
+      "daftar": "Untuk mendaftar, silakan isi formulir pendaftaran melalui panitia atau link yang tersedia.",
+      "regist": "Registrasi dilakukan setiap awal periode kepengurusan. Pastikan kamu memenuhi syarat ya!"
     };
+    return responses[keyword.toLowerCase()] || "Maaf, saya belum mengerti pertanyaan tersebut.";
+  }
 
-    const chatbox = document.getElementById('chatbox');
-    const textarea = document.getElementById('chat-input');
-    const menuContainer = document.getElementById('menu-container');
+  function showMainCategories() {
+    const li = document.createElement('li');
+    li.className = 'chat incoming';
+    li.innerHTML = `<p>Silahkan pilih kategori:</p>`;
 
-    for (const [group, items] of Object.entries(menuGroups)) {
-      const groupTitle = document.createElement('h6');
-      groupTitle.textContent = group;
-      groupTitle.className = 'mt-3 fw-bold';
-      menuContainer.appendChild(groupTitle);
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'quick-options';
 
-      const row = document.createElement('div');
-      row.className = 'row g-2 mb-2';
-
-      items.forEach(keyword => {
-        const col = document.createElement('div');
-        col.className = 'col-6';
-        const div = document.createElement('div');
-        div.className = 'chat-option d-flex justify-content-between align-items-center';
-        div.innerHTML = `
-          <span>${capitalize(keyword)}</span>
-          <span>&#8250;</span>
-        `;
-        div.onclick = () => {
-          addUserMessage(keyword);
-          simulateBotResponse(keyword);
-        };
-        col.appendChild(div);
-        row.appendChild(col);
-      });
-
-      menuContainer.appendChild(row);
+    for (const category in menuGroups) {
+      const button = document.createElement('button');
+      button.className = 'option-btn';
+      button.innerHTML = `${category} &#8250;`;
+      button.onclick = () => showSubMenu(category);
+      buttonContainer.appendChild(button);
     }
 
-    function addUserMessage(message) {
-      const div = document.createElement('div');
-      div.className = 'chat outgoing mb-2';
-      div.innerHTML = `<p class="ms-auto">${message}</p>`;
-      chatbox.appendChild(div);
-      scrollToBottom();
-    }
+    li.appendChild(buttonContainer);
+    chatbox.appendChild(li);
+    scrollToBottom();
+  }
 
-    function simulateBotResponse(keyword) {
-      const dots = document.querySelector('.typing');
-      dots.style.display = 'block';
+  function showSubMenu(category) {
+    const li = document.createElement('li');
+    li.className = 'chat incoming';
+    li.innerHTML = `<p>Pilih topik dari <b>${category}</b>:</p>`;
 
-      setTimeout(() => {
-        dots.style.display = 'none';
-        const response = getBotResponse(keyword);
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'quick-options';
 
-        const div = document.createElement('div');
-        div.className = 'chat incoming mb-2';
-        div.innerHTML = `<p>${response}</p>`;
-        chatbox.appendChild(div);
-        scrollToBottom();
-      }, 1000);
-    }
-
-    function getBotResponse(keyword) {
-      switch (keyword.toLowerCase()) {
-        case 'visi':
-          return "Visi kami adalah menjadi organisasi yang menciptakan pemimpin muda berintegritas.";
-        case 'misi':
-          return "Misi kami:\n1. Mengembangkan potensi anggota\n2. Menumbuhkan rasa tanggung jawab\n3. Meningkatkan kolaborasi tim.";
-        case 'pengertian':
-          return "Organisasi adalah wadah bagi sekelompok orang untuk mencapai tujuan bersama.";
-        case 'ciri':
-          return "Ciri organisasi:\n- Memiliki tujuan\n- Struktur jelas\n- Kerjasama antar anggota.";
-        case 'tujuan':
-          return "Tujuan kami adalah membentuk karakter dan kepemimpinan anggota.";
-        case 'daftar':
-        case 'regist':
-          return "Silakan daftar melalui form pendaftaran di website kami atau hubungi admin.";
-        case 'struktur':
-          return "Struktur organisasi terdiri dari: Ketua, Wakil, Sekretaris, Bendahara, dan Divisi.";
-        case 'tugas':
-          return "Setiap divisi memiliki tugas khusus seperti humas, logistik, dokumentasi, dan lainnya.";
-        case 'ketua':
-          return "Ketua saat ini adalah Andi Saputra, menjabat sejak Januari 2025.";
-        default:
-          return "Maaf, saya tidak mengerti pertanyaan kamu.";
-      }
-    }
-
-    function scrollToBottom() {
-      chatbox.scrollTop = chatbox.scrollHeight;
-    }
-
-    document.getElementById('send-btn').addEventListener('click', () => {
-      const message = textarea.value.trim();
-      if (!message) return;
-      addUserMessage(message);
-      simulateBotResponse(message);
-      textarea.value = '';
+    menuGroups[category].forEach(keyword => {
+      const button = document.createElement('button');
+      button.className = 'option-btn';
+      button.textContent = keyword.charAt(0).toUpperCase() + keyword.slice(1);
+      button.onclick = () => {
+        addUserMessage(keyword);
+        simulateBotResponse(keyword);
+      };
+      buttonContainer.appendChild(button);
     });
 
-    function capitalize(text) {
-      return text.charAt(0).toUpperCase() + text.slice(1);
+    li.appendChild(buttonContainer);
+    chatbox.appendChild(li);
+    scrollToBottom();
+  }
+
+  function simulateBotResponse(keyword) {
+    const loading = document.createElement('li');
+    loading.className = 'chat incoming';
+    loading.innerHTML = `<p><i>Sedang berpikir</i> <span class="dots">.</span></p>`;
+    chatbox.appendChild(loading);
+    scrollToBottom();
+
+    let dotCount = 1;
+    const dotInterval = setInterval(() => {
+      const span = loading.querySelector('.dots');
+      dotCount = (dotCount % 3) + 1;
+      span.textContent = '.'.repeat(dotCount);
+    }, 500);
+
+    setTimeout(() => {
+      clearInterval(dotInterval);
+      loading.remove();
+      addBotMessage(getBotResponse(keyword));
+    }, 1000);
+  }
+
+  sendBtn.addEventListener('click', () => {
+    const userText = input.value.trim();
+    if (!userText) return;
+    addUserMessage(userText);
+    input.value = '';
+    simulateBotResponse(userText);
+  });
+
+  input.addEventListener('keypress', e => {
+    if (e.key === 'Enter') {
+      sendBtn.click();
+      e.preventDefault();
     }
-  </script>
+  });
+
+  // Saat pertama dibuka
+  window.addEventListener('DOMContentLoaded', () => {
+    addBotMessage("Hai! Silahkan pilih kategori untuk mulai bertanya 🙌");
+    showMainCategories();
+  });
+</script>
 
 
 </body>
