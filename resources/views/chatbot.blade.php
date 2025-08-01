@@ -15,11 +15,7 @@
         
     </div>
     <div class="card-body" id="chatbox">
-        <div class="d-flex mb-3">
-            <div class="bg-light p-2 rounded text-start">
-                Hai! Silahkan bertanya seputar Organisasi 🙌
-            </div>
-        </div>
+        
     </div>
     <div class="card-footer bg-white">
         <div class="input-group">
