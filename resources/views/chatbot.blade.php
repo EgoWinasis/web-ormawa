@@ -93,8 +93,7 @@
     align-self: flex-end;
 }
 
-.user-msg,
-.bot-msg {
+.bot-msg, .user-msg {
     max-width: 70%;
     padding: 10px 14px;
     border-radius: 18px;
@@ -102,10 +101,6 @@
     line-height: 1.4;
     display: inline-block;
     word-wrap: break-word;
-}
-
-.d-flex {
-    align-items: flex-end;
 }
 
 .bot-msg {
@@ -122,22 +117,12 @@
     margin-right: 5px;
 }
 
-.mb-3 {
-    margin-bottom: 1rem !important;
-}
-
-.quick-options {
-    margin-top: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
 .quick-options button {
     border-radius: 20px;
     font-size: 13px;
     padding: 6px 12px;
     pointer-events: none;
+    opacity: 0.8;
 }
 
 
@@ -176,6 +161,34 @@
         function scrollBottom() {
             chatbox.scrollTop = chatbox.scrollHeight;
         }
+
+
+        function showInitialMessage() {
+    // Bot greeting
+    addMessage('Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑', 'bot');
+
+    // List menu utama (topik yang bisa ditanyakan)
+    const topikHTML = `
+        Berikut beberapa topik yang bisa kamu tanyakan:
+        <div class="quick-options mt-2">
+            <button class="btn btn-outline-secondary" disabled>Tentang Organisasi</button>
+            <button class="btn btn-outline-secondary" disabled>Struktur & Tugas</button>
+            <button class="btn btn-outline-secondary" disabled>Visi & Misi</button>
+            <button class="btn btn-outline-secondary" disabled>Pendaftaran</button>
+        </div>
+    `;
+    addMessage(topikHTML, 'bot');
+}
+
+// Panggil fungsi ini setelah chat dibuka
+document.getElementById('chat-icon').addEventListener('click', function () {
+    chatboxContainer.classList.toggle('d-none');
+    if (!chatboxContainer.classList.contains('d-none') && chatbox.innerHTML.trim() === '') {
+        showInitialMessage(); // hanya muncul pertama kali
+    }
+});
+
+
 
        function addMessage(msg, type) {
     const div = document.createElement('div');
