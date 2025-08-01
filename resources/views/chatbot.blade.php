@@ -86,13 +86,33 @@
     text-align: center;
 }
 
-
 .chat-avatar {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
 }
+
+.user-msg,
+.bot-msg {
+    max-width: 75%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-bottom: 0;
+}
+
+.bot-msg {
+    background-color: #f1f1f1;
+    color: #000;
+    border-top-left-radius: 0;
+}
+
+.user-msg {
+    background-color: #0d6efd;
+    color: #fff;
+    border-top-right-radius: 0;
+}
+
 
 
 </style>
@@ -132,27 +152,22 @@
 
         function addMessage(msg, type) {
     const div = document.createElement('div');
-    div.className = `d-flex mb-2 ${type === 'user' ? 'justify-content-end' : ''}`;
+    div.className = `d-flex mb-3 ${type === 'user' ? 'justify-content-end' : 'justify-content-start'}`;
 
-    if (type === 'user') {
-        div.innerHTML = `
-            <div class="d-flex align-items-end gap-2">
-                <div class="user-msg">${msg}</div>
-                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" alt="User" class="chat-avatar">
-            </div>
-        `;
-    } else {
-        div.innerHTML = `
-            <div class="d-flex align-items-end gap-2">
-                <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="Bot" class="chat-avatar">
-                <div class="bot-msg">${msg}</div>
-            </div>
-        `;
-    }
+    const avatarSrc = type === 'user'
+        ? 'https://cdn-icons-png.flaticon.com/512/1077/1077012.png'
+        : 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png';
+
+    div.innerHTML = `
+        ${type === 'bot' ? `<img src="${avatarSrc}" class="chat-avatar me-2">` : ''}
+        <div class="${type === 'user' ? 'user-msg' : 'bot-msg'}">${msg}</div>
+        ${type === 'user' ? `<img src="${avatarSrc}" class="chat-avatar ms-2">` : ''}
+    `;
 
     chatbox.appendChild(div);
     scrollBottom();
 }
+
 
 
         function showMenu() {
