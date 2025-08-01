@@ -249,6 +249,11 @@
         @endforeach
 
     </div>
+
+
+
+    @include('chatbot')
+
 @endsection
 
 @section('css')
