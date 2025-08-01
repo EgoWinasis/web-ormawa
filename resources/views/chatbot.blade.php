@@ -37,7 +37,7 @@
         bottom: 90px;
         right: 20px;
         width: 500px;
-        height: 600px;
+        height: 500px;
         z-index: 1040;
         display: flex;
         flex-direction: column;
