@@ -208,17 +208,18 @@ document.getElementById('chat-icon').addEventListener('click', function () {
 
 
         function showMenu() {
-            let html = `<p>Berikut beberapa topik yang bisa kamu tanyakan:</p><div class="quick-options">`;
-            for (const group in menuGroups) {
-                html += `<button class="btn btn-outline-secondary btn-sm" disabled>${group}</button>`;
-            }
-            html += `</div>`;
-            const wrapper = document.createElement('div');
-            wrapper.className = 'd-flex mb-2';
-            wrapper.innerHTML = `<div class="bot-msg">${html}</div>`;
-            chatbox.appendChild(wrapper);
-            scrollBottom();
-        }
+    const topikHTML = `
+        Berikut beberapa topik yang bisa kamu tanyakan:
+        <div class="quick-options mt-2">
+            <button class="btn btn-outline-secondary" disabled>Tentang Organisasi</button>
+            <button class="btn btn-outline-secondary" disabled>Struktur & Tugas</button>
+            <button class="btn btn-outline-secondary" disabled>Visi & Misi</button>
+            <button class="btn btn-outline-secondary" disabled>Pendaftaran</button>
+        </div>
+    `;
+    addMessage(topikHTML, 'bot');
+}
+
 
         function handleUserInput(message) {
             addMessage(message, 'user');
