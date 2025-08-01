@@ -11,8 +11,8 @@
 <!-- Chatbot Box -->
 <div id="chatbot-box" class="card chatbot-box shadow d-none">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-        <span>Chatbot Organisasi</span>
-        <button class="btn btn-sm btn-light" id="close-chat"><i class="fas fa-times"></i></button>
+        <span>Chatbot Ormawa</span>
+        
     </div>
     <div class="card-body" id="chatbox">
         <div class="d-flex mb-3">
@@ -37,7 +37,7 @@
         bottom: 90px;
         right: 20px;
         width: 500px;
-        max-height: 500px;
+        height: 600px;
         z-index: 1040;
         display: flex;
         flex-direction: column;
