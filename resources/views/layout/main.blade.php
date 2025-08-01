@@ -122,26 +122,46 @@
 
     {{-- Footer or additional scripts --}}
     <script src="{{ asset('js/landing.js') }}"></script>
- <script>
-    const keywords = ['visi', 'misi', 'pengertian', 'ciri', 'tujuan', 'daftar', 'regist', 'struktur', 'tugas', 'ketua'];
+  <script>
+    const menuGroups = {
+      "Tentang Organisasi": ["pengertian", "tujuan", "ciri"],
+      "Struktur & Tugas": ["struktur", "tugas", "ketua"],
+      "Visi & Misi": ["visi", "misi"],
+      "Pendaftaran": ["daftar", "regist"]
+    };
+
     const chatbox = document.getElementById('chatbox');
     const textarea = document.getElementById('chat-input');
     const menuContainer = document.getElementById('menu-container');
 
-    // Buat menu keyword otomatis
-    keywords.forEach(k => {
-      let div = document.createElement('div');
-      div.className = 'chat-option d-flex justify-content-between align-items-center mb-2';
-      div.innerHTML = `
-        <span>${capitalize(k)}</span>
-        <span>&#8250;</span>
-      `;
-      div.onclick = () => {
-        addUserMessage(k);
-        simulateBotResponse(k);
-      };
-      menuContainer.appendChild(div);
-    });
+    for (const [group, items] of Object.entries(menuGroups)) {
+      const groupTitle = document.createElement('h6');
+      groupTitle.textContent = group;
+      groupTitle.className = 'mt-3 fw-bold';
+      menuContainer.appendChild(groupTitle);
+
+      const row = document.createElement('div');
+      row.className = 'row g-2 mb-2';
+
+      items.forEach(keyword => {
+        const col = document.createElement('div');
+        col.className = 'col-6';
+        const div = document.createElement('div');
+        div.className = 'chat-option d-flex justify-content-between align-items-center';
+        div.innerHTML = `
+          <span>${capitalize(keyword)}</span>
+          <span>&#8250;</span>
+        `;
+        div.onclick = () => {
+          addUserMessage(keyword);
+          simulateBotResponse(keyword);
+        };
+        col.appendChild(div);
+        row.appendChild(col);
+      });
+
+      menuContainer.appendChild(row);
+    }
 
     function addUserMessage(message) {
       const div = document.createElement('div');
