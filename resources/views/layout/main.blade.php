@@ -13,7 +13,25 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-
+    <style>
+        .quick-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+.option-btn {
+    padding: 6px 12px;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.option-btn:hover {
+    background-color: #dcdcdc;
+}
+    </style>
     <title>@yield('title', 'Website ORMAWA')</title>
 </head>
 
@@ -65,6 +83,23 @@
 
     {{-- Footer or additional scripts --}}
     <script src="{{ asset('js/landing.js') }}"></script>
-</body>
+  <script>
+document.querySelectorAll('.option-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const message = this.textContent;
+        const chatbox = document.querySelector('.chatbox');
 
+        // Tampilkan pesan pengguna
+        const userMsg = `<li class="chat outgoing"><p>${message}</p></li>`;
+        chatbox.innerHTML += userMsg;
+
+        // Auto scroll ke bawah
+        chatbox.scrollTop = chatbox.scrollHeight;
+
+        // Kamu bisa kirim pesan ini ke backend, atau respon otomatis di sini
+    });
+});
+</script>
+
+</body>
 </html>
