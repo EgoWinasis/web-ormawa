@@ -123,12 +123,29 @@
         }
 
         function addMessage(msg, type) {
-            const div = document.createElement('div');
-            div.className = `d-flex mb-2 ${type === 'user' ? 'justify-content-end' : ''}`;
-            div.innerHTML = `<div class="${type === 'user' ? 'user-msg' : 'bot-msg'}">${msg}</div>`;
-            chatbox.appendChild(div);
-            scrollBottom();
-        }
+    const div = document.createElement('div');
+    div.className = `d-flex mb-2 ${type === 'user' ? 'justify-content-end' : ''}`;
+
+    if (type === 'user') {
+        div.innerHTML = `
+            <div class="d-flex align-items-end gap-2">
+                <div class="user-msg">${msg}</div>
+                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" alt="User" class="chat-avatar">
+            </div>
+        `;
+    } else {
+        div.innerHTML = `
+            <div class="d-flex align-items-end gap-2">
+                <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="Bot" class="chat-avatar">
+                <div class="bot-msg">${msg}</div>
+            </div>
+        `;
+    }
+
+    chatbox.appendChild(div);
+    scrollBottom();
+}
+
 
         function showMenu() {
             let html = `<p>Berikut beberapa topik yang bisa kamu tanyakan:</p><div class="quick-options">`;
