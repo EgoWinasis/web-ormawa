@@ -153,6 +153,8 @@
 
     function handleUserInput(message) {
         const msg = message.trim().toLowerCase();
+        if (!msg) return;
+
         addMessage(message, 'user');
 
         if (!selectedMainMenu) {
@@ -172,9 +174,9 @@
                     addMessage("Maaf, saya belum punya jawaban untuk itu.", 'bot');
                 }
                 selectedMainMenu = null;
-                setTimeout(showMainMenuHint, 800);
+                setTimeout(showMainMenuHint, 600);
             } else {
-                addMessage("Sub topik tidak dikenali. Coba ketik salah satu dari sub topik berikut.", 'bot');
+                addMessage("Sub topik tidak dikenali. Ketik salah satu dari sub topik berikut.", 'bot');
                 showSubMenuHint(selectedMainMenu);
             }
         }
@@ -182,7 +184,6 @@
 
     sendBtn.addEventListener('click', () => {
         const message = input.value.trim();
-        if (!message) return;
         input.value = '';
         handleUserInput(message);
     });
@@ -214,12 +215,13 @@
         icon.classList.add('fa-comment-dots');
     });
 
-    // Start with greeting and show main menu
+    // Awal tampilkan sapaan dan menu utama
     setTimeout(() => {
         addMessage("Hai! Ada yang bisa saya bantu? 😊", 'bot');
         showMainMenuHint();
     }, 500);
 });
+
 
 
 
