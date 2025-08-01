@@ -121,6 +121,43 @@
     opacity: 0.8;
 }
 
+.typing-indicator {
+    width: 60px;
+    height: 20px;
+    padding: 10px 15px;
+    background: #f1f1f1;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.typing-indicator span {
+    width: 6px;
+    height: 6px;
+    background-color: #999;
+    border-radius: 50%;
+    display: inline-block;
+    animation: blink 1.4s infinite both;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0%, 80%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+}
 
 
 </style>
@@ -216,11 +253,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function respondToKeyword(key) {
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'd-flex mb-3 justify-content-start typing-indicator-wrapper';
+    loadingDiv.innerHTML = `
+        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" class="chat-avatar me-2">
+        <div class="typing-indicator">
+            <span></span><span></span><span></span>
+        </div>
+    `;
+    chatbox.appendChild(loadingDiv);
+    scrollBottom();
+
+    setTimeout(() => {
+        loadingDiv.remove();
         const msg = responses[key] || "Maaf, belum ada jawaban untuk topik ini.";
         addMessage(msg, 'bot');
         activeMenu = null;
         setTimeout(showMainMenu, 800);
-    }
+    }, 1200); // delay sebelum menampilkan respons
+}
+
 
     function handleUserInput(message) {
         addMessage(message, 'user');
