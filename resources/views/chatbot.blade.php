@@ -240,18 +240,24 @@ document.getElementById('chat-icon').addEventListener('click', function () {
             handleUserInput(message);
         });
 
-        chatIcon.addEventListener('click', () => {
-            chatBox.classList.toggle('d-none');
+      chatIcon.addEventListener('click', function () {
+    chatBox.classList.toggle('d-none');
+    
+    const icon = chatIcon.querySelector('i');
+    if (chatBox.classList.contains('d-none')) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-comment-dots');
+    } else {
+        icon.classList.remove('fa-comment-dots');
+        icon.classList.add('fa-times');
 
-            const icon = chatIcon.querySelector('i');
-            if (chatBox.classList.contains('d-none')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-comment-dots');
-            } else {
-                icon.classList.remove('fa-comment-dots');
-                icon.classList.add('fa-times');
-            }
-        });
+        // Tampilkan pesan awal hanya sekali
+        if (chatbox.innerHTML.trim() === '') {
+            showInitialMessage();
+        }
+    }
+});
+
 
 
     });
