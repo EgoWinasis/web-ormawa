@@ -38,6 +38,14 @@
                 <span class="material-symbols-outlined">smart_toy</span>
                 <p>Hai, Silahkan bertanya seputar Organisasi🙌</p>
             </li>
+            <li class="chat incoming">
+            <div class="quick-options">
+                <button class="option-btn">Struktur Organisasi</button>
+                <button class="option-btn">Visi & Misi</button>
+                <button class="option-btn">Kegiatan</button>
+                <button class="option-btn">Kontak Pengurus</button>
+            </div>
+        </li>
         </ul>
         <div class="chat-input">
             <textarea placeholder="Masukan pertanyaan" required></textarea>
