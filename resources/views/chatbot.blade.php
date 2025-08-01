@@ -162,7 +162,7 @@
                 selectedMainMenu = msg;
                 showSubMenuHint(msg);
             } else {
-                addMessage("Maaf, topik utama tidak dikenali. Coba ketik salah satu topik berikut.", 'bot');
+                addMessage("Maaf, topik utama tidak dikenali. Berikut adalah topik yang tersedia:", 'bot');
                 showMainMenuHint();
             }
         } else {
@@ -198,14 +198,9 @@
     chatIcon.addEventListener('click', () => {
         chatBox.classList.toggle('d-none');
         const icon = chatIcon.querySelector('i');
-        if (chatBox.classList.contains('d-none')) {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-comment-dots');
-        } else {
-            icon.classList.remove('fa-comment-dots');
-            icon.classList.add('fa-times');
-            scrollBottom();
-        }
+        icon.classList.toggle('fa-comment-dots');
+        icon.classList.toggle('fa-times');
+        scrollBottom();
     });
 
     closeChat.addEventListener('click', () => {
@@ -215,11 +210,11 @@
         icon.classList.add('fa-comment-dots');
     });
 
-    // Awal tampilkan sapaan dan menu utama
+    // Startup welcome
     setTimeout(() => {
         addMessage("Hai! Ada yang bisa saya bantu? 😊", 'bot');
         showMainMenuHint();
-    }, 500);
+    }, 300);
 });
 
 
