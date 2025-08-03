@@ -252,7 +252,6 @@
 
 
 
-    @include('chatbot')
 
 @endsection
 

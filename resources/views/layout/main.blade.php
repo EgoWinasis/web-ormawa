@@ -41,6 +41,7 @@
     {{-- Footer or additional scripts --}}
     <script src="{{ asset('js/landing.js') }}"></script>
 
+    @include('chatbot')
 
 </body>
 </html>
