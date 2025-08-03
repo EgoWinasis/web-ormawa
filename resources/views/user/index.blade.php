@@ -214,6 +214,9 @@
         </div>
     </div>
     {{-- <script src={{ asset('js/user.js') }}></script> --}}
+
+    @include('chatbot')
+
 </body>
 
 </html>
