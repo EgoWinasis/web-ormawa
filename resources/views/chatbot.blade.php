@@ -336,7 +336,20 @@
 // \bem
             bem_visi: 'Dengan visi kami "Menjadikan BEM Politeknik Harapan Bersama Sebagai Wadah Untuk Mewujudkan Mahasiswa yang Cerah (Cerdas, Religius, Aktif, & Harmonis)',
             bem_misi: 'Misi: <br>1. Mendorong Pengembangan Kualitas Sumber daya Mahasiswa PHB. <br>2. Meningkatnya Produktifitas dan Kreatifitas. <br>3. Terciptanya solidaritas mahasisiwa yang advokatif dan Berkesinambungan.<br>4. Terwujudnya BEM yang Harmonis dan aspiratif.',
-            bem_struktur: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
+            bem_struktur: `
+<b>Struktur Organisasi BEM</b>
+<ol>
+    <li>PRESMA</li>
+    <li>WAPRESMA</li>
+    <li>Sekretaris</li>
+    <li>Bendahara</li>
+    <li>KOMINFO</li>
+    <li>DEPSOS</li>
+    <li>ADKESMA</li>
+    <li>KMB</li>
+    <li>KKP</li>
+</ol>
+`
             bem_tugas: `<b>Ketua BEM</b>
 <ul>
     <li>Memimpin dan mengkoordinasikan kegiatan BEM KM PHB</li>
@@ -436,18 +449,18 @@ bpm_misi: `
 </ol>
 `,
 
-bpm_struktur: `
+bpm_struktur : `
 <b>Struktur Organisasi BPM</b>
 <ol>
-    <li>PRESMA</li>
-    <li>WAPRESMA</li>
-    <li>Sekretaris</li>
+    <li>Ketua Umum</li>
+    <li>Sekretaris Umum</li>
     <li>Bendahara</li>
-    <li>KOMINFO</li>
-    <li>DEPSOS</li>
-    <li>ADKESMA</li>
-    <li>KMB</li>
-    <li>KKP</li>
+    <li>Hubungan Mahasiswa I</li>
+    <li>Hubungan Mahasiswa II</li>
+    <li>Komisi I</li>
+    <li>Komisi II</li>
+    <li>Komisi III</li>
+    <li>Komisi IV</li>
 </ol>
 `
 ,
@@ -529,7 +542,7 @@ bpm_struktur: `
 // akuntansi
             akuntansi_visi: "Visi Akuntansi: Profesionalisme akuntan muda.",
             akuntansi_misi: "Misi: Literasi keuangan, kolaborasi internal eksternal.",
-            akuntansi_struktur: "Struktur: Ketua, Sekretaris, Divisi Pendidikan & Kewirausahaan.",
+           
             akuntansi_tugas: `
 <b>Tugas Pokok Struktural HIMAPRODI Akuntansi KM PHB</b><br><br>
 
@@ -804,6 +817,8 @@ elektro_tugas: `
 `,
 
 // farmasi
+
+
 farmasi_tugas: `
 <b>Tugas Pokok Struktural HIMAPRODI Farmasi KM PHB</b><br><br>
 
@@ -1217,6 +1232,167 @@ ti_tugas: `
 </ol>
 `
 
+,
+// tugas
+akuntansi_struktur : `
+<b>Struktur HIMAPRODI Akuntansi</b>
+<ol>
+    <li>Ketua</li>
+    <li>Wakil Ketua</li>
+    <li>Wakil Ketua</li>
+    <li>Sekretaris I</li>
+    <li>Sekretaris II</li>
+    <li>Bendahara I</li>
+    <li>Bendahara II</li>
+    <li>Koordinator Department RnD</li>
+    <li>Anggota Department RnD</li>
+    <li>Koordinator Department HRD</li>
+    <li>Anggota Department HRD</li>
+    <li>Koordinator Department Enterpreneur</li>
+    <li>Koordinator Department Enterpreneur</li>
+    <li>Anggota Department Enterpreneur</li>
+    <li>Koordinator Department PR</li>
+    <li>Anggota Department PR</li>
+</ol>
+`,
+
+asp_struktur : `
+<b>Struktur HIMAPRODI ASP</b>
+<ol>
+    <li>Ketua</li>
+    <li>Wakil Ketua</li>
+    <li>Sekretaris</li>
+    <li>Bendahara</li>
+    <li>Ketua Divisi RnD</li>
+    <li>Anggota Divisi RnD</li>
+    <li>Ketua Divisi JIK</li>
+    <li>Anggota Divisi JIK</li>
+    <li>Ketua Divisi DP2M</li>
+</ol>
+`,
+
+dkv_struktur : `
+<b>Struktur HIMAPRODI DKV</b>
+<ol>
+    <li>Ketua</li>
+    <li>Wakil Ketua</li>
+    <li>Sekretaris</li>
+    <li>Bendahara</li>
+    <li>Departemen Pengembangan Keterampilan Mahasiswa</li>
+    <li>Departemen Humas</li>
+    <li>Departemen Komunikasi dan Informasi</li>
+    <li>Departemen Konten Kreatif</li>
+</ol>
+`
+,
+
+elektro_struktur : `
+<b>Struktur HIMAPRODI Elektro</b>
+<ol>
+    <li>Ketua</li>
+    <li>Wakil Ketua</li>
+    <li>Sekretaris</li>
+    <li>Bendahara</li>
+    <li>Divisi Pengembangan Minat Bakat</li>
+    <li>Divisi Sosial</li>
+    <li>Divisi Kewirausahaan</li>
+    <li>Divisi Publikasi</li>
+    <li>Divisi Humas</li>
+</ol>
+`
+,
+
+farmasi_struktur : `
+<b>Struktur HIMAPRODI Farmasi</b>
+<ol>
+    <li>Ketua</li>
+    <li>Wakil Ketua</li>
+    <li>Sekretaris</li>
+    <li>Bendahara</li>
+    <li>Divisi Humas</li>
+    <li>Divisi Kominfo</li>
+    <li>Divisi Kekeluargaan</li>
+    <li>Divisi Minat Bakat</li>
+</ol>
+`,
+
+kebidanan_struktur : `
+<b>Struktur HIMAPRODI Kebidanan</b>
+<ol>
+    <li>Ketua</li>
+    <li>Wakil Ketua</li>
+    <li>Sekretaris I</li>
+    <li>Sekretaris II</li>
+    <li>Sekretaris III</li>
+    <li>Bendahara I</li>
+    <li>Bendahara II</li>
+    <li>Divisi Humas</li>
+    <li>Divisi Sosial</li>
+    <li>Divisi Kewirausahaan</li>
+    <li>Divisi Komunikasi dan Informasi</li>
+    <li>Divisi Minat & Bakat</li>
+</ol>
+`,
+
+komputer_struktur : `
+<b>Struktur HIMAPRODI Komputer</b>
+<ol>
+    <li>Ketua</li>
+    <li>Wakil Ketua</li>
+    <li>Sekretaris</li>
+    <li>Bendahara</li>
+    <li>Divisi Akademik</li>
+    <li>Divisi Kerumahtanggaan</li>
+    <li>Divisi Humas</li>
+    <li>Divisi Jurnalistik</li>
+</ol>
+`,
+
+mesin_struktur : `
+<b>Struktur HIMAPRODI Mesin</b>
+<ol>
+    <li>Ketua Himpunan</li>
+    <li>Wakil Ketua Himpunan</li>
+    <li>Sekretaris</li>
+    <li>Bendahara</li>
+    <li>Departemen</li>
+    <li>BPHM</li>
+    <li>Divisi Minat Bakat</li>
+    <li>Divisi Kewirausahaan</li>
+    <li>Divisi Media Komunikasi dan Informasi</li>
+    <li>Divisi Pengembangan Sumber Daya Manusia</li>
+    <li>Humas</li>
+</ol>
+`,
+perhotelan_struktur : `
+<b>Struktur HIMAPRODI Perhotelan</b>
+<ol>
+    <li>Ketua</li>
+    <li>Wakil Ketua</li>
+    <li>Sekretaris</li>
+    <li>Bendahara</li>
+    <li>Divisi Humas Internal & Eksternal</li>
+    <li>Divisi Pengabdian Masyarakat</li>
+    <li>Divisi Enterpreneur</li>
+    <li>Divisi Kominfo</li>
+    <li>Divisi Prestasi dan Akademik</li>
+</ol>
+`,
+ti_struktur : `
+<b>Struktur HIMAPRODI Teknik Informatika</b>
+<ol>
+    <li>Ketua</li>
+    <li>Wakil Ketua</li>
+    <li>Sekretaris</li>
+    <li>Bendahara</li>
+    <li>Divisi Humas Internal</li>
+    <li>Divisi Humas Eksternal</li>
+    <li>Divisi Akademik</li>
+    <li>Divisi Kominfo</li>
+    <li>Divisi Sosial</li>
+    <li>Divisi Kekeluargaan</li>
+</ol>
+`
 
 
         };
