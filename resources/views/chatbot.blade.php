@@ -1672,7 +1672,7 @@ ti_struktur : `
             icon.classList.toggle('fa-comment-dots');
 
             if (!chatBox.classList.contains('d-none') && chatbox.innerHTML.trim() === '') {
-                addMessage("Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑", 'bot');
+                addMessage("Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑, ketikan pertanyaan sesuai menu yang muncul", 'bot');
                 await showMainMenu();
             }
         });
