@@ -349,7 +349,7 @@
     <li>KMB</li>
     <li>KKP</li>
 </ol>
-`
+`,
             bem_tugas: `<b>Ketua BEM</b>
 <ul>
     <li>Memimpin dan mengkoordinasikan kegiatan BEM KM PHB</li>
