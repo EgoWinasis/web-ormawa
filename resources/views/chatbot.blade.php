@@ -166,251 +166,267 @@
 
 </style>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const chatIcon = document.getElementById('chat-icon');
-        const chatBox = document.getElementById('chatbot-box');
-        const sendBtn = document.getElementById('send-btn');
-        const chatbox = document.getElementById('chatbox');
-        const input = document.getElementById('user-input');
+   document.addEventListener('DOMContentLoaded', function () {
+    const chatIcon = document.getElementById('chat-icon');
+    const chatBox = document.getElementById('chatbot-box');
+    const sendBtn = document.getElementById('send-btn');
+    const chatbox = document.getElementById('chatbox');
+    const input = document.getElementById('user-input');
 
-        let activeMenu = null;
+    let activeMenu = null;
 
-        const menuGroups = {
-            "Tentang Organisasi": [{
-                    label: "Pengertian",
-                    key: "pengertian"
-                },
-                {
-                    label: "Tujuan",
-                    key: "tujuan"
-                },
-                {
-                    label: "Ciri",
-                    key: "ciri"
-                }
+    const menuGroups = {
+        "Tentang Organisasi": [
+            { label: "Pengertian", key: "pengertian" },
+            { label: "Tujuan", key: "tujuan" },
+            { label: "Ciri", key: "ciri" }
+        ],
+        "List Organisasi": {
+            "BEM": [
+                { label: "Visi", key: "bem_visi" },
+                { label: "Misi", key: "bem_misi" },
+                { label: "Struktur", key: "bem_struktur" }
             ],
-            "List Organisasi": [{
-                    label: "BEM",
-                    key: "BEM"
-                },
-                {
-                    label: "BPM",
-                    key: "BPM"
-                },
-                {
-                    label: "AKUNTANSI",
-                    key: "AKUNTANSI"
-                }
+            "BPM": [
+                { label: "Visi", key: "bpm_visi" },
+                { label: "Misi", key: "bpm_misi" },
+                { label: "Struktur", key: "bpm_struktur" }
             ],
-            "Struktur & Tugas": [{
-                    label: "Struktur",
-                    key: "struktur"
-                },
-                {
-                    label: "Tugas",
-                    key: "tugas"
-                },
-                {
-                    label: "Ketua",
-                    key: "ketua"
-                }
-            ],
-            "Visi & Misi": [{
-                    label: "Visi",
-                    key: "visi"
-                },
-                {
-                    label: "Misi",
-                    key: "misi"
-                }
-            ],
-            "Pendaftaran": [{
-                    label: "Daftar",
-                    key: "daftar"
-                },
-                {
-                    label: "Registrasi",
-                    key: "regist"
-                }
+            "AKUNTANSI": [
+                { label: "Visi", key: "akuntansi_visi" },
+                { label: "Misi", key: "akuntansi_misi" },
+                { label: "Struktur", key: "akuntansi_struktur" }
             ]
-        };
+        },
+        "Struktur & Tugas": [
+            { label: "Struktur", key: "struktur" },
+            { label: "Tugas", key: "tugas" },
+            { label: "Ketua", key: "ketua" }
+        ],
+        "Visi & Misi": [
+            { label: "Visi", key: "visi" },
+            { label: "Misi", key: "misi" }
+        ],
+        "Pendaftaran": [
+            { label: "Daftar", key: "daftar" },
+            { label: "Registrasi", key: "regist" }
+        ]
+    };
 
-        const responses = {
-            pengertian: "Menurut Prof. Dr. Sondang P. Siagian, organisasi adalah suatu bentuk persekutuan antara dua orang atau lebih yang bekerja bersama serta secara formal terikat dalam rangka pencapaian tujuan yang telah ditentukan dan dalam ikatan itu terdapat seorang atau sekelompok orang yang disebut bawahan.",
-            tujuan: "Tujuan dibentuknya organisasi secara umum antara lain meningkatkan kemandirian, merealisasikan keinginan dan cita-cita bersama, memperoleh keuntungan atau penghasilan bersama, meningkatkan pengalaman serta interaksi dengan anggota lainnya, memperoleh pengakuan serta penghargaan, hingga mengatasi keterbatasan kemampuan guna meraih tujuan bersama.",
-            ciri: "Ciri organisasi: terstruktur, punya tujuan, ada peran masing-masing.",
-            struktur: "Struktur organisasi terdiri dari ketua, sekretaris, bendahara, dan divisi lainnya.",
-            tugas: "Setiap anggota memiliki tugas sesuai dengan struktur yang ada.",
-            ketua: "Ketua adalah pemimpin utama dalam organisasi.",
-            visi: "Visi adalah gambaran jangka panjang yang ingin dicapai oleh organisasi.",
-            misi: "Misi adalah langkah-langkah untuk mencapai visi.",
-            daftar: 'Untuk mendaftar sebagai anggota baru, kamu bisa klik <a href="/register" class="linkDaftar">di sini</a>.',
-            regist: "Silakan lakukan registrasi melalui link resmi atau hubungi admin."
-        };
+    const responses = {
+        pengertian: "Menurut Prof. Dr. Sondang P. Siagian, organisasi adalah ...",
+        tujuan: "Tujuan organisasi adalah ...",
+        ciri: "Ciri organisasi: terstruktur, punya tujuan, ada peran masing-masing.",
+        struktur: "Struktur organisasi terdiri dari ketua, sekretaris, bendahara, dan divisi lainnya.",
+        tugas: "Setiap anggota memiliki tugas sesuai struktur.",
+        ketua: "Ketua adalah pemimpin utama.",
+        visi: "Visi adalah gambaran jangka panjang.",
+        misi: "Misi adalah langkah untuk mencapai visi.",
+        daftar: 'Untuk mendaftar sebagai anggota baru, klik <a href="/register" class="linkDaftar">di sini</a>.',
+        regist: "Silakan registrasi melalui link resmi.",
 
-        function scrollBottom() {
-            chatbox.scrollTop = chatbox.scrollHeight;
-        }
+        bem_visi: "Visi BEM: Mahasiswa CERAH.",
+        bem_misi: "Misi BEM: 1. Pengembangan diri. 2. Kebersamaan.",
+        bem_struktur: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
 
-        function addMessage(msg, type) {
-            const div = document.createElement('div');
-            div.className = `d-flex mb-3 ${type === 'user' ? 'justify-content-end' : 'justify-content-start'}`;
-            const avatarSrc = type === 'user' ?
-                'https://cdn-icons-png.flaticon.com/512/1077/1077012.png' :
-                'https://cdn-icons-png.flaticon.com/512/4712/4712109.png';
+        bpm_visi: "Visi BPM: Lembaga inovatif & aspiratif.",
+        bpm_misi: "Misi BPM: Menampung aspirasi, mengawasi BEM.",
+        bpm_struktur: "Struktur BPM: Ketua, Komisi A/B/C, Sekretaris.",
 
-            div.innerHTML = `
+        akuntansi_visi: "Visi Akuntansi: Profesionalisme akuntan muda.",
+        akuntansi_misi: "Misi: Literasi keuangan, kolaborasi internal eksternal.",
+        akuntansi_struktur: "Struktur: Ketua, Sekretaris, Divisi Pendidikan & Kewirausahaan."
+    };
+
+    function scrollBottom() {
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    function addMessage(msg, type) {
+        const div = document.createElement('div');
+        div.className = `d-flex mb-3 ${type === 'user' ? 'justify-content-end' : 'justify-content-start'}`;
+        const avatarSrc = type === 'user'
+            ? 'https://cdn-icons-png.flaticon.com/512/1077/1077012.png'
+            : 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png';
+
+        div.innerHTML = `
             ${type === 'bot' ? `<img src="${avatarSrc}" class="chat-avatar me-2">` : ''}
             <div class="${type === 'user' ? 'user-msg' : 'bot-msg'}">${msg}</div>
             ${type === 'user' ? `<img src="${avatarSrc}" class="chat-avatar ms-2">` : ''}
         `;
-            chatbox.appendChild(div);
-            scrollBottom();
-        }
-
-        function showMainMenu() {
-            const html = `
-            Silakan pilih topik:
-            <div class="quick-options mt-2">
-                ${Object.keys(menuGroups).map(menu =>
-                    `<button class="btn btn-outline-secondary btn-sm menu-btn" data-menu="${menu}">${menu}</button>`
-                ).join('')}
-            </div>
-        `;
-            addMessage(html, 'bot');
-        }
-
-        function showSubMenu(menu) {
-            const subItems = menuGroups[menu];
-            const html = `
-            Topik: <strong>${menu}</strong><br>
-            Pilih pertanyaan:
-            <div class="quick-options mt-2">
-                ${subItems.map(item =>
-                    `<button class="btn btn-outline-primary btn-sm submenu-btn" data-key="${item.key}">${item.label}</button>`
-                ).join('')}
-                <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
-            </div>
-        `;
-            addMessage(html, 'bot');
-        }
-
-        function respondToKeyword(key) {
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'd-flex mb-3 justify-content-start';
-            loadingDiv.id = 'typing-msg';
-            loadingDiv.innerHTML = `
-        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" class="chat-avatar me-2">
-        <div class="typing-indicator">
-            <span></span><span></span><span></span>
-        </div>
-    `;
-            chatbox.appendChild(loadingDiv);
-            scrollBottom();
-
-            setTimeout(() => {
-                loadingDiv.remove();
-                const msg = responses[key] || "Maaf, belum ada jawaban untuk topik ini.";
-                addMessage(msg, 'bot');
-                activeMenu = null;
-                setTimeout(showMainMenu, 800);
-            }, 3000);
-        }
-
-
-
-        function handleUserInput(message) {
-            const userMessage = message.trim();
-            addMessage(userMessage, 'user');
-
-            const lower = userMessage.toLowerCase();
-
-
-            if (lower === 'kembali' || lower === 'back') {
-        activeMenu = null;
-        addMessage("Kembali ke menu utama.", 'bot');
-        showMainMenu();
-        return;
+        chatbox.appendChild(div);
+        scrollBottom();
     }
 
+    function showMainMenu() {
+        const html = `
+        Silakan pilih topik:
+        <div class="quick-options mt-2">
+            ${Object.keys(menuGroups).map(menu =>
+                `<button class="btn btn-outline-secondary btn-sm menu-btn" data-menu="${menu}">${menu}</button>`
+            ).join('')}
+        </div>`;
+        addMessage(html, 'bot');
+    }
 
-            // Jika belum pilih menu utama
-            if (!activeMenu) {
-                // Coba cocokkan input dengan nama menu utama
-                const matchedMenu = Object.keys(menuGroups).find(menu =>
-                    menu.toLowerCase() === lower
-                );
+    function showSubMenu(menu) {
+        const subItems = menuGroups[menu];
+        let html = `Topik: <strong>${menu}</strong><br>Pilih pertanyaan:<div class="quick-options mt-2">`;
 
-                if (matchedMenu) {
-                    activeMenu = matchedMenu;
-                    setTimeout(() => {
-                        showSubMenu(activeMenu);
-                    }, 400);
-                } else {
-                    addMessage("Silakan pilih salah satu topik utama terlebih dahulu.", 'bot');
-                    showMainMenu();
-                }
-                return;
-            }
-
-            // Jika sudah pilih menu utama, cek apakah input cocok dengan submenu
-            const subItems = menuGroups[activeMenu];
-            const matchedSub = subItems.find(item =>
-                item.label.toLowerCase() === lower || item.key === lower
+        if (Array.isArray(subItems)) {
+            html += subItems.map(item =>
+                `<button class="btn btn-outline-primary btn-sm submenu-btn" data-key="${item.key}">${item.label}</button>`
+            ).join('');
+        } else if (typeof subItems === 'object') {
+            Object.keys(subItems).forEach(sub =>
+                html += `<button class="btn btn-outline-success btn-sm submenu-lv2-btn" data-org="${menu}" data-sub="${sub}">${sub}</button>`
             );
+        }
 
-            if (matchedSub) {
-                respondToKeyword(matchedSub.key);
+        html += `<button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button></div>`;
+        addMessage(html, 'bot');
+    }
+
+    // Fungsi baru untuk simulasikan 'berpikir dulu' sebelum respon
+    function respondToKeyword(key) {
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'd-flex mb-3 justify-content-start';
+        loadingDiv.id = 'typing-msg';
+        loadingDiv.innerHTML = `
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" class="chat-avatar me-2">
+            <div class="typing-indicator"><span></span><span></span><span></span></div>
+        `;
+        chatbox.appendChild(loadingDiv);
+        scrollBottom();
+
+        // Delay 2 detik untuk efek 'berpikir'
+        setTimeout(() => {
+            loadingDiv.remove();
+            const msg = responses[key] || "Maaf, belum ada jawaban untuk topik ini.";
+            addMessage(msg, 'bot');
+            activeMenu = null;
+            setTimeout(showMainMenu, 800);
+        }, 2000);
+    }
+
+    function handleUserInput(message) {
+        const userMessage = message.trim();
+        if (!userMessage) return;
+        addMessage(userMessage, 'user');
+
+        const lower = userMessage.toLowerCase();
+
+        if (lower === 'kembali' || lower === 'back') {
+            if (typeof activeMenu === 'object') {
+                showSubMenu(activeMenu.menu);
+                activeMenu = activeMenu.menu;
             } else {
-                addMessage("Subtopik tidak dikenali. Silakan pilih yang tersedia.", 'bot');
+                activeMenu = null;
+                addMessage("Kembali ke menu utama.", 'bot');
+                showMainMenu();
+            }
+            return;
+        }
+
+        if (!activeMenu) {
+            const matchedMenu = Object.keys(menuGroups).find(menu =>
+                menu.toLowerCase() === lower
+            );
+            if (matchedMenu) {
+                activeMenu = matchedMenu;
+                showSubMenu(activeMenu);
+            } else {
+                addMessage("Silakan pilih salah satu topik utama terlebih dahulu.", 'bot');
+                showMainMenu();
+            }
+            return;
+        }
+
+        let subItems;
+        if (typeof activeMenu === 'string') {
+            subItems = menuGroups[activeMenu];
+        } else if (typeof activeMenu === 'object') {
+            subItems = menuGroups[activeMenu.menu][activeMenu.sub];
+        }
+
+        if (!subItems || !Array.isArray(subItems)) {
+            addMessage("Tidak dapat menampilkan sub menu.", 'bot');
+            return;
+        }
+
+        const matchedSub = subItems.find(item =>
+            item.label.toLowerCase() === lower || item.key === lower
+        );
+
+        if (matchedSub) {
+            respondToKeyword(matchedSub.key);
+        } else {
+            addMessage("Subtopik tidak dikenali. Silakan pilih yang tersedia.", 'bot');
+            if (typeof activeMenu === 'object') {
+                showSubMenu(activeMenu.menu);
+            } else {
                 showSubMenu(activeMenu);
             }
         }
+    }
 
+    sendBtn.addEventListener('click', () => {
+        const message = input.value.trim();
+        input.value = '';
+        handleUserInput(message);
+    });
 
-        sendBtn.addEventListener('click', () => {
-            const message = input.value.trim();
-            if (!message) return;
-            input.value = '';
-            handleUserInput(message);
-        });
+    chatIcon.addEventListener('click', () => {
+        chatBox.classList.toggle('d-none');
+        const icon = chatIcon.querySelector('i');
+        icon.classList.toggle('fa-times');
+        icon.classList.toggle('fa-comment-dots');
 
-        chatIcon.addEventListener('click', () => {
-            chatBox.classList.toggle('d-none');
-            const icon = chatIcon.querySelector('i');
-            if (chatBox.classList.contains('d-none')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-comment-dots');
+        if (!chatBox.classList.contains('d-none') && chatbox.innerHTML.trim() === '') {
+            addMessage("Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑", 'bot');
+            showMainMenu();
+        }
+    });
+
+    chatbox.addEventListener('click', function (e) {
+        if (e.target.classList.contains('menu-btn')) {
+            const menu = e.target.dataset.menu;
+            activeMenu = menu;
+            addMessage(menu, 'user');
+            showSubMenu(menu);
+        } else if (e.target.classList.contains('submenu-btn')) {
+            const keyword = e.target.dataset.key;
+            addMessage(e.target.innerText, 'user');
+            respondToKeyword(keyword);
+        } else if (e.target.classList.contains('submenu-lv2-btn')) {
+            const menu = e.target.dataset.org;
+            const sub = e.target.dataset.sub;
+            activeMenu = { menu, sub };
+            addMessage(sub, 'user');
+
+            const subItems = menuGroups[menu][sub];
+            const html = `
+                <strong>${sub}</strong><br>Pilih detail:
+                <div class="quick-options mt-2">
+                    ${subItems.map(item =>
+                        `<button class="btn btn-outline-primary btn-sm submenu-btn" data-key="${item.key}">${item.label}</button>`
+                    ).join('')}
+                    <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
+                </div>
+            `;
+            setTimeout(() => addMessage(html, 'bot'), 400);
+        } else if (e.target.classList.contains('back-btn')) {
+            if (typeof activeMenu === 'object') {
+                showSubMenu(activeMenu.menu);
+                activeMenu = activeMenu.menu;
             } else {
-                icon.classList.remove('fa-comment-dots');
-                icon.classList.add('fa-times');
-
-                if (chatbox.innerHTML.trim() === '') {
-                    addMessage('Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑', 'bot');
-                    showMainMenu();
-                }
-            }
-        });
-
-        chatbox.addEventListener('click', function (e) {
-            if (e.target.classList.contains('menu-btn')) {
-                const menu = e.target.dataset.menu;
-                activeMenu = menu;
-                addMessage(menu, 'user');
-                setTimeout(() => {
-                    showSubMenu(menu);
-                }, 400);
-            } else if (e.target.classList.contains('submenu-btn')) {
-                const keyword = e.target.dataset.key;
-                addMessage(e.target.innerText, 'user');
-                setTimeout(() => {
-                    respondToKeyword(keyword);
-                }, 500);
-            } else if (e.target.classList.contains('back-btn')) {
                 activeMenu = null;
                 showMainMenu();
             }
-        });
+        }
     });
+});
+
+
 
 </script>
