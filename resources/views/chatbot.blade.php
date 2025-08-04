@@ -165,6 +165,8 @@
     }
 
 </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const chatIcon = document.getElementById('chat-icon');
@@ -335,6 +337,12 @@
             misi: "Misi adalah langkah untuk mencapai visi.",
             daftar: 'Untuk mendaftar sebagai anggota baru, klik <a href="/register" class="linkDaftar">di sini</a>.',
             regist: "Silakan registrasi melalui link resmi.",
+            jadwal: `<p>
+  Untuk melihat jadwal, klik
+  <a href="/jadwal-organisasi.pdf" class="btn btn-danger btn-sm" target="_blank">
+    <i class="fas fa-file-pdf"></i> di sini
+  </a>.
+</p>`,
 // \bem
             bem_visi: 'Dengan visi kami "Menjadikan BEM Politeknik Harapan Bersama Sebagai Wadah Untuk Mewujudkan Mahasiswa yang Cerah (Cerdas, Religius, Aktif, & Harmonis)',
             bem_misi: 'Misi: <br>1. Mendorong Pengembangan Kualitas Sumber daya Mahasiswa PHB. <br>2. Meningkatnya Produktifitas dan Kreatifitas. <br>3. Terciptanya solidaritas mahasisiwa yang advokatif dan Berkesinambungan.<br>4. Terwujudnya BEM yang Harmonis dan aspiratif.',
