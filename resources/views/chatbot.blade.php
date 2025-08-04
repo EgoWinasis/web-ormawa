@@ -291,89 +291,89 @@
             bem_misi: 'Misi: <br>1. Mendorong Pengembangan Kualitas Sumber daya Mahasiswa PHB. <br>2. Meningkatnya Produktifitas dan Kreatifitas. <br>3. Terciptanya solidaritas mahasisiwa yang advokatif dan Berkesinambungan.<br>4. Terwujudnya BEM yang Harmonis dan aspiratif.',
             bem_struktur: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
             bem_tugas: `<b>Ketua BEM</b>
-<ol>
+<ul>
     <li>Memimpin dan mengkoordinasikan kegiatan BEM KM PHB</li>
     <li>Memberikan laporan pertanggung jawaban di akhir periode kepada BPM</li>
     <li>Mengkoordinasikan kinerja Himpunan Mahasiswa Program Studi yang ada di Politeknik Harapan Bersama</li>
     <li>Mengangkat dan memberhentikan anggota BEM KM PHB</li>
     <li>Menjalankan tugas menurut AD / ART BEM KM PHB</li>
     <li>Memberikan sanksi dengan tegas anggota BEM KM PHB sesuai AD/ART</li>
-</ol>
+</ul>
 
 <b>Wakil Ketua BEM</b>
-<ol>
+<ul>
     <li>Membantu ketua BEM dalam menjalankan tugasnya</li>
     <li>Menjalankan tugas-tugas ketua BEM apabila ketua BEM tidak bisa hadir atau sedang berhalangan</li>
     <li>Mengelola Rumah Tangga di Lembaga BEM KM PHB</li>
     <li>Menjalankan tugas menurut AD / ART BEM KM PHB</li>
-</ol>
+</ul>
 
 <b>Sekretaris 1</b>
-<ol>
+<ul>
     <li>Berkoordinasi dan merumuskan SOP lembaga KM PHB bersama Sekretaris Umum BPM</li>
     <li>Menguasai birokrasi proposal, undangan, dan surat menyurat</li>
     <li>Bertanggung jawab terhadap tata naskah dinas yang dibutuhkan</li>
     <li>Mengelola absensi BEM KM PHB</li>
     <li>Membantu permasalahan birokrasi proposal ormawa dengan pengecekan format sesuai SOP</li>
     <li>Melakukan pengarsipan dan perapihan dokumen BEM KM PHB</li>
-</ol>
+</ul>
 
 <b>Sekretaris 2</b>
-<ol>
+<ul>
     <li>Menjalankan tugas-tugas Sekretaris 1 apabila tidak bisa hadir atau berhalangan</li>
     <li>Mengelola inventaris penunjang organisasi</li>
     <li>Pengawasan inventaris BEM KM PHB</li>
     <li>Membantu Sekretaris 1 dalam menjalankan tugas sesuai AD / ART BEM KM PHB</li>
-</ol>
+</ul>
 
 <b>Bendahara 1</b>
-<ol>
+<ul>
     <li>Pertanggungjawaban utama dalam pengelolaan keuangan BEM KM PHB</li>
     <li>Mengatur dan mengawasi arus dana masuk dan keluar BEM dan ormawa</li>
     <li>Merumuskan dan menetapkan kebijakan di bidang keuangan</li>
     <li>Menopang kemandirian keuangan BEM KM PHB</li>
-</ol>
+</ul>
 
 <b>Bendahara 2</b>
-<ol>
+<ul>
     <li>Menjalankan tugas Bendahara 1 apabila berhalangan</li>
     <li>Membantu Bendahara 1 dalam koordinasi dan tugas sesuai AD / ART</li>
-</ol>
+</ul>
 
 <b>Kepala Departemen Advokasi dan Kesejahteraan Mahasiswa</b>
-<ol>
+<ul>
     <li>Bertanggung jawab kepada Ketua BEM KM PHB</li>
     <li>Penanggung jawab tertinggi Departemen Advokasi & Kesejahteraan Mahasiswa</li>
     <li>Berorientasi pada kajian dan responsif terhadap isu masyarakat</li>
-</ol>
+</ul>
 
 <b>Kepala Departemen Sosial</b>
-<ol>
+<ul>
     <li>Bertanggung jawab kepada Ketua BEM KM PHB</li>
     <li>Penanggung jawab tertinggi Departemen Sosial</li>
     <li>Berorientasi pada kegiatan sosial dan kerohanian di lingkungan PHB</li>
-</ol>
+</ul>
 
 <b>Kepala Departemen Komunikasi dan Informasi</b>
-<ol>
+<ul>
     <li>Bertanggung jawab kepada Ketua BEM KM PHB</li>
     <li>Penanggung jawab tertinggi Departemen Komunikasi dan Informasi</li>
     <li>Membuat dan memperbarui database anggota ormawa KM PHB</li>
-</ol>
+</ul>
 
 <b>Kepala Departemen Kepemudaan dan Minat Bakat</b>
-<ol>
+<ul>
     <li>Bertanggung jawab kepada Ketua BEM KM PHB</li>
     <li>Penanggung jawab tertinggi Departemen Kepemudaan dan Minat Bakat</li>
     <li>Melakukan kaderisasi bersama HIMAPRODI untuk organisasi yang baik</li>
-</ol>
+</ul>
 
 <b>Kepala Departemen Kekaryaan, Kewirausahaan dan Penalaran</b>
-<ol>
+<ul>
     <li>Bertanggung jawab kepada Ketua BEM KM PHB</li>
     <li>Penanggung jawab tertinggi Departemen Kekaryaan, Kewirausahaan dan Penalaran</li>
     <li>Menjalin hubungan mitra internal maupun eksternal dalam kewirausahaan</li>
-</ol>
+</ul>
 `,
 
             bpm_visi: "Visi BPM KM PHB adalah “Mewujudkan lembaga perwakilan mahasiswa yang inovatif, aspiratif, dan berintegritas berasaskan pancasila",
