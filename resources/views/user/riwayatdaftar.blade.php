@@ -115,6 +115,7 @@
         </div>
     </div>
     {{-- <script src={{ asset('js/user.js') }}></script> --}}
+    
 </body>
 @if(session('swal_success'))
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

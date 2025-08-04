@@ -61,6 +61,10 @@
             
         </div>
     </div>
+
+    @include('chatbot')
+
+    
     <script src="{{ asset('js/admin.js') }}"></script>
 
 </body>
