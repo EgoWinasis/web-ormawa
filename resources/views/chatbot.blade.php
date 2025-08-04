@@ -339,7 +339,7 @@
             regist: "Silakan registrasi melalui link resmi.",
             jadwal: `<p>
   Untuk melihat jadwal, klik
-  <a href="/jadwal-organisasi.pdf" class="btn btn-danger btn-sm" target="_blank">
+  <a href="/jadwal.pdf" class="btn btn-danger btn-sm" target="_blank">
     <i class="fas fa-file-pdf"></i> di sini
   </a>.
 </p>`,
