@@ -201,7 +201,15 @@
                     {
                         label: "Struktur",
                         key: "bem_struktur"
-                    }
+                    },
+                    {
+                        label: "Tugas",
+                        key: "bem_tugas"
+                    },
+                    {
+                        label: "Kegiatan",
+                        key: "bem_kegiatan"
+                    },
                 ],
                 "BPM": [{
                         label: "Visi",
@@ -275,12 +283,64 @@
             daftar: 'Untuk mendaftar sebagai anggota baru, klik <a href="/register" class="linkDaftar">di sini</a>.',
             regist: "Silakan registrasi melalui link resmi.",
 
-            bem_visi: "Visi BEM: Mahasiswa CERAH.",
-            bem_misi: "Misi BEM: 1. Pengembangan diri. 2. Kebersamaan.",
+            bem_visi: 'Dengan visi kami "Menjadikan BEM Politeknik Harapan Bersama Sebagai Wadah Untuk Mewujudkan Mahasiswa yang Cerah (Cerdas, Religius, Aktif, & Harmonis)',
+            bem_misi: 'Misi: <br>1. Mendorong Pengembangan Kualitas Sumber daya Mahasiswa PHB. <br>2. Meningkatnya Produktifitas dan Kreatifitas. <br>3. Terciptanya solidaritas mahasisiwa yang advokatif dan Berkesinambungan.<br>4. Terwujudnya BEM yang Harmonis dan aspiratif.',
             bem_struktur: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
+            bem_tugas: "#Ketua BEM<br>\
+                        1.Memimpin dan mengkoordinasikan kegiatan BEM KM PHB><br>\
+                        2.Memberikan laporan pertanggung jawaban diakhir periode kepada BPM<br>\
+                        3.Mengkoordinasikan kinerja Himpunan Mahasiswa Program Studi yang ada di 4.Politeknik Harapan Bersama<br>\
+                        5.Mengangkat dan memberhentikan anggota BEM KM PHB<br>\
+                        6.Menjalankan tugas menurut AD / ART BEM KM PHB<br>\
+                        7.Memberikan sanksi dengan tegas anggota BEM KM PHB sesuai AD/ART<br>\
+                        #Wakil Ketua BEM<br>\
+                        1.Membantu ketua BEM dalam menjalankan tugasnya<br>\
+                        2.Menjalankan tugas-tugas ketua BEM apabila ketua BEM tidak bisa hadir atau 3.sedang berhalangan<br>\
+                        4.Mengelola Rumah Tangga di Lembaga BEM KM PHB<br>\
+                        5.Menjalankan tugas menurut AD / ART BEM KM PHB <br>\
+                        #Sekretaris 1<br>\
+                        1.Berkoordinasi dan merumuskan Standard Operating Procedure lembaga KM PHB bersama Sekretaris Umum BPM. <br>\
+                        2.Menguasai birokrasi proposal, undangan, dan surat menyurat<br>\
+                        3.Bertanggung jawab terhadap tata naskah dinas yang dibutuhkan<br>\
+                        4.Mengelola absensi BEM KM PHB<br>\
+                        5.Mampu membantu permasalahan birokrasi proposal ormawa dengan melakukan pengecekan format sesuai SOP. <br>\
+                        6.Melakukan pengarsipan dan perapihan dokumen BEM KM PHB.<br>\
+                        #Sekretaris 2<br>\
+                        1.Menjalankan tugas-tugas Sekretaris 1 apabila sekretaris 1 tidak bisa hadir atau sedang berhalangan.<br>\
+                        2.Mengelola Inventaris penunjang organisasi <br>\
+                        3.Pengawasan Inventaris BEM KM PHB<br>\
+                        4.Membantu sekretaris I dalam mengkoordinasikan dan menjalankan tugas menurut AD / ART BEM KM PHB.<br>\
+                        #Bendahara 1<br>\
+                        1.Pengelolaan keuangan BEM KM PHB menjadi tanggung jawab utama <br>\
+                        2.Mengatur keuangan dan mengawasi arus dana masuk dan dana keluar BEM dan ormawa<br>\
+                        3.Merumuskan dan menetapkan kebijakan dibidang keuangan <br>\
+                        4.Berusaha menopang kemandirian keuangan BEM KM PHB<br>\
+                        #Bendahara 2<br>\
+                        1.Menjalankan tugas-tugas bendahara 1 apabila bendahara 1 tidak bisa hadir atau sedang berhalangan.<br>\
+                        2.Bertugas membantu bendahara 1 dalam mengkoordinasikan dan menjalankan tugas menurut AD/ART BEM KM PHB.<br>\
+                        #Kepala Departeman Advokasi dan Kesejahteraan Mahasiswa, Divisi Mahasiswa dan Divisi Masyarakat<br>\
+                        1.Bertanggung jawab kepada Ketua BEM KM PHB<br>\
+                        2.Kepala Departemen Advokasi dan Kesejahteraan Mahasiswa Penanggung jawab tertinggi Departemen Advokasi dan Kesejahteraan Mahasiswa.<br>\
+                        3.Berorientasi pada kajian dan responsife terhadap gerakan serta permasalahan isu masyarakat.<br>\
+                        #Kepala Departemen Sosial, Divisi Mahasiswa, Divisi Masyarakat<br>\
+                        1.Bertanggung jawab kepada Ketua BEM KM PHB<br>\
+                        2.Kepala Departemen Sosial Penanggung jawab tertinggi Departemen Sosial<br>\
+                        3.Berorientasi pada kegiatan sosial dan kerohanian dalam lingkungan PHB.<br>\
+                        #Kepala Departemen Komunikasi dan Informasi, Divisi Internal, Divisi Eksternal<br>\
+                        1.Bertanggung jawab kepada Ketua BEM KM PHB<br>\
+                        2.Kepala Departmen Komunikasi dan Informasi  Penanggung jawab tertinggi Departemen Komunikasi dan Informasi.<br>\
+                        3.Mengetahui secara umum tentang Politeknik Harapan Bersama membuat dan  mengupdate data base anggota ormawa KM PHB <br>\
+                        #Kepala Departemen Kepemudaan dan Minat Bakat, Divisi Kepemudaan, Divisi Minat Bakat<br>\
+                        1.Bertanggung jawab kepada ketua BEM KM PHB<br>\
+                        2.Kepala Departemen Kepemudaan dan Minat Bakat merupakan penanggung jawab tertinggi Departemen KMB.<br>\
+                        3.Melakukan tugas kaderisasi bersama seluruh Himpunan Mahasiswa Program Studi (HIMAPRODI) untuk mewujudkan organisasi yang baik<br>\
+                        #Kepala Departemen Kekaryaan, kewirausahaan dan Penalaran<br>\
+                        1.Bertanggung jawab kepada Ketua BEM KM PHB<br>\
+                        2.Kepala Departemen Kekaryaan.Kewirausahaan dan penalaran penanggung jawab tertinggi Departemen Kekaryaan.  Kewirausahaan dan penalaran<br>\
+                        3.Menjalin hubungan mitra dengan Internal maupun Eksternal dalam kewirausahaan",
 
-            bpm_visi: "Visi BPM: Lembaga inovatif & aspiratif.",
-            bpm_misi: "Misi BPM: Menampung aspirasi, mengawasi BEM.",
+            bpm_visi: "Visi BPM KM PHB adalah “Mewujudkan lembaga perwakilan mahasiswa yang inovatif, aspiratif, dan berintegritas berasaskan pancasila",
+            bpm_misi: "Misi: <br> 1. Menampung dan menyalurkan aspirasi mahasiswa yang bersifat membangun.<br> 2. Mengawasi dan mengevaluasi kinerja KM PHB.",
             bpm_struktur: "Struktur BPM: Ketua, Komisi A/B/C, Sekretaris.",
 
             akuntansi_visi: "Visi Akuntansi: Profesionalisme akuntan muda.",
@@ -371,67 +431,69 @@
         }
 
         async function handleUserInput(message) {
-    const userMessage = message.trim();
-    if (!userMessage) return;
-    addMessage(userMessage, 'user');
+            const userMessage = message.trim();
+            if (!userMessage) return;
+            addMessage(userMessage, 'user');
 
-    const lower = userMessage.toLowerCase();
+            const lower = userMessage.toLowerCase();
 
-    // Pemetaan langsung untuk keyword seperti "bem visi"
-    const directKeywordMap = {
-        'bem visi': 'bem_visi',
-        'bem misi': 'bem_misi',
-        'bem struktur': 'bem_struktur',
-        'bpm visi': 'bpm_visi',
-        'bpm misi': 'bpm_misi',
-        'bpm struktur': 'bpm_struktur',
-        'akuntansi visi': 'akuntansi_visi',
-        'akuntansi misi': 'akuntansi_misi',
-        'akuntansi struktur': 'akuntansi_struktur'
-    };
-
-    if (directKeywordMap[lower]) {
-        await respondToKeyword(directKeywordMap[lower]);
-        return;
-    }
-
-    if (lower === 'kembali' || lower === 'back') {
-        if (typeof activeMenu === 'object') {
-            await showSubMenu(activeMenu.menu);
-            activeMenu = activeMenu.menu;
-        } else {
-            activeMenu = null;
-            await botReplyWithTyping("Kembali ke menu utama.");
-            await showMainMenu();
-        }
-        return;
-    }
-
-    // Cek apakah input cocok dengan menu utama
-    if (!activeMenu) {
-        const matchedMenu = Object.keys(menuGroups).find(menu =>
-            menu.toLowerCase() === lower
-        );
-        if (matchedMenu) {
-            activeMenu = matchedMenu;
-            await showSubMenu(activeMenu);
-        } else {
-            await botReplyWithTyping("Silakan pilih salah satu topik utama terlebih dahulu.");
-            await showMainMenu();
-        }
-        return;
-    }
-
-    // Tangani submenu organisasi
-    if (activeMenu === "List Organisasi") {
-        const orgName = userMessage.toUpperCase();
-        if (menuGroups["List Organisasi"][orgName]) {
-            activeMenu = {
-                menu: "List Organisasi",
-                sub: orgName
+            // Pemetaan langsung untuk keyword seperti "bem visi"
+            const directKeywordMap = {
+                'bem visi': 'bem_visi',
+                'bem misi': 'bem_misi',
+                'bem struktur': 'bem_struktur',
+                'bem kegiatan': 'bem_kegiatan',
+                'bem tugas': 'bem_tugas',
+                'bpm visi': 'bpm_visi',
+                'bpm misi': 'bpm_misi',
+                'bpm struktur': 'bpm_struktur',
+                'akuntansi visi': 'akuntansi_visi',
+                'akuntansi misi': 'akuntansi_misi',
+                'akuntansi struktur': 'akuntansi_struktur'
             };
-            const subItems = menuGroups["List Organisasi"][orgName];
-            const html = `
+
+            if (directKeywordMap[lower]) {
+                await respondToKeyword(directKeywordMap[lower]);
+                return;
+            }
+
+            if (lower === 'kembali' || lower === 'back') {
+                if (typeof activeMenu === 'object') {
+                    await showSubMenu(activeMenu.menu);
+                    activeMenu = activeMenu.menu;
+                } else {
+                    activeMenu = null;
+                    await botReplyWithTyping("Kembali ke menu utama.");
+                    await showMainMenu();
+                }
+                return;
+            }
+
+            // Cek apakah input cocok dengan menu utama
+            if (!activeMenu) {
+                const matchedMenu = Object.keys(menuGroups).find(menu =>
+                    menu.toLowerCase() === lower
+                );
+                if (matchedMenu) {
+                    activeMenu = matchedMenu;
+                    await showSubMenu(activeMenu);
+                } else {
+                    await botReplyWithTyping("Silakan pilih salah satu topik utama terlebih dahulu.");
+                    await showMainMenu();
+                }
+                return;
+            }
+
+            // Tangani submenu organisasi
+            if (activeMenu === "List Organisasi") {
+                const orgName = userMessage.toUpperCase();
+                if (menuGroups["List Organisasi"][orgName]) {
+                    activeMenu = {
+                        menu: "List Organisasi",
+                        sub: orgName
+                    };
+                    const subItems = menuGroups["List Organisasi"][orgName];
+                    const html = `
             <strong>${orgName}</strong><br>Pilih detail:
             <div class="quick-options mt-2">
                 ${subItems.map(item =>
@@ -439,42 +501,42 @@
                 ).join('')}
                 <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
             </div>`;
-            await botReplyWithTyping(html);
-            return;
-        }
-    }
+                    await botReplyWithTyping(html);
+                    return;
+                }
+            }
 
-    // Ambil subitem berdasarkan konteks aktif
-    let subItems;
-    if (typeof activeMenu === 'string') {
-        subItems = menuGroups[activeMenu];
-        if (!Array.isArray(subItems)) {
-            await botReplyWithTyping("Silakan pilih submenu terlebih dahulu.");
-            return;
-        }
-    } else if (typeof activeMenu === 'object') {
-        subItems = menuGroups[activeMenu.menu][activeMenu.sub];
-        if (!Array.isArray(subItems)) {
-            await botReplyWithTyping("Silakan pilih submenu yang valid.");
-            return;
-        }
-    }
+            // Ambil subitem berdasarkan konteks aktif
+            let subItems;
+            if (typeof activeMenu === 'string') {
+                subItems = menuGroups[activeMenu];
+                if (!Array.isArray(subItems)) {
+                    await botReplyWithTyping("Silakan pilih submenu terlebih dahulu.");
+                    return;
+                }
+            } else if (typeof activeMenu === 'object') {
+                subItems = menuGroups[activeMenu.menu][activeMenu.sub];
+                if (!Array.isArray(subItems)) {
+                    await botReplyWithTyping("Silakan pilih submenu yang valid.");
+                    return;
+                }
+            }
 
-    const matchedSub = subItems.find(item =>
-        item.label.toLowerCase() === lower || item.key === lower
-    );
+            const matchedSub = subItems.find(item =>
+                item.label.toLowerCase() === lower || item.key === lower
+            );
 
-    if (matchedSub) {
-        await respondToKeyword(matchedSub.key);
-    } else {
-        await botReplyWithTyping("Subtopik tidak dikenali. Silakan pilih yang tersedia.");
-        if (typeof activeMenu === 'object') {
-            await showSubMenu(activeMenu.menu);
-        } else {
-            await showSubMenu(activeMenu);
+            if (matchedSub) {
+                await respondToKeyword(matchedSub.key);
+            } else {
+                await botReplyWithTyping("Subtopik tidak dikenali. Silakan pilih yang tersedia.");
+                if (typeof activeMenu === 'object') {
+                    await showSubMenu(activeMenu.menu);
+                } else {
+                    await showSubMenu(activeMenu);
+                }
+            }
         }
-    }
-}
 
 
 
