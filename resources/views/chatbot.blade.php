@@ -273,15 +273,12 @@
             misi: "Misi adalah langkah untuk mencapai visi.",
             daftar: 'Untuk mendaftar sebagai anggota baru, klik <a href="/register" class="linkDaftar">di sini</a>.',
             regist: "Silakan registrasi melalui link resmi.",
-
-            visi-bem: "Visi BEM: Mahasiswa CERAH.",
-            misi-bem: "Misi BEM: 1. Pengembangan diri. 2. Kebersamaan.",
-            struktur-bem: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
-
+            visi_bem: "Visi BEM: Mahasiswa CERAH.",
+            misi_bem: "Misi BEM: 1. Pengembangan diri. 2. Kebersamaan.",
+            struktur_bem: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
             bpm_visi: "Visi BPM: Lembaga inovatif & aspiratif.",
             bpm_misi: "Misi BPM: Menampung aspirasi, mengawasi BEM.",
             bpm_struktur: "Struktur BPM: Ketua, Komisi A/B/C, Sekretaris.",
-
             akuntansi_visi: "Visi Akuntansi: Profesionalisme akuntan muda.",
             akuntansi_misi: "Misi: Literasi keuangan, kolaborasi internal eksternal.",
             akuntansi_struktur: "Struktur: Ketua, Sekretaris, Divisi Pendidikan & Kewirausahaan."
