@@ -205,11 +205,8 @@
                     {
                         label: "Tugas",
                         key: "bem_tugas"
-                    },
-                    {
-                        label: "Kegiatan",
-                        key: "bem_kegiatan"
-                    },
+                    }
+                  
                 ],
                 "BPM": [{
                         label: "Visi",
@@ -318,6 +315,11 @@
                 {
                     label: "Registrasi",
                     key: "regist"
+                }
+            ],
+            "Kegiatan": [{
+                    label: "Jadwal",
+                    key: "jadwal"
                 }
             ]
         };
