@@ -283,7 +283,6 @@
         }
 
         function respondToKeyword(key) {
-            // Tampilkan animasi "bot sedang mengetik"
             const loadingDiv = document.createElement('div');
             loadingDiv.className = 'd-flex mb-3 justify-content-start';
             loadingDiv.id = 'typing-msg';
@@ -296,7 +295,6 @@
             chatbox.appendChild(loadingDiv);
             scrollBottom();
 
-            // Setelah 1.2 detik, ganti dengan jawaban sebenarnya
             setTimeout(() => {
                 loadingDiv.remove();
                 const msg = responses[key] || "Maaf, belum ada jawaban untuk topik ini.";
@@ -309,32 +307,44 @@
 
 
         function handleUserInput(message) {
-            addMessage(message, 'user');
-            const lower = message.trim().toLowerCase();
-            const found = Object.values(menuGroups).flat().find(item => item.key === lower);
-            if (found) {
-                respondToKeyword(found.key);
-            } else {
-        // Tampilkan animasi mengetik selama 5 detik
-        const loadingDiv = document.createElement('div');
-        loadingDiv.className = 'd-flex mb-3 justify-content-start';
-        loadingDiv.id = 'typing-msg';
-        loadingDiv.innerHTML = `
-            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" class="chat-avatar me-2">
-            <div class="typing-indicator">
-                <span></span><span></span><span></span>
-            </div>
-        `;
-        chatbox.appendChild(loadingDiv);
-        scrollBottom();
+            const userMessage = message.trim();
+            addMessage(userMessage, 'user');
 
-        setTimeout(() => {
-            loadingDiv.remove();
-            addMessage("Maaf, saya belum punya jawaban untuk itu.", 'bot');
-            showMainMenu();
-        }, 5000); // <-- 5 detik
-    }
+            const lower = userMessage.toLowerCase();
+
+            // Jika belum pilih menu utama
+            if (!activeMenu) {
+                // Coba cocokkan input dengan nama menu utama
+                const matchedMenu = Object.keys(menuGroups).find(menu =>
+                    menu.toLowerCase() === lower
+                );
+
+                if (matchedMenu) {
+                    activeMenu = matchedMenu;
+                    setTimeout(() => {
+                        showSubMenu(activeMenu);
+                    }, 400);
+                } else {
+                    addMessage("Silakan pilih salah satu topik utama terlebih dahulu.", 'bot');
+                    showMainMenu();
+                }
+                return;
+            }
+
+            // Jika sudah pilih menu utama, cek apakah input cocok dengan submenu
+            const subItems = menuGroups[activeMenu];
+            const matchedSub = subItems.find(item =>
+                item.label.toLowerCase() === lower || item.key === lower
+            );
+
+            if (matchedSub) {
+                respondToKeyword(matchedSub.key);
+            } else {
+                addMessage("Subtopik tidak dikenali. Silakan pilih yang tersedia.", 'bot');
+                showSubMenu(activeMenu);
+            }
         }
+
 
         sendBtn.addEventListener('click', () => {
             const message = input.value.trim();
