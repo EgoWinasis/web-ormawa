@@ -189,6 +189,19 @@
                     key: "ciri"
                 }
             ],
+            "List Organisasi": [{
+                    label: "BEM",
+                    key: "BEM"
+                },
+                {
+                    label: "BPM",
+                    key: "BPM"
+                },
+                {
+                    label: "AKUNTANSI",
+                    key: "AKUNTANSI"
+                }
+            ],
             "Struktur & Tugas": [{
                     label: "Struktur",
                     key: "struktur"
@@ -223,15 +236,15 @@
         };
 
         const responses = {
-            pengertian: "Organisasi adalah sekumpulan orang yang memiliki tujuan bersama.",
-            tujuan: "Tujuan organisasi adalah untuk mencapai visi melalui misi tertentu.",
+            pengertian: "Menurut Prof. Dr. Sondang P. Siagian, organisasi adalah suatu bentuk persekutuan antara dua orang atau lebih yang bekerja bersama serta secara formal terikat dalam rangka pencapaian tujuan yang telah ditentukan dan dalam ikatan itu terdapat seorang atau sekelompok orang yang disebut bawahan.",
+            tujuan: "Tujuan dibentuknya organisasi secara umum antara lain meningkatkan kemandirian, merealisasikan keinginan dan cita-cita bersama, memperoleh keuntungan atau penghasilan bersama, meningkatkan pengalaman serta interaksi dengan anggota lainnya, memperoleh pengakuan serta penghargaan, hingga mengatasi keterbatasan kemampuan guna meraih tujuan bersama.",
             ciri: "Ciri organisasi: terstruktur, punya tujuan, ada peran masing-masing.",
             struktur: "Struktur organisasi terdiri dari ketua, sekretaris, bendahara, dan divisi lainnya.",
             tugas: "Setiap anggota memiliki tugas sesuai dengan struktur yang ada.",
             ketua: "Ketua adalah pemimpin utama dalam organisasi.",
             visi: "Visi adalah gambaran jangka panjang yang ingin dicapai oleh organisasi.",
             misi: "Misi adalah langkah-langkah untuk mencapai visi.",
-            daftar: "Untuk mendaftar, isi formulir dan kirim ke pengurus.",
+            daftar: 'Untuk mendaftar sebagai anggota baru, kamu bisa klik <a href="/register" class="linkDaftar">di sini</a>.',
             regist: "Silakan lakukan registrasi melalui link resmi atau hubungi admin."
         };
 
@@ -320,7 +333,7 @@
         return;
     }
 
-    
+
             // Jika belum pilih menu utama
             if (!activeMenu) {
                 // Coba cocokkan input dengan nama menu utama
