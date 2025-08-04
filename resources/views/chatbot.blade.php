@@ -312,6 +312,15 @@
 
             const lower = userMessage.toLowerCase();
 
+
+            if (lower === 'kembali' || lower === 'back') {
+        activeMenu = null;
+        addMessage("Kembali ke menu utama.", 'bot');
+        showMainMenu();
+        return;
+    }
+
+    
             // Jika belum pilih menu utama
             if (!activeMenu) {
                 // Coba cocokkan input dengan nama menu utama
