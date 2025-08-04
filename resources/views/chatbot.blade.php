@@ -222,7 +222,7 @@
                     {
                         label: "Struktur",
                         key: "bpm_struktur"
-                    }
+                    },
                     {
                         label: "Tugas",
                         key: "bpm_tugas"
