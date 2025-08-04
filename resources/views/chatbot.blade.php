@@ -189,19 +189,47 @@
                     key: "ciri"
                 }
             ],
-            "List Organisasi": [{
-                    label: "BEM",
-                    key: "BEM"
-                },
-                {
-                    label: "BPM",
-                    key: "BPM"
-                },
-                {
-                    label: "AKUNTANSI",
-                    key: "AKUNTANSI"
-                }
-            ],
+            "List Organisasi": {
+                "BEM": [{
+                        label: "Visi",
+                        key: "bem_visi"
+                    },
+                    {
+                        label: "Misi",
+                        key: "bem_misi"
+                    },
+                    {
+                        label: "Struktur",
+                        key: "bem_struktur"
+                    }
+                ],
+                "BPM": [{
+                        label: "Visi",
+                        key: "bpm_visi"
+                    },
+                    {
+                        label: "Misi",
+                        key: "bpm_misi"
+                    },
+                    {
+                        label: "Struktur",
+                        key: "bpm_struktur"
+                    }
+                ],
+                "AKUNTANSI": [{
+                        label: "Visi",
+                        key: "akuntansi_visi"
+                    },
+                    {
+                        label: "Misi",
+                        key: "akuntansi_misi"
+                    },
+                    {
+                        label: "Struktur",
+                        key: "akuntansi_struktur"
+                    }
+                ]
+            },
             "Struktur & Tugas": [{
                     label: "Struktur",
                     key: "struktur"
@@ -235,6 +263,7 @@
             ]
         };
 
+
         const responses = {
             pengertian: "Menurut Prof. Dr. Sondang P. Siagian, organisasi adalah suatu bentuk persekutuan antara dua orang atau lebih yang bekerja bersama serta secara formal terikat dalam rangka pencapaian tujuan yang telah ditentukan dan dalam ikatan itu terdapat seorang atau sekelompok orang yang disebut bawahan.",
             tujuan: "Tujuan dibentuknya organisasi secara umum antara lain meningkatkan kemandirian, merealisasikan keinginan dan cita-cita bersama, memperoleh keuntungan atau penghasilan bersama, meningkatkan pengalaman serta interaksi dengan anggota lainnya, memperoleh pengakuan serta penghargaan, hingga mengatasi keterbatasan kemampuan guna meraih tujuan bersama.",
@@ -245,7 +274,18 @@
             visi: "Visi adalah gambaran jangka panjang yang ingin dicapai oleh organisasi.",
             misi: "Misi adalah langkah-langkah untuk mencapai visi.",
             daftar: 'Untuk mendaftar sebagai anggota baru, kamu bisa klik <a href="/register" class="linkDaftar">di sini</a>.',
-            regist: "Silakan lakukan registrasi melalui link resmi atau hubungi admin."
+            regist: "Silakan lakukan registrasi melalui link resmi atau hubungi admin.",
+            bem_visi: "Visi BEM: Mewujudkan mahasiswa yang CERAH.",
+            bem_misi: "Misi BEM: 1. Menjadi wadah pengembangan diri. 2. Mengedepankan kebersamaan.",
+            bem_struktur: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
+
+            bpm_visi: "Visi BPM: Lembaga perwakilan yang inovatif dan aspiratif.",
+            bpm_misi: "Misi BPM: 1. Menampung aspirasi. 2. Mengawasi lembaga eksekutif.",
+            bpm_struktur: "Struktur BPM: Ketua, Komisi A/B/C, Sekretaris.",
+
+            akuntansi_visi: "Visi HIMA Akuntansi: Profesionalisme akuntan muda.",
+            akuntansi_misi: "Misi HIMA: 1. Meningkatkan literasi keuangan. 2. Kolaborasi internal dan eksternal.",
+            akuntansi_struktur: "Struktur Akuntansi: Ketua, Sekretaris, Divisi Pendidikan, Kewirausahaan."
         };
 
         function scrollBottom() {
@@ -327,11 +367,11 @@
 
 
             if (lower === 'kembali' || lower === 'back') {
-        activeMenu = null;
-        addMessage("Kembali ke menu utama.", 'bot');
-        showMainMenu();
-        return;
-    }
+                activeMenu = null;
+                addMessage("Kembali ke menu utama.", 'bot');
+                showMainMenu();
+                return;
+            }
 
 
             // Jika belum pilih menu utama
