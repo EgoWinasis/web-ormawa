@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Register')
+@php
+    use Illuminate\Support\Facades\DB;
 
+    $brandImage = DB::table('brand_image')->latest('id')->first();
+@endphp
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">
@@ -11,7 +15,7 @@
                 </div>
                 <div class="card-body">
                     <div class="text-center mb-4">
-                        <img src="{{ asset('storage/file-logo/login.png') }}" 
+                        <img src="{{ asset('storage/file-logo/' . ($brandImage->path ?? 'landing-page.png')) }}" 
                              alt="ilustrasi aplikasi Organisasi" 
                              class="img-fluid" style="max-height: 120px;">
                     </div>
