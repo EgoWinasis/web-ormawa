@@ -10,7 +10,7 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div style="display: flex; justify-content: center; align-items: center;"> 
-                        <img src="storage/file-logo/login.png" alt="ilustrasi aplikasi Organisasi">
+                        <img src="/login.png" alt="ilustrasi aplikasi Organisasi">
                     </div>
                     <div class="mb-3">
                         <h1 class="text-center">Login</h1>
