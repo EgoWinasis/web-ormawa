@@ -1,3 +1,9 @@
+@php
+    use Illuminate\Support\Facades\DB;
+
+    $brandImage = DB::table('brand_image')->latest('id')->first();
+@endphp
+
 @extends('layouts.app')
 @section('title', 'login')
 @section('content')
@@ -10,7 +16,7 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div style="display: flex; justify-content: center; align-items: center;"> 
-                        <img src="/login.png" alt="ilustrasi aplikasi Organisasi">
+                        <img src="{{ asset('storage/file-logo/' . ($brandImage->path ?? 'landing-page.png')) }}" alt="ilustrasi aplikasi Organisasi">
                     </div>
                     <div class="mb-3">
                         <h1 class="text-center">Login</h1>
