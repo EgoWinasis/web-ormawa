@@ -189,46 +189,47 @@
                     key: "ciri"
                 }
             ],
-            "Seputar BEM": [{
-                    label: "Visi-BEM",
-                    key: "visi-bem"
-                },
-                {
-                    label: "Misi-BEM",
-                    key: "misi-bem"
-                },
-                {
-                    label: "Struktur-BEM",
-                    key: "struktur-bem"
-                }
-            ],
-            "Seputar BPM": [{
-                    label: "Pengertian",
-                    key: "pengertian"
-                },
-                {
-                    label: "Tujuan",
-                    key: "tujuan"
-                },
-                {
-                    label: "Ciri",
-                    key: "ciri"
-                }
-            ],
-            "Tentang Organisasi": [{
-                    label: "Pengertian",
-                    key: "pengertian"
-                },
-                {
-                    label: "Tujuan",
-                    key: "tujuan"
-                },
-                {
-                    label: "Ciri",
-                    key: "ciri"
-                }
-            ],
-           
+            "List Organisasi": {
+                "BEM": [{
+                        label: "Visi",
+                        key: "bem_visi"
+                    },
+                    {
+                        label: "Misi",
+                        key: "bem_misi"
+                    },
+                    {
+                        label: "Struktur",
+                        key: "bem_struktur"
+                    }
+                ],
+                "BPM": [{
+                        label: "Visi",
+                        key: "bpm_visi"
+                    },
+                    {
+                        label: "Misi",
+                        key: "bpm_misi"
+                    },
+                    {
+                        label: "Struktur",
+                        key: "bpm_struktur"
+                    }
+                ],
+                "AKUNTANSI": [{
+                        label: "Visi",
+                        key: "akuntansi_visi"
+                    },
+                    {
+                        label: "Misi",
+                        key: "akuntansi_misi"
+                    },
+                    {
+                        label: "Struktur",
+                        key: "akuntansi_struktur"
+                    }
+                ]
+            },
             "Struktur & Tugas": [{
                     label: "Struktur",
                     key: "struktur"
@@ -273,12 +274,15 @@
             misi: "Misi adalah langkah untuk mencapai visi.",
             daftar: 'Untuk mendaftar sebagai anggota baru, klik <a href="/register" class="linkDaftar">di sini</a>.',
             regist: "Silakan registrasi melalui link resmi.",
-            visi_bem: "Visi BEM: Mahasiswa CERAH.",
-            misi_bem: "Misi BEM: 1. Pengembangan diri. 2. Kebersamaan.",
-            struktur_bem: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
+
+            bem_visi: "Visi BEM: Mahasiswa CERAH.",
+            bem_misi: "Misi BEM: 1. Pengembangan diri. 2. Kebersamaan.",
+            bem_struktur: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
+
             bpm_visi: "Visi BPM: Lembaga inovatif & aspiratif.",
             bpm_misi: "Misi BPM: Menampung aspirasi, mengawasi BEM.",
             bpm_struktur: "Struktur BPM: Ketua, Komisi A/B/C, Sekretaris.",
+
             akuntansi_visi: "Visi Akuntansi: Profesionalisme akuntan muda.",
             akuntansi_misi: "Misi: Literasi keuangan, kolaborasi internal eksternal.",
             akuntansi_struktur: "Struktur: Ketua, Sekretaris, Divisi Pendidikan & Kewirausahaan."
