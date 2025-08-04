@@ -258,7 +258,28 @@
         scrollBottom();
     }
 
-    function showMainMenu() {
+    // Fungsi untuk menampilkan pesan bot dengan delay dan animasi typing
+    function botReplyWithTyping(html, delay = 1500) {
+        return new Promise((resolve) => {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'd-flex mb-3 justify-content-start';
+            loadingDiv.id = 'typing-msg';
+            loadingDiv.innerHTML = `
+                <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" class="chat-avatar me-2">
+                <div class="typing-indicator"><span></span><span></span><span></span></div>
+            `;
+            chatbox.appendChild(loadingDiv);
+            scrollBottom();
+
+            setTimeout(() => {
+                loadingDiv.remove();
+                addMessage(html, 'bot');
+                resolve();
+            }, delay);
+        });
+    }
+
+    async function showMainMenu() {
         const html = `
         Silakan pilih topik:
         <div class="quick-options mt-2">
@@ -266,10 +287,10 @@
                 `<button class="btn btn-outline-secondary btn-sm menu-btn" data-menu="${menu}">${menu}</button>`
             ).join('')}
         </div>`;
-        addMessage(html, 'bot');
+        await botReplyWithTyping(html);
     }
 
-    function showSubMenu(menu) {
+    async function showSubMenu(menu) {
         const subItems = menuGroups[menu];
         let html = `Topik: <strong>${menu}</strong><br>Pilih pertanyaan:<div class="quick-options mt-2">`;
 
@@ -284,32 +305,17 @@
         }
 
         html += `<button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button></div>`;
-        addMessage(html, 'bot');
+        await botReplyWithTyping(html);
     }
 
-    // Fungsi baru untuk simulasikan 'berpikir dulu' sebelum respon
-    function respondToKeyword(key) {
-        const loadingDiv = document.createElement('div');
-        loadingDiv.className = 'd-flex mb-3 justify-content-start';
-        loadingDiv.id = 'typing-msg';
-        loadingDiv.innerHTML = `
-            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" class="chat-avatar me-2">
-            <div class="typing-indicator"><span></span><span></span><span></span></div>
-        `;
-        chatbox.appendChild(loadingDiv);
-        scrollBottom();
-
-        // Delay 2 detik untuk efek 'berpikir'
-        setTimeout(() => {
-            loadingDiv.remove();
-            const msg = responses[key] || "Maaf, belum ada jawaban untuk topik ini.";
-            addMessage(msg, 'bot');
-            activeMenu = null;
-            setTimeout(showMainMenu, 800);
-        }, 2000);
+    async function respondToKeyword(key) {
+        const msg = responses[key] || "Maaf, belum ada jawaban untuk topik ini.";
+        await botReplyWithTyping(msg);
+        activeMenu = null;
+        setTimeout(showMainMenu, 800);
     }
 
-    function handleUserInput(message) {
+    async function handleUserInput(message) {
         const userMessage = message.trim();
         if (!userMessage) return;
         addMessage(userMessage, 'user');
@@ -318,12 +324,12 @@
 
         if (lower === 'kembali' || lower === 'back') {
             if (typeof activeMenu === 'object') {
-                showSubMenu(activeMenu.menu);
+                await showSubMenu(activeMenu.menu);
                 activeMenu = activeMenu.menu;
             } else {
                 activeMenu = null;
-                addMessage("Kembali ke menu utama.", 'bot');
-                showMainMenu();
+                await botReplyWithTyping("Kembali ke menu utama.");
+                await showMainMenu();
             }
             return;
         }
@@ -334,10 +340,10 @@
             );
             if (matchedMenu) {
                 activeMenu = matchedMenu;
-                showSubMenu(activeMenu);
+                await showSubMenu(activeMenu);
             } else {
-                addMessage("Silakan pilih salah satu topik utama terlebih dahulu.", 'bot');
-                showMainMenu();
+                await botReplyWithTyping("Silakan pilih salah satu topik utama terlebih dahulu.");
+                await showMainMenu();
             }
             return;
         }
@@ -350,7 +356,7 @@
         }
 
         if (!subItems || !Array.isArray(subItems)) {
-            addMessage("Tidak dapat menampilkan sub menu.", 'bot');
+            await botReplyWithTyping("Tidak dapat menampilkan sub menu.");
             return;
         }
 
@@ -359,13 +365,13 @@
         );
 
         if (matchedSub) {
-            respondToKeyword(matchedSub.key);
+            await respondToKeyword(matchedSub.key);
         } else {
-            addMessage("Subtopik tidak dikenali. Silakan pilih yang tersedia.", 'bot');
+            await botReplyWithTyping("Subtopik tidak dikenali. Silakan pilih yang tersedia.");
             if (typeof activeMenu === 'object') {
-                showSubMenu(activeMenu.menu);
+                await showSubMenu(activeMenu.menu);
             } else {
-                showSubMenu(activeMenu);
+                await showSubMenu(activeMenu);
             }
         }
     }
@@ -376,7 +382,7 @@
         handleUserInput(message);
     });
 
-    chatIcon.addEventListener('click', () => {
+    chatIcon.addEventListener('click', async () => {
         chatBox.classList.toggle('d-none');
         const icon = chatIcon.querySelector('i');
         icon.classList.toggle('fa-times');
@@ -384,20 +390,20 @@
 
         if (!chatBox.classList.contains('d-none') && chatbox.innerHTML.trim() === '') {
             addMessage("Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑", 'bot');
-            showMainMenu();
+            await showMainMenu();
         }
     });
 
-    chatbox.addEventListener('click', function (e) {
+    chatbox.addEventListener('click', async function (e) {
         if (e.target.classList.contains('menu-btn')) {
             const menu = e.target.dataset.menu;
             activeMenu = menu;
             addMessage(menu, 'user');
-            showSubMenu(menu);
+            await showSubMenu(menu);
         } else if (e.target.classList.contains('submenu-btn')) {
             const keyword = e.target.dataset.key;
             addMessage(e.target.innerText, 'user');
-            respondToKeyword(keyword);
+            await respondToKeyword(keyword);
         } else if (e.target.classList.contains('submenu-lv2-btn')) {
             const menu = e.target.dataset.org;
             const sub = e.target.dataset.sub;
@@ -414,18 +420,19 @@
                     <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
                 </div>
             `;
-            setTimeout(() => addMessage(html, 'bot'), 400);
+            await botReplyWithTyping(html);
         } else if (e.target.classList.contains('back-btn')) {
             if (typeof activeMenu === 'object') {
-                showSubMenu(activeMenu.menu);
+                await showSubMenu(activeMenu.menu);
                 activeMenu = activeMenu.menu;
             } else {
                 activeMenu = null;
-                showMainMenu();
+                await showMainMenu();
             }
         }
     });
 });
+
 
 
 
