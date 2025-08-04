@@ -290,58 +290,91 @@
             bem_visi: 'Dengan visi kami "Menjadikan BEM Politeknik Harapan Bersama Sebagai Wadah Untuk Mewujudkan Mahasiswa yang Cerah (Cerdas, Religius, Aktif, & Harmonis)',
             bem_misi: 'Misi: <br>1. Mendorong Pengembangan Kualitas Sumber daya Mahasiswa PHB. <br>2. Meningkatnya Produktifitas dan Kreatifitas. <br>3. Terciptanya solidaritas mahasisiwa yang advokatif dan Berkesinambungan.<br>4. Terwujudnya BEM yang Harmonis dan aspiratif.',
             bem_struktur: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
-            bem_tugas: "#Ketua BEM<br>\
-                        1.Memimpin dan mengkoordinasikan kegiatan BEM KM PHB><br>\
-                        2.Memberikan laporan pertanggung jawaban diakhir periode kepada BPM<br>\
-                        3.Mengkoordinasikan kinerja Himpunan Mahasiswa Program Studi yang ada di 4.Politeknik Harapan Bersama<br>\
-                        5.Mengangkat dan memberhentikan anggota BEM KM PHB<br>\
-                        6.Menjalankan tugas menurut AD / ART BEM KM PHB<br>\
-                        7.Memberikan sanksi dengan tegas anggota BEM KM PHB sesuai AD/ART<br>\
-                        #Wakil Ketua BEM<br>\
-                        1.Membantu ketua BEM dalam menjalankan tugasnya<br>\
-                        2.Menjalankan tugas-tugas ketua BEM apabila ketua BEM tidak bisa hadir atau 3.sedang berhalangan<br>\
-                        4.Mengelola Rumah Tangga di Lembaga BEM KM PHB<br>\
-                        5.Menjalankan tugas menurut AD / ART BEM KM PHB <br>\
-                        #Sekretaris 1<br>\
-                        1.Berkoordinasi dan merumuskan Standard Operating Procedure lembaga KM PHB bersama Sekretaris Umum BPM. <br>\
-                        2.Menguasai birokrasi proposal, undangan, dan surat menyurat<br>\
-                        3.Bertanggung jawab terhadap tata naskah dinas yang dibutuhkan<br>\
-                        4.Mengelola absensi BEM KM PHB<br>\
-                        5.Mampu membantu permasalahan birokrasi proposal ormawa dengan melakukan pengecekan format sesuai SOP. <br>\
-                        6.Melakukan pengarsipan dan perapihan dokumen BEM KM PHB.<br>\
-                        #Sekretaris 2<br>\
-                        1.Menjalankan tugas-tugas Sekretaris 1 apabila sekretaris 1 tidak bisa hadir atau sedang berhalangan.<br>\
-                        2.Mengelola Inventaris penunjang organisasi <br>\
-                        3.Pengawasan Inventaris BEM KM PHB<br>\
-                        4.Membantu sekretaris I dalam mengkoordinasikan dan menjalankan tugas menurut AD / ART BEM KM PHB.<br>\
-                        #Bendahara 1<br>\
-                        1.Pengelolaan keuangan BEM KM PHB menjadi tanggung jawab utama <br>\
-                        2.Mengatur keuangan dan mengawasi arus dana masuk dan dana keluar BEM dan ormawa<br>\
-                        3.Merumuskan dan menetapkan kebijakan dibidang keuangan <br>\
-                        4.Berusaha menopang kemandirian keuangan BEM KM PHB<br>\
-                        #Bendahara 2<br>\
-                        1.Menjalankan tugas-tugas bendahara 1 apabila bendahara 1 tidak bisa hadir atau sedang berhalangan.<br>\
-                        2.Bertugas membantu bendahara 1 dalam mengkoordinasikan dan menjalankan tugas menurut AD/ART BEM KM PHB.<br>\
-                        #Kepala Departeman Advokasi dan Kesejahteraan Mahasiswa, Divisi Mahasiswa dan Divisi Masyarakat<br>\
-                        1.Bertanggung jawab kepada Ketua BEM KM PHB<br>\
-                        2.Kepala Departemen Advokasi dan Kesejahteraan Mahasiswa Penanggung jawab tertinggi Departemen Advokasi dan Kesejahteraan Mahasiswa.<br>\
-                        3.Berorientasi pada kajian dan responsife terhadap gerakan serta permasalahan isu masyarakat.<br>\
-                        #Kepala Departemen Sosial, Divisi Mahasiswa, Divisi Masyarakat<br>\
-                        1.Bertanggung jawab kepada Ketua BEM KM PHB<br>\
-                        2.Kepala Departemen Sosial Penanggung jawab tertinggi Departemen Sosial<br>\
-                        3.Berorientasi pada kegiatan sosial dan kerohanian dalam lingkungan PHB.<br>\
-                        #Kepala Departemen Komunikasi dan Informasi, Divisi Internal, Divisi Eksternal<br>\
-                        1.Bertanggung jawab kepada Ketua BEM KM PHB<br>\
-                        2.Kepala Departmen Komunikasi dan Informasi  Penanggung jawab tertinggi Departemen Komunikasi dan Informasi.<br>\
-                        3.Mengetahui secara umum tentang Politeknik Harapan Bersama membuat dan  mengupdate data base anggota ormawa KM PHB <br>\
-                        #Kepala Departemen Kepemudaan dan Minat Bakat, Divisi Kepemudaan, Divisi Minat Bakat<br>\
-                        1.Bertanggung jawab kepada ketua BEM KM PHB<br>\
-                        2.Kepala Departemen Kepemudaan dan Minat Bakat merupakan penanggung jawab tertinggi Departemen KMB.<br>\
-                        3.Melakukan tugas kaderisasi bersama seluruh Himpunan Mahasiswa Program Studi (HIMAPRODI) untuk mewujudkan organisasi yang baik<br>\
-                        #Kepala Departemen Kekaryaan, kewirausahaan dan Penalaran<br>\
-                        1.Bertanggung jawab kepada Ketua BEM KM PHB<br>\
-                        2.Kepala Departemen Kekaryaan.Kewirausahaan dan penalaran penanggung jawab tertinggi Departemen Kekaryaan.  Kewirausahaan dan penalaran<br>\
-                        3.Menjalin hubungan mitra dengan Internal maupun Eksternal dalam kewirausahaan",
+            bem_tugas: `<b>Ketua BEM</b>
+<ol>
+    <li>Memimpin dan mengkoordinasikan kegiatan BEM KM PHB</li>
+    <li>Memberikan laporan pertanggung jawaban di akhir periode kepada BPM</li>
+    <li>Mengkoordinasikan kinerja Himpunan Mahasiswa Program Studi yang ada di Politeknik Harapan Bersama</li>
+    <li>Mengangkat dan memberhentikan anggota BEM KM PHB</li>
+    <li>Menjalankan tugas menurut AD / ART BEM KM PHB</li>
+    <li>Memberikan sanksi dengan tegas anggota BEM KM PHB sesuai AD/ART</li>
+</ol>
+
+<b>Wakil Ketua BEM</b>
+<ol>
+    <li>Membantu ketua BEM dalam menjalankan tugasnya</li>
+    <li>Menjalankan tugas-tugas ketua BEM apabila ketua BEM tidak bisa hadir atau sedang berhalangan</li>
+    <li>Mengelola Rumah Tangga di Lembaga BEM KM PHB</li>
+    <li>Menjalankan tugas menurut AD / ART BEM KM PHB</li>
+</ol>
+
+<b>Sekretaris 1</b>
+<ol>
+    <li>Berkoordinasi dan merumuskan SOP lembaga KM PHB bersama Sekretaris Umum BPM</li>
+    <li>Menguasai birokrasi proposal, undangan, dan surat menyurat</li>
+    <li>Bertanggung jawab terhadap tata naskah dinas yang dibutuhkan</li>
+    <li>Mengelola absensi BEM KM PHB</li>
+    <li>Membantu permasalahan birokrasi proposal ormawa dengan pengecekan format sesuai SOP</li>
+    <li>Melakukan pengarsipan dan perapihan dokumen BEM KM PHB</li>
+</ol>
+
+<b>Sekretaris 2</b>
+<ol>
+    <li>Menjalankan tugas-tugas Sekretaris 1 apabila tidak bisa hadir atau berhalangan</li>
+    <li>Mengelola inventaris penunjang organisasi</li>
+    <li>Pengawasan inventaris BEM KM PHB</li>
+    <li>Membantu Sekretaris 1 dalam menjalankan tugas sesuai AD / ART BEM KM PHB</li>
+</ol>
+
+<b>Bendahara 1</b>
+<ol>
+    <li>Pertanggungjawaban utama dalam pengelolaan keuangan BEM KM PHB</li>
+    <li>Mengatur dan mengawasi arus dana masuk dan keluar BEM dan ormawa</li>
+    <li>Merumuskan dan menetapkan kebijakan di bidang keuangan</li>
+    <li>Menopang kemandirian keuangan BEM KM PHB</li>
+</ol>
+
+<b>Bendahara 2</b>
+<ol>
+    <li>Menjalankan tugas Bendahara 1 apabila berhalangan</li>
+    <li>Membantu Bendahara 1 dalam koordinasi dan tugas sesuai AD / ART</li>
+</ol>
+
+<b>Kepala Departemen Advokasi dan Kesejahteraan Mahasiswa</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua BEM KM PHB</li>
+    <li>Penanggung jawab tertinggi Departemen Advokasi & Kesejahteraan Mahasiswa</li>
+    <li>Berorientasi pada kajian dan responsif terhadap isu masyarakat</li>
+</ol>
+
+<b>Kepala Departemen Sosial</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua BEM KM PHB</li>
+    <li>Penanggung jawab tertinggi Departemen Sosial</li>
+    <li>Berorientasi pada kegiatan sosial dan kerohanian di lingkungan PHB</li>
+</ol>
+
+<b>Kepala Departemen Komunikasi dan Informasi</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua BEM KM PHB</li>
+    <li>Penanggung jawab tertinggi Departemen Komunikasi dan Informasi</li>
+    <li>Membuat dan memperbarui database anggota ormawa KM PHB</li>
+</ol>
+
+<b>Kepala Departemen Kepemudaan dan Minat Bakat</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua BEM KM PHB</li>
+    <li>Penanggung jawab tertinggi Departemen Kepemudaan dan Minat Bakat</li>
+    <li>Melakukan kaderisasi bersama HIMAPRODI untuk organisasi yang baik</li>
+</ol>
+
+<b>Kepala Departemen Kekaryaan, Kewirausahaan dan Penalaran</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua BEM KM PHB</li>
+    <li>Penanggung jawab tertinggi Departemen Kekaryaan, Kewirausahaan dan Penalaran</li>
+    <li>Menjalin hubungan mitra internal maupun eksternal dalam kewirausahaan</li>
+</ol>
+`,
 
             bpm_visi: "Visi BPM KM PHB adalah “Mewujudkan lembaga perwakilan mahasiswa yang inovatif, aspiratif, dan berintegritas berasaskan pancasila",
             bpm_misi: "Misi: <br> 1. Menampung dan menyalurkan aspirasi mahasiswa yang bersifat membangun.<br> 2. Mengawasi dan mengevaluasi kinerja KM PHB.",
