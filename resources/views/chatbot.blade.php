@@ -529,7 +529,7 @@ bpm_struktur: `
 // akuntansi
             akuntansi_visi: "Visi Akuntansi: Profesionalisme akuntan muda.",
             akuntansi_misi: "Misi: Literasi keuangan, kolaborasi internal eksternal.",
-            akuntansi_struktur: "Struktur: Ketua, Sekretaris, Divisi Pendidikan & Kewirausahaan."
+            akuntansi_struktur: "Struktur: Ketua, Sekretaris, Divisi Pendidikan & Kewirausahaan.",
             akuntansi_tugas: `
 <b>Tugas Pokok Struktural HIMAPRODI Akuntansi KM PHB</b><br><br>
 
