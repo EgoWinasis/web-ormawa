@@ -223,6 +223,10 @@
                         label: "Struktur",
                         key: "bpm_struktur"
                     }
+                    {
+                        label: "Tugas",
+                        key: "bpm_tugas"
+                    }
                 ],
                 "AKUNTANSI": [{
                         label: "Visi",
@@ -341,7 +345,49 @@
 
             bpm_visi: "Visi BPM KM PHB adalah “Mewujudkan lembaga perwakilan mahasiswa yang inovatif, aspiratif, dan berintegritas berasaskan pancasila",
             bpm_misi: "Misi: <br> 1. Menampung dan menyalurkan aspirasi mahasiswa yang bersifat membangun.<br> 2. Mengawasi dan mengevaluasi kinerja KM PHB.",
-            bpm_struktur: "Struktur BPM: Ketua, Komisi A/B/C, Sekretaris.",
+            bpm_struktur: "1. PRESMA<br>2. WAPRESMA<br>3. Sekretaris<br>4. Bendahara<br>5. KOMINFO<br>6. DEPSOS<br>8. ADKESMA<br>9. KMB<br> 10. KKP",
+            bpm_tugas: "#Tugas Pokok struktural BPM\
+#Ketua Umum BPM<br>\
+1.Memimpin BPM KM PHB dalam kegiatan keorganisasian.<br>\
+2.Mengkoordinir dan mengawasi pelaksanaan program kerja.<br>\
+3.Membuat keputusan bijak dan bertanggung jawab atas segala hal yang dilakukan BPM KM PHB tanpa menyimpang dari AD/ART.<br>\
+#Sekretaris Umum:<br>\
+1.Membantu Ketua Umum dalam melaksanakan tugas-tugas yang berhubungan dengan BPM KM PHB.<br>\
+2.Mengatur segala urusan yang berhubungan dengan kesekretariatan KM PHB.<br>\
+3.Melakukan pengawasan pada alur keluar dan masuk kesekretariatan BPM KM PHB.<br>\
+4.Berkoordinasi dengan Sekretaris BEM untuk Merumuskan Standard Operating Procedure unit KM PHB.<br>\
+#Bendahara Umum:<br>\
+1.Mengatur keuangan BPM KM PHB.<br>\
+2.Membuat laporan anggaran pengeluaran dan pemasukan BPM KM PHB.<br>\
+3.Merancang Rencana Anggaran Biaya BPM KM PHB.<br>\
+#Hubungan Mahasiswa I:<br>\
+1.Menyusun dan menyampaikan informasi kepada internal kampus.<br>\
+2.Bertanggungjawab untuk mengatur dan menjalankan penyebaran informasi kepada pihak internal kampus.<br>\
+3.Mempublikasikan informasi mengenai kegiatan dan program kerja KM PHB, serta merancang desain dan konten kreatif yang mencakup informasi <br>\tentang Badan Perwakilan Mahasiswa KM PHB.<br>\
+#Hubungan Mahasiswa II:<br>\
+1.Menjalin dan mengembangkan hubungan antar lembaga di luar kampus, baik secara bilateral maupun multilateral. <br>\
+2.Bertanggungjawab untuk mengatur penyebaran informasi kepada pihak eksternal kampus.<br>\
+3.Membantu Humas I dalam mempublikasikan informasi mengenai kegiatan dan program kerja KM PHB, serta merancang desain dan konten kreatif <br>\yang mencakup informasi tentang Badan Perwakilan Mahasiswa KM PHB.<br>\
+#Ketua Komisi:<br>\
+1.Bertanggung jawab atas segala hal yang berkaitan dengan komisinya.<br>\
+2.Bertanggung jawab atas anggotanya dan memberikan motivasi serta arahan kepada anggotanya agar melaksanakan tugas yang ada dengan baik.<br>\
+3.Merumuskan Undang-Undang bersama Badan Pengurus Harian BPM KM<br>\
+PHB.<br>\
+#Komisi I (Yudisial):<br>\
+1.Merumuskan AD/ART BPM KM PHB.<br>\
+2.Mengeluarkan Surat Keputusan untuk setiap kegiatan KM PHB.<br>\
+#Komisi II (Pengawasan):<br>\
+1.Membantu menindaklanjuti anggota KM PHB yang telah melakukan pelanggaran tata tertib yang telah ditentukan.<br>\
+2.Mengawasi dan menilai kedisiplinan pelaksanaan program kerja yang dilaksanakan oleh Pengurus KM PHB.<br>\
+3.Mengevaluasi program kerja yang telah dijalankan KM PHB.<br>\
+#Komisi III (Budgeting): <br>\
+1.Mengawasi alur masuk dan keluarnya anggaran yang digunakan KM PHB.<br>\
+2.Mengawasi kinerja Bendahara BEM.<br>\
+3.Mengawasi alur masuk dan keluarnya dana sosial serta dana denda LPJ yang       dikelola oleh Departemen Sosial dan Bendahara BEM.<br>\
+#Komisi IV (Advokasi): <br>\
+1.Menampung aspirasi seluruh mahasiswa Politeknik Harapan Bersama.<br>\
+2.Berkoordinasi dengan Departemen Adkesma BEM KM PHB dalam menindaklanjuti aspirasi mahasiswa yang bersifat membangun.<br>\
+3.Mencari informasi di internal dan di eksternal kampus.",
 
             akuntansi_visi: "Visi Akuntansi: Profesionalisme akuntan muda.",
             akuntansi_misi: "Misi: Literasi keuangan, kolaborasi internal eksternal.",
@@ -446,6 +492,7 @@
                 'bem tugas': 'bem_tugas',
                 'bpm visi': 'bpm_visi',
                 'bpm misi': 'bpm_misi',
+                'bpm tugas': 'bpm_tugas',
                 'bpm struktur': 'bpm_struktur',
                 'akuntansi visi': 'akuntansi_visi',
                 'akuntansi misi': 'akuntansi_misi',
