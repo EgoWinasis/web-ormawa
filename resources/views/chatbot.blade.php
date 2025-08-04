@@ -228,19 +228,66 @@
                         key: "bpm_tugas"
                     }
                 ],
-                "AKUNTANSI": [{
-                        label: "Visi",
-                        key: "akuntansi_visi"
-                    },
-                    {
-                        label: "Misi",
-                        key: "akuntansi_misi"
-                    },
-                    {
-                        label: "Struktur",
-                        key: "akuntansi_struktur"
-                    }
-                ]
+                "AKUNTANSI": [
+        { label: "Visi", key: "akuntansi_visi" },
+        { label: "Misi", key: "akuntansi_misi" },
+        { label: "Struktur", key: "akuntansi_struktur" },
+        { label: "Tugas", key: "akuntansi_tugas" }
+    ],
+    "ASP": [
+        { label: "Visi", key: "asp_visi" },
+        { label: "Misi", key: "asp_misi" },
+        { label: "Struktur", key: "asp_struktur" },
+        { label: "Tugas", key: "asp_tugas" }
+    ],
+    "DKV": [
+        { label: "Visi", key: "dkv_visi" },
+        { label: "Misi", key: "dkv_misi" },
+        { label: "Struktur", key: "dkv_struktur" },
+        { label: "Tugas", key: "dkv_tugas" }
+    ],
+    "ELEKTRO": [
+        { label: "Visi", key: "elektro_visi" },
+        { label: "Misi", key: "elektro_misi" },
+        { label: "Struktur", key: "elektro_struktur" },
+        { label: "Tugas", key: "elektro_tugas" }
+    ],
+    "FARMASI": [
+        { label: "Visi", key: "farmasi_visi" },
+        { label: "Misi", key: "farmasi_misi" },
+        { label: "Struktur", key: "farmasi_struktur" },
+        { label: "Tugas", key: "farmasi_tugas" }
+    ],
+    "KEBIDANAN": [
+        { label: "Visi", key: "kebidanan_visi" },
+        { label: "Misi", key: "kebidanan_misi" },
+        { label: "Struktur", key: "kebidanan_struktur" },
+        { label: "Tugas", key: "kebidanan_tugas" }
+    ],
+    "KOMPUTER": [
+        { label: "Visi", key: "komputer_visi" },
+        { label: "Misi", key: "komputer_misi" },
+        { label: "Struktur", key: "komputer_struktur" },
+        { label: "Tugas", key: "komputer_tugas" }
+    ],
+    "MESIN": [
+        { label: "Visi", key: "mesin_visi" },
+        { label: "Misi", key: "mesin_misi" },
+        { label: "Struktur", key: "mesin_struktur" },
+        { label: "Tugas", key: "mesin_tugas" }
+    ],
+    "PERHOTELAN": [
+        { label: "Visi", key: "perhotelan_visi" },
+        { label: "Misi", key: "perhotelan_misi" },
+        { label: "Struktur", key: "perhotelan_struktur" },
+        { label: "Tugas", key: "perhotelan_tugas" }
+    ],
+    "TI": [
+        { label: "Visi", key: "ti_visi" },
+        { label: "Misi", key: "ti_misi" },
+        { label: "Struktur", key: "ti_struktur" },
+        { label: "Tugas", key: "ti_tugas" }
+    ],
             },
             "Struktur & Tugas": [{
                     label: "Struktur",
@@ -276,9 +323,9 @@
         };
 
         const responses = {
-            pengertian: "Menurut Prof. Dr. Sondang P. Siagian, organisasi adalah ...",
-            tujuan: "Tujuan organisasi adalah ...",
-            ciri: "Ciri organisasi: terstruktur, punya tujuan, ada peran masing-masing.",
+            pengertian: "Menurut Prof. Dr. Sondang P. Siagian, organisasi adalah suatu bentuk persekutuan antara dua orang atau lebih yang bekerja bersama serta secara formal terikat dalam rangka pencapaian tujuan yang telah ditentukan dan dalam ikatan itu terdapat seorang atau sekelompok orang yang disebut bawahan.",
+            tujuan: "Tujuan dibentuknya organisasi secara umum antara lain meningkatkan kemandirian, merealisasikan keinginan dan cita-cita bersama, memperoleh keuntungan atau penghasilan bersama, meningkatkan pengalaman serta interaksi dengan anggota lainnya, memperoleh pengakuan serta penghargaan, hingga mengatasi keterbatasan kemampuan guna meraih tujuan bersama.",
+            ciri: "Terdapat beberapa ciri organisasi antara lain terdiri dari dua orang atau lebih, memiliki tujuan yang sama dan ingin mewujudkannya, saling bekerja sama, memiliki peraturan, serta ada pembagian tugas juga tanggung jawab bagi anggotanya.",
             struktur: "Struktur organisasi terdiri dari ketua, sekretaris, bendahara, dan divisi lainnya.",
             tugas: "Setiap anggota memiliki tugas sesuai struktur.",
             ketua: "Ketua adalah pemimpin utama.",
@@ -286,7 +333,7 @@
             misi: "Misi adalah langkah untuk mencapai visi.",
             daftar: 'Untuk mendaftar sebagai anggota baru, klik <a href="/register" class="linkDaftar">di sini</a>.',
             regist: "Silakan registrasi melalui link resmi.",
-
+// \bem
             bem_visi: 'Dengan visi kami "Menjadikan BEM Politeknik Harapan Bersama Sebagai Wadah Untuk Mewujudkan Mahasiswa yang Cerah (Cerdas, Religius, Aktif, & Harmonis)',
             bem_misi: 'Misi: <br>1. Mendorong Pengembangan Kualitas Sumber daya Mahasiswa PHB. <br>2. Meningkatnya Produktifitas dan Kreatifitas. <br>3. Terciptanya solidaritas mahasisiwa yang advokatif dan Berkesinambungan.<br>4. Terwujudnya BEM yang Harmonis dan aspiratif.',
             bem_struktur: "Struktur BEM: Ketua, Wakil, Sekretaris, Bendahara, Divisi.",
@@ -376,55 +423,802 @@
 </ul>
 `,
 
-            bpm_visi: "Visi BPM KM PHB adalah “Mewujudkan lembaga perwakilan mahasiswa yang inovatif, aspiratif, dan berintegritas berasaskan pancasila",
-            bpm_misi: "Misi: <br> 1. Menampung dan menyalurkan aspirasi mahasiswa yang bersifat membangun.<br> 2. Mengawasi dan mengevaluasi kinerja KM PHB.",
-            bpm_struktur: "1. PRESMA<br>2. WAPRESMA<br>3. Sekretaris<br>4. Bendahara<br>5. KOMINFO<br>6. DEPSOS<br>8. ADKESMA<br>9. KMB<br> 10. KKP",
-            bpm_tugas: "#Tugas Pokok struktural BPM\
-#Ketua Umum BPM<br>\
-1.Memimpin BPM KM PHB dalam kegiatan keorganisasian.<br>\
-2.Mengkoordinir dan mengawasi pelaksanaan program kerja.<br>\
-3.Membuat keputusan bijak dan bertanggung jawab atas segala hal yang dilakukan BPM KM PHB tanpa menyimpang dari AD/ART.<br>\
-#Sekretaris Umum:<br>\
-1.Membantu Ketua Umum dalam melaksanakan tugas-tugas yang berhubungan dengan BPM KM PHB.<br>\
-2.Mengatur segala urusan yang berhubungan dengan kesekretariatan KM PHB.<br>\
-3.Melakukan pengawasan pada alur keluar dan masuk kesekretariatan BPM KM PHB.<br>\
-4.Berkoordinasi dengan Sekretaris BEM untuk Merumuskan Standard Operating Procedure unit KM PHB.<br>\
-#Bendahara Umum:<br>\
-1.Mengatur keuangan BPM KM PHB.<br>\
-2.Membuat laporan anggaran pengeluaran dan pemasukan BPM KM PHB.<br>\
-3.Merancang Rencana Anggaran Biaya BPM KM PHB.<br>\
-#Hubungan Mahasiswa I:<br>\
-1.Menyusun dan menyampaikan informasi kepada internal kampus.<br>\
-2.Bertanggungjawab untuk mengatur dan menjalankan penyebaran informasi kepada pihak internal kampus.<br>\
-3.Mempublikasikan informasi mengenai kegiatan dan program kerja KM PHB, serta merancang desain dan konten kreatif yang mencakup informasi <br>\tentang Badan Perwakilan Mahasiswa KM PHB.<br>\
-#Hubungan Mahasiswa II:<br>\
-1.Menjalin dan mengembangkan hubungan antar lembaga di luar kampus, baik secara bilateral maupun multilateral. <br>\
-2.Bertanggungjawab untuk mengatur penyebaran informasi kepada pihak eksternal kampus.<br>\
-3.Membantu Humas I dalam mempublikasikan informasi mengenai kegiatan dan program kerja KM PHB, serta merancang desain dan konten kreatif <br>\yang mencakup informasi tentang Badan Perwakilan Mahasiswa KM PHB.<br>\
-#Ketua Komisi:<br>\
-1.Bertanggung jawab atas segala hal yang berkaitan dengan komisinya.<br>\
-2.Bertanggung jawab atas anggotanya dan memberikan motivasi serta arahan kepada anggotanya agar melaksanakan tugas yang ada dengan baik.<br>\
-3.Merumuskan Undang-Undang bersama Badan Pengurus Harian BPM KM<br>\
-PHB.<br>\
-#Komisi I (Yudisial):<br>\
-1.Merumuskan AD/ART BPM KM PHB.<br>\
-2.Mengeluarkan Surat Keputusan untuk setiap kegiatan KM PHB.<br>\
-#Komisi II (Pengawasan):<br>\
-1.Membantu menindaklanjuti anggota KM PHB yang telah melakukan pelanggaran tata tertib yang telah ditentukan.<br>\
-2.Mengawasi dan menilai kedisiplinan pelaksanaan program kerja yang dilaksanakan oleh Pengurus KM PHB.<br>\
-3.Mengevaluasi program kerja yang telah dijalankan KM PHB.<br>\
-#Komisi III (Budgeting): <br>\
-1.Mengawasi alur masuk dan keluarnya anggaran yang digunakan KM PHB.<br>\
-2.Mengawasi kinerja Bendahara BEM.<br>\
-3.Mengawasi alur masuk dan keluarnya dana sosial serta dana denda LPJ yang       dikelola oleh Departemen Sosial dan Bendahara BEM.<br>\
-#Komisi IV (Advokasi): <br>\
-1.Menampung aspirasi seluruh mahasiswa Politeknik Harapan Bersama.<br>\
-2.Berkoordinasi dengan Departemen Adkesma BEM KM PHB dalam menindaklanjuti aspirasi mahasiswa yang bersifat membangun.<br>\
-3.Mencari informasi di internal dan di eksternal kampus.",
+bpm_visi: `
+<b>Visi BPM KM PHB</b><br>
+<i>“Mewujudkan lembaga perwakilan mahasiswa yang inovatif, aspiratif, dan berintegritas berasaskan Pancasila.”</i>
+`,
 
+bpm_misi: `
+<b>Misi BPM KM PHB</b>
+<ol>
+    <li>Menampung dan menyalurkan aspirasi mahasiswa yang bersifat membangun.</li>
+    <li>Mengawasi dan mengevaluasi kinerja KM PHB.</li>
+</ol>
+`,
+
+bpm_struktur: `
+<b>Struktur Organisasi BPM</b>
+<ol>
+    <li>PRESMA</li>
+    <li>WAPRESMA</li>
+    <li>Sekretaris</li>
+    <li>Bendahara</li>
+    <li>KOMINFO</li>
+    <li>DEPSOS</li>
+    <li>ADKESMA</li>
+    <li>KMB</li>
+    <li>KKP</li>
+</ol>
+`
+,
+// bpm
+            bpm_tugas: `
+<b>#Tugas Pokok Struktural BPM</b><br><br>
+
+<b>Ketua Umum BPM</b>
+<ol>
+    <li>Memimpin BPM KM PHB dalam kegiatan keorganisasian.</li>
+    <li>Mengkoordinir dan mengawasi pelaksanaan program kerja.</li>
+    <li>Membuat keputusan bijak dan bertanggung jawab atas segala hal yang dilakukan BPM KM PHB tanpa menyimpang dari AD/ART.</li>
+</ol>
+
+<b>Sekretaris Umum</b>
+<ol>
+    <li>Membantu Ketua Umum dalam melaksanakan tugas-tugas yang berhubungan dengan BPM KM PHB.</li>
+    <li>Mengatur segala urusan yang berhubungan dengan kesekretariatan KM PHB.</li>
+    <li>Melakukan pengawasan pada alur keluar dan masuk kesekretariatan BPM KM PHB.</li>
+    <li>Berkoordinasi dengan Sekretaris BEM untuk merumuskan SOP unit KM PHB.</li>
+</ol>
+
+<b>Bendahara Umum</b>
+<ol>
+    <li>Mengatur keuangan BPM KM PHB.</li>
+    <li>Membuat laporan anggaran pengeluaran dan pemasukan BPM KM PHB.</li>
+    <li>Merancang Rencana Anggaran Biaya BPM KM PHB.</li>
+</ol>
+
+<b>Hubungan Mahasiswa I</b>
+<ol>
+    <li>Menyusun dan menyampaikan informasi kepada internal kampus.</li>
+    <li>Bertanggung jawab menjalankan penyebaran informasi ke pihak internal kampus.</li>
+    <li>Mempublikasikan kegiatan & program kerja KM PHB, serta merancang desain dan konten kreatif untuk BPM KM PHB.</li>
+</ol>
+
+<b>Hubungan Mahasiswa II</b>
+<ol>
+    <li>Menjalin dan mengembangkan hubungan antar lembaga di luar kampus (bilateral/multilateral).</li>
+    <li>Bertanggung jawab atas penyebaran informasi kepada pihak eksternal kampus.</li>
+    <li>Membantu Humas I dalam publikasi kegiatan serta merancang desain dan konten kreatif.</li>
+</ol>
+
+<b>Ketua Komisi</b>
+<ol>
+    <li>Bertanggung jawab atas segala hal terkait komisinya.</li>
+    <li>Memberikan motivasi dan arahan kepada anggotanya agar menjalankan tugas dengan baik.</li>
+    <li>Merumuskan Undang-Undang bersama Badan Pengurus Harian BPM KM PHB.</li>
+</ol>
+
+<b>Komisi I (Yudisial)</b>
+<ol>
+    <li>Merumuskan AD/ART BPM KM PHB.</li>
+    <li>Mengeluarkan Surat Keputusan untuk setiap kegiatan KM PHB.</li>
+</ol>
+
+<b>Komisi II (Pengawasan)</b>
+<ol>
+    <li>Menindaklanjuti anggota KM PHB yang melanggar tata tertib.</li>
+    <li>Mengawasi dan menilai kedisiplinan pelaksanaan program kerja.</li>
+    <li>Mengevaluasi program kerja yang telah dijalankan KM PHB.</li>
+</ol>
+
+<b>Komisi III (Budgeting)</b>
+<ol>
+    <li>Mengawasi alur masuk dan keluar anggaran KM PHB.</li>
+    <li>Mengawasi kinerja Bendahara BEM.</li>
+    <li>Mengawasi dana sosial dan dana denda LPJ oleh Departemen Sosial dan Bendahara BEM.</li>
+</ol>
+
+<b>Komisi IV (Advokasi)</b>
+<ol>
+    <li>Menampung aspirasi mahasiswa Politeknik Harapan Bersama.</li>
+    <li>Berkoordinasi dengan Departemen Adkesma BEM KM PHB untuk menindaklanjuti aspirasi mahasiswa.</li>
+    <li>Mencari informasi di internal dan eksternal kampus.</li>
+</ol>
+`
+,
+// akuntansi
             akuntansi_visi: "Visi Akuntansi: Profesionalisme akuntan muda.",
             akuntansi_misi: "Misi: Literasi keuangan, kolaborasi internal eksternal.",
             akuntansi_struktur: "Struktur: Ketua, Sekretaris, Divisi Pendidikan & Kewirausahaan."
+            akuntansi_tugas: `
+<b>Tugas Pokok Struktural HIMAPRODI Akuntansi KM PHB</b><br><br>
+
+<b>Ketua HIMAPRODI Akuntansi KM PHB</b>
+<ol>
+    <li>Menjalankan atau memimpin rapat organisasi.</li>
+    <li>Menjalankan tugas menurut AD/ART HIMAPRODI Akuntansi KM PHB.</li>
+    <li>Memimpin dan mengkoordinasikan kegiatan HIMAPRODI Akuntansi KM PHB.</li>
+    <li>Memberikan laporan pertanggungjawaban di akhir periode.</li>
+</ol>
+
+<b>Wakil Ketua HIMAPRODI Akuntansi KM PHB</b>
+<ol>
+    <li>Membantu Ketua dalam menjalankan organisasi.</li>
+    <li>Mewakili Ketua apabila yang bersangkutan berhalangan hadir.</li>
+</ol>
+
+<b>Sekretaris I</b>
+<ol>
+    <li>Melakukan pengarsipan dan perapihan dokumen HIMAPRODI.</li>
+    <li>Membuat dokumentasi hasil rapat.</li>
+    <li>Menyusun dokumen-dokumen kesekretariatan.</li>
+    <li>Bertanggung jawab terhadap tata naskah dinas yang dibutuhkan.</li>
+    <li>Mengelola inventaris penunjang organisasi.</li>
+</ol>
+
+<b>Sekretaris II</b>
+<ol>
+    <li>Aktif membantu pelaksanaan tugas Sekretaris I.</li>
+    <li>Menggantikan Sekretaris I jika berhalangan.</li>
+    <li>Mengawasi inventaris HIMAPRODI Akuntansi KM PHB.</li>
+</ol>
+
+<b>Bendahara I</b>
+<ol>
+    <li>Bertanggung jawab atas pengelolaan keuangan HIMAPRODI.</li>
+    <li>Mengatur dan mengawasi arus kas masuk dan keluar.</li>
+    <li>Merumuskan serta menetapkan kebijakan di bidang keuangan.</li>
+</ol>
+
+<b>Bendahara II</b>
+<ol>
+    <li>Mewakili Bendahara I jika berhalangan hadir.</li>
+    <li>Membantu koordinasi dan pelaksanaan tugas keuangan sesuai AD/ART.</li>
+</ol>
+
+<b>Department RnD (Research and Development)</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua HIMAPRODI.</li>
+    <li>Penanggung jawab tertinggi departemen ini.</li>
+    <li>Mengembangkan akademik mahasiswa.</li>
+    <li>Memfasilitasi pengembangan akademik mahasiswa.</li>
+</ol>
+
+<b>Department HRD (Human Resource Department)</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua HIMAPRODI.</li>
+    <li>Penanggung jawab tertinggi departemen ini.</li>
+    <li>Menampung aspirasi mahasiswa yang membangun.</li>
+    <li>Mengadakan diskusi rutin setelah UTS dengan Prodi dan komting kelas.</li>
+    <li>Mengembangkan kompetensi mahasiswa secara aktif maupun pasif.</li>
+</ol>
+
+<b>Department Entrepreneur</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua HIMAPRODI.</li>
+    <li>Penanggung jawab tertinggi departemen ini.</li>
+    <li>Menampung jiwa kewirausahaan mahasiswa.</li>
+    <li>Menjalankan program Pojok Entrepreneur.</li>
+</ol>
+
+<b>Department PR (Public Relation)</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua HIMAPRODI.</li>
+    <li>Penanggung jawab tertinggi departemen ini.</li>
+    <li>Menangani keseimbangan antara kegiatan internal dan eksternal.</li>
+    <li>Memperkenalkan HIMAPRODI Akuntansi secara luas di lingkungan internal dan eksternal kampus.</li>
+</ol>
+
+<b>Department MP (Media and Publication)</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua HIMAPRODI.</li>
+    <li>Penanggung jawab tertinggi departemen ini.</li>
+    <li>Mengelola media sosial HIMAPRODI Akuntansi.</li>
+    <li>Mempublikasikan kegiatan HIMAPRODI melalui berbagai media.</li>
+</ol>
+`,
+
+// ASP
+asp_tugas: `
+<b>Tugas Pokok Struktural HIMAPRODI ASP KM PHB</b><br><br>
+
+<b>Ketua HIMAPRODI ASP</b>
+<ol>
+    <li>Menjalankan atau memimpin rapat organisasi.</li>
+    <li>Menjalankan tugas menurut AD/ART HIMAPRODI ASP KM PHB.</li>
+    <li>Memimpin dan mengkoordinasikan kegiatan HIMAPRODI ASP KM PHB.</li>
+    <li>Memberikan laporan pertanggungjawaban di akhir periode.</li>
+</ol>
+
+<b>Wakil Ketua HIMAPRODI ASP KM PHB</b>
+<ol>
+    <li>Membantu Ketua dalam menjalankan organisasi.</li>
+    <li>Mewakili Ketua apabila yang bersangkutan berhalangan hadir.</li>
+</ol>
+
+<b>Sekretaris HIMAPRODI ASP KM PHB</b>
+<ol>
+    <li>Melakukan pengarsipan dan perapihan dokumen organisasi.</li>
+    <li>Menjadi notulen dalam setiap rapat.</li>
+    <li>Bertanggung jawab terhadap seluruh arsip organisasi.</li>
+    <li>Menjalankan tugas sesuai AD/ART HIMAPRODI ASP KM PHB.</li>
+</ol>
+
+<b>Bendahara</b>
+<ol>
+    <li>Bertanggung jawab atas pengelolaan keuangan HIMAPRODI ASP.</li>
+    <li>Mengatur dan mengawasi arus kas masuk dan keluar.</li>
+    <li>Merumuskan dan menetapkan kebijakan di bidang keuangan.</li>
+    <li>Menjalankan tugas sesuai AD/ART HIMAPRODI ASP KM PHB.</li>
+</ol>
+
+<b>Divisi RnD (Research and Development)</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua HIMAPRODI ASP KM PHB.</li>
+    <li>Penanggung jawab tertinggi di bidang riset dan pengembangan.</li>
+    <li>Bertujuan untuk mengembangkan akademik mahasiswa.</li>
+    <li>Memfasilitasi mahasiswa dalam kegiatan kelompok belajar.</li>
+</ol>
+
+<b>Divisi JIK (Jaringan Informasi dan Komunikasi)</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua HIMAPRODI ASP KM PHB.</li>
+    <li>Penanggung jawab tertinggi JIK.</li>
+    <li>Mengembangkan komunikasi antar mahasiswa.</li>
+    <li>Bertanggung jawab atas seluruh informasi yang berkaitan dengan mahasiswa.</li>
+</ol>
+
+<b>Divisi DP2M (Divisi Pengembangan Potensi Mahasiswa)</b>
+<ol>
+    <li>Bertanggung jawab kepada Ketua HIMAPRODI ASP KM PHB.</li>
+    <li>Penanggung jawab tertinggi DP2M.</li>
+    <li>Berperan sebagai penampung aspirasi mahasiswa.</li>
+    <li>Mempublikasikan informasi kegiatan dan program kerja HIMAPRODI ASP KM PHB.</li>
+</ol>
+`,
+
+// dkv
+
+dkv_tugas: `
+<b>Tugas Pokok Struktural HIMA Prodi Desain Komunikasi Visual KM PHB</b><br><br>
+
+<b>Ketua</b>
+<ol>
+    <li>Mewakili nama HIMA Prodi Desain Komunikasi Visual PHB dalam setiap kegiatan keorganisasian.</li>
+    <li>Mengangkat dan memberhentikan Pengurus HIMA Prodi DKV PHB.</li>
+    <li>Memimpin dan mengkoordinasikan kegiatan HIMA Prodi DKV PHB.</li>
+    <li>Menandatangani surat-surat, baik ke dalam maupun keluar organisasi.</li>
+</ol>
+
+<b>Wakil Ketua</b>
+<ol>
+    <li>Membantu Ketua dalam menjalankan tugasnya.</li>
+    <li>Menggantikan Ketua bila berhalangan hadir dengan seizin Ketua.</li>
+    <li>Aktif dalam kegiatan yang dilaksanakan oleh HIMA Prodi DKV PHB.</li>
+</ol>
+
+<b>Sekretaris</b>
+<ol>
+    <li>Menciptakan sistem administrasi kesekretariatan yang profesional.</li>
+    <li>Melakukan pengarsipan dan perapihan dokumen organisasi.</li>
+    <li>Membuat dokumen-dokumen kesekretariatan.</li>
+    <li>Bertanggung jawab terhadap tata naskah dinas yang dibutuhkan.</li>
+</ol>
+
+<b>Bendahara</b>
+<ol>
+    <li>Bertanggung jawab atas pengelolaan keuangan HIMA Prodi DKV.</li>
+    <li>Mengatur dan mengawasi arus kas masuk dan keluar organisasi.</li>
+    <li>Merumuskan dan menetapkan kebijakan di bidang keuangan.</li>
+    <li>Mengelola inventaris penunjang kegiatan organisasi.</li>
+</ol>
+
+<b>Departemen Pengembangan Keterampilan Mahasiswa</b>
+<ol>
+    <li>Mencari dan menyalurkan bakat mahasiswa DKV.</li>
+    <li>Mengembangkan minat dan bakat melalui pelatihan, proyek, seminar, atau webinar bersama Prodi DKV.</li>
+    <li>Menaungi kegiatan sosial untuk mewujudkan lingkungan mahasiswa yang beradab dan humanis.</li>
+</ol>
+
+<b>Departemen Humas</b>
+<ol>
+    <li>Menjalin kerja sama dengan pihak internal dan eksternal.</li>
+    <li>Menjadi fasilitator komunikasi antar berbagai pihak.</li>
+    <li>Membangun dan menjaga kinerja aktif antar anggota HIMA Prodi DKV.</li>
+    <li>Melaksanakan peran kehumasan dalam setiap kegiatan HIMA Prodi DKV.</li>
+</ol>
+
+<b>Departemen Komunikasi dan Informasi</b>
+<p>Bertanggung jawab menjalin komunikasi dan menyebarkan informasi ke internal dan eksternal, baik kepada mahasiswa DKV, non-DKV, maupun masyarakat umum.</p>
+
+<b>Departemen Konten Kreatif</b>
+<ol>
+    <li>Menulis, meninjau, mengedit, dan membuat konten untuk platform HIMA Prodi DKV.</li>
+    <li>Melakukan riset dan wawancara untuk memahami tren serta mengembangkan konten.</li>
+    <li>Bekerja sama dengan Departemen Kominfo untuk mempersiapkan materi konten.</li>
+</ol>
+`
+,
+
+// elektro
+elektro_tugas: `
+<b>Tugas Pokok Struktural HIMAPRODI Elektro KM PHB</b><br><br>
+
+<b>Ketua</b>
+<ol>
+    <li>Mengkoordinasikan, merencanakan, menggerakkan, dan mengawasi kegiatan HIMAPRODI Elektro KM PHB.</li>
+    <li>Bertanggung jawab atas kegiatan yang dilaksanakan.</li>
+    <li>Berkoordinasi dengan Bidang Kemahasiswaan Program Studi DIII Teknik Elektronika.</li>
+    <li>Memberikan laporan pertanggungjawaban di akhir periode.</li>
+</ol>
+
+<b>Sekretaris</b>
+<ol>
+    <li>Menciptakan sistem administrasi kesekretariatan yang baik dan sesuai SOP.</li>
+    <li>Melakukan pengarsipan dan mengelola dokumen organisasi.</li>
+    <li>Mendokumentasikan hasil rapat.</li>
+    <li>Membuat dokumen-dokumen kesekretariatan.</li>
+    <li>Bertanggung jawab terhadap tata naskah dinas yang dibutuhkan.</li>
+</ol>
+
+<b>Bendahara</b>
+<ol>
+    <li>Bertanggung jawab atas pengelolaan keuangan HIMAPRODI Elektro KM PHB.</li>
+    <li>Membukukan semua pengeluaran dan mencatat dana masuk beserta tanggalnya.</li>
+    <li>Menyediakan nota masuk dan meminta nota pembelian atas transaksi keuangan.</li>
+    <li>Meminta persetujuan Ketua sebelum mengeluarkan dana, serta berkoordinasi dengan anggota lain.</li>
+</ol>
+
+<b>Divisi Pengembangan Minat dan Bakat</b>
+<ol>
+    <li>Menyelenggarakan kegiatan akademik, seni, dan olahraga untuk meningkatkan potensi mahasiswa.</li>
+    <li>Bertanggung jawab terhadap pengembangan minat dan bakat mahasiswa.</li>
+    <li>Berkoordinasi dengan Ketua HIMAPRODI Elektro KM PHB.</li>
+</ol>
+
+<b>Divisi Sosial</b>
+<ol>
+    <li>Menjalin hubungan baik dalam kehidupan bermasyarakat.</li>
+    <li>Menumbuhkan rasa kemanusiaan terhadap sesama.</li>
+    <li>Menjadi media untuk memberikan bantuan kepada sesama.</li>
+</ol>
+
+<b>Divisi Humas</b>
+<ol>
+    <li>Menjalin hubungan baik dengan mahasiswa, civitas akademika, dan pihak eksternal yang terkait.</li>
+    <li>Mencari pengetahuan baru dan menerapkannya di dalam organisasi.</li>
+    <li>Bekerja sama dengan lembaga eksternal untuk meningkatkan kompetensi anggota.</li>
+</ol>
+
+<b>Divisi Publikasi</b>
+<ol>
+    <li>Membuat dan mengelola konten media sosial HIMAPRODI Elektro KM PHB.</li>
+    <li>Mendokumentasikan semua kegiatan yang dilaksanakan oleh HIMAPRODI Elektro.</li>
+</ol>
+
+<b>Divisi Kewirausahaan</b>
+<ol>
+    <li>Melakukan kegiatan kewirausahaan secara kreatif dan inovatif dalam lingkungan Prodi Teknik Elektronika.</li>
+    <li>Menggerakkan kemandirian pengurus dan anggota melalui edukasi peluang usaha kreatif.</li>
+</ol>
+`,
+
+// farmasi
+farmasi_tugas: `
+<b>Tugas Pokok Struktural HIMAPRODI Farmasi KM PHB</b><br><br>
+
+<b>Ketua</b>
+<ol>
+  <li>Pemegang dan pengambil kebijakan umum organisasi.</li>
+  <li>Bertanggung jawab atas semua kegiatan dan program kerja organisasi.</li>
+  <li>Menyampaikan informasi internal dan eksternal kampus.</li>
+  <li>Menjalin komunikasi baik antar anggota.</li>
+  <li>Membantu anggota yang mengalami kesulitan dalam mengerjakan tugasnya.</li>
+</ol>
+
+<b>Wakil Ketua</b>
+<ol>
+  <li>Membantu dan mendampingi Ketua dalam menjalankan organisasi.</li>
+  <li>Mewakili tugas-tugas Ketua apabila berhalangan.</li>
+  <li>Memfokuskan tugas dan kegiatan yang ada di internal organisasi.</li>
+  <li>Bertanggung jawab kepada Ketua HIMAPRODI Farmasi KM PHB.</li>
+</ol>
+
+<b>Sekretaris</b>
+<ol>
+  <li>Membuat proposal, laporan pertanggungjawaban, dan mencatat hasil rapat.</li>
+  <li>Mengelola dan mendeskripsikan seluruh berkas organisasi.</li>
+  <li>Mendampingi Ketua dalam menjalankan organisasi.</li>
+  <li>Bertanggung jawab kepada Ketua HIMAPRODI Farmasi KM PHB.</li>
+</ol>
+
+<b>Bendahara</b>
+<ol>
+  <li>Pemegang kebijakan umum dalam pengelolaan keuangan organisasi.</li>
+  <li>Mencatat, menyimpan, dan mengatur keuangan organisasi.</li>
+  <li>Mendampingi Ketua/Wakil Ketua dalam menjalankan organisasi.</li>
+  <li>Bertanggung jawab kepada Ketua HIMAPRODI Farmasi KM PHB.</li>
+</ol>
+
+<b>Divisi Humas</b>
+<ol>
+  <li>Memberikan informasi tentang perkembangan organisasi dan program kerja internal.</li>
+  <li>Menjalin kerja sama dengan organisasi lain.</li>
+  <li>Mengumpulkan dan menyampaikan informasi demi kepentingan organisasi.</li>
+  <li>Mendistribusikan surat dan undangan program kerja ke pihak eksternal.</li>
+</ol>
+
+<b>Divisi Kominfo</b>
+<ol>
+  <li>Menampung dan menyalurkan aspirasi serta informasi kegiatan organisasi.</li>
+  <li>Bertanggung jawab atas dokumentasi foto dan video kegiatan organisasi.</li>
+  <li>Memfasilitasi divisi lain untuk menyampaikan atau mempublikasikan informasi.</li>
+</ol>
+
+<b>Divisi Kekeluargaan</b>
+<ol>
+  <li>Mengatur pelaksanaan seluruh program kerja HIMAPRODI Farmasi KM PHB.</li>
+  <li>Menjalin komunikasi dan hubungan harmonis antar anggota.</li>
+  <li>Berkoordinasi dan bekerja sama antar divisi.</li>
+</ol>
+
+<b>Divisi Minat dan Bakat</b>
+<ol>
+  <li>Bertanggung jawab atas informasi terkait pengembangan minat dan bakat mahasiswa Prodi Farmasi.</li>
+  <li>Membantu mahasiswa dalam pengembangan wawasan dan keterampilan baik akademik maupun non-akademik.</li>
+</ol>
+`
+,
+
+// kebidanan
+
+kebidanan_tugas: `
+<b>Tugas Pokok Struktural HIMAPRODI Kebidanan KM PHB</b><br><br>
+
+<b>Ketua</b>
+<ol>
+  <li>Merencanakan, mengorganisasikan, dan mengawasi jalannya organisasi.</li>
+  <li>Bertanggung jawab atas kegiatan yang dilaksanakan oleh HIMAPRODI Kebidanan.</li>
+  <li>Menyusun struktur dan pengarahan organisasi.</li>
+</ol>
+
+<b>Wakil Ketua</b>
+<ol>
+  <li>Membantu Ketua HIMAPRODI Kebidanan dalam menjalankan tugasnya.</li>
+</ol>
+
+<b>Sekretaris</b>
+<ol>
+  <li>Bertanggung jawab atas kesekretariatan administrasi HIMAPRODI Kebidanan.</li>
+  <li>Mendokumentasikan hasil rapat organisasi.</li>
+  <li>Bertanggung jawab atas tata naskah dinas yang dibutuhkan.</li>
+  <li>Mengelola inventaris penunjang organisasi.</li>
+</ol>
+
+<b>Bendahara I</b>
+<ol>
+  <li>Mengelola keuangan organisasi.</li>
+  <li>Membuat laporan keluar masuk keuangan HIMAPRODI Kebidanan.</li>
+</ol>
+
+<b>Bendahara II</b>
+<ol>
+  <li>Membantu pelaksanaan tugas Bendahara I.</li>
+</ol>
+
+<b>Divisi Humas</b>
+<ol>
+  <li>Bertanggung jawab kepada Ketua HIMAPRODI Kebidanan.</li>
+  <li>Menjembatani kerja sama antara pengurus, anggota, lembaga, dan organisasi lain baik di dalam maupun luar kampus.</li>
+  <li>Membuat publikasi dan dokumentasi kegiatan.</li>
+</ol>
+
+<b>Divisi Sosial</b>
+<ol>
+  <li>Bertanggung jawab kepada Ketua HIMAPRODI Kebidanan.</li>
+  <li>Menjalin hubungan baik dengan masyarakat dan meningkatkan peran aktif mahasiswa dalam pengabdian masyarakat.</li>
+  <li>Membukukan segala pengeluaran dan mencatat pemasukan dana.</li>
+</ol>
+
+<b>Divisi Kewirausahaan</b>
+<ol>
+  <li>Bertanggung jawab kepada Ketua HIMAPRODI Kebidanan.</li>
+  <li>Mengelola sumber pemasukan dan keuangan organisasi untuk kemandirian dan kesejahteraan HIMAPRODI Kebidanan.</li>
+  <li>Mengembangkan kreativitas dalam bidang kewirausahaan.</li>
+  <li>Menjalankan tugas sesuai AD/ART HIMAPRODI Kebidanan.</li>
+</ol>
+
+<b>Divisi Komunikasi dan Informasi</b>
+<ol>
+  <li>Bertanggung jawab kepada Ketua HIMAPRODI Kebidanan.</li>
+  <li>Melaksanakan mekanisme dan pengawasan penyaluran informasi organisasi.</li>
+  <li>Ikut serta dalam menyukseskan penerimaan mahasiswa baru.</li>
+  <li>Menyampaikan informasi kepada mahasiswa melalui media sosial atau secara langsung.</li>
+</ol>
+
+<b>Divisi Minat dan Bakat</b>
+<ol>
+  <li>Bertanggung jawab kepada Ketua HIMAPRODI Kebidanan.</li>
+  <li>Mengembangkan dan menyalurkan minat serta bakat mahasiswa di bidang akademik dan non-akademik.</li>
+  <li>Menjalankan tugas sesuai AD/ART HIMAPRODI Kebidanan.</li>
+</ol>
+`
+,
+
+// komputer
+komputer_tugas: `
+<b>Tugas Pokok Struktural HIMAPRODI Komputer KM PHB</b><br><br>
+
+<b>Ketua</b>
+<ol>
+  <li>Menjalankan atau memimpin rapat organisasi.</li>
+  <li>Memimpin dan mengoordinasikan kegiatan HIMAPRODI Komputer KM PHB.</li>
+  <li>Berkoordinasi dengan Bidang Kemahasiswaan Program Studi DIII Teknik Komputer.</li>
+  <li>Memberikan laporan pertanggungjawaban di akhir periode.</li>
+  <li>Mengangkat dan memberhentikan anggota HIMAPRODI Komputer KM PHB.</li>
+  <li>Menjalankan tugas menurut AD/ART HIMAPRODI Komputer KM PHB.</li>
+</ol>
+
+<b>Wakil Ketua</b>
+<ol>
+  <li>Membantu Ketua HIMAPRODI Komputer dalam menjalankan tugasnya.</li>
+  <li>Menjalankan tugas-tugas Ketua apabila tidak hadir atau berhalangan.</li>
+  <li>Menjalankan tugas menurut AD/ART HIMAPRODI Komputer KM PHB.</li>
+</ol>
+
+<b>Sekretaris</b>
+<ol>
+  <li>Menciptakan sistem administrasi kesekretariatan yang baik dan sesuai prosedur.</li>
+  <li>Melakukan pengarsipan dan mengelola dokumen HIMAPRODI Komputer KM PHB.</li>
+  <li>Mendokumentasikan hasil rapat organisasi.</li>
+  <li>Membuat dokumen-dokumen kesekretariatan.</li>
+</ol>
+
+<b>Bendahara</b>
+<ol>
+  <li>Mengelola keuangan HIMAPRODI Komputer KM PHB secara penuh.</li>
+  <li>Mengatur dan mengawasi arus kas masuk dan keluar organisasi.</li>
+  <li>Merumuskan dan menetapkan kebijakan dalam bidang keuangan.</li>
+  <li>Bertanggung jawab terhadap fondasi ekonomi organisasi.</li>
+</ol>
+
+<b>Divisi Akademik</b>
+<ol>
+  <li>Bertanggung jawab atas peningkatan kompetensi akademik mahasiswa.</li>
+  <li>Mengembangkan sistem pelatihan oleh HIMAPRODI Komputer.</li>
+  <li>Menjalin hubungan baik dengan Bagian Akademik dan Wakil Direktur I.</li>
+</ol>
+
+<b>Divisi Kerumahtanggaan</b>
+<ol>
+  <li>Mengelola dan bertanggung jawab atas kebutuhan logistik organisasi.</li>
+  <li>Menjalin hubungan kekeluargaan dengan anggota aktif, biasa, dan demisioner.</li>
+  <li>Melaksanakan mekanisme serta pengawasan internal organisasi.</li>
+</ol>
+
+<b>Divisi Humas</b>
+<ol>
+  <li>Menjalin hubungan baik dengan mahasiswa, dosen, dan pihak terkait lainnya.</li>
+  <li>Menampung serta menindaklanjuti aspirasi mahasiswa Teknik Komputer.</li>
+  <li>Membantu pelaksanaan program kerja dan mengoordinasikan antar kelas.</li>
+</ol>
+
+<b>Divisi Jurnalistik</b>
+<ol>
+  <li>Mengelola konten media sosial HIMAPRODI Komputer KM PHB.</li>
+  <li>Menyampaikan informasi kegiatan organisasi secara langsung atau daring.</li>
+  <li>Melaksanakan mekanisme dan pengawasan penyaluran informasi organisasi.</li>
+</ol>
+`
+,
+
+mesin_tugas: `
+<b>Tugas Pokok Struktural HIMAPRODI Teknik Mesin KM PHB</b><br><br>
+
+<b>Ketua</b>
+<ol>
+  <li>Mewakili nama HIMAPRODI Teknik Mesin Politeknik Harapan Bersama Tegal dalam setiap kegiatan keorganisasian.</li>
+  <li>Menentukan kebijakan organisasi dengan tepat berdasarkan AD/ART HIMAPRODI Teknik Mesin.</li>
+  <li>Mengangkat dan memberhentikan Pengurus HIMAPRODI Teknik Mesin.</li>
+  <li>Memimpin dan mengkoordinasikan kegiatan HIMAPRODI Teknik Mesin.</li>
+</ol>
+
+<b>Wakil Ketua</b>
+<ol>
+  <li>Membantu ketua dalam menjalankan tugasnya.</li>
+  <li>Menjalankan tugas-tugas ketua bila ketua tidak hadir atau berhalangan.</li>
+  <li>Menandatangani surat-surat internal dan eksternal bila ketua berhalangan, dengan seizin ketua.</li>
+  <li>Ikut aktif dalam kegiatan HIMAPRODI Teknik Mesin.</li>
+  <li>Menjalankan tugas sesuai AD/ART HIMAPRODI Teknik Mesin.</li>
+</ol>
+
+<b>Sekretaris</b>
+<ol>
+  <li>Membantu ketua dalam menertibkan administrasi organisasi.</li>
+  <li>Mempertanggungjawabkan segala kegiatan kepada ketua.</li>
+  <li>Mengatur, menertibkan, dan merawat inventaris dan aset organisasi.</li>
+  <li>Melaksanakan pengumpulan, pencatatan, pengelolaan, penyusunan, dan pemeliharaan dokumen, laporan, serta data internal dan eksternal organisasi.</li>
+</ol>
+
+<b>Bendahara</b>
+<ol>
+  <li>Meminta pertanggungjawaban keuangan dari panitia kegiatan organisasi.</li>
+  <li>Menandatangani surat yang berkaitan dengan kebendaharaan organisasi.</li>
+  <li>Mengatur dan mendata pemasukan serta pengeluaran organisasi.</li>
+  <li>Ikut aktif dalam kegiatan HIMAPRODI Teknik Mesin.</li>
+</ol>
+
+<b>Divisi Minat dan Bakat</b>
+<ol>
+  <li>Bertanggung jawab dalam mencari dan menyalurkan bakat mahasiswa Teknik Mesin.</li>
+</ol>
+
+<b>Divisi Kewirausahaan</b>
+<ol>
+  <li>Bertanggung jawab membangun dan mengembangkan sarana kewirausahaan baik yang sudah maupun yang akan diadakan dalam program kerja HIMAPRODI Teknik Mesin.</li>
+</ol>
+
+<b>Divisi Media Komunikasi dan Informasi</b>
+<ol>
+  <li>Bertanggung jawab dalam publikasi informasi dan dokumentasi kegiatan HIMAPRODI Teknik Mesin.</li>
+</ol>
+
+<b>Divisi Pengembangan Sumber Daya Manusia (PSDM)</b>
+<ol>
+  <li>Bertanggung jawab dalam pengembangan kemampuan mahasiswa di bidang akademik maupun non-akademik.</li>
+</ol>
+
+<b>Humas</b>
+<ol>
+  <li>Menyebarkan informasi secara cepat, tepat, dan akurat kepada pihak internal maupun eksternal.</li>
+  <li>Menciptakan suasana harmonis dengan prodi, ormawa, dan perguruan tinggi lainnya.</li>
+  <li>Menjadi mediator dan fasilitator bagi mahasiswa Teknik Mesin dalam urusan akademik dan organisasi.</li>
+</ol>
+`
+,
+hotel_tugas: `
+<b>Tugas Pokok Struktural HIMAPRODI Perhotelan KM PHB</b><br><br>
+
+<b>Ketua HIMAPRODI Perhotelan</b>
+<ol>
+  <li>Merencanakan, mengorganisir, dan mengkoordinasikan berbagai acara dan kegiatan himpunan, seperti seminar, workshop, atau kegiatan sosial.</li>
+  <li>Memimpin rapat-rapat himpunan untuk membahas agenda, evaluasi kegiatan, dan perencanaan program ke depan.</li>
+  <li>Menjaga dan memelihara tradisi serta identitas himpunan agar tetap konsisten dengan visi, misi, dan nilai-nilai himpunan.</li>
+</ol>
+
+<b>Sekretaris HIMAPRODI Perhotelan</b>
+<ol>
+  <li>Menangani surat-menyurat yang berkaitan dengan kegiatan himpunan, termasuk surat permohonan kerja sama, undangan, dan surat resmi lainnya.</li>
+  <li>Menyusun laporan berkala tentang kegiatan.</li>
+  <li>Merapikan dan menyimpan arsip kegiatan himpunan agar mudah diakses di masa mendatang.</li>
+</ol>
+
+<b>Bendahara HIMAPRODI Perhotelan</b>
+<ol>
+  <li>Mengelola dan mencatat semua transaksi keuangan HIMAPRODI Perhotelan KM PHB.</li>
+  <li>Menyusun dan mengelola anggaran HIMAPRODI Perhotelan KM PHB.</li>
+  <li>Mengajukan proposal pendanaan dan mencari sumber pendanaan tambahan jika diperlukan.</li>
+  <li>Memastikan semua kegiatan keuangan dilakukan dengan akuntabilitas dan transparansi.</li>
+</ol>
+
+<b>Divisi Humas Internal & Eksternal</b>
+<ol>
+  <li>Membina hubungan baik antara anggota HIMAPRODI Perhotelan KM PHB.</li>
+  <li>Berkoordinasi dengan divisi lain untuk keberlanjutan kegiatan dan program.</li>
+  <li>Bekerja sama dengan bidang kemahasiswaan Program Studi Perhotelan dalam hal-hal yang berkaitan dengan mahasiswa.</li>
+  <li>Memastikan anggota mematuhi etika dan norma yang berlaku.</li>
+</ol>
+
+<b>Divisi Pengabdian Masyarakat</b>
+<ol>
+  <li>Menyelenggarakan atau mengikuti kegiatan sosial seperti bakti sosial, pelatihan keterampilan, atau workshop yang bermanfaat bagi masyarakat.</li>
+  <li>Menyebarkan informasi terkait program pengabdian masyarakat kepada mahasiswa Program Studi Perhotelan.</li>
+</ol>
+
+<b>Divisi Enterpreneur / Kewirausahaan</b>
+<ol>
+  <li>Menyusun rencana bisnis untuk kegiatan atau proyek kewirausahaan anggota.</li>
+  <li>Melakukan riset pasar untuk memahami tren industri perhotelan dan potensi peluang bisnis.</li>
+  <li>Mengelola anggaran keuangan untuk kegiatan kewirausahaan.</li>
+</ol>
+
+<b>Divisi Kominfo (Komunikasi dan Informasi)</b>
+<ol>
+  <li>Mengelola akun media sosial himpunan untuk mempromosikan kegiatan dan informasi terkini.</li>
+  <li>Memastikan konten yang dibagikan relevan dan menarik bagi anggota serta masyarakat umum.</li>
+  <li>Merancang dan membuat materi promosi seperti poster, brosur, dan flyer.</li>
+  <li>Menyusun teks dan konten untuk promosi online dan offline.</li>
+</ol>
+
+<b>Divisi Prestasi dan Akademik</b>
+<ol>
+  <li>Mengorganisir kompetisi atau event akademik untuk meningkatkan keterampilan dan pengetahuan mahasiswa di bidang perhotelan.</li>
+  <li>Mencari informasi dan menyebarluaskan info perlombaan atau event terkait bidang akademik Program Studi Perhotelan.</li>
+</ol>
+`
+,
+
+ti_tugas: `
+<b>Tugas Pokok Struktural HIMAPRODI Teknik Informatika KM PHB</b><br><br>
+
+<b>Ketua HIMAPRODI TI</b>
+<ol>
+  <li>Menjalankan atau memimpin rapat organisasi.</li>
+  <li>Memimpin dan mengkoordinasikan kegiatan HIMAPRODI TI KM PHB.</li>
+  <li>Memberikan laporan pertanggungjawaban di akhir periode.</li>
+  <li>Menjalankan tugas menurut AD/ART HIMAPRODI TI KM PHB.</li>
+</ol>
+
+<b>Wakil Ketua HIMAPRODI TI</b>
+<ol>
+  <li>Membantu Ketua dalam menjalankan tugasnya.</li>
+  <li>Menjalankan tugas-tugas Ketua apabila Ketua tidak hadir atau berhalangan.</li>
+  <li>Menjalankan tugas menurut AD/ART HIMAPRODI TI KM PHB.</li>
+</ol>
+
+<b>Sekretaris</b>
+<ol>
+  <li>Menciptakan sistem administrasi kesekretariatan yang profesional.</li>
+  <li>Melakukan pengarsipan dan perapihan dokumen HIMAPRODI TI KM PHB.</li>
+  <li>Mendokumentasikan hasil rapat.</li>
+  <li>Pembuatan dokumen-dokumen kesekretariatan.</li>
+  <li>Bertanggung jawab terhadap tata naskah dinas yang dibutuhkan.</li>
+  <li>Mengelola inventaris penunjang organisasi.</li>
+</ol>
+
+<b>Bendahara</b>
+<ol>
+  <li>Pengelolaan keuangan HIMAPRODI TI KM PHB menjadi tanggung jawab utama.</li>
+  <li>Mengatur keuangan dan mengawasi arus kas masuk dan kas keluar HIMAPRODI TI KM PHB.</li>
+  <li>Merumuskan dan menetapkan kebijakan di bidang keuangan.</li>
+</ol>
+
+<b>Divisi Humas Internal</b>
+<ol>
+  <li>Membantu Ketua dalam melaksanakan program kerja HIMAPRODI TI KM PHB.</li>
+  <li>Melaksanakan mekanisme serta pengawasan penyaluran informasi HIMAPRODI TI KM PHB.</li>
+  <li>Menjalin hubungan baik dengan pihak-pihak terkait dalam lingkup internal institusi.</li>
+</ol>
+
+<b>Divisi Humas Eksternal</b>
+<ol>
+  <li>Membantu Ketua dalam melaksanakan program kerja HIMAPRODI TI KM PHB.</li>
+  <li>Melaksanakan mekanisme serta pengawasan penyaluran informasi HIMAPRODI TI KM PHB.</li>
+  <li>Terlibat dalam kegiatan dan acara eksternal, seperti festival, pameran, atau kegiatan sosial.</li>
+</ol>
+
+<b>Divisi Akademik</b>
+<ol>
+  <li>Membantu Ketua dalam melaksanakan program kerja HIMAPRODI TI KM PHB.</li>
+  <li>Membantu menjalankan program kerja di bidang akademik.</li>
+  <li>Menjadi sarana peningkatan mutu akademik mahasiswa.</li>
+</ol>
+
+<b>Divisi Kominfo (Komunikasi dan Informasi)</b>
+<ol>
+  <li>Membantu Ketua dalam melaksanakan program kerja HIMAPRODI TI KM PHB.</li>
+  <li>Mengelola informasi internal dan eksternal secara profesional, baik melalui media sosial maupun media elektronik.</li>
+  <li>Mengembangkan sistem informasi yang tepat guna dan bermanfaat.</li>
+</ol>
+
+<b>Divisi Sosial</b>
+<ol>
+  <li>Membantu Ketua dalam melaksanakan program kerja HIMAPRODI TI KM PHB.</li>
+  <li>Mengelola Dana Sosial.</li>
+  <li>Menjalankan tugas menurut AD/ART HIMAPRODI TI KM PHB.</li>
+</ol>
+
+<b>Divisi Kekeluargaan</b>
+<ol>
+  <li>Membantu Ketua dalam melaksanakan program kerja HIMAPRODI TI KM PHB.</li>
+  <li>Mengakrabkan seluruh anggota HIMAPRODI TI KM PHB baik anggota aktif maupun pasif.</li>
+  <li>Menampung aspirasi demi kesejahteraan mahasiswa Program Studi Sarjana Terapan Teknik Informatika PHB.</li>
+  <li>Menjalankan tugas menurut AD/ART HIMAPRODI TI KM PHB.</li>
+</ol>
+`
+
+
+
         };
 
         function scrollBottom() {
@@ -518,19 +1312,78 @@ PHB.<br>\
 
             // Pemetaan langsung untuk keyword seperti "bem visi"
             const directKeywordMap = {
-                'bem visi': 'bem_visi',
-                'bem misi': 'bem_misi',
-                'bem struktur': 'bem_struktur',
-                'bem kegiatan': 'bem_kegiatan',
-                'bem tugas': 'bem_tugas',
-                'bpm visi': 'bpm_visi',
-                'bpm misi': 'bpm_misi',
-                'bpm tugas': 'bpm_tugas',
-                'bpm struktur': 'bpm_struktur',
-                'akuntansi visi': 'akuntansi_visi',
-                'akuntansi misi': 'akuntansi_misi',
-                'akuntansi struktur': 'akuntansi_struktur'
-            };
+    // BEM & BPM
+    'bem visi': 'bem_visi',
+    'bem misi': 'bem_misi',
+    'bem struktur': 'bem_struktur',
+    'bem kegiatan': 'bem_kegiatan',
+    'bem tugas': 'bem_tugas',
+    'bpm visi': 'bpm_visi',
+    'bpm misi': 'bpm_misi',
+    'bpm struktur': 'bpm_struktur',
+    'bpm tugas': 'bpm_tugas',
+
+    // AKUNTANSI
+    'akuntansi visi': 'akuntansi_visi',
+    'akuntansi misi': 'akuntansi_misi',
+    'akuntansi struktur': 'akuntansi_struktur',
+    'akuntansi tugas': 'akuntansi_tugas',
+
+    // ASP
+    'asp visi': 'asp_visi',
+    'asp misi': 'asp_misi',
+    'asp struktur': 'asp_struktur',
+    'asp tugas': 'asp_tugas',
+
+    // DKV
+    'dkv visi': 'dkv_visi',
+    'dkv misi': 'dkv_misi',
+    'dkv struktur': 'dkv_struktur',
+    'dkv tugas': 'dkv_tugas',
+
+    // ELEKTRO
+    'elektro visi': 'elektro_visi',
+    'elektro misi': 'elektro_misi',
+    'elektro struktur': 'elektro_struktur',
+    'elektro tugas': 'elektro_tugas',
+
+    // FARMASI
+    'farmasi visi': 'farmasi_visi',
+    'farmasi misi': 'farmasi_misi',
+    'farmasi struktur': 'farmasi_struktur',
+    'farmasi tugas': 'farmasi_tugas',
+
+    // KEBIDANAN
+    'kebidanan visi': 'kebidanan_visi',
+    'kebidanan misi': 'kebidanan_misi',
+    'kebidanan struktur': 'kebidanan_struktur',
+    'kebidanan tugas': 'kebidanan_tugas',
+
+    // KOMPUTER
+    'komputer visi': 'komputer_visi',
+    'komputer misi': 'komputer_misi',
+    'komputer struktur': 'komputer_struktur',
+    'komputer tugas': 'komputer_tugas',
+
+    // MESIN
+    'mesin visi': 'mesin_visi',
+    'mesin misi': 'mesin_misi',
+    'mesin struktur': 'mesin_struktur',
+    'mesin tugas': 'mesin_tugas',
+
+    // PERHOTELAN
+    'perhotelan visi': 'perhotelan_visi',
+    'perhotelan misi': 'perhotelan_misi',
+    'perhotelan struktur': 'perhotelan_struktur',
+    'perhotelan tugas': 'perhotelan_tugas',
+
+    // TEKNIK INFORMATIKA (TI)
+    'ti visi': 'ti_visi',
+    'ti misi': 'ti_misi',
+    'ti struktur': 'ti_struktur',
+    'ti tugas': 'ti_tugas'
+};
+
 
             if (directKeywordMap[lower]) {
                 await respondToKeyword(directKeywordMap[lower]);
