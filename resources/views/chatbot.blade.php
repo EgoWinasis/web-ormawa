@@ -371,68 +371,111 @@
         }
 
         async function handleUserInput(message) {
-            const userMessage = message.trim();
-            if (!userMessage) return;
-            addMessage(userMessage, 'user');
+    const userMessage = message.trim();
+    if (!userMessage) return;
+    addMessage(userMessage, 'user');
 
-            const lower = userMessage.toLowerCase();
+    const lower = userMessage.toLowerCase();
 
-            if (lower === 'kembali' || lower === 'back') {
-                if (typeof activeMenu === 'object') {
-                    await showSubMenu(activeMenu.menu);
-                    activeMenu = activeMenu.menu;
-                } else {
-                    activeMenu = null;
-                    await botReplyWithTyping("Kembali ke menu utama.");
-                    await showMainMenu();
-                }
-                return;
-            }
+    // Pemetaan langsung untuk keyword seperti "bem visi"
+    const directKeywordMap = {
+        'bem visi': 'bem_visi',
+        'bem misi': 'bem_misi',
+        'bem struktur': 'bem_struktur',
+        'bpm visi': 'bpm_visi',
+        'bpm misi': 'bpm_misi',
+        'bpm struktur': 'bpm_struktur',
+        'akuntansi visi': 'akuntansi_visi',
+        'akuntansi misi': 'akuntansi_misi',
+        'akuntansi struktur': 'akuntansi_struktur'
+    };
 
-            if (!activeMenu) {
-                const matchedMenu = Object.keys(menuGroups).find(menu =>
-                    menu.toLowerCase() === lower
-                );
-                if (matchedMenu) {
-                    activeMenu = matchedMenu;
-                    await showSubMenu(activeMenu);
-                } else {
-                    await botReplyWithTyping("Silakan pilih salah satu topik utama terlebih dahulu.");
-                    await showMainMenu();
-                }
-                return;
-            }
+    if (directKeywordMap[lower]) {
+        await respondToKeyword(directKeywordMap[lower]);
+        return;
+    }
 
-            let subItems;
-            if (typeof activeMenu === 'string') {
-                subItems = menuGroups[activeMenu];
-                if (!Array.isArray(subItems)) {
-                    await botReplyWithTyping("Silakan pilih submenu terlebih dahulu.");
-                    return;
-                }
-            } else if (typeof activeMenu === 'object') {
-                subItems = menuGroups[activeMenu.menu][activeMenu.sub];
-                if (!Array.isArray(subItems)) {
-                    await botReplyWithTyping("Silakan pilih submenu yang valid.");
-                    return;
-                }
-            }
-
-            const matchedSub = subItems.find(item =>
-                item.label.toLowerCase() === lower || item.key === lower
-            );
-
-            if (matchedSub) {
-                await respondToKeyword(matchedSub.key);
-            } else {
-                await botReplyWithTyping("Subtopik tidak dikenali. Silakan pilih yang tersedia.");
-                if (typeof activeMenu === 'object') {
-                    await showSubMenu(activeMenu.menu);
-                } else {
-                    await showSubMenu(activeMenu);
-                }
-            }
+    if (lower === 'kembali' || lower === 'back') {
+        if (typeof activeMenu === 'object') {
+            await showSubMenu(activeMenu.menu);
+            activeMenu = activeMenu.menu;
+        } else {
+            activeMenu = null;
+            await botReplyWithTyping("Kembali ke menu utama.");
+            await showMainMenu();
         }
+        return;
+    }
+
+    // Cek apakah input cocok dengan menu utama
+    if (!activeMenu) {
+        const matchedMenu = Object.keys(menuGroups).find(menu =>
+            menu.toLowerCase() === lower
+        );
+        if (matchedMenu) {
+            activeMenu = matchedMenu;
+            await showSubMenu(activeMenu);
+        } else {
+            await botReplyWithTyping("Silakan pilih salah satu topik utama terlebih dahulu.");
+            await showMainMenu();
+        }
+        return;
+    }
+
+    // Tangani submenu organisasi
+    if (activeMenu === "List Organisasi") {
+        const orgName = userMessage.toUpperCase();
+        if (menuGroups["List Organisasi"][orgName]) {
+            activeMenu = {
+                menu: "List Organisasi",
+                sub: orgName
+            };
+            const subItems = menuGroups["List Organisasi"][orgName];
+            const html = `
+            <strong>${orgName}</strong><br>Pilih detail:
+            <div class="quick-options mt-2">
+                ${subItems.map(item =>
+                    `<button class="btn btn-outline-primary btn-sm submenu-btn" data-key="${item.key}">${item.label}</button>`
+                ).join('')}
+                <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
+            </div>`;
+            await botReplyWithTyping(html);
+            return;
+        }
+    }
+
+    // Ambil subitem berdasarkan konteks aktif
+    let subItems;
+    if (typeof activeMenu === 'string') {
+        subItems = menuGroups[activeMenu];
+        if (!Array.isArray(subItems)) {
+            await botReplyWithTyping("Silakan pilih submenu terlebih dahulu.");
+            return;
+        }
+    } else if (typeof activeMenu === 'object') {
+        subItems = menuGroups[activeMenu.menu][activeMenu.sub];
+        if (!Array.isArray(subItems)) {
+            await botReplyWithTyping("Silakan pilih submenu yang valid.");
+            return;
+        }
+    }
+
+    const matchedSub = subItems.find(item =>
+        item.label.toLowerCase() === lower || item.key === lower
+    );
+
+    if (matchedSub) {
+        await respondToKeyword(matchedSub.key);
+    } else {
+        await botReplyWithTyping("Subtopik tidak dikenali. Silakan pilih yang tersedia.");
+        if (typeof activeMenu === 'object') {
+            await showSubMenu(activeMenu.menu);
+        } else {
+            await showSubMenu(activeMenu);
+        }
+    }
+}
+
 
 
         sendBtn.addEventListener('click', () => {
