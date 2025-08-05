@@ -24,7 +24,7 @@
                                 </div>
                     
                                 <!-- Visi -->
-                                <div class="mb-3">
+                                <div class="mb-3 d-none">
                                     <label for="visi-input" class="form-label">Visi</label>
                                     <textarea class="form-control @error('visi') is-invalid @enderror" 
                                               id="visi-input" name="visi" rows="3">{{ $user->visi }}</textarea>
@@ -34,7 +34,7 @@
                                 </div>
                     
                                 <!-- Misi -->
-                                <div class="mb-3">
+                                <div class="mb-3 d-none">
                                     <label for="misi-input" class="form-label">Misi</label>
                                     <textarea class="form-control @error('misi') is-invalid @enderror" 
                                               id="misi-input" name="misi" rows="3">{{ $user->misi }}</textarea>
