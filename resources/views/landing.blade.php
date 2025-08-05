@@ -79,7 +79,7 @@
 
             <div class="typing-container">
                 <span class="typing-line">Website Sistem Informasi Manajemen Organisasi</span>
-                <span class="typing-line">Mahasiswa Politeknik Harapan Bersama Kota Tegal</span>
+                <span class="typing-line">Mahasiswa Universitas Harkat Negeri Kota Tegal</span>
             </div>
 
 
@@ -112,7 +112,7 @@
         </div>
     </div>
     <div id="jadwal" class="container d-flex">
-        <h2>JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</h2>
+        <h2>JADWAL SEMUA KEGIATAN ORGANISASI UNIVERSITAS HARKAT NEGERI</h2>
         <div class="table-wrapper">
             <table class="fl-table">
                 <thead>
