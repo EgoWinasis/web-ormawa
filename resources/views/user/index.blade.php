@@ -151,7 +151,7 @@
                                         <input type="file" class="form-control w-100" id="riwayat_studi"
                                             accept="image/*"
                                             name="riwayat_studi">
-                                        <small class="text-muted">Hanya file PDF dari OASE:
+                                        <small class="text-muted">File harus .jpg atau .png, max 2MB.
                                             <a href="https://oase.poltekharber.ac.id/" target="_blank" class="text-primary">Klik di sini</a>
                                         </small>
                                         @error('riwayat_studi')
