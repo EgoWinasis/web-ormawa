@@ -149,7 +149,7 @@
                                     <div class="mb-3">
                                         <label for="riwayat_studi" class="form-label">Riwayat Studi <span class="text-danger">*</span></label>
                                         <input type="file" class="form-control w-100" id="riwayat_studi"
-                                            accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                            accept="image/*"
                                             name="riwayat_studi">
                                         <small class="text-muted">Hanya file PDF dari OASE:
                                             <a href="https://oase.poltekharber.ac.id/" target="_blank" class="text-primary">Klik di sini</a>
