@@ -15,7 +15,7 @@
     <div class="nav-profile d-flex">
         <p class="nama">Super Admin</p>
         <div class="foto-container">
-            <img class='profile-foto' src="{{ asset('storage/file-logo/logo-phb.png') }}" alt="poto profile"
+            <img class='profile-foto logo' src="{{ asset('storage/' . $user->foto) }}" alt="poto profile"
                 width="100px">
         </div>
     </div>
