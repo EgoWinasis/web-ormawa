@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="nav-profile d-flex">
-        <p class="nama">Super Admin</p>
+        <p class="nama">{{ $user->name }}</p>
         <div class="foto-container">
             <img class='profile-foto logo' src="{{ asset('storage/' . $user->foto) }}" alt="poto profile"
                 width="100px">
