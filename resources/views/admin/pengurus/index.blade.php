@@ -52,7 +52,7 @@
                     </button>
 
 
-                                            <form action="{{ url('kegiatan/panitia/' . $p['user']['id'] . '/destroy') }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus anggota?')" style="display:inline;">
+                                            <form action="{{ url('admin/kegiatan/panitia/' . $p['user']['id'] . '/destroy') }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus anggota?')" style="display:inline;">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-sm btn-danger">
