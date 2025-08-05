@@ -43,7 +43,7 @@
                                     <td>{{ $k->nama_kegiatan }}</td>
                                     <td>{{ $k->tempat_kegiatan }}</td>
                                     <td>
-                                        <form action="{{ url('news/destroy/' . $k->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus news?')" style="display: inline;">
+                                        <form action="{{ url('admin/news/destroy/' . $k->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus news?')" style="display: inline;">
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-danger">
                                                 <i class="fas fa-trash-alt"></i> Hapus
