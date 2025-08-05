@@ -92,7 +92,7 @@ class AnggotaController extends Controller
     		'nama_organisasi' => 'required',
     		'ktm' => 'required',
     		'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2000',
-    		'riwayat_studi' => 'required',
+    		'riwayat_studi' => 'required|file|image|mimes:jpeg,png,jpg|max:2000',
     		'sertif' => 'required',
     	]);
         $foto = request()->file('foto')->store('file-foto', 'public');
