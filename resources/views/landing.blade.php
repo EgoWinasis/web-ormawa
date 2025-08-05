@@ -112,7 +112,7 @@
         </div>
     </div>
     <div id="jadwal" class="container d-flex">
-        <h2>JADWAL SEMUA KEGIATAN ORGANISASI UNIVERSITAS HARKAT NEGERI</h2>
+        <h2>JADWAL SEMUA KEGIATAN ORGANISASI UHN</h2>
         <div class="table-wrapper">
             <table class="fl-table">
                 <thead>
