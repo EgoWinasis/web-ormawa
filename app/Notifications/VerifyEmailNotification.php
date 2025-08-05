@@ -29,7 +29,7 @@ class VerifyEmailNotification extends Notification implements ShouldQueue
         $verificationUrl = $this->verificationUrl($notifiable);
 
         return (new MailMessage)
-            ->subject('Verifikasi Email Web Ormawa PHB')
+            ->subject('Verifikasi Email Web Ormawa UHN')
             ->markdown('email.verifEmailNotification', [
                 'notifiable' => $notifiable,
                 'verificationUrl' => $verificationUrl

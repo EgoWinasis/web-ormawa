@@ -42,7 +42,7 @@ class AcceptedNotification extends Notification implements ShouldQueue
         $websiteUrl = $this->websiteUrl;
 
         return (new MailMessage)
-            ->subject('Perubahan Status Pendaftaran di Web Ormawa PHB')
+            ->subject('Perubahan Status Pendaftaran di Web Ormawa UHN')
             ->markdown('email.acceptedEmailNotification', [
                 'calon' => $this->calon, // Objek calon yang dikirim
                 'websiteUrl' => $websiteUrl // URL untuk cek status pendaftaran
