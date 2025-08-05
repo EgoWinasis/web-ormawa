@@ -41,10 +41,15 @@ class AcceptedNotification extends Notification implements ShouldQueue
         // URL untuk mengecek status pendaftaran
         $websiteUrl = $this->websiteUrl;
 
+        $anggota = DB::table('users')
+        ->join('anggota', 'anggota.user_id', '=', 'users.id')
+        ->where('users.id', $this->calon->id)
+        ->select('users.*', 'anggota.*')
+        ->first();
         return (new MailMessage)
             ->subject('Perubahan Status Pendaftaran di Web Ormawa UHN')
             ->markdown('email.acceptedEmailNotification', [
-                'calon' => $this->calon, // Objek calon yang dikirim
+                'calon' => $anggota, // Objek calon yang dikirim
                 'websiteUrl' => $websiteUrl // URL untuk cek status pendaftaran
             ]);
     }
