@@ -19,7 +19,13 @@
                              alt="ilustrasi aplikasi Organisasi" 
                              class="img-fluid" style="max-height: 120px;">
                     </div>
-
+@if ($errors->any())
+                <div class="alert alert-danger">
+                    @foreach ($errors->all() as $item)
+                        <p class="text-center">{{ $item }}</li>
+                    @endforeach
+                </div>
+            @endif
                     <form method="POST" action="{{ route('register') }}" id="register-form">
                         @csrf
 
