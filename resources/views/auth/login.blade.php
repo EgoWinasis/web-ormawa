@@ -54,13 +54,13 @@
 
                 </form>
 
-                {{-- @if ($errors->any())
+                @if ($errors->any())
                 <div class="alert alert-danger">
                     @foreach ($errors->all() as $item)
                         <p class="text-center">{{ $item }}</li>
                     @endforeach
                 </div>
-            @endif --}}
+            @endif
             </div>
         </div>
 
