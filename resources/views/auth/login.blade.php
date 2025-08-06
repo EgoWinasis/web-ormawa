@@ -20,6 +20,15 @@
                     </div>
                     <div class="mb-3">
                         <h1 class="text-center">Login</h1>
+                         @if ($errors->any())
+                <div class="alert alert-danger">
+                    @foreach ($errors->all() as $item)
+                        <p class="text-center">{{ $item }}</li>
+                    @endforeach
+                </div>
+            @endif
+
+            
                         <label for="email" class="form-label">Email</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
@@ -54,13 +63,7 @@
 
                 </form>
 
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    @foreach ($errors->all() as $item)
-                        <p class="text-center">{{ $item }}</li>
-                    @endforeach
-                </div>
-            @endif
+               
             </div>
         </div>
 
