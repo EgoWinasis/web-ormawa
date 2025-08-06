@@ -40,19 +40,17 @@
                     <div class="mb-3 d-grid">
                         <button name="submit" type="submit" class="btn btn-primary">Login</button>
                     </div>
-                    <div class="text-center mt-3">
-    <p>Belum Punya Akun? <a href="/register">Buat Akun</a></p>
+                    <p class="mt-3 mb-1">Belum Punya Akun? <a href="/register">Buat Akun</a></p>
 
-    @if (Route::has('password.request'))
-        <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+@if (Route::has('password.request'))
+    <p class="mb-3">
+        <a href="{{ route('password.request') }}" class="text-decoration-none">
             Lupa Password?
         </a>
-    @endif
+    </p>
+@endif
 
-    <div class="mt-3">
-        <a href="/" class="btn btn-secondary">Kembali</a>
-    </div>
-</div>
+<a href="/" class="btn btn-secondary">Kembali</a>
 
                 </form>
 
