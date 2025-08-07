@@ -1,6 +1,6 @@
 @component('mail::message')
 
-# Perubahan Status Pendaftaran di Web Ormawa UHN
+# Perubahan Status Pendaftaran di Web Ormawa POLTEK HARBER
 
 Halo {{ $calon->name }},  <!-- Akses data calon -->
 
@@ -23,6 +23,6 @@ Cek Status Pendaftaran
 Jika Anda tidak melakukan pendaftaran atau ada pertanyaan lainnya, jangan ragu untuk menghubungi kami.
 
 Terima kasih,<br>
-**Tim Web Ormawa UHN**
+**Tim Web Ormawa POLTEK HARBER**
 
 @endcomponent

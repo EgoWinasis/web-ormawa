@@ -4,7 +4,7 @@
         <a href="{{ $url }}" style="display: inline-block;">
             @if (trim($slot) === 'Laravel')
                 {{-- <img src="{{ asset('assets/img/events-3.jpg') }}" class="logo" alt="Laravel Logo"> --}}
-                <img src="https://ormawapoltekharber.my.id/logo-uhn.png" class="logo">
+                <img src="https://ormawapoltekharber.my.id/logo-phb.png" class="logo">
             @else
                 {{ $slot }}
             @endif
