@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Anggota;
 use App\Models\Rutin;
 use App\Models\Agenda;
 use App\Models\Riwayat;
