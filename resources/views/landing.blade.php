@@ -79,7 +79,7 @@
 
             <div class="typing-container">
                 <span class="typing-line">Website Sistem Informasi Manajemen Organisasi</span>
-                <span class="typing-line">Mahasiswa Universitas Harkat Negeri Kota Tegal</span>
+                <span class="typing-line">Mahasiswa Politeknik Harapan Bersama Tegal</span>
             </div>
 
 
