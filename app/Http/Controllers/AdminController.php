@@ -446,7 +446,7 @@ class AdminController extends Controller
             return view('admin.dashboard.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
-            $anggota = User::all();
+            $anggota = Anggota::all();
             $admin = Admin::all();
             // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
