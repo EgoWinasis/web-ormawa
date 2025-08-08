@@ -299,7 +299,7 @@ class AdminController extends Controller
         );
 
 
-        $websiteUrl = url('/home');
+        $websiteUrl = url('/history');
 
         $user->notify(new AcceptedNotification($user, $websiteUrl));
 
