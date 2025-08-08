@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Anggota;
 use App\Models\Rutin;
 use App\Models\Agenda;
 use App\Models\Riwayat;
@@ -446,7 +447,7 @@ class AdminController extends Controller
             return view('admin.dashboard.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
-            $anggota = User::all();
+            $anggota = Anggota::all();
             $admin = Admin::all();
             // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
