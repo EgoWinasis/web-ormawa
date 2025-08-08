@@ -48,7 +48,7 @@ class AcceptedNotification extends Notification implements ShouldQueue
         ->select('users.*', 'anggota.*')
         ->first();
         return (new MailMessage)
-            ->subject('Perubahan Status Pendaftaran di Web Ormawa UHN')
+            ->subject('Perubahan Status Pendaftaran di Web Ormawa POLTEK HARBER')
             ->markdown('email.acceptedEmailNotification', [
                 'calon' => $anggota, // Objek calon yang dikirim
                 'websiteUrl' => $websiteUrl // URL untuk cek status pendaftaran
