@@ -22,7 +22,7 @@
 <x-slot:footer>
 <x-mail::footer>
 {{-- © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.') --}}
-© {{ date('Y') }} ORMAWA UHN. @lang('All rights reserved.')
+© {{ date('Y') }} ORMAWA POLTEK HARBER. @lang('All rights reserved.')
 </x-mail::footer>
 </x-slot:footer>
 </x-mail::layout>
