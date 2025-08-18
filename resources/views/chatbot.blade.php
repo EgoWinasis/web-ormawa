@@ -1402,7 +1402,104 @@ ti_struktur : `
     <li>Divisi Sosial</li>
     <li>Divisi Kekeluargaan</li>
 </ol>
-`
+`,
+perhotelan_visi: `Menjadikan Himpunan Mahasiswa Perhotelan sebagai wadah yang inspiratif, inovatif, dan profesional untuk mengembangkan kompetensi, kreativitas, serta jiwa kepemimpinan mahasiswa perhotelan, sehingga mampu bersaing di dunia industri perhotelan global`,
+perhotelan_misi: `<ol>
+  <li><strong>1. Pengembangan Kompetensi:</strong> Menyelenggarakan program pelatihan dan workshop yang relevan dengan tren terkini di industri perhotelan.</li>
+  <li><strong>2. Peningkatan Keaktifan dan Kolaborasi:</strong> Membentuk lingkungan himpunan yang inklusif dan kolaboratif melalui kegiatan yang mempererat hubungan antar anggota serta membangun kerja sama dengan organisasi lain di dalam maupun luar kampus.</li>
+  <li><strong>3. Inovasi dan Kreativitas:</strong> Mendorong mahasiswa untuk berinovasi dengan mengadakan kompetisi, pameran, dan proyek kreatif yang mendukung potensi di bidang perhotelan.</li>
+</ol>
+
+`,
+ti_visi: `Menjadikan Himpunan Mahasiswa Teknik Informatika yang Unggul, Aktif, Inovatif, dan Inspiratif dalam mendorong Pengembangan Sumber Daya Mahasiswa.`,
+ti_misi: `<ol>
+  <li><strong>1.</strong> Menyediakan wadah untuk menggali potensi inovasi dan kreativitas mahasiswa.</li>
+  <li><strong>2.</strong> Mendorong pemberdayaan mahasiswa dalam pengembangan soft skill.</li>
+  <li><strong>3.</strong> Memperkuat rasa kebersamaan dan kekeluargaan antar mahasiswa.</li>
+</ol>
+`,
+mesin_visi: `Menjadikan Himpunan Mahasiswa Teknik Mesin yang ungggul, kreatif, dan berdaya saing, serta mampu mencetak pemimpin masa depan yang profesional, inovatif, dan berdedikasi dalam bidang teknik mesin.`, 
+mesin_misi: `<ol>
+  <li><strong>1. Meningkatkan Kualitas Akademik:</strong> Menyediakan berbagai program yang mendukung peningkatan kompetensi akademik anggota, seperti seminar, workshop, dan pelatihan di bidang teknik mesin.</li>
+  
+  <li><strong>2. Mendorong Pengembangan SoftSkills:</strong> Mengadakan kegiatan yang mengasah kemampuan kepemimpinan, komunikasi, serta kerja sama tim melalui berbagai event, seperti pelatihan kepemimpinan, organisasi, dan proyek bersama.</li>
+  
+  <li><strong>3. Memfasilitasi Kolaborasi dengan Dunia Industri:</strong> Menjalin hubungan yang erat dengan dunia industri dan akademik untuk membuka peluang magang, studi banding, dan kunjungan industri bagi anggota.</li>
+  
+  <li><strong>4. Membangun Soliditas dan Kebersamaan:</strong> Menciptakan lingkungan yang inklusif dan mendukung antar anggota HMTM melalui kegiatan sosial, olahraga, dan acara budaya.</li>
+  
+  <li><strong>5. Meningkatkan Peran serta HMTM dalam Masyarakat:</strong> Meningkatkan kontribusi sosial mahasiswa teknik mesin melalui program-program pengabdian kepada masyarakat yang berbasis pada keahlian teknik mesin.</li>
+</ol>
+`,
+akuntansi_visi: `Menjadikan mahasiswa DIII Akuntansi sebagai himpunan yang unggul, kompeten, kreatif, komunikatif, solid, profesional dan berintegrasi dalam pengembangan akademik, minat bakat, dan ketrampilan sosial mahasiswa prodi akuntansi.`,
+akuntansi_misi: `<ol>
+  <li><strong>1. Menjadikan HimaProdi Akuntansi:</strong> Sebagai wadah yang berkualitas bagi anggotanya untuk meningkatkan dan mengasah kemampuan bekerja dalam tim maupun individu.</li>
+  
+  <li><strong>2. Memperkuat Rasa Empati & Solidaritas:</strong> Melalui berbagai kegiatan sosial yang melibatkan partisipasi aktif anggota.</li>
+  
+  <li><strong>3. Menciptakan Sistem Kerja yang Efektif:</strong> Mengembangkan sistem kerja anggota HimaProdi Akuntansi yang efisien dan produktif.</li>
+  
+  <li><strong>4. Membangun Kekeluargaan dan Relasi:</strong> Menjaga komunikasi serta hubungan yang kuat dan saling mendukung antar mahasiswa, baik dalam prodi DIII Akuntansi maupun antar prodi lainnya.</li>
+</ol>
+`,
+asp_visi: `Menjadikan Himpunan Mahasiswa Akuntansi Sector Public organisasi yang kreatif, kompeten, solidaritas, serta berkontribusi aktif dalam program kerja himpunan`,
+asp_misi: `<ol>
+  <li><strong>1. Meningkatkan Kompetensi Pengurus:</strong> Menjadikan HimaProdi ASP sebagai sarana untuk meningkatkan kompetensi para pengurus.</li>
+  
+  <li><strong>2. Mendorong Kolaborasi dan Inovasi:</strong> Menjalankan HimaProdi ASP dengan kerja sama antar pengurus untuk menciptakan inovasi.</li>
+  
+  <li><strong>3. Menyediakan Wadah Aspirasi:</strong> Membuka ruang bagi pengurus HimaProdi ASP maupun mahasiswa Prodi ASP untuk menyuarakan pendapat.</li>
+  
+  <li><strong>4. Membangun Solidaritas dan Kekeluargaan:</strong> Menciptakan ruang lingkup organisasi yang memiliki jiwa solidaritas dan kekeluargaan.</li>
+  
+  <li><strong>5. Membentuk Karakter Mahasiswa:</strong> Membangun karakter mahasiswa yang berintegritas, bertanggung jawab, dan memiliki jiwa sosial.</li>
+</ol>
+`,
+elektro_visi: `Menjadikan Himpunan Mahasiswa Teknik Elektronika Politeknik Harapan Bersama sebagai wadah yang inovatif, kolaboratif, dan inspiratif dalam mengembangkan potensi akademik, keterampilan, serta karakter mahasiswa, guna menciptakan komunitas yang unggul dan berkontribusi aktif.`,
+elektro_misi: `<ol>
+  <li><strong>1. Pengembangan Program Akademik dan Praktis:</strong> Mengembangkan program kerja yang mendukung peningkatan kemampuan akademik dan keterampilan praktis mahasiswa D3 Teknik Elektronika.</li>
+  
+  <li><strong>2. Membangun Kolaborasi yang Harmonis:</strong> Membangun kolaborasi yang harmonis antara mahasiswa, dosen, dan pihak eksternal untuk menciptakan ekosistem pembelajaran yang kondusif.</li>
+  
+  <li><strong>3. Pengembangan Soft Skills:</strong> Mendorong kegiatan yang berfokus pada pengembangan soft skills, seperti kepemimpinan, komunikasi, dan kerjasama tim, guna membentuk mahasiswa yang siap menghadapi tantangan dunia industri.</li>
+  
+  <li><strong>4. Seminar dan Pelatihan Inovatif:</strong> Mengadakan seminar, workshop, dan pelatihan yang mendukung inovasi dan motivasi di bidang teknik elektronika.</li>
+  
+  <li><strong>5. Mempererat Solidaritas Anggota:</strong> Mempererat solidaritas antar anggota himpunan dengan mengadakan kegiatan sosial dan keakraban yang bermanfaat.</li>
+</ol>
+`,
+kebidanan_visi: `Mewujudkan HimaProdi kebidanan yang inovatif, berdaya saing, dan berorentasi pada pelayanan masyarakat, serta menjadi wadah pengembangan potensi mahasiswa untuk menjadi bidan profesional yang unggul.`,
+kebidanan_misi: `<ol>
+  <li><strong>1. Peningkatan Kualitas SDM Mahasiswa Kebidanan:</strong> Meningkatkan kualitas sumber daya manusia mahasiswa kebidanan melalui berbagai program pengembangan diri.</li>
+  
+  <li><strong>2. Membangun Jaringan Kerjasama:</strong> Membangun jaringan kerjasama dengan berbagai pihak untuk mendukung pengembangan profesi kebidanan.</li>
+  
+  <li><strong>3. Pengabdian Masyarakat Berkelanjutan:</strong> Melaksanakan pengabdian masyarakat yang berkelanjutan untuk meningkatkan derajat kesehatan masyarakat, terutama ibu dan anak.</li>
+  
+  <li><strong>4. Memperkuat Solidaritas dan Kekompakan:</strong> Memperkuat solidaritas dan kekompakan antar anggota himpunan.</li>
+</ol>
+`,
+farmasi_visi: `Mewujudkan HimaProdi Farmasi menjadi organisasi yang inovatif, profesional, dan berdedikasi dalam mengembangkan potensi mahasiswa D3 Farmasi, serta berkontribusi dalam menciptakan lingkungan akademik yang kondusif dan mendukung pengembangan keahlian di bidang farmasi baik internal maupun eksternal.`,
+farmasi_misi: `<ol>
+  <li><strong>1. Meningkatkan Kualitas Akademik Mahasiswa DIII Farmasi.</strong></li>
+  <li><strong>2. Meningkatkan Kepedulian Sosial dalam Diri Mahasiswa.</strong></li>
+  <li><strong>3. Membangun Kemandirian dan Kepemimpinan Mahasiswa DIII Farmasi.</strong></li>
+</ol>
+`,
+komputer_visi: `Menjadikan HMP Komputer sebagai wadah aspirasi mahasiswa yang inovatif, kreatif, dan kompetensi demi terciptanya organisasi yang berkualitas dan berkarakter.`,
+komputer_misi: `<ol>
+  <li>Meningkatkan kedisiplinan dan tanggung jawab dikalangan HimaProdi Komputer.</li>
+  <li>Meningkatkan rasa kekeluargaan dalam setiap kegiatan dikalangan Hima.</li>
+  <li>Meningkatkan semua program kerja guna meningkatkan prestasi seluruh anggota.</li>
+</ol>
+`,
+dkv_visi: `Menjadikan HIMA DKV sebagai wadah yang kreatif dan inovatif, untuk mendukung pengembangan potensi mahasiswa serta memperkuat peran HIMA sebagai organisasi yang bermanfaat di kampus dan masyarakat.`,
+dkv_misi: `<ol>
+  <li>Membangun hubungan baik antara dosen dan mahasiswa prodi DKV untuk menciptakan suasana akademik harmonis.</li>
+  <li>Mengadakan workshop dan program keterampilan untuk mendukung kreativitas mahasiswa.</li>
+  <li>Menyediakan ruang terbuka untuk menyalurkan ide dan aspirasi mahasiswa DKV.</li>
+</ol>
+`,
 
 
         };
