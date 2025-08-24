@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // disableFields(true);
 
-    const nama = document.getElementById("nama").value.trim();
+    const nama = document.getElementById("name").value.trim();
         const nim = document.getElementById("nim").value.trim();
 
         if (nama === "" || nim === "") {
