@@ -1788,7 +1788,7 @@ if (typeof activeMenu === 'object') {
             );
 
             if (matchedSub) {
-                console.log('jawaban');
+                activeMenu = "List Organisasi"
 
                 await respondToKeyword(matchedSub.key);
             } else {
@@ -1830,7 +1830,6 @@ if (typeof activeMenu === 'object') {
             } else if (e.target.classList.contains('submenu-btn')) {
                 const keyword = e.target.dataset.key;
                 addMessage(e.target.innerText, 'user');
-                
                 await respondToKeyword(keyword);
             } else if (e.target.classList.contains('submenu-lv2-btn')) {
                 const menu = e.target.dataset.org; // contoh: "List Organisasi"
