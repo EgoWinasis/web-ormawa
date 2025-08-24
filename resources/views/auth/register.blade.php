@@ -154,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
             disableFields(true);  // disable kalau kosong
         } else {
             disableFields(false); // tetap aktif kalau ada value
+            nimStatus.textContent = "NIM ditemukan. Silakan isi form.";
         }
 
     // AJAX check NIM
