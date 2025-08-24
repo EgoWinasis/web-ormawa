@@ -207,9 +207,14 @@
                     {
                         label: "Tugas",
                         key: "bem_tugas"
-                    }
+                    },
+                    {
+                        label: "anggota",
+                        key: "bem_anggota"
+                    },
                   
                 ],
+                {{-- menambahkan oraganisa baru --}}
                 "BPM": [{
                         label: "Visi",
                         key: "bpm_visi"
@@ -1582,8 +1587,14 @@ dkv_misi: `<ol>
         async function respondToKeyword(key) {
             const msg = responses[key] || "Maaf, belum ada jawaban untuk topik ini.";
             await botReplyWithTyping(msg);
-            activeMenu = null;
-            setTimeout(showMainMenu, 800);
+            // activeMenu = null;
+            // setTimeout(showMainMenu, 800);
+              // setelah kasih jawaban, tampilkan kembali submenu aktif
+    if (typeof activeMenu === 'object') {
+        await showSubMenu(activeMenu.menu);
+    } else {
+        await showSubMenu(activeMenu);
+    }
         }
 
         async function handleUserInput(message) {
