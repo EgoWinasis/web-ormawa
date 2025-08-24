@@ -319,10 +319,10 @@
                     label: "Daftar",
                     key: "daftar"
                 },
-                {
-                    label: "Registrasi",
-                    key: "regist"
-                }
+                // {
+                //     label: "Registrasi",
+                //     key: "regist"
+                // }
             ],
             "Kegiatan": [{
                     label: "Jadwal",
