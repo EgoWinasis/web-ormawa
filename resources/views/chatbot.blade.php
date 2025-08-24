@@ -1509,6 +1509,9 @@ dkv_misi: `<ol>
 
         };
 
+
+// variable
+let orgName = '';
         function scrollBottom() {
             chatbox.scrollTop = chatbox.scrollHeight;
         }
@@ -1743,10 +1746,10 @@ if (typeof activeMenu === 'object') {
                 }
                 return;
             }
-
+            
             // Tangani submenu organisasi
             if (activeMenu === "List Organisasi") {
-                const orgName = userMessage.toUpperCase();
+                orgName = userMessage.toUpperCase();
                 if (menuGroups["List Organisasi"][orgName]) {
                     activeMenu = {
                         menu: "List Organisasi",
