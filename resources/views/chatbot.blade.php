@@ -1590,8 +1590,8 @@ dkv_misi: `<ol>
             // activeMenu = null;
             // setTimeout(showMainMenu, 800);
               // setelah kasih jawaban, tampilkan kembali submenu aktif
-    if (typeof activeMenu === 'object') {
-        await showSubMenu(activeMenu.menu);
+              if (typeof activeMenu === 'object') {
+        await showSubMenu(activeMenu.menu, activeMenu.sub);
     } else {
         await showSubMenu(activeMenu);
     }
