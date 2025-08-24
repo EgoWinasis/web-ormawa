@@ -74,10 +74,10 @@
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
     <script>
-    $(document).ready(function () {
-       $('#anggotaTable').DataTable({
-  ordering: false
-});
+        $(document).ready(function () {
+                $('#anggotaTable').DataTable({
+            ordering: false
+    });
 
 
         $('.toggle-agendas').click(function () {
@@ -221,7 +221,7 @@ $(document).ready(function() {
                     semester: row[6] || '',
                     kelas: row[7] || '',
                 });
-
+// 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${index + 1}</td>

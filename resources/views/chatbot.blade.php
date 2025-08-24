@@ -1733,6 +1733,8 @@ dkv_misi: `<ol>
                 <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
             </div>`;
                     await botReplyWithTyping(html);
+                    console.log(html);
+                    
                     return;
                 }
             }
