@@ -26,45 +26,99 @@
                     @endforeach
                 </div>
             @endif
-                    <!-- Nama Lengkap -->
-<div class="mb-3">
-    <label for="name" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
-    <input type="text"
-           value="{{ old('name') }}"
-           name="name" id="name"
-           class="form-control @error('name') is-invalid @enderror"
-           readonly>
-    @error('name')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
-</div>
+                    <form method="POST" action="{{ route('register') }}" id="register-form">
+                        @csrf
 
-<!-- Email -->
-<div class="mb-3">
-    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-    <input type="email"
-           value="{{ old('email') }}"
-           name="email" id="email"
-           class="form-control @error('email') is-invalid @enderror"
-           readonly>
-    @error('email')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
-</div>
+                        <!-- NIM -->
+                        <div class="mb-3">
+                            <label for="nim" class="form-label">NIM <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="text" maxlength="9" value="{{ old('nim') }}" 
+                                       name="nim" id="nim" 
+                                       class="form-control @error('nim') is-invalid @enderror">
+                                <button type="button" class="btn btn-outline-primary" id="check-nim">Cek</button>
+                            </div>
+                            @error('nim')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <small id="nim-status" class="text-muted"></small>
+                            <small class="text-muted">Nim Harus di isi terlebih dahulu</small>
+                        </div>
 
-<!-- WhatsApp -->
-<div class="mb-3">
-    <label for="nomor" class="form-label">WhatsApp <span class="text-danger">*</span></label>
-    <input type="text" maxlength="13"
-           value="{{ old('nomor') }}"
-           name="nomor" id="nomor"
-           class="form-control @error('nomor') is-invalid @enderror"
-           readonly>
-    @error('nomor')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
-</div>
+                        <!-- Nama Lengkap -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
+                            <input type="text" value="{{ old('name') }}" 
+                                   name="name" id="name" 
+                                   class="form-control @error('name') is-invalid @enderror" readonly disabled>
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" value="{{ old('email') }}" 
+                                   name="email" id="email"
+                                   class="form-control @error('email') is-invalid @enderror" disabled>
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- WhatsApp -->
+                        <div class="mb-3">
+                            <label for="nomor" class="form-label">WhatsApp <span class="text-danger">*</span></label>
+                            <input type="text" maxlength="13" value="{{ old('nomor') }}" 
+                                   name="nomor" id="nomor" 
+                                   class="form-control @error('nomor') is-invalid @enderror" disabled>
+                            @error('nomor')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="password" id="password" name="password" 
+                                       class="form-control @error('password') is-invalid @enderror" disabled>
+                                <button type="button" class="btn btn-outline-secondary" id="toggle-password">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <small class="form-text">Kekuatan password: 
+                                <span id="power-point-password" class="fw-bold text-muted">Masukan min 6 karakter</span>
+                            </small>
+                            @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="mb-3">
+                            <label for="password-confirm" class="form-label">Konfirmasi Password <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input id="password-confirm" type="password" 
+                                       class="form-control" 
+                                       name="password_confirmation" autocomplete="new-password" disabled>
+                                <button type="button" class="btn btn-outline-secondary" id="toggle-password-confirm">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button name="submit" type="submit" class="btn btn-primary" disabled id="submit-btn">
+                                Daftar
+                            </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <p>Kembali ke <a href="/login">Halaman Login</a></p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -87,17 +141,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = document.getElementById('submit-btn');
 
     function disableFields(state) {
-    fields.forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        if (state) {
-            el.setAttribute('readonly', true);
-        } else {
-            el.removeAttribute('readonly');
-        }
-    });
-}
-
+        fields.forEach(id => {
+            document.getElementById(id).disabled = state;
+        });
+    }
     disableFields(true);
 
     // AJAX check NIM
