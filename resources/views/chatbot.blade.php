@@ -1590,15 +1590,44 @@ dkv_misi: `<ol>
             // activeMenu = null;
             // setTimeout(showMainMenu, 800);
               // setelah kasih jawaban, tampilkan kembali submenu aktif
-              if (typeof activeMenu === 'object') {
-        await showSubMenu(activeMenu.menu, activeMenu.sub);
-        console.log('a');
+            // Saat user pilih menu "List Organisasi"
+if (activeMenu === "List Organisasi") {
+    const orgName = userMessage.toUpperCase();
 
-    } else {
-        await showSubMenu(activeMenu);
-        console.log('b');
-        
+    if (menuGroups["List Organisasi"][orgName]) {
+        // Ubah activeMenu jadi object agar tahu posisi
+        activeMenu = {
+            menu: "List Organisasi",
+            sub: orgName
+        };
+
+        // Ambil submenu detail (Visi, Misi, dll)
+        const subItems = menuGroups["List Organisasi"][orgName];
+
+        const html = `
+            <strong>${orgName}</strong><br>Pilih detail:
+            <div class="quick-options mt-2">
+                ${subItems.map(item =>
+                    `<button class="btn btn-outline-primary btn-sm submenu-btn" data-key="${item.key}">${item.label}</button>`
+                ).join('')}
+                <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
+            </div>
+        `;
+
+        await botReplyWithTyping(html);
+        return; // stop lanjut
     }
+}
+
+// Menangani submenu (Visi, Misi, dll)
+if (typeof activeMenu === 'object') {
+    await showSubMenu(activeMenu.menu, activeMenu.sub);
+    console.log('submenu organisasi aktif');
+} else {
+    await showSubMenu(activeMenu);
+    console.log('menu biasa aktif');
+}
+
         }
 
         async function handleUserInput(message) {
@@ -1733,7 +1762,7 @@ dkv_misi: `<ol>
                 <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
             </div>`;
                     await botReplyWithTyping(html);
-                    console.log(html);
+                    // console.log(html);
                     
                     return;
                 }
