@@ -1788,7 +1788,7 @@ if (typeof activeMenu === 'object') {
             );
 
             if (matchedSub) {
-                activeMenu = "List Organisasi"
+                activeMenu = "List Organisasi";
 
                 await respondToKeyword(matchedSub.key);
             } else {
