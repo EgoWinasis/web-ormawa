@@ -4,23 +4,17 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
+use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotificationBase;
 
-class ResetPasswordNotification extends ResetPasswordNotification
+class CustomResetPasswordNotification extends ResetPasswordNotificationBase
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
     public function __construct($token)
     {
         parent::__construct($token);
     }
 
-    /**
-     * Get the mail representation of the notification.
-     */
     public function toMail($notifiable): MailMessage
     {
         $url = url(route('password.reset', [
