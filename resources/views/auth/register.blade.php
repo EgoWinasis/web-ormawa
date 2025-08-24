@@ -132,22 +132,37 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const fields = ['name', 'email', 'nomor', 'password', 'password-confirm', 'submit-btn'];
+    const fields = ['name', 'email', 'nomor', 'password', 'password-confirm'];
     const nimInput = document.getElementById('nim');
+    const nameInput = document.getElementById('name');
     const checkButton = document.getElementById('check-nim');
     const nimStatus = document.getElementById('nim-status');
     const passwordField = document.getElementById('password');
     const confirmField = document.getElementById('password-confirm');
     const submitBtn = document.getElementById('submit-btn');
 
-    function disableFields(state) {
+    // ✅ ubah jadi readonly, bukan disabled (supaya value tetap dikirim)
+    function toggleFields(state) {
         fields.forEach(id => {
-            document.getElementById(id).disabled = state;
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (state) {
+                el.setAttribute('readonly', true);
+            } else {
+                el.removeAttribute('readonly');
+            }
         });
+        submitBtn.disabled = state; // tombol boleh tetap pakai disabled
     }
-    disableFields(true);
 
-    // AJAX check NIM
+    // ✅ cek kalau nim & name sudah ada value (misal dari old input)
+    if (nimInput.value.trim() !== "" && nameInput.value.trim() !== "") {
+        toggleFields(false); // langsung aktifkan form
+    } else {
+        toggleFields(true);  // kunci dulu
+    }
+
+    // ---------- AJAX cek NIM ----------
     checkButton.addEventListener('click', function() {
         const nim = nimInput.value.trim();
         if (!nim) {
@@ -193,10 +208,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 nimStatus.textContent = "NIM ditemukan. Silakan isi form.";
                 nimStatus.classList.remove('text-danger');
                 nimStatus.classList.add('text-success');
-                disableFields(false);
 
-                document.getElementById('name').readOnly = true;
-                document.getElementById('name').value = data.nama ?? '';
+                toggleFields(false);
+
+                // isi nama otomatis & tetap readonly
+                nameInput.value = data.nama ?? '';
+                nameInput.setAttribute('readonly', true);
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -208,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 nimStatus.textContent = "NIM tidak ditemukan. Hubungi Administrator";
                 nimStatus.classList.remove('text-success');
                 nimStatus.classList.add('text-danger');
-                disableFields(true);
+                toggleFields(true);
             }
         })
         .catch(() => {
@@ -225,35 +242,54 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Password strength
+    // ---------- password strength ----------
     const power = document.getElementById("power-point-password");
     passwordField.oninput = function() {
-    let point = 0;
-    let value = passwordField.value;
-    let widthPower = ["Sangat Lemah", "Lemah", "Cukup", "Kuat", "Sangat Kuat"];
+        let point = 0;
+        let value = passwordField.value;
+        let widthPower = ["Sangat Lemah", "Lemah", "Cukup", "Kuat", "Sangat Kuat"];
 
-    if (value.length > 0) {
-        if (value.length >= 6) point++;
-        if (/[0-9]/.test(value)) point++;
-        if (/[a-z]/.test(value)) point++;
-        if (/[A-Z]/.test(value)) point++;
-        if (/[^0-9a-zA-Z]/.test(value)) point++;
-        if (point > 4) point = 4;
+        if (value.length > 0) {
+            if (value.length >= 6) point++;
+            if (/[0-9]/.test(value)) point++;
+            if (/[a-z]/.test(value)) point++;
+            if (/[A-Z]/.test(value)) point++;
+            if (/[^0-9a-zA-Z]/.test(value)) point++;
+            if (point > 4) point = 4;
+        }
+
+        power.textContent = widthPower[point];
+        power.className = "fw-bold";
+        if (point === 0) power.classList.add("text-danger");
+        else if (point === 1) power.classList.add("text-warning");
+        else if (point === 2) power.classList.add("text-info");
+        else if (point >= 3) power.classList.add("text-success");
+
+        checkPasswordMatch();
+    };
+
+    // ---------- cek password match ----------
+    function checkPasswordMatch() {
+        if (!passwordField.value || !confirmField.value) {
+            confirmField.classList.remove('is-valid', 'is-invalid');
+            submitBtn.disabled = true;
+            return;
+        }
+
+        if (passwordField.value === confirmField.value) {
+            confirmField.classList.add('is-valid');
+            confirmField.classList.remove('is-invalid');
+            submitBtn.disabled = false;
+        } else {
+            confirmField.classList.add('is-invalid');
+            confirmField.classList.remove('is-valid');
+            submitBtn.disabled = true;
+        }
     }
 
-    power.textContent = widthPower[point];
+    confirmField.addEventListener('input', checkPasswordMatch);
+});
 
-    // Hapus semua class warna sebelumnya
-    power.className = "fw-bold";
-
-    // Tambahkan class warna sesuai kekuatan password
-    if (point === 0) power.classList.add("text-danger");
-    else if (point === 1) power.classList.add("text-warning");
-    else if (point === 2) power.classList.add("text-info");
-    else if (point >= 3) power.classList.add("text-success");
-
-    checkPasswordMatch();
-};
 
 
 
