@@ -1791,7 +1791,10 @@ if (typeof activeMenu === 'object') {
             );
 
             if (matchedSub) {
-                activeMenu = "List Organisasi";
+                if (activeMenu && activeMenu.menu === "List Organisasi") {
+        activeMenu = "List Organisasi"; // reset balik ke menu utama List Organisasi
+    }
+
 
                 await respondToKeyword(matchedSub.key);
             } else {
