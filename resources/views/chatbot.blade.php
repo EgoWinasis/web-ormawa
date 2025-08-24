@@ -1592,7 +1592,7 @@ dkv_misi: `<ol>
               // setelah kasih jawaban, tampilkan kembali submenu aktif
             // Saat user pilih menu "List Organisasi"
 if (activeMenu === "List Organisasi") {
-    const orgName = userMessage.toUpperCase();
+
 
     if (menuGroups["List Organisasi"][orgName]) {
         // Ubah activeMenu jadi object agar tahu posisi
