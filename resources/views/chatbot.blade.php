@@ -1788,6 +1788,8 @@ if (typeof activeMenu === 'object') {
             );
 
             if (matchedSub) {
+                console.log('jawaban');
+
                 await respondToKeyword(matchedSub.key);
             } else {
                 await botReplyWithTyping("Subtopik tidak dikenali. Silakan pilih yang tersedia.");
@@ -1828,7 +1830,6 @@ if (typeof activeMenu === 'object') {
             } else if (e.target.classList.contains('submenu-btn')) {
                 const keyword = e.target.dataset.key;
                 addMessage(e.target.innerText, 'user');
-                console.log('jawaban');
                 
                 await respondToKeyword(keyword);
             } else if (e.target.classList.contains('submenu-lv2-btn')) {
