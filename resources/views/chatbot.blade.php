@@ -1765,7 +1765,6 @@ if (typeof activeMenu === 'object') {
                     // console.log(html);
                     return;
                 }
-                    activeMenu = "List Organisasi"
             }
 
             // Ambil subitem berdasarkan konteks aktif
@@ -1829,6 +1828,8 @@ if (typeof activeMenu === 'object') {
             } else if (e.target.classList.contains('submenu-btn')) {
                 const keyword = e.target.dataset.key;
                 addMessage(e.target.innerText, 'user');
+                console.log('jawaban');
+                
                 await respondToKeyword(keyword);
             } else if (e.target.classList.contains('submenu-lv2-btn')) {
                 const menu = e.target.dataset.org; // contoh: "List Organisasi"
