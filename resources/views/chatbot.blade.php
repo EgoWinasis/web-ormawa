@@ -1615,6 +1615,8 @@ if (activeMenu === "List Organisasi") {
         `;
 
         await botReplyWithTyping(html);
+        activeMenu = "List Organisasi"
+
         return; // stop lanjut
     }
 }
@@ -1763,7 +1765,7 @@ if (typeof activeMenu === 'object') {
             </div>`;
                     await botReplyWithTyping(html);
                     // console.log(html);
-                    
+                    activeMenu = "List Organisasi"
                     return;
                 }
             }
