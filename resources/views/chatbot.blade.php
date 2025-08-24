@@ -1592,8 +1592,12 @@ dkv_misi: `<ol>
               // setelah kasih jawaban, tampilkan kembali submenu aktif
               if (typeof activeMenu === 'object') {
         await showSubMenu(activeMenu.menu, activeMenu.sub);
+        console.log(activeMenu.menu);
+
     } else {
         await showSubMenu(activeMenu);
+        console.log(activeMenu);
+        
     }
         }
 
