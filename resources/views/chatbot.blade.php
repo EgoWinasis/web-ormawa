@@ -207,9 +207,14 @@
                     {
                         label: "Tugas",
                         key: "bem_tugas"
-                    }
+                    },
+                    {
+                        label: "anggota",
+                        key: "bem_anggota"
+                    },
                   
                 ],
+                {{-- menambahkan oraganisa baru --}}
                 "BPM": [{
                         label: "Visi",
                         key: "bpm_visi"
@@ -314,10 +319,10 @@
                     label: "Daftar",
                     key: "daftar"
                 },
-                {
-                    label: "Registrasi",
-                    key: "regist"
-                }
+                // {
+                //     label: "Registrasi",
+                //     key: "regist"
+                // }
             ],
             "Kegiatan": [{
                     label: "Jadwal",
@@ -1504,6 +1509,9 @@ dkv_misi: `<ol>
 
         };
 
+
+// variable
+let orgName = '';
         function scrollBottom() {
             chatbox.scrollTop = chatbox.scrollHeight;
         }
@@ -1582,8 +1590,47 @@ dkv_misi: `<ol>
         async function respondToKeyword(key) {
             const msg = responses[key] || "Maaf, belum ada jawaban untuk topik ini.";
             await botReplyWithTyping(msg);
-            activeMenu = null;
-            setTimeout(showMainMenu, 800);
+            // activeMenu = null;
+            // setTimeout(showMainMenu, 800);
+              // setelah kasih jawaban, tampilkan kembali submenu aktif
+            // Saat user pilih menu "List Organisasi"
+if (activeMenu === "List Organisasi") {
+
+
+    if (menuGroups["List Organisasi"][orgName]) {
+        // Ubah activeMenu jadi object agar tahu posisi
+        activeMenu = {
+            menu: "List Organisasi",
+            sub: orgName
+        };
+
+        // Ambil submenu detail (Visi, Misi, dll)
+        const subItems = menuGroups["List Organisasi"][orgName];
+
+        const html = `
+            <strong>${orgName}</strong><br>Pilih detail:
+            <div class="quick-options mt-2">
+                ${subItems.map(item =>
+                    `<button class="btn btn-outline-primary btn-sm submenu-btn" data-key="${item.key}">${item.label}</button>`
+                ).join('')}
+                <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
+            </div>
+        `;
+
+        await botReplyWithTyping(html);
+        return; // stop lanjut
+    }
+}
+
+// Menangani submenu (Visi, Misi, dll)
+if (typeof activeMenu === 'object') {
+    await showSubMenu(activeMenu.menu, activeMenu.sub);
+    console.log('submenu organisasi aktif');
+} else {
+    await showSubMenu(activeMenu);
+    console.log('menu biasa aktif');
+}
+
         }
 
         async function handleUserInput(message) {
@@ -1699,10 +1746,10 @@ dkv_misi: `<ol>
                 }
                 return;
             }
-
+            
             // Tangani submenu organisasi
             if (activeMenu === "List Organisasi") {
-                const orgName = userMessage.toUpperCase();
+                orgName = userMessage.toUpperCase();
                 if (menuGroups["List Organisasi"][orgName]) {
                     activeMenu = {
                         menu: "List Organisasi",
@@ -1718,6 +1765,7 @@ dkv_misi: `<ol>
                 <button class="btn btn-outline-danger btn-sm back-btn">⬅ Kembali</button>
             </div>`;
                     await botReplyWithTyping(html);
+                    // console.log(html);
                     return;
                 }
             }
@@ -1743,6 +1791,11 @@ dkv_misi: `<ol>
             );
 
             if (matchedSub) {
+                if (activeMenu && activeMenu.menu === "List Organisasi") {
+        activeMenu = "List Organisasi"; // reset balik ke menu utama List Organisasi
+    }
+
+
                 await respondToKeyword(matchedSub.key);
             } else {
                 await botReplyWithTyping("Subtopik tidak dikenali. Silakan pilih yang tersedia.");
