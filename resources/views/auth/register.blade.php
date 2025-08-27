@@ -42,7 +42,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <small id="nim-status" class="text-muted"></small>
-                            <small class="text-muted">Nim Harus di isi terlebih dahulu</small>
+                            <small class="text-muted">Nim di isi dulu bangsat</small>
                         </div>
 
                         <!-- Nama Lengkap -->
