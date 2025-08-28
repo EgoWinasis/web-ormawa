@@ -40,7 +40,7 @@
 <td class="text-center">
     <!-- Lihat Gambar -->
     <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
-        <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer; margin-right: 8px;"></i>
+        <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer; margin-right: 5%;"></i>
     </a>
 
     <!-- Download Gambar -->
@@ -53,7 +53,7 @@
 <td class="text-center">
     <!-- Lihat Proposal -->
     <a href="{{ asset('storage/' . $k->proposal) }}" target="_blank" title="Lihat Proposal">
-        <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer; margin-right: 8px;"></i>
+        <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer; margin-right: 5%;"></i>
     </a>
 
     <!-- Download Proposal -->
@@ -67,7 +67,7 @@
     @if ($k->lpj)
         <!-- Lihat LPJ -->
         <a href="{{ asset('storage/' . $k->lpj) }}" target="_blank" title="Lihat LPJ">
-            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer; margin-right: 8px;"></i>
+            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer; margin-right: 5%;"></i>
         </a>
 
         <!-- Download LPJ -->
