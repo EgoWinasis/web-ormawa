@@ -142,11 +142,12 @@ class RegisterController extends Controller
 
     public function checkNim(Request $request)
     {
-        $response = Http::get('https://api.oase.poltektegal.ac.id/api/web/mahasiswa', [
-            'key' => '53jd4f6e-fl0b-4316-8k52-8361khf56a03',
-            'tahun_angkatan' => $request->tahun_angkatan,
-            'nim' => $request->nim
-        ]);
+        $response = Http::withHeaders([
+    'key' => '53jd4f6e-fl0b-4316-8k52-8361khf56a03',
+])->get('https://api.oase.poltektegal.ac.id/api/web/mahasiswa', [
+    'tahun_angkatan' => $request->tahun_angkatan,
+    'nim' => $request->nim
+]);
 
         return $response->json(); // kirim balik ke frontend
     }
