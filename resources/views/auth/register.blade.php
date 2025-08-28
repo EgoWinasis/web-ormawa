@@ -40,8 +40,7 @@
                         @error('nim')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                        <small id="nimStatus" class="text-muted"></small>
-                        <small class="text-muted">NIM harus diisi terlebih dahulu</small>
+                        <small id="nimStatus" class="text-muted">NIM harus diisi terlebih dahulu</small>
                     </div>
 
                     <div class="mb-3">
@@ -160,7 +159,7 @@ const tahunAngkatanInput = document.getElementById('tahun_angkatan');
     disableFields(true);
 
 
-nimInput.addEventListener('blur', function () {
+tahunAngkatanInput.addEventListener('blur', function () {
     const nim = nimInput.value.trim();
     const tahun_angkatan = tahunAngkatanInput.value.trim(); // Misalnya "2021"
 
