@@ -139,7 +139,7 @@ class RegisterController extends Controller
     //     ]);
     // }
 
-    public function cekNim(Request $request)
+    public function checkNim(Request $request)
     {
         $response = Http::get('https://api.oase.poltektegal.ac.id/api/web/mahasiswa', [
             'key' => '53jd4f6e-fl0b-4316-8k52-8361khf56a03',
