@@ -36,7 +36,6 @@
                             <input type="text" maxlength="9" value="{{ old('nim') }}" 
                                 name="nim" id="nim" 
                                 class="form-control @error('nim') is-invalid @enderror">
-                            <button type="button" class="btn btn-outline-primary" id="check-nim">Cek</button>
                         </div>
                         @error('nim')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -151,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const passwordField = document.getElementById('password');
     const confirmField = document.getElementById('password-confirm');
     const submitBtn = document.getElementById('submit-btn');
+const tahunAngkatanInput = document.getElementById('tahun_angkatan'); 
 
     function disableFields(state) {
         fields.forEach(id => {
@@ -159,10 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     disableFields(true);
 
-    // AJAX check NIM
-    const nimInput = document.getElementById('nim');
-const tahunAngkatanInput = document.getElementById('tahun_angkatan'); // Pastikan input ini ada
-const nimStatus = document.getElementById('nimStatus');
 
 nimInput.addEventListener('blur', function () {
     const nim = nimInput.value.trim();
