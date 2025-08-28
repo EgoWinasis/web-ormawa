@@ -144,7 +144,7 @@ class RegisterController extends Controller
     {
         $response = Http::get('https://api.oase.poltektegal.ac.id/api/web/mahasiswa', [
             'key' => '53jd4f6e-fl0b-4316-8k52-8361khf56a03',
-            'tahun_ajaran' => $request->tahun_angkatan,
+            'tahun_angkatan' => $request->tahun_angkatan,
             'nim' => $request->nim
         ]);
 
