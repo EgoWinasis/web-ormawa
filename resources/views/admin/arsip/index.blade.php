@@ -39,7 +39,7 @@
                                    <!-- Kolom Gambar -->
 <!-- Kolom Gambar -->
 <td class="text-center">
-    <div class="d-inline-flex align-items-center gap-2">
+    <div class="d-inline-flex align-items-center gap-3">
         <!-- Lihat Gambar -->
         <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
             <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
@@ -54,7 +54,7 @@
 
 <!-- Kolom Proposal -->
 <td class="text-center">
-    <div class="d-inline-flex align-items-center gap-2">
+    <div class="d-inline-flex align-items-center gap-3">
         <!-- Lihat Proposal -->
         <a href="{{ asset('storage/' . $k->proposal) }}" target="_blank" title="Lihat Proposal">
             <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
@@ -70,7 +70,7 @@
 <!-- Kolom LPJ -->
 <td class="text-center">
     @if ($k->lpj)
-        <div class="d-inline-flex align-items-center gap-2">
+        <div class="d-inline-flex align-items-center gap-3">
             <!-- Lihat LPJ -->
             <a href="{{ asset('storage/' . $k->lpj) }}" target="_blank" title="Lihat LPJ">
                 <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
