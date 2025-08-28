@@ -30,20 +30,32 @@
                         @csrf
 
                         <!-- NIM -->
-                        <div class="mb-3">
-                            <label for="nim" class="form-label">NIM <span class="text-danger">*</span></label>
-                            <div class="input-group">
-                                <input type="text" maxlength="9" value="{{ old('nim') }}" 
-                                       name="nim" id="nim" 
-                                       class="form-control @error('nim') is-invalid @enderror">
-                                <button type="button" class="btn btn-outline-primary" id="check-nim">Cek</button>
-                            </div>
-                            @error('nim')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <small id="nim-status" class="text-muted"></small>
-                            <small class="text-muted">Nim Harus di isi terlebih dahulu</small>
+                      <div class="mb-3">
+                        <label for="nim" class="form-label">NIM <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input type="text" maxlength="9" value="{{ old('nim') }}" 
+                                name="nim" id="nim" 
+                                class="form-control @error('nim') is-invalid @enderror">
+                            <button type="button" class="btn btn-outline-primary" id="check-nim">Cek</button>
                         </div>
+                        @error('nim')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <small id="nimStatus" class="text-muted"></small>
+                        <small class="text-muted">NIM harus diisi terlebih dahulu</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tahun_angkatan" class="form-label">Tahun Angkatan <span class="text-danger">*</span></label>
+                        <input type="text" value="{{ old('tahun_angkatan') }}" 
+                            name="tahun_angkatan" id="tahun_angkatan" 
+                            class="form-control @error('tahun_angkatan') is-invalid @enderror" 
+                            placeholder="Contoh: 2021">
+                        @error('tahun_angkatan')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
 
                         <!-- Nama Lengkap -->
                         <div class="mb-3">
@@ -148,82 +160,96 @@ document.addEventListener('DOMContentLoaded', function() {
     disableFields(true);
 
     // AJAX check NIM
-    checkButton.addEventListener('click', function() {
-        const nim = nimInput.value.trim();
-        if (!nim) {
-            nimStatus.textContent = "Masukkan NIM terlebih dahulu.";
-            nimStatus.classList.remove('text-success');
-            nimStatus.classList.add('text-danger');
-            return;
+    const nimInput = document.getElementById('nim');
+const tahunAngkatanInput = document.getElementById('tahun_angkatan'); // Pastikan input ini ada
+const nimStatus = document.getElementById('nimStatus');
+
+nimInput.addEventListener('blur', function () {
+    const nim = nimInput.value.trim();
+    const tahun_angkatan = tahunAngkatanInput.value.trim(); // Misalnya "2021"
+
+    if (!tahun_angkatan) {
+        nimStatus.textContent = "Tahun angkatan wajib diisi.";
+        nimStatus.classList.remove('text-success');
+        nimStatus.classList.add('text-danger');
+        return;
+    }
+
+    if (!nim) {
+        nimStatus.textContent = "Masukkan NIM terlebih dahulu.";
+        nimStatus.classList.remove('text-success');
+        nimStatus.classList.add('text-danger');
+        return;
+    }
+
+    nimStatus.textContent = "Memeriksa...";
+    nimStatus.classList.remove('text-danger');
+    nimStatus.classList.add('text-muted');
+
+    axios.get("https://api.oase.poltektegal.ac.id/api", {
+        params: {
+            key: "53jd4f6e-fl0b-4316-8k52-8361khf56a03",
+            tahun_angkatan: tahun_angkatan,
+            nim: nim
         }
+    })
+    .then(response => {
+        const data = response.data;
 
-        nimStatus.textContent = "Memeriksa...";
-        nimStatus.classList.remove('text-danger');
-        nimStatus.classList.add('text-muted');
+        if (data.exists) {
+            const tableHtml = `
+                <table class="table table-bordered" style="width:100%; text-align:left;">
+                    <tr><th>NIM</th><td>${data.nim}</td></tr>
+                    <tr><th>Nama</th><td>${data.nama}</td></tr>
+                    <tr><th>Jenis Kelamin</th><td>${data.jk}</td></tr>
+                    <tr><th>Prodi</th><td>${data.prodi}</td></tr>
+                    <tr><th>Semester</th><td>${data.semester}</td></tr>
+                    <tr><th>Kelas</th><td>${data.kelas}</td></tr>
+                </table>
+            `;
 
-        fetch("{{ route('check.nim') }}", {  
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            },
-            body: JSON.stringify({ nim })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.exists) {
-                let tableHtml = `
-                    <table class="table table-bordered" style="width:100%; text-align:left;">
-                        <tr><th>NIM</th><td>${data.nim}</td></tr>
-                        <tr><th>Nama</th><td>${data.nama}</td></tr>
-                        <tr><th>Jenis Kelamin</th><td>${data.jk}</td></tr>
-                        <tr><th>Prodi</th><td>${data.prodi}</td></tr>
-                        <tr><th>Semester</th><td>${data.semester}</td></tr>
-                        <tr><th>Kelas</th><td>${data.kelas}</td></tr>
-                    </table>
-                `;
-
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Data Mahasiswa Ditemukan',
-                    html: tableHtml,
-                    confirmButtonText: 'OK'
-                });
-
-                nimStatus.textContent = "NIM ditemukan. Silakan isi form.";
-                nimStatus.classList.remove('text-danger');
-                nimStatus.classList.add('text-success');
-                disableFields(false);
-
-                document.getElementById('name').readOnly = true;
-                document.getElementById('name').value = data.nama ?? '';
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'NIM tidak ditemukan',
-                    text: "Silakan periksa kembali NIM Anda",
-                    confirmButtonText: 'OK'
-                });
-
-                nimStatus.textContent = "NIM tidak ditemukan. Hubungi Administrator";
-                nimStatus.classList.remove('text-success');
-                nimStatus.classList.add('text-danger');
-                disableFields(true);
-            }
-        })
-        .catch(() => {
             Swal.fire({
-                icon: 'error',
-                title: 'Terjadi Kesalahan',
-                text: 'Tidak dapat memeriksa NIM. Coba lagi nanti.',
+                icon: 'success',
+                title: 'Data Mahasiswa Ditemukan',
+                html: tableHtml,
                 confirmButtonText: 'OK'
             });
 
-            nimStatus.textContent = "Terjadi kesalahan saat memeriksa.";
+            nimStatus.textContent = "NIM ditemukan. Silakan isi form.";
+            nimStatus.classList.remove('text-danger');
+            nimStatus.classList.add('text-success');
+            disableFields(false);
+
+            document.getElementById('name').readOnly = true;
+            document.getElementById('name').value = data.nama ?? '';
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'NIM tidak ditemukan',
+                text: "Silakan periksa kembali NIM Anda",
+                confirmButtonText: 'OK'
+            });
+
+            nimStatus.textContent = "NIM tidak ditemukan. Hubungi Administrator";
             nimStatus.classList.remove('text-success');
             nimStatus.classList.add('text-danger');
+            disableFields(true);
+        }
+    })
+    .catch(() => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Terjadi Kesalahan',
+            text: 'Tidak dapat memeriksa NIM. Coba lagi nanti.',
+            confirmButtonText: 'OK'
         });
+
+        nimStatus.textContent = "Terjadi kesalahan saat memeriksa.";
+        nimStatus.classList.remove('text-success');
+        nimStatus.classList.add('text-danger');
     });
+});
+
 
     // Password strength
     const power = document.getElementById("power-point-password");
