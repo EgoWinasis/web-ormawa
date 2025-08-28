@@ -12,6 +12,7 @@ use App\Models\Anggota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -142,12 +143,28 @@ class RegisterController extends Controller
 
     public function checkNim(Request $request)
     {
-        $response = Http::withHeaders([
-    'key' => '53jd4f6e-fl0b-4316-8k52-8361khf56a03',
-])->get('https://api.oase.poltektegal.ac.id/api/web/mahasiswa', [
-    'tahun_angkatan' => $request->tahun_angkatan,
-    'nim' => $request->nim
-]);
+        $url = 'https://api.oase.poltektegal.ac.id/api/web/mahasiswa';
+
+        $headers = [
+            'key' => '53jd4f6e-fl0b-4316-8k52-8361khf56a03',
+        ];
+
+        $query = [
+            'tahun_angkatan' => $request->tahun_angkatan,
+            'nim' => $request->nim,
+        ];
+
+        // 🔍 Log request detail sebelum dikirim
+        Log::info('Sending request to API:', [
+            'url' => $url,
+            'headers' => $headers,
+            'query' => $query,
+            'full_url' => $url . '?' . http_build_query($query)
+        ]);
+
+        $response = Http::withHeaders($headers)->get($url, $query);
+
+        Log::info('Response from API:', $response->json());
 
         return $response->json(); // kirim balik ke frontend
     }
