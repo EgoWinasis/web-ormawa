@@ -182,16 +182,15 @@ tahunAngkatanInput.addEventListener('blur', function () {
     nimStatus.classList.remove('text-danger');
     nimStatus.classList.add('text-muted');
 
-  axios.get("https://api.oase.poltektegal.ac.id/api/web/mahasiswa", {
-    params: {
-        key: "53jd4f6e-fl0b-4316-8k52-8361khf56a03",
-        tahun_angkatan: tahun_angkatan, // pastikan nama parameter ini sesuai dengan API
-        nim: nim // opsional, boleh dikosongkan
-    }
+
+axios.post("{{ route('check.nim') }}", {
+    tahun_angkatan: tahun_angkatan,
+    nim: nim
 })
     .then(response => {
         const data = response.data;
-
+        console.log(data);
+        
         if (data.exists) {
             const tableHtml = `
                 <table class="table table-bordered" style="width:100%; text-align:left;">
