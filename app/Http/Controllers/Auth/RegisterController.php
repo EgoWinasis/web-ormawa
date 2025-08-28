@@ -166,6 +166,22 @@ class RegisterController extends Controller
 
         Log::info('Response from API:', $response->json());
 
-        return $response->json(); // kirim balik ke frontend
+        $result = $response->json();
+
+        if ($response->successful() && $result['status']) {
+            $data = $result['data'][0] ?? [];
+
+            return response()->json([
+                'exists' => true,
+                'nim' => $data['nim'] ?? null,
+                'nama' => $data['nama_lengkap'] ?? null,
+                'jk' => $data['jk'] ?? '-',
+                'prodi' => $data['prodi']['nama'] ?? '-',
+                'semester' => $data['semester'] ?? '-',
+                'kelas' => $data['kelas'] ?? '-',
+            ]);
+        }
+
+        return response()->json(['exists' => false]);
     }
 }
