@@ -35,7 +35,7 @@
                                     <td>{{ $count }}</td>
                                     <td>{{ $k->tanggal_mulai }}</td>
                                   <td class="text-center">
-    <div class="d-inline-flex align-items-center gap-2">
+    <div class="d-inline-flex align-items-center gap-4">
         <!-- View Icon -->
         <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
             <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
