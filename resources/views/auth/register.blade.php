@@ -182,6 +182,7 @@ tahunAngkatanInput.addEventListener('blur', function () {
     nimStatus.classList.remove('text-danger');
     nimStatus.classList.add('text-muted');
 
+console.log(tahun_angkatan, nim);
 
 axios.post("{{ route('check.nim') }}", {
     tahun_angkatan: tahun_angkatan,
