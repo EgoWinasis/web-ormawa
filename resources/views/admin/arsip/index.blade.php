@@ -37,47 +37,55 @@
                                     <td>{{ $k->nama_kegiatan }}</td>
                                     <td>{{ $k->tempat_kegiatan }}</td>
                                    <!-- Kolom Gambar -->
+<!-- Kolom Gambar -->
 <td class="text-center">
-    <!-- Lihat Gambar -->
-    <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
-        <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer; margin-right: 5%;"></i>
-    </a>
+    <div class="d-inline-flex align-items-center gap-2">
+        <!-- Lihat Gambar -->
+        <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
+            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
+        </a>
 
-    <!-- Download Gambar -->
-    <a href="{{ asset('storage/' . $k->gambar) }}" download title="Download Gambar">
-        <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
-    </a>
+        <!-- Download Gambar -->
+        <a href="{{ asset('storage/' . $k->gambar) }}" download title="Download Gambar">
+            <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
+        </a>
+    </div>
 </td>
 
 <!-- Kolom Proposal -->
 <td class="text-center">
-    <!-- Lihat Proposal -->
-    <a href="{{ asset('storage/' . $k->proposal) }}" target="_blank" title="Lihat Proposal">
-        <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer; margin-right: 5%;"></i>
-    </a>
+    <div class="d-inline-flex align-items-center gap-2">
+        <!-- Lihat Proposal -->
+        <a href="{{ asset('storage/' . $k->proposal) }}" target="_blank" title="Lihat Proposal">
+            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
+        </a>
 
-    <!-- Download Proposal -->
-    <a href="{{ asset('storage/' . $k->proposal) }}" download="{{ $k->slug }}" title="Download Proposal">
-        <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
-    </a>
+        <!-- Download Proposal -->
+        <a href="{{ asset('storage/' . $k->proposal) }}" download="{{ $k->slug }}" title="Download Proposal">
+            <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
+        </a>
+    </div>
 </td>
 
 <!-- Kolom LPJ -->
 <td class="text-center">
     @if ($k->lpj)
-        <!-- Lihat LPJ -->
-        <a href="{{ asset('storage/' . $k->lpj) }}" target="_blank" title="Lihat LPJ">
-            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer; margin-right: 5%;"></i>
-        </a>
+        <div class="d-inline-flex align-items-center gap-2">
+            <!-- Lihat LPJ -->
+            <a href="{{ asset('storage/' . $k->lpj) }}" target="_blank" title="Lihat LPJ">
+                <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
+            </a>
 
-        <!-- Download LPJ -->
-        <a href="{{ asset('storage/' . $k->lpj) }}" download="{{ $k->slug }}" title="Download LPJ">
-            <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
-        </a>
+            <!-- Download LPJ -->
+            <a href="{{ asset('storage/' . $k->lpj) }}" download="{{ $k->slug }}" title="Download LPJ">
+                <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
+            </a>
+        </div>
     @else
         <span class="text-muted">Belum ada</span>
     @endif
 </td>
+
 
                                     <td>
                                         <a href="/admin/kegiatan/{{ $k->id }}" class="btn btn-sm btn-outline-info">
