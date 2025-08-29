@@ -2,38 +2,59 @@
 
 
 @section('konten')
-<div id="dashboard" class="container-dashboard d-flex active">
-    <canvas id="dashboardChart" width="400" height="200"></canvas>
+<div class="container mt-4">
+    <canvas id="dashboardChart"></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('dashboardChart').getContext('2d');
 
-    const chart = new Chart(ctx, {
-        type: 'bar',
+    new Chart(ctx, {
+        type: 'line',
         data: {
-            labels: @json($anggota->pluck('tahun')), // ambil tahun dari anggota
+            labels: @json($anggota->pluck('tahun')), // Tahun (X axis)
             datasets: [
                 {
-                    label: 'Total Anggota',
+                    label: 'Anggota',
                     data: @json($anggota->pluck('total')),
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    fill: false,
+                    tension: 0.3 // bikin garis agak melengkung
                 },
                 {
-                    label: 'Total Arsip',
+                    label: 'Kegiatan',
                     data: @json($kegiatan->pluck('total')),
-                    backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    fill: false,
+                    tension: 0.3
                 },
                 {
-                    label: 'Total News',
+                    label: 'News',
                     data: @json($news->pluck('total')),
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                },
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: false,
+                    tension: 0.3
+                }
             ]
         },
         options: {
             responsive: true,
+            interaction: {
+                mode: 'index',
+                intersect: false
+            },
+            plugins: {
+                tooltip: {
+                    enabled: true
+                },
+                legend: {
+                    position: 'top'
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
@@ -45,5 +66,6 @@
         }
     });
 </script>
+
 @endsection
 
