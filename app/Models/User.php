@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\CustomResetPasswordNotification;
 
-
-
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -64,9 +62,9 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new VerifyEmailNotification());
     }
     public function sendPasswordResetNotification($token)
-{
-    $this->notify(new CustomResetPasswordNotification($token));
-}
+    {
+        $this->notify(new CustomResetPasswordNotification($token));
+    }
     public function isAdmin()
     {
         return $this->role === 'admin';
