@@ -428,31 +428,64 @@ class AdminController extends Controller
                 ->where('users.id', $userId)
                 ->value('admin.nama_organisasi');
 
-
-            $kegiatan = Agenda::where('nama_organisasi', $org)->get();
+            // === Anggota per tahun ===
             $anggota = DB::table('users')
-                     ->join('anggota', 'anggota.user_id', '=', 'users.id')
-                     ->where('anggota.nama_organisasi', $org)
-                     ->select('users.*', 'anggota.*')  // select fields from both tables as needed
-                     ->get();
+                ->join('anggota', 'anggota.user_id', '=', 'users.id')
+                ->where('anggota.nama_organisasi', $org)
+                ->select(DB::raw('YEAR(anggota.created_at) as tahun'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tahun')
+                ->orderBy('tahun', 'asc')
+                ->get();
 
+            // === Kegiatan per tahun ===
+            $kegiatan = Agenda::where('nama_organisasi', $org)
+                ->select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tahun')
+                ->orderBy('tahun', 'asc')
+                ->get();
+
+            // === News (LPJ) per tahun ===
+            $news = Agenda::where('nama_organisasi', $org)
+                ->whereNotNull('lpj')
+                ->select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tahun')
+                ->orderBy('tahun', 'asc')
+                ->get();
 
             $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get();
+
             $user = DB::table('users')
                ->join('admin', 'admin.user_id', '=', 'users.id')
                ->where('users.id', $userId)
                ->first();
 
-            return view('admin.dashboard.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
+            return view('admin.dashboard.index', compact('user', 'rutin', 'anggota', 'kegiatan', 'news'));
+
         } elseif (Auth::user()->role == 'super_admin') {
-            $kegiatan = Agenda::all();
-            $anggota = Anggota::all();
+
+            // Semua organisasi
+            $anggota = Anggota::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tahun')
+                ->orderBy('tahun', 'asc')
+                ->get();
+
+            $kegiatan = Agenda::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tahun')
+                ->orderBy('tahun', 'asc')
+                ->get();
+
+            $news = Agenda::whereNotNull('lpj')
+                ->select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tahun')
+                ->orderBy('tahun', 'asc')
+                ->get();
+
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get();
             $user = User::find(Auth::user()->id);
-            return view('superadmin.dashboard.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
+
+            return view('superadmin.dashboard.index', compact('user', 'anggota', 'kegiatan', 'news', 'admin'));
         }
+
     }
 
     public function tambahAdminView()
