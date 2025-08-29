@@ -32,11 +32,19 @@
                                 <tr>
                                     <td>{{ $count }}</td>
                                     <td>{{ $k->tanggal_mulai }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank">
-                                            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
-                                        </a>
-                                    </td>
+                                     <td class="text-center">
+    <div class="d-inline-flex align-items-center gap-4">
+        <!-- View Icon -->
+        <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
+            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
+        </a>
+
+        <!-- Download Icon -->
+        <a href="{{ asset('storage/' . $k->gambar) }}" download title="Unduh Gambar">
+            <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
+        </a>
+    </div>
+</td>
                                     <td>{{ $k->nama_kegiatan }}</td>
                                     <td>{{ $k->tempat_kegiatan }}</td>
                                 </tr>
