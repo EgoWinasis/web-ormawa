@@ -157,7 +157,17 @@ const tahunAngkatanInput = document.getElementById('tahun_angkatan');
             document.getElementById(id).disabled = state;
         });
     }
-    disableFields(true);
+
+    
+    const nama = document.getElementById("name").value.trim();
+        const nim = document.getElementById("nim").value.trim();
+
+        if (nama === "" || nim === "") {
+            disableFields(true);  // disable kalau kosong
+        } else {
+            disableFields(false); // tetap aktif kalau ada value
+            nimStatus.textContent = "NIM ditemukan. Silakan isi form.";
+        }
 
 
 tahunAngkatanInput.addEventListener('blur', function () {
@@ -182,7 +192,7 @@ tahunAngkatanInput.addEventListener('blur', function () {
     nimStatus.classList.remove('text-danger');
     nimStatus.classList.add('text-muted');
 
-console.log(tahun_angkatan, nim);
+
 
 axios.post("{{ route('check.nim') }}", {
     tahun_angkatan: tahun_angkatan,
@@ -190,14 +200,12 @@ axios.post("{{ route('check.nim') }}", {
 })
     .then(response => {
         const data = response.data;
-        console.log(data);
         
         if (data.exists) {
             const tableHtml = `
                 <table class="table table-bordered" style="width:100%; text-align:left;">
                     <tr><th>NIM</th><td>${data.nim}</td></tr>
                     <tr><th>Nama</th><td>${data.nama}</td></tr>
-                    <tr><th>Jenis Kelamin</th><td>${data.jk}</td></tr>
                     <tr><th>Prodi</th><td>${data.prodi}</td></tr>
                     <tr><th>Semester</th><td>${data.semester}</td></tr>
                     <tr><th>Kelas</th><td>${data.kelas}</td></tr>
