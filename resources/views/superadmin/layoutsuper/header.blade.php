@@ -46,11 +46,11 @@
             <span class="fw-bold text-white">Ormawa</span>
         </a>
 
-        <!-- Profile -->
+        {{-- <!-- Profile -->
         <div class="d-flex align-items-center ms-auto">
             <p class="mb-0 fw-semibold me-3 text-truncate text-white" style="max-width: 150px;">{{ $user->name }}</p>
             <img src="{{ asset('storage/' . $user->foto) }}" alt="Foto Profile" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
-        </div>
+        </div> --}}
     </div>
 </nav>
 
