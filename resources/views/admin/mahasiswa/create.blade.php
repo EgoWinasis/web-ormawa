@@ -37,8 +37,9 @@
 
                 <!-- Card Body -->
                 <div class="card-body">
-                    <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
-                        <thead class="table-light">
+                    <div class="table-responsive">
+                    <table class="table table-hover table-bordered align-middle" id="anggotaTable">
+                        <thead class="table-primary">
                             <tr>
                                 <th>No</th>
                                 <th>Prodi</th>
@@ -54,6 +55,7 @@
 
                         </tbody>
                     </table>
+                </div>
                 </div>
             </div>
         </div>
