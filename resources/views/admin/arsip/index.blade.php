@@ -25,6 +25,7 @@
             <th>Gambar</th>
             <th>Proposal</th>
             <th>LPJ</th>
+            <th>Keterangan</th> <!-- Tambahan -->
             <th>Panitia</th>
         </tr>
     </thead>
@@ -85,6 +86,22 @@
                     @endif
                 </td>
 
+                <!-- Keterangan -->
+                <td class="text-center">
+                    @php
+                        $hasProposal = !empty($k->proposal);
+                        $hasLPJ = !empty($k->lpj);
+                    @endphp
+
+                    @if ($hasProposal && $hasLPJ)
+                        <span class="badge bg-success">Lengkap</span>
+                    @elseif ($hasProposal || $hasLPJ)
+                        <span class="badge bg-warning text-dark">Belum Lengkap</span>
+                    @else
+                        <span class="badge bg-secondary">Belum Ada File</span>
+                    @endif
+                </td>
+
                 <!-- Panitia -->
                 <td class="text-center">
                     @if ($k->users && count($k->users) > 0)
@@ -99,6 +116,7 @@
         @endforeach
     </tbody>
 </table>
+
 
                     </div>
                 </div>
