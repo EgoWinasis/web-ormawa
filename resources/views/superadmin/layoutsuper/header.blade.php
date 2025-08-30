@@ -10,7 +10,7 @@
 <!-- Custom Style -->
 <style>
     .active {
-        background-color: #87CEEB;
+        background-color: #29A1D4;
         font-weight: bold;
         color: white !important;
     }
@@ -30,7 +30,7 @@
 </style>
 
 <!-- HEADER -->
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #87CEEB;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #29A1D4;">
     <div class="container-fluid">
         <!-- Sidebar toggle (mobile only) -->
         <button class="btn btn-outline-dark d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
