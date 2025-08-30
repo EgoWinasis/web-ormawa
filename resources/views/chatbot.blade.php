@@ -1816,17 +1816,24 @@ if (typeof activeMenu === 'object') {
             handleUserInput(message);
         });
 
-        chatIcon.addEventListener('click', async () => {
-            chatBox.classList.toggle('d-none');
-            const icon = chatIcon.querySelector('i');
-            icon.classList.toggle('fa-times');
-            icon.classList.toggle('fa-comment-dots');
+       let isFirstOpen = true; // penanda apakah ini pertama kali dibuka
 
-            if (!chatBox.classList.contains('chatbox') && chatbox.innerHTML.trim() === '') {
-                addMessage("Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑, ketikan pertanyaan sesuai menu yang muncul", 'bot');
-                await showMainMenu();
-            }
-        });
+chatIcon.addEventListener('click', async () => {
+    chatBox.classList.toggle('d-none');
+
+    const icon = chatIcon.querySelector('i');
+    icon.classList.toggle('fa-times');
+    icon.classList.toggle('fa-comment-dots');
+
+    // Cek jika chatbox baru pertama kali dibuka
+    if (!chatBox.classList.contains('d-none') && isFirstOpen) {
+        addMessage("Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑, ketikan pertanyaan sesuai menu yang muncul", 'bot');
+        await showMainMenu();
+
+        isFirstOpen = false; // ubah flag agar tidak terulang
+    }
+});
+
 
         chatbox.addEventListener('click', async function (e) {
             if (e.target.classList.contains('menu-btn')) {
