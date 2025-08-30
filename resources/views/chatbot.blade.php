@@ -1817,7 +1817,7 @@ if (typeof activeMenu === 'object') {
         });
 
         chatIcon.addEventListener('click', async () => {
-            chatBox.classList.toggle('chatbox');
+            chatBox.classList.toggle('d-none');
             const icon = chatIcon.querySelector('i');
             icon.classList.toggle('fa-times');
             icon.classList.toggle('fa-comment-dots');
