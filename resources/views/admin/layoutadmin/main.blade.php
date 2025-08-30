@@ -51,7 +51,7 @@
 
     <!-- container -->
     <div class="container-main d-flex">
-        @include('admin.layoutadmin.sidebar')
+        {{-- @include('admin.layoutadmin.sidebar') --}}
 
         <div class="container-content">
             @yield('konten')
