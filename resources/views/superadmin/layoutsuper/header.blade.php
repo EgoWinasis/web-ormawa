@@ -9,7 +9,7 @@
 
 <!-- Custom Style -->
 <style>
-    .nav-link.active {
+    .active {
         background-color: #87CEEB;
         font-weight: bold;
         color: white !important;
