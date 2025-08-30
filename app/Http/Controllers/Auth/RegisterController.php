@@ -90,7 +90,7 @@ class RegisterController extends Controller
             ]);
 
             // 2. Get Mahasiswa data by NIM
-            $mahasiswa = DB::table('mahasiswas')->where('nim', $data['nim'])->first();
+            $mahasiswa = true;
 
             // 3. Insert to Anggota
             if ($mahasiswa) {
