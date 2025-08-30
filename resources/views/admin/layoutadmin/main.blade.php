@@ -81,6 +81,8 @@
        $('#anggotaTable').DataTable({
   ordering: false
 });
+    
+      
 
 
         $('.toggle-agendas').click(function () {
@@ -200,7 +202,9 @@ flatpickr("#date-start-input", {
         defaultDate: new Date()           // Tanggal default: hari ini
     });
 
-    
+     $('#pengurusTable').DataTable({
+  ordering: false
+});
 </script>
 
 </html>

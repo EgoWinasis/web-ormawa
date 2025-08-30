@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="card-body">
-                        <table class="table table-hover table-bordered align-middle" id="pengurusTable">
+                        <table class="table table-hover table-bordered align-middle fl-table" id="pengurusTable">
                             <thead class="table-light">
                                 <tr>
                                     <th>No</th>
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="card-body">
-                        <table class="table table-hover table-bordered align-middle" id="anggotaTable">
+                        <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
                             <thead class="table-light">
                                 <tr>
                                     <th>No</th>
