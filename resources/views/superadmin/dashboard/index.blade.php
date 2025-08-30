@@ -41,7 +41,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h5 class="card-title">Grafik Admin</h5>
-                        <canvas id="userChart"></canvas>
+                        <canvas id="adminChart"></canvas>
                     </div>
                 </div>
             </div>
