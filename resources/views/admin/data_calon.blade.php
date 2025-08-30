@@ -67,35 +67,39 @@
                                     </tr>
 
                                     <tr>
-                                        <th>KTM</th>
-                                        <td>
-                                            <a download="{{ $panitia->ktm }}"
-                                                href="{{ asset('storage/' . $panitia->ktm) }}"
-                                                class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Riwayat Studi</th>
-                                        <td>
-                                            <a download="{{ $panitia->riwayat_studi }}"
-                                                href="{{ asset('storage/' . $panitia->riwayat_studi) }}"
-                                                class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Sertifikasi</th>
-                                        <td>
-                                            <a download="{{ $panitia->sertif }}"
-                                                href="{{ asset('storage/' . $panitia->sertif) }}"
-                                                class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+    <th>KTM</th>
+    <td>
+        <a href="{{ asset('storage/' . $panitia->ktm) }}" target="_blank" class="btn btn-sm btn-outline-info" title="Lihat KTM">
+            <i class="fas fa-eye"></i>
+        </a>
+        <a download="{{ $panitia->ktm }}" href="{{ asset('storage/' . $panitia->ktm) }}" class="btn btn-sm btn-outline-primary" title="Download KTM">
+            <i class="fas fa-download"></i>
+        </a>
+    </td>
+</tr>
+<tr>
+    <th>Riwayat Studi</th>
+    <td>
+        <a href="{{ asset('storage/' . $panitia->riwayat_studi) }}" target="_blank" class="btn btn-sm btn-outline-info" title="Lihat Riwayat Studi">
+            <i class="fas fa-eye"></i>
+        </a>
+        <a download="{{ $panitia->riwayat_studi }}" href="{{ asset('storage/' . $panitia->riwayat_studi) }}" class="btn btn-sm btn-outline-primary" title="Download Riwayat Studi">
+            <i class="fas fa-download"></i>
+        </a>
+    </td>
+</tr>
+<tr>
+    <th>Sertifikasi</th>
+    <td>
+        <a href="{{ asset('storage/' . $panitia->sertif) }}" target="_blank" class="btn btn-sm btn-outline-info" title="Lihat Sertifikasi">
+            <i class="fas fa-eye"></i>
+        </a>
+        <a download="{{ $panitia->sertif }}" href="{{ asset('storage/' . $panitia->sertif) }}" class="btn btn-sm btn-outline-primary" title="Download Sertifikasi">
+            <i class="fas fa-download"></i>
+        </a>
+    </td>
+</tr>
+
                                 </tbody>
                             </table>
                         </div>
