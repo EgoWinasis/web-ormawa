@@ -202,22 +202,22 @@ axios.post("{{ route('check.nim') }}", {
         const data = response.data;
         
         if (data.exists) {
-            const tableHtml = `
-                <table class="table table-bordered" style="width:100%; text-align:left;">
-                    <tr><th>NIM</th><td>${data.nim}</td></tr>
-                    <tr><th>Nama</th><td>${data.nama}</td></tr>
-                    <tr><th>Prodi</th><td>${data.prodi}</td></tr>
-                    <tr><th>Semester</th><td>${data.semester}</td></tr>
-                    <tr><th>Kelas</th><td>${data.kelas}</td></tr>
-                </table>
-            `;
+            // const tableHtml = `
+            //     <table class="table table-bordered" style="width:100%; text-align:left;">
+            //         <tr><th>NIM</th><td>${data.nim}</td></tr>
+            //         <tr><th>Nama</th><td>${data.nama}</td></tr>
+            //         <tr><th>Prodi</th><td>${data.prodi}</td></tr>
+            //         <tr><th>Semester</th><td>${data.semester}</td></tr>
+            //         <tr><th>Kelas</th><td>${data.kelas}</td></tr>
+            //     </table>
+            // `;
 
-            Swal.fire({
-                icon: 'success',
-                title: 'Data Mahasiswa Ditemukan',
-                html: tableHtml,
-                confirmButtonText: 'OK'
-            });
+            // Swal.fire({
+            //     icon: 'success',
+            //     title: 'Data Mahasiswa Ditemukan',
+            //     html: tableHtml,
+            //     confirmButtonText: 'OK'
+            // });
 
             nimStatus.textContent = "NIM ditemukan. Silakan isi form.";
             nimStatus.classList.remove('text-danger');
