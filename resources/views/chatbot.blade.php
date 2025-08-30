@@ -9,13 +9,14 @@
 </div>
 
 <!-- Chatbot Box -->
-<div id="chatbot-box" class="card chatbot-box shadow d-none">
+<div id="chatbot-box" class="card shadow d-none"
+     style="position: fixed; bottom: 80px; right: 20px; width: 350px; max-width: 90%; z-index: 1050;">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <span>Chatbot Ormawa</span>
-
+        <button class="btn btn-sm btn-light" id="close-chatbot"><i class="fas fa-times"></i></button>
     </div>
-    <div class="card-body" id="chatbox">
-
+    <div class="card-body" id="chatbox" style="max-height: 300px; overflow-y: auto;">
+        <!-- Chat content here -->
     </div>
     <div class="card-footer bg-white">
         <div class="input-group">
