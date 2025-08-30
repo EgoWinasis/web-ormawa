@@ -5,7 +5,7 @@
     <div class="row g-3">
 
         <!-- Card Anggota -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-12 col-lg-6">
             <div class="card shadow">
                 <div class="card-body">
                     <h5 class="card-title">Grafik Anggota</h5>
@@ -15,7 +15,7 @@
         </div>
 
         <!-- Card Kegiatan -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-12 col-lg-6">
             <div class="card shadow">
                 <div class="card-body">
                     <h5 class="card-title">Grafik Kegiatan</h5>
@@ -25,7 +25,7 @@
         </div>
 
         <!-- Card News -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-12 col-lg-6">
             <div class="card shadow">
                 <div class="card-body">
                     <h5 class="card-title">Grafik News</h5>
