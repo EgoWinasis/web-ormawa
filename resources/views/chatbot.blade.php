@@ -13,7 +13,7 @@
      style="position: fixed; bottom: 80px; right: 20px; width: 350px; max-width: 90%; z-index: 1050; height: 50%;">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <span>Chatbot Ormawa</span>
-        <button class="btn btn-sm btn-light" id="close-chatbot"><i class="fas fa-times"></i></button>
+        
     </div>
     <div class="card-body chatbox" id="chatbox" style="max-height: 800px; overflow-y: auto;">
         <!-- Chat content here -->

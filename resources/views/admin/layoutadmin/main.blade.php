@@ -98,6 +98,12 @@
             </li>
         </ul>
     </div>
+     <div class="px-3 py-2 border-top mt-3">
+        <small class="text-muted d-block">
+            Login sebagai:<br>
+            <strong>{{ Auth::user()->name }}</strong>
+        </small>
+    </div>
 </div>
 
 <!-- MAIN LAYOUT -->
@@ -131,6 +137,12 @@
                     </form>
                 </li>
             </ul>
+             <div class="px-3 py-2 border-top mt-3">
+        <small class="text-muted d-block">
+            Login sebagai:<br>
+            <strong>{{ Auth::user()->name }}</strong>
+        </small>
+    </div>
         </div>
 
         <!-- MAIN CONTENT -->
