@@ -89,31 +89,40 @@ class RegisterController extends Controller
                 'password' => Hash::make($data['password']),
             ]);
 
-            // 2. Get Mahasiswa data by NIM
-            $mahasiswa = true;
+            // 2. Call external API to get Mahasiswa data
+            $url = 'https://api.oase.poltektegal.ac.id/api/web/mahasiswa';
+            $headers = ['key' => '53jd4f6e-fl0b-4316-8k52-8361khf56a03'];
+            $query = [
+                'tahun_angkatan' => $data['tahun_angkatan'], // Pastikan ini dikirim dari form
+                'nim' => $data['nim'],
+            ];
 
-            // 3. Insert to Anggota
-            if ($mahasiswa) {
-                $anggotaInserted = DB::table('anggota')->insert([
-                    'user_id'  => $user->id,
-                    'nim'      => $mahasiswa->nim,
-                    'prodi'    => $mahasiswa->prodi,
-                    'semester' => $mahasiswa->semester,
-                    'nomor'    => $data['nomor']
-                ]);
+            $response = Http::withHeaders($headers)->get($url, $query);
+            $result = $response->json();
 
-                if (! $anggotaInserted) {
-                    // Throw exception to rollback transaction
-                    throw new \Exception('Failed to insert into anggota.');
-                }
-            } else {
-                // Mahasiswa not found, rollback
-                throw new \Exception('Mahasiswa not found for NIM: ' . $data['nim']);
+            if (! $response->successful() || !$result['status'] || empty($result['data'])) {
+                throw new \Exception('Mahasiswa tidak ditemukan di API.');
+            }
+
+            $mahasiswa = $result['data'][0];
+
+            // 3. Insert ke tabel anggota
+            $anggotaInserted = DB::table('anggota')->insert([
+                'user_id'  => $user->id,
+                'nim'      => $mahasiswa['nim'],
+                'prodi'    => $mahasiswa['prodi']['nama'] ?? '-',
+                'semester' => $mahasiswa['semester'] ?? '-',
+                'nomor'    => $data['nomor'],
+            ]);
+
+            if (! $anggotaInserted) {
+                throw new \Exception('Gagal menyimpan data ke tabel anggota.');
             }
 
             return $user;
         });
     }
+
 
     //     public function checkNim(Request $request)
     // {
