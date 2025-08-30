@@ -49,7 +49,7 @@
 
     <!-- container -->
     <div class="container-main d-flex">
-        @include('superadmin.layoutsuper.sidebar')
+        {{-- @include('superadmin.layoutsuper.sidebar') --}}
 
         <div class="container-content">
             @yield('konten')
