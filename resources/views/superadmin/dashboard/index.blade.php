@@ -51,16 +51,15 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const tahunLabels = @json($anggota->pluck('tahun'));
 
-    // Fungsi bantu bikin line chart
-    function buatChart(id, label, data, borderColor, backgroundColor) {
+<script>
+    // Buat chart per data dengan label tahun dan data masing-masing
+    function buatChart(id, label, labels, data, borderColor, backgroundColor) {
         const ctx = document.getElementById(id).getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: tahunLabels,
+                labels: labels,
                 datasets: [{
                     label: label,
                     data: data,
@@ -87,10 +86,45 @@
         });
     }
 
-    // Buat grafik satu per satu
-    buatChart('anggotaChart', 'Anggota', @json($anggota->pluck('total')), 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 0.2)');
-    buatChart('kegiatanChart', 'Kegiatan', @json($kegiatan->pluck('total')), 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 0.2)');
-    buatChart('newsChart', 'News', @json($news->pluck('total')), 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 0.2)');
-    buatChart('userChart', 'User', @json($userTotal->pluck('total')), 'rgba(40, 192, 192, 1)', 'rgba(75, 192, 192, 0.2)');
+    // Grafik Anggota
+    buatChart(
+        'anggotaChart',
+        'Anggota',
+        @json($anggota->pluck('tahun')),
+        @json($anggota->pluck('total')),
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 235, 0.2)'
+    );
+
+    // Grafik Kegiatan
+    buatChart(
+        'kegiatanChart',
+        'Kegiatan',
+        @json($kegiatan->pluck('tahun')),
+        @json($kegiatan->pluck('total')),
+        'rgba(255, 206, 86, 1)',
+        'rgba(255, 206, 86, 0.2)'
+    );
+
+    // Grafik News
+    buatChart(
+        'newsChart',
+        'News',
+        @json($news->pluck('tahun')),
+        @json($news->pluck('total')),
+        'rgba(75, 192, 192, 1)',
+        'rgba(75, 192, 192, 0.2)'
+    );
+
+    // Grafik User
+    buatChart(
+        'userChart',
+        'User',
+        @json($userTotal->pluck('tahun')),
+        @json($userTotal->pluck('total')),
+        'rgba(40, 192, 192, 1)',
+        'rgba(75, 192, 192, 0.2)'
+    );
 </script>
+
 @endsection

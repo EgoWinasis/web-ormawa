@@ -44,15 +44,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const tahunLabels = @json($anggota->pluck('tahun'));
-
-    // Fungsi membuat chart
-    function buatChart(id, label, data, borderColor, backgroundColor) {
+    // Fungsi membuat chart per kategori
+    function buatChart(id, label, labels, data, borderColor, backgroundColor) {
         const ctx = document.getElementById(id).getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: tahunLabels,
+                labels: labels,
                 datasets: [{
                     label: label,
                     data: data,
@@ -79,10 +77,33 @@
         });
     }
 
-    // Buat grafik
-    buatChart('anggotaChart', 'Anggota', @json($anggota->pluck('total')), 'rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 0.2)');
-    buatChart('kegiatanChart', 'Kegiatan', @json($kegiatan->pluck('total')), 'rgba(255, 206, 86, 1)', 'rgba(255, 206, 86, 0.2)');
-    buatChart('newsChart', 'News', @json($news->pluck('total')), 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 0.2)');
+    // Buat grafik per kategori dengan label masing-masing
+    buatChart(
+        'anggotaChart',
+        'Anggota',
+        @json($anggota->pluck('tahun')),
+        @json($anggota->pluck('total')),
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 235, 0.2)'
+    );
+
+    buatChart(
+        'kegiatanChart',
+        'Kegiatan',
+        @json($kegiatan->pluck('tahun')),
+        @json($kegiatan->pluck('total')),
+        'rgba(255, 206, 86, 1)',
+        'rgba(255, 206, 86, 0.2)'
+    );
+
+    buatChart(
+        'newsChart',
+        'News',
+        @json($news->pluck('tahun')),
+        @json($news->pluck('total')),
+        'rgba(75, 192, 192, 1)',
+        'rgba(75, 192, 192, 0.2)'
+    );
 </script>
 
 @endsection
