@@ -3,22 +3,21 @@
 
 @section('konten')
 
+<div class="container py-4" style="margin-top: 2rem">
+    <h2 class="text-center"></h2>
 
-<div class="container-arsip d-flex active">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <!-- Card Header -->
+                <div class="card-header d-flex justify-content-start align-items-center">
+                    <h5>ARSIP SEMUA UNIT ORMAWA</h5>
+                </div>
 
-    <div class="container" style="padding-top:7%">
-        <h2 class="text-center"></h2>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="table-responsive">
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card shadow mb-4">
-                    <!-- Card Header -->
-                    <div class="card-header d-flex justify-content-start align-items-center">
-                        <h5>ARSIP SEMUA UNIT ORMAWA</h5>
-                    </div>
-
-                    <!-- Card Body -->
-                    <div class="card-body">
                         <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
                             <thead class="table-light">
                                 <tr>
@@ -133,7 +132,7 @@
                 </div>
             </div>
         </div>
-
     </div>
+
 </div>
 @endsection
