@@ -40,7 +40,7 @@
             <div class="col-md-6 mb-4">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h5 class="card-title">Grafik User</h5>
+                        <h5 class="card-title">Grafik Admin</h5>
                         <canvas id="userChart"></canvas>
                     </div>
                 </div>
@@ -118,8 +118,8 @@
 
     // Grafik User
     buatChart(
-        'userChart',
-        'User',
+        'adminChart',
+        'Admin',
         @json($userTotal->pluck('tahun')),
         @json($userTotal->pluck('total')),
         'rgba(40, 192, 192, 1)',

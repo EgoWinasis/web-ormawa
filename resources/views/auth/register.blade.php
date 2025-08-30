@@ -40,7 +40,7 @@
                         @error('nim')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                        <small id="nim-status" class="text-muted">NIM harus diisi terlebih dahulu</small>
+                        <small id="nim-status" class="text-danger">NIM harus diisi terlebih dahulu</small>
                     </div>
 
                     <div class="mb-3">

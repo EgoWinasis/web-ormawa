@@ -469,7 +469,7 @@ class AdminController extends Controller
                 ->orderBy('tahun', 'asc')
                 ->get();
 
-            $userTotal = User::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
+            $userTotal = Admin::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
                 ->groupBy('tahun')
                 ->orderBy('tahun', 'asc')
                 ->get();
