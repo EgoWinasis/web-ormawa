@@ -15,7 +15,7 @@
         <span>Chatbot Ormawa</span>
         <button class="btn btn-sm btn-light" id="close-chatbot"><i class="fas fa-times"></i></button>
     </div>
-    <div class="card-body d-none" id="chatbox" style="max-height: 800px; overflow-y: auto;">
+    <div class="card-body chatbox" id="chatbox" style="max-height: 800px; overflow-y: auto;">
         <!-- Chat content here -->
     </div>
     <div class="card-footer bg-white">
@@ -1817,12 +1817,12 @@ if (typeof activeMenu === 'object') {
         });
 
         chatIcon.addEventListener('click', async () => {
-            chatBox.classList.toggle('d-none');
+            chatBox.classList.toggle('chatbox');
             const icon = chatIcon.querySelector('i');
             icon.classList.toggle('fa-times');
             icon.classList.toggle('fa-comment-dots');
 
-            if (!chatBox.classList.contains('d-none') && chatbox.innerHTML.trim() === '') {
+            if (!chatBox.classList.contains('chatbox') && chatbox.innerHTML.trim() === '') {
                 addMessage("Hai! Silahkan bertanya seputar Organisasi 🧑‍🤝‍🧑, ketikan pertanyaan sesuai menu yang muncul", 'bot');
                 await showMainMenu();
             }
