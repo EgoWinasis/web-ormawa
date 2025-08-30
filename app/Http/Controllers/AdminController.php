@@ -833,8 +833,11 @@ class AdminController extends Controller
 
         // Update jabatan in anggota table where user_id = $userId
         $updated = DB::table('anggota')
-            ->where('user_id', $userId)
-            ->update(['jabatan' => $request->jabatan]);
+    ->where('user_id', $userId)
+    ->update([
+         'jabatan' => strtolower($request->jabatan)
+    ]);
+
 
         if ($updated) {
             return response()->json(['success' => true]);

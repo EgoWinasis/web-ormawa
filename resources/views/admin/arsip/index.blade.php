@@ -25,6 +25,7 @@
                                     <th>Gambar</th>
                                     <th>Proposal</th>
                                     <th>LPJ</th>
+                                    <th>Keterangan</th>
                                     <th>Panitia</th>
                                 </tr>
                             </thead>
@@ -86,7 +87,20 @@
     @endif
 </td>
 
+<td class="text-center">
+    @php
+        $hasProposal = !empty($k->proposal);
+        $hasLPJ = !empty($k->lpj);
+    @endphp
 
+    @if ($hasProposal && $hasLPJ)
+        <span class="badge bg-success">Lengkap</span>
+    @elseif ($hasProposal || $hasLPJ)
+        <span class="badge bg-warning text-dark">Belum Lengkap</span>
+    @else
+        <span class="badge bg-secondary">Belum Ada File</span>
+    @endif
+</td>
                                     <td>
                                         <a href="/admin/kegiatan/{{ $k->id }}" class="btn btn-sm btn-outline-info">
                                             <i class="fas fa-users"></i>
