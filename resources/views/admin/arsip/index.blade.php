@@ -16,105 +16,100 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Kegiatan</th>
-                                    <th>Tempat</th>
-                                    <th>Gambar</th>
-                                    <th>Proposal</th>
-                                    <th>LPJ</th>
-                                    <th>Keterangan</th>
-                                    <th>Panitia</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php($count = 0)
-                                @foreach ($kegiatan as $k)
-                                @php($count++)
-                                <tr>
-                                    <td>{{ $count }}</td>
-                                    <td>{{ $k->nama_kegiatan }}</td>
-                                    <td>{{ $k->tempat_kegiatan }}</td>
-                                   <!-- Kolom Gambar -->
-<!-- Kolom Gambar -->
-<td class="text-center">
-    <div class="d-inline-flex align-items-center gap-4">
-        <!-- Lihat Gambar -->
-        <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
-            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
-        </a>
+               <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
+    <thead class="table-light">
+        <tr>
+            <th>No</th>
+            <th>Nama Kegiatan</th>
+            <th>Tempat</th>
+            <th>Gambar</th>
+            <th>Proposal</th>
+            <th>LPJ</th>
+            <th>Keterangan</th>
+            <th>Panitia</th>
+        </tr>
+    </thead>
+    <tbody>
+        @php($count = 0)
+        @foreach ($kegiatan as $k)
+            @php($count++)
+            <tr>
+                <td>{{ $count }}</td>
+                <td>{{ $k->nama_kegiatan }}</td>
+                <td>{{ $k->tempat_kegiatan }}</td>
 
-        <!-- Download Gambar -->
-        <a href="{{ asset('storage/' . $k->gambar) }}" download title="Download Gambar">
-            <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
-        </a>
-    </div>
-</td>
+                <!-- Kolom Gambar -->
+                <td class="text-center">
+                    <div class="d-inline-flex align-items-center gap-4">
+                        <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
+                            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
+                        </a>
+                        <a href="{{ asset('storage/' . $k->gambar) }}" download title="Download Gambar">
+                            <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
+                        </a>
+                    </div>
+                </td>
 
-<!-- Kolom Proposal -->
-<td class="text-center">
-    <div class="d-inline-flex align-items-center gap-4">
-        <!-- Lihat Proposal -->
-        <a href="{{ asset('storage/' . $k->proposal) }}" target="_blank" title="Lihat Proposal">
-            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
-        </a>
+                <!-- Kolom Proposal -->
+                <td class="text-center">
+                    <div class="d-inline-flex align-items-center gap-4">
+                        <a href="{{ asset('storage/' . $k->proposal) }}" target="_blank" title="Lihat Proposal">
+                            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
+                        </a>
+                        <a href="{{ asset('storage/' . $k->proposal) }}" download="{{ $k->slug }}" title="Download Proposal">
+                            <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
+                        </a>
+                    </div>
+                </td>
 
-        <!-- Download Proposal -->
-        <a href="{{ asset('storage/' . $k->proposal) }}" download="{{ $k->slug }}" title="Download Proposal">
-            <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
-        </a>
-    </div>
-</td>
+                <!-- Kolom LPJ -->
+                <td class="text-center">
+                    @if ($k->lpj)
+                        <div class="d-inline-flex align-items-center gap-4">
+                            <a href="{{ asset('storage/' . $k->lpj) }}" target="_blank" title="Lihat LPJ">
+                                <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
+                            </a>
+                            <a href="{{ asset('storage/' . $k->lpj) }}" download="{{ $k->slug }}" title="Download LPJ">
+                                <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
+                            </a>
+                        </div>
+                    @else
+                        <span class="text-muted">Belum ada</span>
+                    @endif
+                </td>
 
-<!-- Kolom LPJ -->
-<td class="text-center">
-    @if ($k->lpj)
-        <div class="d-inline-flex align-items-center gap-4">
-            <!-- Lihat LPJ -->
-            <a href="{{ asset('storage/' . $k->lpj) }}" target="_blank" title="Lihat LPJ">
-                <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
-            </a>
+                <!-- Kolom Keterangan -->
+                <td class="text-center">
+                    @php
+                        $hasProposal = !empty($k->proposal);
+                        $hasLPJ = !empty($k->lpj);
+                    @endphp
 
-            <!-- Download LPJ -->
-            <a href="{{ asset('storage/' . $k->lpj) }}" download="{{ $k->slug }}" title="Download LPJ">
-                <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
-            </a>
-        </div>
-    @else
-        <span class="text-muted">Belum ada</span>
-    @endif
-</td>
+                    @if ($hasProposal && $hasLPJ)
+                        <span class="badge bg-success">Lengkap</span>
+                    @elseif ($hasProposal || $hasLPJ)
+                        <span class="badge bg-warning text-dark">Belum Lengkap</span>
+                    @else
+                        <span class="badge bg-secondary">Belum Ada File</span>
+                    @endif
+                </td>
 
-<td class="text-center">
-    @php
-        $hasProposal = !empty($k->proposal);
-        $hasLPJ = !empty($k->lpj);
-    @endphp
+                <!-- Kolom Panitia -->
+                <td>
+                    <a href="/admin/kegiatan/{{ $k->id }}" class="btn btn-sm btn-outline-info">
+                        <i class="fas fa-users"></i>
+                        @if (count($k->users) > 0)
+                            {{ count($k->users) }}
+                        @else
+                            Belum Ada Panitia
+                        @endif
+                    </a>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
-    @if ($hasProposal && $hasLPJ)
-        <span class="badge bg-success">Lengkap</span>
-    @elseif ($hasProposal || $hasLPJ)
-        <span class="badge bg-warning text-dark">Belum Lengkap</span>
-    @else
-        <span class="badge bg-secondary">Belum Ada File</span>
-    @endif
-</td>
-                                    <td>
-                                        <a href="/admin/kegiatan/{{ $k->id }}" class="btn btn-sm btn-outline-info">
-                                            <i class="fas fa-users"></i>
-                                            @if (count($k->users) > 0)
-                                            {{ count($k->users) }}
-                                            @else
-                                            Belum Ada Panitia
-                                            @endif
-                                        </a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
