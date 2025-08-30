@@ -1,23 +1,22 @@
 @extends('superadmin.layoutsuper.main')
 
 @section('konten')
-<div class="container-arsip d-flex active">
-
-    <div class="container" style="padding-top: 3vh">    <div class="row justify-content-center">
+<div class="container py-4" style="margin-top: 2rem">
+    <div class="row justify-content-center">
         <div class="col-md-8">
             @if(session('error'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ session('error') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
 
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
 
             <div class="card shadow-sm">
                 <div class="card-header bg-info text-white">
@@ -31,27 +30,30 @@
                         {{-- Nama --}}
                         <div class="mb-3">
                             <label for="name-input" class="form-label">Nama</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name-input" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name-input"
+                                name="name" value="{{ old('name') }}">
                             @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         {{-- Email --}}
                         <div class="mb-3">
                             <label for="email-input" class="form-label">Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email-input" name="email" value="{{ old('email') }}">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                id="email-input" name="email" value="{{ old('email') }}">
                             @error('email')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         {{-- Unit / Organisasi --}}
                         <div class="mb-3">
                             <label for="organisasi-input" class="form-label">Unit / Organisasi</label>
-                            <input type="text" class="form-control @error('nama_organisasi') is-invalid @enderror" id="organisasi-input" name="nama_organisasi" value="{{ old('nama_organisasi') }}">
+                            <input type="text" class="form-control @error('nama_organisasi') is-invalid @enderror"
+                                id="organisasi-input" name="nama_organisasi" value="{{ old('nama_organisasi') }}">
                             @error('nama_organisasi')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -65,9 +67,11 @@
                 </div>
             </div>
 
-            <p class="mt-3 text-muted fst-italic text-center">Note: Tolong double check untuk data yang di-input 🙌</p>
+            <p class="mt-3 text-muted fst-italic text-center">Note: Tolong double check untuk data yang di-input 🙌
+            </p>
 
         </div>
     </div>
 </div>
+
 @endsection
