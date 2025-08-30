@@ -16,7 +16,7 @@
                         </a>
                     </div>
                     <div class="card-body">
-               <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
+<table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
     <thead class="table-light">
         <tr>
             <th>No</th>
@@ -25,7 +25,6 @@
             <th>Gambar</th>
             <th>Proposal</th>
             <th>LPJ</th>
-            <th>Keterangan</th>
             <th>Panitia</th>
         </tr>
     </thead>
@@ -38,72 +37,63 @@
                 <td>{{ $k->nama_kegiatan }}</td>
                 <td>{{ $k->tempat_kegiatan }}</td>
 
-                <!-- Kolom Gambar -->
+                <!-- Gambar -->
                 <td class="text-center">
-                    <div class="d-inline-flex align-items-center gap-4">
-                        <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
-                            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
-                        </a>
-                        <a href="{{ asset('storage/' . $k->gambar) }}" download title="Download Gambar">
-                            <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
-                        </a>
-                    </div>
-                </td>
-
-                <!-- Kolom Proposal -->
-                <td class="text-center">
-                    <div class="d-inline-flex align-items-center gap-4">
-                        <a href="{{ asset('storage/' . $k->proposal) }}" target="_blank" title="Lihat Proposal">
-                            <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
-                        </a>
-                        <a href="{{ asset('storage/' . $k->proposal) }}" download="{{ $k->slug }}" title="Download Proposal">
-                            <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
-                        </a>
-                    </div>
-                </td>
-
-                <!-- Kolom LPJ -->
-                <td class="text-center">
-                    @if ($k->lpj)
-                        <div class="d-inline-flex align-items-center gap-4">
-                            <a href="{{ asset('storage/' . $k->lpj) }}" target="_blank" title="Lihat LPJ">
-                                <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
+                    @if ($k->gambar)
+                        <div class="d-inline-flex align-items-center gap-2">
+                            <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank" title="Lihat Gambar">
+                                <i class="fas fa-eye fa-lg text-primary"></i>
                             </a>
-                            <a href="{{ asset('storage/' . $k->lpj) }}" download="{{ $k->slug }}" title="Download LPJ">
-                                <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
+                            <a href="{{ asset('storage/' . $k->gambar) }}" download title="Download Gambar">
+                                <i class="fas fa-download fa-lg text-success"></i>
                             </a>
                         </div>
                     @else
-                        <span class="text-muted">Belum ada</span>
+                        <span class="text-muted">Tidak ada</span>
                     @endif
                 </td>
 
-                <!-- Kolom Keterangan -->
+                <!-- Proposal -->
                 <td class="text-center">
-                    @php
-                        $hasProposal = !empty($k->proposal);
-                        $hasLPJ = !empty($k->lpj);
-                    @endphp
-
-                    @if ($hasProposal && $hasLPJ)
-                        <span class="badge bg-success">Lengkap</span>
-                    @elseif ($hasProposal || $hasLPJ)
-                        <span class="badge bg-warning text-dark">Belum Lengkap</span>
+                    @if ($k->proposal)
+                        <div class="d-inline-flex align-items-center gap-2">
+                            <a href="{{ asset('storage/' . $k->proposal) }}" target="_blank" title="Lihat Proposal">
+                                <i class="fas fa-eye fa-lg text-primary"></i>
+                            </a>
+                            <a href="{{ asset('storage/' . $k->proposal) }}" download="{{ $k->slug ?? 'proposal' }}" title="Download Proposal">
+                                <i class="fas fa-download fa-lg text-success"></i>
+                            </a>
+                        </div>
                     @else
-                        <span class="badge bg-secondary">Belum Ada File</span>
+                        <span class="text-muted">Tidak ada</span>
                     @endif
                 </td>
 
-                <!-- Kolom Panitia -->
-                <td>
-                    <a href="/admin/kegiatan/{{ $k->id }}" class="btn btn-sm btn-outline-info">
-                        <i class="fas fa-users"></i>
-                        @if (count($k->users) > 0)
+                <!-- LPJ -->
+                <td class="text-center">
+                    @if ($k->lpj)
+                        <div class="d-inline-flex align-items-center gap-2">
+                            <a href="{{ asset('storage/' . $k->lpj) }}" target="_blank" title="Lihat LPJ">
+                                <i class="fas fa-eye fa-lg text-primary"></i>
+                            </a>
+                            <a href="{{ asset('storage/' . $k->lpj) }}" download="{{ $k->slug ?? 'lpj' }}" title="Download LPJ">
+                                <i class="fas fa-download fa-lg text-success"></i>
+                            </a>
+                        </div>
+                    @else
+                        <span class="text-muted">Tidak ada</span>
+                    @endif
+                </td>
+
+                <!-- Panitia -->
+                <td class="text-center">
+                    @if ($k->users && count($k->users) > 0)
+                        <button class="btn btn-sm btn-primary show-agendas-btn" data-anggota='@json($k->users)'>
                             {{ count($k->users) }}
-                        @else
-                            Belum Ada Panitia
-                        @endif
-                    </a>
+                        </button>
+                    @else
+                        <span class="text-muted">Belum Ada Panitia</span>
+                    @endif
                 </td>
             </tr>
         @endforeach
