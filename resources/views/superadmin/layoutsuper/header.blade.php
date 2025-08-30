@@ -22,6 +22,8 @@
     }
     .nav-link:hover {
         background-color: #29A1D4;
+        color: white !important;
+
     }
     .nav-link i {
         width: 20px;
