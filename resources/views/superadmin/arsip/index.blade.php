@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
 
-                        <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
+                        <table class="table table-hover table-bordered align-middle " id="anggotaTable">
                                                    <thead class="table-primary">
 
                                 <tr>
