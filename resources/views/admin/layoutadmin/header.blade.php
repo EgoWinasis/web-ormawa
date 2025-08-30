@@ -22,7 +22,7 @@
     }
     .nav-link:hover {
         background-color: #29A1D4;
-        color: white !important;
+        color: black !important;
 
     }
     .nav-link i {
