@@ -19,7 +19,8 @@
                     <div class="table-responsive">
 
                         <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
-                            <thead class="table-light">
+                                                   <thead class="table-primary">
+
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Kegiatan</th>
