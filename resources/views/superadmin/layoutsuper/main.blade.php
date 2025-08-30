@@ -51,10 +51,18 @@
     <div class="container-main d-flex">
         {{-- @include('superadmin.layoutsuper.sidebar') --}}
 
-        <div class="container-content">
-            @yield('konten')
+       <div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar (sudah tidak perlu di-include karena sudah di header) -->
+        {{-- kosongkan jika sudah di header.blade.php --}}
 
-        </div>
+        <!-- Konten -->
+        <main class="col-lg-10 offset-lg-2 col-md-12 p-4">
+            @yield('konten')
+        </main>
+    </div>
+</div>
+
     </div>
 
     @include('chatbot')
