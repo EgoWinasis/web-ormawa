@@ -169,10 +169,10 @@
             </ul>
         </div>
 
-        <!-- MAIN CONTENT -->
+        {{-- <!-- MAIN CONTENT -->
         <main class="col-lg-10 p-4">
             @yield('content')
-        </main>
+        </main> --}}
     </div>
 </div>
 
