@@ -1,7 +1,6 @@
 @extends('superadmin.layoutsuper.main')
 
 @section('konten')
-<div class="container-arsip d-flex active">
     <div class="container py-5">
 
         <div class="row">
@@ -48,7 +47,6 @@
 
         </div>
     </div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
