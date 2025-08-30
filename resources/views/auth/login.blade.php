@@ -33,7 +33,7 @@
                                class="form-control @error('email') is-invalid @enderror" 
                                name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
                         @error('email')
-                        <p class="text-danger fw-bold mt-1">Email harus di isi</p>
+                        <p class="text-danger fw-bold mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -43,7 +43,7 @@
                                class="form-control @error('password') is-invalid @enderror" 
                                name="password" autocomplete="current-password">
                         @error('password')
-                        <p class="text-danger fw-bold mt-1">Password harus di isi</p>
+                        <p class="text-danger fw-bold mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
