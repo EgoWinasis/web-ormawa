@@ -42,6 +42,14 @@
                     fill: false,
                     tension: 0.3
                 }
+                {
+                    label: 'User',
+                    data: @json($userTotal->pluck('total')),
+                    borderColor: 'rgba(40, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: false,
+                    tension: 0.3
+                }
             ]
         },
         options: {

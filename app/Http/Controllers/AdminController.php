@@ -469,6 +469,11 @@ class AdminController extends Controller
                 ->orderBy('tahun', 'asc')
                 ->get();
 
+            $userTotal = User::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tahun')
+                ->orderBy('tahun', 'asc')
+                ->get();
+
             $kegiatan = Agenda::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
                 ->groupBy('tahun')
                 ->orderBy('tahun', 'asc')
@@ -483,7 +488,7 @@ class AdminController extends Controller
             $admin = Admin::all();
             $user = User::find(Auth::user()->id);
 
-            return view('superadmin.dashboard.index', compact('user', 'anggota', 'kegiatan', 'news', 'admin'));
+            return view('superadmin.dashboard.index', compact('user', 'userTotal', 'anggota', 'kegiatan', 'news', 'admin'));
         }
 
     }
