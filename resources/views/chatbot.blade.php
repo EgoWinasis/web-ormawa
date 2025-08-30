@@ -10,7 +10,7 @@
 
 <!-- Chatbot Box -->
 <div id="chatbot-box" class="card shadow d-none"
-     style="position: fixed; bottom: 80px; right: 20px; width: 350px; max-width: 90%; z-index: 1050; height: 30%;">
+     style="position: fixed; bottom: 80px; right: 20px; width: 350px; max-width: 90%; z-index: 1050; height: 50%;">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <span>Chatbot Ormawa</span>
         <button class="btn btn-sm btn-light" id="close-chatbot"><i class="fas fa-times"></i></button>
