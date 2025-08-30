@@ -1,58 +1,55 @@
 @extends('superadmin.layoutsuper.main')
 
 @section('konten')
-        <div class="container py-4" style="margin-top: 2rem">
+<div class="container py-4" style="margin-top: 2rem">
+    <div class="row g-3">
 
-
-        <div class="row">
-
-            <!-- Card Anggota -->
-            <div class="col-md-6 mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Grafik Anggota</h5>
-                        <canvas id="anggotaChart"></canvas>
-                    </div>
+        <!-- Card Anggota -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Grafik Anggota</h5>
+                    <canvas id="anggotaChart"></canvas>
                 </div>
             </div>
-
-            <!-- Card Kegiatan -->
-            <div class="col-md-6 mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Grafik Kegiatan</h5>
-                        <canvas id="kegiatanChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card News -->
-            <div class="col-md-6 mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Grafik News</h5>
-                        <canvas id="newsChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card User -->
-            <div class="col-md-6 mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Grafik Admin</h5>
-                        <canvas id="adminChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
+        <!-- Card Kegiatan -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Grafik Kegiatan</h5>
+                    <canvas id="kegiatanChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card News -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Grafik News</h5>
+                    <canvas id="newsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Admin -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Grafik Admin</h5>
+                    <canvas id="adminChart"></canvas>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    // Buat chart per data dengan label tahun dan data masing-masing
     function buatChart(id, label, labels, data, borderColor, backgroundColor) {
         const ctx = document.getElementById(id).getContext('2d');
         new Chart(ctx, {
@@ -115,7 +112,7 @@
         'rgba(75, 192, 192, 0.2)'
     );
 
-    // Grafik User
+    // Grafik Admin
     buatChart(
         'adminChart',
         'Admin',
@@ -125,5 +122,4 @@
         'rgba(75, 192, 192, 0.2)'
     );
 </script>
-
 @endsection
