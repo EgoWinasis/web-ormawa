@@ -1,7 +1,10 @@
 @extends('admin.layoutadmin.main')
 @section('konten')
-<div class="container mt-4">
+<div class="container-arsip d-flex active">
+
+<div class="container"  style="padding-top:7%">
     <canvas id="dashboardChart"></canvas>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
