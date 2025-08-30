@@ -21,7 +21,7 @@
         gap: 8px;
     }
     .nav-link:hover {
-        background-color: #e0f7ff;
+        background-color: #29A1D4;
     }
     .nav-link i {
         width: 20px;
