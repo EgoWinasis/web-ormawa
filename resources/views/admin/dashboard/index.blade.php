@@ -1,8 +1,8 @@
 @extends('admin.layoutadmin.main')
 
 @section('konten')
-<div class="container-arsip d-flex active">
-    <div class="container py-5">
+    <div class="container" style=" margin-top:7%">
+
 
         <div class="row">
 
@@ -38,7 +38,7 @@
 
         </div>
     </div>
-</div>
+
 
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

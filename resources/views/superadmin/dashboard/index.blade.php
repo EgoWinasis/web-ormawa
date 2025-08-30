@@ -1,7 +1,7 @@
 @extends('superadmin.layoutsuper.main')
 
 @section('konten')
-    <div class="container py-5">
+    <div class="container" style=" margin-top:7%">
 
         <div class="row">
 
