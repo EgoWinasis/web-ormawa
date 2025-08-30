@@ -123,7 +123,7 @@
 
         <!-- MAIN CONTENT -->
         <main class="col-lg-10 p-4">
-            @yield('content')
+            @yield('konten')
         </main>
     </div>
 </div>
