@@ -1,21 +1,84 @@
 @extends('admin.layoutadmin.main')
 
 @section('konten')
-<div class="container-arsip d-flex active">
-    <div class="container py-5">
+<div class="container py-4" style="margin-top: 2rem">
 
-        <div class="row">
 
-            <!-- TABEL PENGURUS -->
-            <div class="col-12 mb-5">
-                <div class="card shadow">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Data Pengurus</h5>
-                    </div>
+    <div class="row">
 
-                    <div class="card-body">
-                        <table class="table table-hover table-bordered align-middle fl-table" id="pengurusTable">
-                            <thead class="table-light">
+        <!-- TABEL PENGURUS -->
+        <div class="col-12 mb-5">
+            <div class="card shadow">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Data Pengurus</h5>
+                </div>
+
+                <div class="card-body">
+                    <table class="table table-hover table-bordered align-middle fl-table" id="pengurusTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Jabatan</th>
+                                <th>Kegiatan Diikuti</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php($count = 0)
+                            @foreach ($anggota as $p)
+                            @if ($p['user']['status'] === 'aktif' && $p['user']['jabatan'] !== 'anggota')
+                            @php($count++)
+                            <tr data-user-id="{{ $p['user']['id'] }}">
+                                <td>{{ $count }}</td>
+                                <td>{{ $p['user']['name'] }}</td>
+                                <td>{{ $p['user']['jabatan'] }}</td>
+                                <td class="kegiatan text-center">
+                                    @if (count($p['agendas']) > 0)
+                                    <button class="btn btn-sm btn-primary show-agendas-btn"
+                                        data-agendas='@json($p["agendas"])'>
+                                        {{ count($p["agendas"]) }}
+                                    </button>
+                                    @else
+                                    <span class="text-muted">Belum Ada Kegiatan</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning btn-edit-jabatan mx-2" title="Edit Jabatan">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+
+                                    <form action="{{ url('admin/kegiatan/panitia/' . $p['user']['id'] . '/destroy') }}"
+                                        method="POST" onsubmit="return confirm('Yakin ingin menghapus anggota?')"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash-alt"></i> Hapus
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABEL ANGGOTA -->
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Data Anggota</h5>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-hover table-bordered align-middle" id="anggotaTable">
+                            <thead class="table-primary">
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
@@ -27,7 +90,7 @@
                             <tbody>
                                 @php($count = 0)
                                 @foreach ($anggota as $p)
-                                @if ($p['user']['status'] === 'aktif' && $p['user']['jabatan'] !== 'anggota')
+                                @if ($p['user']['status'] === 'aktif' && $p['user']['jabatan'] === 'anggota')
                                 @php($count++)
                                 <tr data-user-id="{{ $p['user']['id'] }}">
                                     <td>{{ $count }}</td>
@@ -68,75 +131,9 @@
                     </div>
                 </div>
             </div>
-
-            <!-- TABEL ANGGOTA -->
-            <div class="col-12">
-                <div class="card shadow">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Data Anggota</h5>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-
-                            <table class="table table-hover table-bordered align-middle" id="anggotaTable">
-                                <thead class="table-primary">
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Jabatan</th>
-                                        <th>Kegiatan Diikuti</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php($count = 0)
-                                    @foreach ($anggota as $p)
-                                    @if ($p['user']['status'] === 'aktif' && $p['user']['jabatan'] === 'anggota')
-                                    @php($count++)
-                                    <tr data-user-id="{{ $p['user']['id'] }}">
-                                        <td>{{ $count }}</td>
-                                        <td>{{ $p['user']['name'] }}</td>
-                                        <td>{{ $p['user']['jabatan'] }}</td>
-                                        <td class="kegiatan text-center">
-                                            @if (count($p['agendas']) > 0)
-                                            <button class="btn btn-sm btn-primary show-agendas-btn"
-                                                data-agendas='@json($p["agendas"])'>
-                                                {{ count($p["agendas"]) }}
-                                            </button>
-                                            @else
-                                            <span class="text-muted">Belum Ada Kegiatan</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning btn-edit-jabatan mx-2"
-                                                title="Edit Jabatan">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </button>
-
-                                            <form
-                                                action="{{ url('admin/kegiatan/panitia/' . $p['user']['id'] . '/destroy') }}"
-                                                method="POST"
-                                                onsubmit="return confirm('Yakin ingin menghapus anggota?')"
-                                                style="display:inline;">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="fas fa-trash-alt"></i> Hapus
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
     </div>
 </div>
+
 @endsection
