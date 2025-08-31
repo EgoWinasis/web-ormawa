@@ -16,7 +16,7 @@
                     <div class="table-responsive">
 
                         <table class="table table-hover table-bordered align-middle" id="anggotaTable">
-                                                   <thead class="table-primary">
+                            <thead class="table-primary">
 
                                 <tr>
                                     <th>No</th>
