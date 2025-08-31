@@ -3,18 +3,23 @@
 @section('title', 'Beranda ORMAWA')
 
 @section('dropdown-options')
-<div class="dropdown-menu show w-100 w-md-50" style="max-height: 200px; overflow-y: auto;">
-    @php $uniqueOrganisasi = []; @endphp
-    @foreach ($user as $u)
-        @if ($u->nama_organisasi !== 'kesiswaan' && !in_array($u->nama_organisasi, $uniqueOrganisasi))
-            @php $uniqueOrganisasi[] = $u->nama_organisasi; @endphp
-            <div class="dropdown-item text-dark list-org"
-                 style="cursor: pointer;"
-                 data-name="{{ Str::slug($u->nama_organisasi) }}">
-                 {{ Str::title($u->nama_organisasi) }}
-            </div>
-        @endif
-    @endforeach
+<div class="dropdown w-100">
+    <button class="btn btn-outline-primary w-100 d-md-none mb-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Pilih Organisasi
+    </button>
+    <div class="dropdown-menu w-100" style="max-height: 200px; overflow-y: auto;">
+        @php $uniqueOrganisasi = []; @endphp
+        @foreach ($user as $u)
+            @if ($u->nama_organisasi !== 'kesiswaan' && !in_array($u->nama_organisasi, $uniqueOrganisasi))
+                @php $uniqueOrganisasi[] = $u->nama_organisasi; @endphp
+                <div class="dropdown-item text-dark list-org"
+                     style="cursor: pointer;"
+                     data-name="{{ Str::slug($u->nama_organisasi) }}">
+                     {{ Str::title($u->nama_organisasi) }}
+                </div>
+            @endif
+        @endforeach
+    </div>
 </div>
 @endsection
 
@@ -47,7 +52,7 @@
                 <img src="{{ asset('storage/file-logo/logo-landing.png') }}"
                      alt="ilustrasi aplikasi Organisasi"
                      class="img-fluid"
-                     style="max-width: 250px;">
+                     style="max-width: 220px;">
             </div>
         </div>
     </div>
@@ -55,7 +60,7 @@
 
 <!-- JADWAL -->
 <div id="jadwal" class="container my-5">
-    <h2 class="mb-3 text-center">JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</h2>
+    <h2 class="mb-4 text-center fw-bold">JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</h2>
     <div class="table-responsive">
         <table class="table table-bordered table-striped text-center align-middle">
             <thead class="table-primary">
@@ -81,8 +86,8 @@
 </div>
 
 <!-- NEWS -->
-<div id="organisasi" class="container" style="margin-top: 2%; margin-bottom: 2%;">
-    <h2 class="title mb-4 text-center">NEWS</h2>
+<div id="organisasi" class="container my-5">
+    <h2 class="title mb-4 text-center fw-bold">NEWS</h2>
     <div class="row">
         @foreach ($kegiatan as $k)
             @isset($k->lpj)
@@ -91,14 +96,14 @@
                         <img src="{{ asset('storage/' . $k->gambar) }}"
                              class="card-img-top img-fluid"
                              alt="Gambar {{ $k->nama_kegiatan }}"
-                             style="height: 250px; object-fit: cover;">
+                             style="height: 220px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title text-uppercase fw-bold mb-2">{{ $k->nama_kegiatan }}</h5>
                             <p class="card-text mb-2">
                                 <strong class="text-muted">Waktu Pelaksanaan:</strong><br>
                                 {{ \Carbon\Carbon::parse($k->tanggal_mulai)->locale('id')->translatedFormat('l, d F Y') }}
                             </p>
-                            <p class="card-text text-justify">
+                            <p class="card-text text-start">
                                 <strong class="text-muted">Keterangan:</strong><br>
                                 {{ $k->keterangan }}
                             </p>
@@ -117,28 +122,27 @@
                 <div class="row align-items-center g-4 text-center">
                     <!-- Visi -->
                     <div class="col-md-4 col-12 border rounded p-3 shadow-sm">
-                        <h3>Visi</h3>
-                        <p class="text-justify">{{ $u->visi }}</p>
+                        <h3 class="fw-bold">Visi</h3>
+                        <p class="text-start">{{ $u->visi }}</p>
                     </div>
 
                     <!-- Logo -->
                     <div class="col-md-4 col-12">
                         <img src="{{ asset('storage/' . $u->foto) }}"
                              alt="Logo {{ $u->nama_organisasi }}"
-                             class="img-fluid mx-auto d-block" style="max-width: 160px;">
+                             class="img-fluid mx-auto d-block" style="max-width: 150px;">
                     </div>
 
                     <!-- Misi -->
                     <div class="col-md-4 col-12 border rounded p-3 shadow-sm">
-                        <h3>Misi</h3>
-                        <p class="text-justify">{{ $u->misi }}</p>
+                        <h3 class="fw-bold">Misi</h3>
+                        <p class="text-start">{{ $u->misi }}</p>
                     </div>
                 </div>
             </div>
         @endif
     @endforeach
 </div>
-
 @endsection
 
 @section('css')
@@ -183,10 +187,13 @@
         color: #000;
     }
 
-    /* text-justify diubah untuk HP biar gak kepotong */
+    /* Responsif untuk HP */
     @media (max-width: 576px) {
-        .text-justify {
-            text-align: left !important;
+        h1, h2, h3 {
+            font-size: 1.2rem;
+        }
+        .card-title {
+            font-size: 1rem;
         }
     }
 </style>
