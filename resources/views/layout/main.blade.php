@@ -26,7 +26,7 @@
 @endif
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-primary shadow-sm w-100">
+<nav class="navbar navbar-expand-lg text-white bg-info shadow-sm w-100">
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="#">
