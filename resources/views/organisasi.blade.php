@@ -2,7 +2,7 @@
 
 @section('title', 'Organisasi')
 
-@section('content')
+@section('konten')
 <div class="container mt-4">
     <h2 class="text-center mb-4">Organisasi Mahasiswa</h2>
 

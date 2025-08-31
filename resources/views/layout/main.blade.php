@@ -70,13 +70,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#beranda">Beranda</a>
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="#beranda">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#jadwal">Jadwal Kegiatan</a>
+                    <a class="nav-link {{ Request::is('jadwal') ? 'active' : '' }}" href="#jadwal">Jadwal Kegiatan</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="/list-organisasi">
+                    <a class="nav-link {{ Request::is('list-organisasi') ? 'active' : '' }}" href="/list-organisasi">
                         Organisasi
                     </a>
                 </li>
@@ -84,6 +84,7 @@
                     <a class="btn btn-primary text-white px-3" href="/login">Masuk</a>
                 </li>
             </ul>
+            
         </div>
     </div>
 </nav>
