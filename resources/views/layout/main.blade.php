@@ -17,7 +17,32 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Tambahkan animate.css di <head> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+    <style>
+    /* Typewriter effect */
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid orange; 
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: .05em;
+      animation: 
+        typing 4s steps(40, end),
+        blink-caret .75s step-end infinite;
+    }
+    
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: orange }
+    }
+    </style>
     <title>@yield('title', 'Website ORMAWA')</title>
 </head>
 <body>
@@ -55,9 +80,6 @@
                        data-bs-toggle="dropdown" aria-expanded="false">
                         Organisasi
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        @yield('dropdown-options')
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-primary text-white px-3" href="/login">Masuk</a>

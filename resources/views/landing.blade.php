@@ -30,7 +30,9 @@
 
 <!-- JADWAL -->
 <div id="jadwal" class="container my-5">
-    <h2 class="text-center fw-bold mb-4">JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</h2>
+    <h2 class="text-center fw-bold mb-4 animate__animated animate__fadeInDown">
+        <span class="typewriter">JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</span>
+      </h2>
     <div class="table-responsive mb-5">
         <table class="table table-bordered table-striped text-center align-middle">
             <thead class="table-primary">
