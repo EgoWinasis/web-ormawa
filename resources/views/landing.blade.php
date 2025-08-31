@@ -9,30 +9,30 @@
      style="background: url('{{ asset('storage/file-logo/Phb_10.jpg') }}') center/cover no-repeat;
             background-color: rgba(255,255,255,.7);
             background-blend-mode: overlay;">
-    <div class="row w-100 text-center text-md-start">
-        <!-- Text -->
-        <div class="col-12 col-md-6 d-flex flex-column justify-content-center p-4">
-            <h1 class="fw-bold">Selamat Datang 🙌</h1>
-            <div class="typing-container">
-                <span class="typing-line">Website Sistem Informasi Manajemen Organisasi</span>
-                <span class="typing-line">Mahasiswa Politeknik Harapan Bersama Tegal</span>
-            </div>
-        </div>
-
-        <!-- Image -->
-        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center p-4">
-            <img src="{{ asset('storage/file-logo/logo-landing.png') }}"
-                 alt="Ilustrasi aplikasi Organisasi"
-                 class="img-fluid animate-bounce" style="max-width: 220px;">
+  <div class="row w-100 text-center text-md-start">
+    <!-- Text -->
+    <div class="col-12 col-md-6 d-flex flex-column justify-content-center p-4">
+        <h1 class="fw-bold animate__animated animate__fadeInDown">Selamat Datang 🙌</h1>
+        <div class="typing-container animate__animated animate__fadeInUp animate__delay-1s">
+            <span class="typing-line d-block">Website Sistem Informasi Manajemen Organisasi</span>
+            <span class="typing-line d-block">Mahasiswa Politeknik Harapan Bersama Tegal</span>
         </div>
     </div>
+
+    <!-- Image -->
+    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center p-4">
+        <img src="{{ asset('storage/file-logo/logo-landing.png') }}"
+             alt="Ilustrasi aplikasi Organisasi"
+             class="img-fluid animate__animated animate__zoomIn animate__delay-2s animate__pulse"
+             style="max-width: 220px;">
+    </div>
+</div>
+
 </div>
 
 <!-- JADWAL -->
 <div id="jadwal" class="container my-5">
-    <h2 class="text-center fw-bold mb-4 animate__animated animate__fadeInDown">
-        <span class="typewriter">JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</span>
-      </h2>
+    <h2 class="text-center fw-bold mb-4">JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</h2>
     <div class="table-responsive mb-5">
         <table class="table table-bordered table-striped text-center align-middle">
             <thead class="table-primary">
