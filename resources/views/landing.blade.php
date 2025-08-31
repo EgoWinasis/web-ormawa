@@ -3,7 +3,7 @@
 @section('title', 'Beranda ORMAWA')
 
 @section('dropdown-options')
-<div class="dropdown-menu show" style="width: 250px; max-height: 200px; overflow-y: auto;">
+<div class="dropdown-menu show w-100 w-md-50" style="max-height: 200px; overflow-y: auto;">
     @php $uniqueOrganisasi = []; @endphp
     @foreach ($user as $u)
         @if ($u->nama_organisasi !== 'kesiswaan' && !in_array($u->nama_organisasi, $uniqueOrganisasi))
@@ -23,20 +23,20 @@
 @section('content')
 
 <!-- HERO SECTION -->
-<div id="beranda" class="d-flex flex-column flex-md-row justify-content-center align-items-center text-center text-md-start"
+<div id="beranda" 
+     class="d-flex flex-column flex-md-row justify-content-center align-items-center text-center text-md-start p-3"
      style="background-image: url('{{ asset('storage/file-logo/Phb_10.jpg') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 100vh;
+            min-height: 100vh;
             background-color: rgba(255, 255, 255, 0.7);
             background-blend-mode: overlay;
-            width: 100vw;">
+            width: 100%;">
 
     <!-- Text -->
-    <div class="ber-container-right p-3">
+    <div class="col-md-6 col-12 mb-4">
         <h1 class="fw-bold">Selamat Datang 🙌</h1>
-
         <div class="typing-container">
             <span class="typing-line">Website Sistem Informasi Manajemen Organisasi</span>
             <span class="typing-line">Mahasiswa Politeknik Harapan Bersama Tegal</span>
@@ -44,20 +44,21 @@
     </div>
 
     <!-- Image -->
-    <div class="ber-container-left p-3">
-        <div class="img-container animate-bounce">
+    <div class="col-md-6 col-12">
+        <div class="img-container animate-bounce text-center">
             <img src="{{ asset('storage/file-logo/logo-landing.png') }}"
                  alt="ilustrasi aplikasi Organisasi"
-                 class="img-fluid" style="max-width: 300px;">
+                 class="img-fluid mx-auto"
+                 style="max-width: 250px;">
         </div>
     </div>
 </div>
 
 <!-- JADWAL -->
 <div id="jadwal" class="container my-5">
-    <h2 class="mb-3">JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</h2>
+    <h2 class="mb-3 text-center">JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</h2>
     <div class="table-responsive">
-        <table class="table table-bordered table-striped text-center">
+        <table class="table table-bordered table-striped text-center align-middle">
             <thead class="table-primary">
                 <tr>
                     <th>No</th>
@@ -82,12 +83,12 @@
 
 <!-- NEWS -->
 <div id="organisasi" class="container my-5">
-    <h2 class="title mb-4">NEWS</h2>
+    <h2 class="title mb-4 text-center">NEWS</h2>
     <div class="news container-unit active">
         <div class="row">
             @foreach ($kegiatan as $k)
                 @isset($k->lpj)
-                    <div class="col-md-4 col-sm-6 col-12 mb-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="card h-100 shadow-sm">
                             <img src="{{ asset('storage/' . $k->gambar) }}"
                                  class="card-img-top img-fluid"
@@ -116,7 +117,7 @@
         @if ($u->nama_organisasi !== 'kesiswaan')
             <div class="container-text-{{ Str::slug($u->nama_organisasi) }} container-unit my-5"
                  id="{{ Str::slug($u->nama_organisasi) }}">
-                <div class="row align-items-center text-center g-4">
+                <div class="row align-items-center g-4 text-center">
                     <!-- Visi -->
                     <div class="col-md-4 col-12 border rounded p-3 shadow-sm">
                         <h3>Visi</h3>
@@ -127,7 +128,7 @@
                     <div class="col-md-4 col-12">
                         <img src="{{ asset('storage/' . $u->foto) }}"
                              alt="Logo {{ $u->nama_organisasi }}"
-                             class="img-fluid mx-auto d-block" style="max-width: 200px;">
+                             class="img-fluid mx-auto d-block" style="max-width: 180px;">
                     </div>
 
                     <!-- Misi -->
@@ -183,6 +184,13 @@
     .dropdown-item.list-org:active {
         background-color: #dcdcdc;
         color: #000;
+    }
+
+    /* Text justify fix for small screens */
+    @media (max-width: 576px) {
+        .text-justify {
+            text-align: left !important;
+        }
     }
 </style>
 @endsection
