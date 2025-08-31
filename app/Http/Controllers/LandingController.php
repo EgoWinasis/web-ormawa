@@ -34,4 +34,16 @@ class LandingController extends Controller
             'rutin' => $rutin
         ]);
     }
+    public function organisasi()
+    {
+      
+        $user =DB::table('users')
+        ->join('admin', 'admin.user_id', '=', 'users.id')
+        ->get();
+        
+
+        return view('organisasi', [
+            'user' => $user,
+        ]);
+    }
 }

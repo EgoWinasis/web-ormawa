@@ -76,7 +76,7 @@
                     <a class="nav-link" href="#jadwal">Jadwal Kegiatan</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#organisasi">
+                    <a class="nav-link" href="/list-organisasi">
                         Organisasi
                     </a>
                 </li>

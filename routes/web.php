@@ -34,6 +34,7 @@ use App\Http\Controllers\Auth\RegisterController;
 
 
 Route::get('/', [LandingController::class, 'landing'])->name('landing')->middleware('guest');
+Route::get('/list-organisasi', [LandingController::class, 'organisasi'])->name('organisasi')->middleware('guest');
 
 Auth::routes(['verify' => true]);
 
