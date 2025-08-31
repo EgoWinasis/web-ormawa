@@ -50,11 +50,12 @@
         </div>
     </div>
 </section>
-
 <!-- JADWAL -->
 <section id="jadwal" class="container my-5">
-    <h2 class="text-center fw-bold mb-4">JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</h2>
-    <div class="table-responsive">
+    <h2 class="text-center fw-bold mb-4">
+        JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER
+    </h2>
+    <div class="table-responsive mb-5"> {{-- tambahkan mb-5 agar ada jarak bawah --}}
         <table class="table table-bordered table-striped text-center align-middle">
             <thead class="table-primary">
             <tr>
@@ -79,25 +80,25 @@
 </section>
 
 <!-- NEWS -->
-<section id="organisasi" class="container my-4">
-    <h2 class="text-center fw-bold mb-4 mt-4">NEWS</h2>
-    <div class="row">
+<section id="organisasi" class="container my-5 pt-5"> {{-- tambahkan pt-5 untuk jarak atas --}}
+    <h2 class="text-center fw-bold mb-4">NEWS</h2>
+    <div class="row g-4"> {{-- pakai g-4 untuk spasi antar kolom --}}
         @foreach ($kegiatan as $k)
             @isset($k->lpj)
-                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="col-lg-4 col-md-6 col-12">
                     <div class="card h-100 shadow-sm">
                         <img src="{{ asset('storage/' . $k->gambar) }}"
-                             class="card-img-top img-fluid"
+                             class="card-img-top"
                              alt="Gambar {{ $k->nama_kegiatan }}"
                              style="height: 220px; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title text-uppercase fw-bold mb-2">{{ $k->nama_kegiatan }}</h5>
-                            <p class="card-text mb-2">
-                                <strong class="text-muted">Waktu Pelaksanaan:</strong><br>
+                            <h5 class="card-title text-uppercase fw-bold">{{ $k->nama_kegiatan }}</h5>
+                            <p class="card-text">
+                                <strong>Waktu Pelaksanaan:</strong><br>
                                 {{ \Carbon\Carbon::parse($k->tanggal_mulai)->locale('id')->translatedFormat('l, d F Y') }}
                             </p>
-                            <p class="card-text text-start">
-                                <strong class="text-muted">Keterangan:</strong><br>
+                            <p class="card-text">
+                                <strong>Keterangan:</strong><br>
                                 {{ $k->keterangan }}
                             </p>
                         </div>
@@ -106,35 +107,8 @@
             @endisset
         @endforeach
     </div>
-
-    <!-- VISI MISI -->
-    @foreach ($user as $u)
-        @if ($u->nama_organisasi !== 'kesiswaan')
-            <div id="{{ Str::slug($u->nama_organisasi) }}" class="container-unit my-5">
-                <div class="row g-4 text-center align-items-center">
-                    <!-- Visi -->
-                    <div class="col-md-4 col-12 border rounded p-3 shadow-sm">
-                        <h3 class="fw-bold">Visi</h3>
-                        <p class="text-start">{{ $u->visi }}</p>
-                    </div>
-
-                    <!-- Logo -->
-                    <div class="col-md-4 col-12">
-                        <img src="{{ asset('storage/' . $u->foto) }}"
-                             alt="Logo {{ $u->nama_organisasi }}"
-                             class="img-fluid mx-auto d-block" style="max-width: 150px;">
-                    </div>
-
-                    <!-- Misi -->
-                    <div class="col-md-4 col-12 border rounded p-3 shadow-sm">
-                        <h3 class="fw-bold">Misi</h3>
-                        <p class="text-start">{{ $u->misi }}</p>
-                    </div>
-                </div>
-            </div>
-        @endif
-    @endforeach
 </section>
+
 @endsection
 
 @section('css')
