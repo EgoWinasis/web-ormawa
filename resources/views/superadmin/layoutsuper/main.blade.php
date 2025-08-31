@@ -119,7 +119,7 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
 
     <!-- MAIN LAYOUT -->
     <div class="container-fluid">
-        <div class="row">
+        <div class="row min-vh-100">
             <!-- SIDEBAR: DESKTOP -->
             <div class="col-lg-2 d-none d-lg-block bg-light vh-100 p-0">
                 <ul class="nav flex-column px-2 pt-3">
