@@ -14,8 +14,8 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-hover table-bordered align-middle fl-table" id="pengurusTable">
-                        <thead class="table-light">
+                    <table class="table table-hover table-bordered align-middle" id="pengurusTable">
+                        <thead class="table-primary">
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>

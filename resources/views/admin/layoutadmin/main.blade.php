@@ -158,6 +158,9 @@
                 $('#anggotaTable').DataTable({
             ordering: false
     });
+                $('#pengurusTable').DataTable({
+            ordering: false
+    });
 
 
         $('.toggle-agendas').click(function () {
