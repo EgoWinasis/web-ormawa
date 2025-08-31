@@ -84,30 +84,29 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
         <div class="offcanvas-body p-0">
             <ul class="nav flex-column px-2">
                 @foreach([
-                ['route' => 'admin.dashboard', 'icon' => 'fa-home', 'label' => 'Dashboard'],
-                ['route' => 'admin.news', 'icon' => 'fa-bullhorn', 'label' => 'News'],
-                ['route' => 'admin.arsip', 'icon' => 'fa-bookmark', 'label' => 'Arsip'],
-                ['route' => 'admin.absensi', 'icon' => 'fa-box', 'label' => 'Data Ormawa'],
-                ['route' => 'admin.tambahAdminView', 'icon' => 'fa-user-plus', 'label' => 'Create User'],
-                ['route' => 'admin.profile', 'icon' => 'fa-user-circle', 'label' => 'Data Profile'],
-                ['route' => 'mahasiswa', 'icon' => 'fa-user-graduate', 'label' => 'Data Mahasiswa'],
-                ['route' => 'admin.setting', 'icon' => 'fa-cog', 'label' => 'Pengaturan'],
+                    ['route' => 'user.index', 'icon' => 'fa-edit', 'label' => 'Form'],
+                    ['route' => 'user.history', 'icon' => 'fa-box-archive', 'label' => 'Tahap Pendaftaran'],
+                    ['route' => 'user.riwayat', 'icon' => 'fa-history', 'label' => 'Riwayat'],
                 ] as $item)
-                <li class="nav-item {{ Route::is($item['route']) ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route($item['route']) }}">
-                        <i class="fas {{ $item['icon'] }}"></i> {{ $item['label'] }}
-                    </a>
-                </li>
+                    <li class="nav-item {{ Route::is($item['route']) ? 'active' : '' }}">
+                        <a class="nav-link d-flex align-items-center {{ Route::is($item['route']) ? 'text-primary fw-bold' : 'text-dark' }}"
+                           href="{{ route($item['route']) }}">
+                            <i class="fas {{ $item['icon'] }} me-2"></i> {{ $item['label'] }}
+                        </a>
+                    </li>
                 @endforeach
+            
                 <li class="nav-item">
-                    <form action="{{ route('admin.logout') }}" method="POST">
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="nav-link text-danger bg-transparent border-0 w-100 text-start">
-                            <i class="fas fa-sign-out-alt"></i> Keluar
+                        <button type="submit"
+                            class="nav-link text-danger bg-transparent border-0 w-100 text-start d-flex align-items-center">
+                            <i class="fas fa-sign-out-alt me-2"></i> Keluar
                         </button>
                     </form>
                 </li>
             </ul>
+            
             <div class="px-3 py-2 border-top mt-3">
                 <small class="text-muted d-block">
                     Login sebagai:<br>
