@@ -2,10 +2,10 @@
 
 @section('title', 'Beranda ORMAWA')
 
+@section('konten')
 
 <!-- HERO -->
-<div id="beranda"
-     class="container-fluid d-flex align-items-center min-vh-100"
+<div id="beranda" class="container-fluid d-flex align-items-center min-vh-100"
      style="background: url('{{ asset('storage/file-logo/Phb_10.jpg') }}') center/cover no-repeat;
             background-color: rgba(255,255,255,.7);
             background-blend-mode: overlay;">
@@ -30,37 +30,35 @@
 
 <!-- JADWAL -->
 <div id="jadwal" class="container my-5">
-    <h2 class="text-center fw-bold mb-4">
-        JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER
-    </h2>
-    <div class="table-responsive mb-5"> {{-- ada jarak bawah --}}
+    <h2 class="text-center fw-bold mb-4">JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER</h2>
+    <div class="table-responsive mb-5">
         <table class="table table-bordered table-striped text-center align-middle">
             <thead class="table-primary">
-            <tr>
-                <th>No</th>
-                <th>Hari</th>
-                <th>Unit Ormawa</th>
-                <th>Tempat</th>
-            </tr>
+                <tr>
+                    <th>No</th>
+                    <th>Hari</th>
+                    <th>Unit Ormawa</th>
+                    <th>Tempat</th>
+                </tr>
             </thead>
             <tbody>
-            @foreach ($rutin as $r)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $r->hari }}</td>
-                    <td>{{ $r->unit }}</td>
-                    <td>{{ $r->tempat_kegiatan }}</td>
-                </tr>
-            @endforeach
+                @foreach ($rutin as $r)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $r->hari }}</td>
+                        <td>{{ $r->unit }}</td>
+                        <td>{{ $r->tempat_kegiatan }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 </div>
 
 <!-- NEWS -->
-<div id="organisasi" class="container my-5 pt-5"> {{-- ada jarak atas --}}
+<div id="organisasi" class="container my-5 pt-5">
     <h2 class="text-center fw-bold mb-4">NEWS</h2>
-    <div class="row g-4"> {{-- pakai g-4 untuk spasi antar kolom --}}
+    <div class="row g-4">
         @foreach ($kegiatan as $k)
             @isset($k->lpj)
                 <div class="col-lg-4 col-md-6 col-12">
@@ -87,7 +85,9 @@
     </div>
 </div>
 
-<!-- CSS -->
+@endsection
+
+@push('styles')
 <style>
     /* efek typing */
     .typing-container { font-weight: bold; display: inline-block; }
@@ -106,18 +106,15 @@
     .animate-bounce { animation: bounce 2s infinite; }
     @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px);} }
 
-    /* Hover dropdown item */
-    .dropdown-item.list-org:hover { background-color:#f0f0f0; }
-    .dropdown-item.list-org:active { background-color:#dcdcdc; }
-
     /* responsive kecil */
     @media (max-width:576px) {
         h1,h2,h3 { font-size:1.2rem; }
         .card-title { font-size:1rem; }
     }
 </style>
+@endpush
 
-<!-- JS -->
+@push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const items = document.querySelectorAll('.list-org');
@@ -129,3 +126,4 @@
         });
     });
 </script>
+@endpush
