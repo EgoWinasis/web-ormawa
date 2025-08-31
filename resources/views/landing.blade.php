@@ -79,8 +79,8 @@
 </section>
 
 <!-- NEWS -->
-<section id="organisasi" class="container my-5">
-    <h2 class="text-center fw-bold mb-4">NEWS</h2>
+<section id="organisasi" class="container my-4">
+    <h2 class="text-center fw-bold mb-4 mt-4">NEWS</h2>
     <div class="row">
         @foreach ($kegiatan as $k)
             @isset($k->lpj)
