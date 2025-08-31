@@ -69,7 +69,7 @@
 
 <!-- MAIN -->
 <main class="container-fluid py-4">
-    @yield('content')
+    @yield('konten')
 </main>
 
 <!-- FOOTER / SCRIPT -->
