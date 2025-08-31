@@ -54,9 +54,7 @@
         </table>
     </div>
 </div>
-<br>
-<br>
-<br>
+
 <!-- NEWS -->
 <div id="organisasi" class="container my-5 pt-5">
     <h2 class="text-center fw-bold mb-4">NEWS</h2>
