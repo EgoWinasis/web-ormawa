@@ -81,7 +81,7 @@
 </div>
 
 <!-- NEWS -->
-<div id="organisasi" class="container my-5">
+<div id="organisasi" class="container" style="margin-top: 2%; margin-bottom: 2%;">
     <h2 class="title mb-4 text-center">NEWS</h2>
     <div class="row">
         @foreach ($kegiatan as $k)
