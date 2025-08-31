@@ -8,9 +8,7 @@
     @foreach ($user as $u)
         @if ($u->nama_organisasi !== 'kesiswaan' && !in_array($u->nama_organisasi, $uniqueOrganisasi))
             @php $uniqueOrganisasi[] = $u->nama_organisasi; @endphp
-            <div href="#"
-                 onclick="return false;"
-                 class="dropdown-item text-dark list-org"
+            <div class="dropdown-item text-dark list-org"
                  style="cursor: pointer;"
                  data-name="{{ Str::slug($u->nama_organisasi) }}">
                  {{ Str::title($u->nama_organisasi) }}
@@ -24,32 +22,33 @@
 
 <!-- HERO SECTION -->
 <div id="beranda" 
-     class="d-flex flex-column flex-md-row justify-content-center align-items-center text-center text-md-start p-3"
+     class="container-fluid d-flex align-items-center"
      style="background-image: url('{{ asset('storage/file-logo/Phb_10.jpg') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             min-height: 100vh;
             background-color: rgba(255, 255, 255, 0.7);
-            background-blend-mode: overlay;
-            width: 100%;">
+            background-blend-mode: overlay;">
 
-    <!-- Text -->
-    <div class="col-md-6 col-12 mb-4">
-        <h1 class="fw-bold">Selamat Datang 🙌</h1>
-        <div class="typing-container">
-            <span class="typing-line">Website Sistem Informasi Manajemen Organisasi</span>
-            <span class="typing-line">Mahasiswa Politeknik Harapan Bersama Tegal</span>
+    <div class="row w-100 text-center text-md-start">
+        <!-- Text -->
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-center p-4">
+            <h1 class="fw-bold">Selamat Datang 🙌</h1>
+            <div class="typing-container">
+                <span class="typing-line">Website Sistem Informasi Manajemen Organisasi</span>
+                <span class="typing-line">Mahasiswa Politeknik Harapan Bersama Tegal</span>
+            </div>
         </div>
-    </div>
 
-    <!-- Image -->
-    <div class="col-md-6 col-12">
-        <div class="img-container animate-bounce text-center">
-            <img src="{{ asset('storage/file-logo/logo-landing.png') }}"
-                 alt="ilustrasi aplikasi Organisasi"
-                 class="img-fluid mx-auto"
-                 style="max-width: 250px;">
+        <!-- Image -->
+        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center p-4">
+            <div class="img-container animate-bounce">
+                <img src="{{ asset('storage/file-logo/logo-landing.png') }}"
+                     alt="ilustrasi aplikasi Organisasi"
+                     class="img-fluid"
+                     style="max-width: 250px;">
+            </div>
         </div>
     </div>
 </div>
@@ -84,32 +83,30 @@
 <!-- NEWS -->
 <div id="organisasi" class="container my-5">
     <h2 class="title mb-4 text-center">NEWS</h2>
-    <div class="news container-unit active">
-        <div class="row">
-            @foreach ($kegiatan as $k)
-                @isset($k->lpj)
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="{{ asset('storage/' . $k->gambar) }}"
-                                 class="card-img-top img-fluid"
-                                 alt="Gambar {{ $k->nama_kegiatan }}"
-                                 style="height: 250px; object-fit: cover;">
-                            <div class="card-body">
-                                <h5 class="card-title text-uppercase fw-bold mb-2">{{ $k->nama_kegiatan }}</h5>
-                                <p class="card-text mb-2">
-                                    <strong class="text-muted">Waktu Pelaksanaan:</strong><br>
-                                    {{ \Carbon\Carbon::parse($k->tanggal_mulai)->locale('id')->translatedFormat('l, d F Y') }}
-                                </p>
-                                <p class="card-text text-justify">
-                                    <strong class="text-muted">Keterangan:</strong><br>
-                                    {{ $k->keterangan }}
-                                </p>
-                            </div>
+    <div class="row">
+        @foreach ($kegiatan as $k)
+            @isset($k->lpj)
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{{ asset('storage/' . $k->gambar) }}"
+                             class="card-img-top img-fluid"
+                             alt="Gambar {{ $k->nama_kegiatan }}"
+                             style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase fw-bold mb-2">{{ $k->nama_kegiatan }}</h5>
+                            <p class="card-text mb-2">
+                                <strong class="text-muted">Waktu Pelaksanaan:</strong><br>
+                                {{ \Carbon\Carbon::parse($k->tanggal_mulai)->locale('id')->translatedFormat('l, d F Y') }}
+                            </p>
+                            <p class="card-text text-justify">
+                                <strong class="text-muted">Keterangan:</strong><br>
+                                {{ $k->keterangan }}
+                            </p>
                         </div>
                     </div>
-                @endisset
-            @endforeach
-        </div>
+                </div>
+            @endisset
+        @endforeach
     </div>
 
     <!-- Visi Misi tiap Ormawa -->
@@ -128,7 +125,7 @@
                     <div class="col-md-4 col-12">
                         <img src="{{ asset('storage/' . $u->foto) }}"
                              alt="Logo {{ $u->nama_organisasi }}"
-                             class="img-fluid mx-auto d-block" style="max-width: 180px;">
+                             class="img-fluid mx-auto d-block" style="max-width: 160px;">
                     </div>
 
                     <!-- Misi -->
@@ -186,7 +183,7 @@
         color: #000;
     }
 
-    /* Text justify fix for small screens */
+    /* text-justify diubah untuk HP biar gak kepotong */
     @media (max-width: 576px) {
         .text-justify {
             text-align: left !important;
