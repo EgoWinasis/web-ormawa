@@ -2,36 +2,13 @@
 
 @section('title', 'Beranda ORMAWA')
 
-@section('dropdown-options')
-    <div class="dropdown w-100">
-        <!-- Dropdown hanya muncul di HP -->
-        <button class="btn btn-outline-primary w-100 d-md-none mb-2" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-            Pilih Organisasi
-        </button>
-        <div class="dropdown-menu w-100" style="max-height: 200px; overflow-y: auto;">
-            @php $uniqueOrganisasi = []; @endphp
-            @foreach ($user as $u)
-                @if ($u->nama_organisasi !== 'kesiswaan' && !in_array($u->nama_organisasi, $uniqueOrganisasi))
-                    @php $uniqueOrganisasi[] = $u->nama_organisasi; @endphp
-                    <button class="dropdown-item text-dark list-org"
-                            data-name="{{ Str::slug($u->nama_organisasi) }}">
-                        {{ Str::title($u->nama_organisasi) }}
-                    </button>
-                @endif
-            @endforeach
-        </div>
-    </div>
-@endsection
-
-@section('content')
 
 <!-- HERO -->
-<section id="beranda"
-         class="container-fluid d-flex align-items-center min-vh-100"
-         style="background: url('{{ asset('storage/file-logo/Phb_10.jpg') }}') center/cover no-repeat;
-                background-color: rgba(255,255,255,.7);
-                background-blend-mode: overlay;">
+<div id="beranda"
+     class="container-fluid d-flex align-items-center min-vh-100"
+     style="background: url('{{ asset('storage/file-logo/Phb_10.jpg') }}') center/cover no-repeat;
+            background-color: rgba(255,255,255,.7);
+            background-blend-mode: overlay;">
     <div class="row w-100 text-center text-md-start">
         <!-- Text -->
         <div class="col-12 col-md-6 d-flex flex-column justify-content-center p-4">
@@ -49,13 +26,14 @@
                  class="img-fluid animate-bounce" style="max-width: 220px;">
         </div>
     </div>
-</section>
+</div>
+
 <!-- JADWAL -->
-<section id="jadwal" class="container my-5">
+<div id="jadwal" class="container my-5">
     <h2 class="text-center fw-bold mb-4">
         JADWAL SEMUA KEGIATAN ORGANISASI POLTEK HARBER
     </h2>
-    <div class="table-responsive mb-5"> {{-- tambahkan mb-5 agar ada jarak bawah --}}
+    <div class="table-responsive mb-5"> {{-- ada jarak bawah --}}
         <table class="table table-bordered table-striped text-center align-middle">
             <thead class="table-primary">
             <tr>
@@ -77,10 +55,10 @@
             </tbody>
         </table>
     </div>
-</section>
+</div>
 
 <!-- NEWS -->
-<section id="organisasi" class="container my-5 pt-5"> {{-- tambahkan pt-5 untuk jarak atas --}}
+<div id="organisasi" class="container my-5 pt-5"> {{-- ada jarak atas --}}
     <h2 class="text-center fw-bold mb-4">NEWS</h2>
     <div class="row g-4"> {{-- pakai g-4 untuk spasi antar kolom --}}
         @foreach ($kegiatan as $k)
@@ -107,11 +85,9 @@
             @endisset
         @endforeach
     </div>
-</section>
+</div>
 
-@endsection
-
-@section('css')
+<!-- CSS -->
 <style>
     /* efek typing */
     .typing-container { font-weight: bold; display: inline-block; }
@@ -140,9 +116,8 @@
         .card-title { font-size:1rem; }
     }
 </style>
-@endsection
 
-@section('js')
+<!-- JS -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const items = document.querySelectorAll('.list-org');
@@ -154,4 +129,3 @@
         });
     });
 </script>
-@endsection
