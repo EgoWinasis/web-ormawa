@@ -6,37 +6,52 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="../../css/admin.css">
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin Panel</title>
+    
+       {{-- <link rel="stylesheet" href="../../css/root.css"> --}}
+    
+        <!-- link ke css landing -->
+        <link rel="stylesheet" href="../../css/admin.css">
+    
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+        <!-- google icons -->
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <title>SUPER ADMIN</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        .active {
-            background-color: #29A1D4;
-            font-weight: bold;
-            color: white !important;
-        }
-        .nav-link {
-            color: #000;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .nav-link:hover {
-            background-color: #29A1D4;
-            color: black !important;
-        }
-        .nav-link i {
-            width: 20px;
-            text-align: center;
-        }
-    </style>
-</head>
+    
+        <!-- Custom Style -->
+        <style>
+            .active {
+                background-color: #29A1D4;
+                font-weight: bold;
+                color: white !important;
+            }
+            .nav-link {
+                color: #000;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .nav-link:hover {
+                background-color: #29A1D4;
+                color: black !important;
+            }
+            .nav-link i {
+                width: 20px;
+                text-align: center;
+            }
+        </style>
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    </head>
 <body>
 
 <!-- HEADER -->
@@ -54,7 +69,7 @@
 </nav>
 
 <!-- SIDEBAR MOBILE -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title">Menu</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
