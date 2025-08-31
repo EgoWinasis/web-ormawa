@@ -13,6 +13,8 @@
 
                 <!-- Card Body -->
                 <div class="card-body">
+                    <div class="table-responsive">
+
                     <table class="table table-hover table-bordered align-middle " id="anggotaTable">
                         <thead class="table-primary">
                             <tr>
@@ -57,6 +59,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div> <!-- /.card-body -->
                 </div> <!-- /.card-body -->
             </div> <!-- /.card -->
         </div>
