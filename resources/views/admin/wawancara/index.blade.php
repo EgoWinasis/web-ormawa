@@ -13,7 +13,7 @@
 
                 <!-- Card Body -->
                 <div class="card-body">
-                    <table class="table table-hover table-bordered align-middle fl-table" id="anggotaTable">
+                    <table class="table table-hover table-bordered align-middle " id="anggotaTable">
                         <thead class="table-primary">
                             <tr>
                                 <th>No</th>
