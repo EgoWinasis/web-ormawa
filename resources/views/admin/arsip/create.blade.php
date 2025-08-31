@@ -81,11 +81,12 @@
 
 
 
-                        <!-- Buttons -->
-                        <div class="d-flex justify-content-between">
-                            <a href="/admin/arsip" class="btn btn-secondary px-5">Kembali</a>
-                            <button type="submit" class="btn btn-primary px-5">Tambah</button>
-                        </div>
+                     <!-- Buttons -->
+<div class="d-flex flex-column flex-sm-row justify-content-between gap-2">
+    <a href="/admin/arsip" class="btn btn-secondary w-100 w-sm-auto px-5">Kembali</a>
+    <button type="submit" class="btn btn-primary w-100 w-sm-auto px-5">Tambah</button>
+</div>
+
                     </form>
                 </div>
             </div>
