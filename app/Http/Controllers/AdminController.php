@@ -851,45 +851,22 @@ class AdminController extends Controller
     // otorisasi arsip
     public function otor()
     {
-        if (Auth::user()->role == 'admin') {
-
-            $userId = Auth::id();
-
-            $org = DB::table('users')
-                ->join('admin', 'admin.user_id', '=', 'users.id')
-                ->where('users.id', $userId)
-                ->value('admin.nama_organisasi');
-
-
-
-            $anggota = DB::table('users')
-                     ->join('anggota', 'anggota.user_id', '=', 'users.id')
-                     ->where('anggota.nama_organisasi', $org)
-                     ->select('users.*', 'anggota.*')  // select fields from both tables as needed
-                     ->get();
-
-
-            $rutin = Rutin::all();
-            // $anggota = User::orderBy('name')->get();
-            $user = DB::table('users')
-               ->join('admin', 'admin.user_id', '=', 'users.id')
-               ->where('users.id', $userId)
-               ->first();
-
-
-            $kegiatan = Agenda::where('nama_organisasi', $org)->get();
-
-            $rutin = Rutin::all();
-
-            return view('admin.otor.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
-        } elseif (Auth::user()->role == 'super_admin') {
+        if (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
             $anggota = User::all();
             $admin = Admin::all();
-            // $anggota = User::orderBy('name')->get();
-            $user = User::find(Auth::user()->id);
-            return view('superadmin.otor.index', ['user' => $user, 'anggota' => $anggota, 'kegiatan' => $kegiatan, 'admin' => $admin]);
+            $user = Auth::user(); // lebih simpel daripada find()
+
+            return view('superadmin.otor.index', [
+                'user' => $user,
+                'anggota' => $anggota,
+                'kegiatan' => $kegiatan,
+                'admin' => $admin
+            ]);
         }
+
+        // Jika bukan super admin
+        return redirect()->back()->with('error', 'Anda tidak memiliki akses.');
     }
 
 }

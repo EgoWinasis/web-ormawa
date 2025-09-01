@@ -1,5 +1,4 @@
-@extends('admin.layoutadmin.main')
-
+@extends('superadmin.layoutsuper.main')
 @section('konten')
 <div class="container py-4" style="margin-top: 2rem">
 
