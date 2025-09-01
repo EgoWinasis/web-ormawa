@@ -878,4 +878,32 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'Anda tidak memiliki akses.');
     }
 
+
+    public function ubahStatus(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:agenda,id',
+            'tipe' => 'required|in:proposal,lpj',
+            'status' => 'required|in:1,3',
+            'catatan' => 'required|string'
+        ]);
+
+        $agenda = Agenda::findOrFail($request->id);
+
+        if ($request->tipe === 'proposal') {
+            $agenda->status_proposal = $request->status;
+            $agenda->keterangan_proposal = $request->catatan;
+        } else {
+            $agenda->status_lpj = $request->status;
+            $agenda->keterangan_lpj = $request->catatan;
+        }
+
+        $agenda->save();
+
+        return response()->json([
+            'message' => ucfirst($request->tipe) . ' berhasil diperbarui!'
+        ]);
+    }
+
+
 }

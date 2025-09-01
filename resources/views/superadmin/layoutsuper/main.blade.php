@@ -415,7 +415,57 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
             });
         }
 
-        
+        function ubahStatus(tipe, id) {
+        Swal.fire({
+            title: `Ubah Status ${tipe.toUpperCase()}`,
+            input: 'textarea',
+            inputLabel: 'Catatan',
+            inputPlaceholder: 'Masukkan catatan untuk pengajuan ini...',
+            inputAttributes: {
+                'aria-label': 'Catatan'
+            },
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Setujui',
+            denyButtonText: `Tolak`,
+            cancelButtonText: 'Batal',
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'Catatan harus diisi!';
+                }
+            }
+        }).then((result) => {
+            if (result.isConfirmed || result.isDenied) {
+                const status = result.isConfirmed ? 1 : 3;
+                const catatan = result.value;
+
+                // Kirim via AJAX
+                fetch(`/admin/ubah-status`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        tipe: tipe,
+                        status: status,
+                        catatan: catatan
+                    })
+                })
+                .then(res => res.json())
+                .then(res => {
+                    Swal.fire('Berhasil!', res.message, 'success').then(() => {
+                        location.reload();
+                    });
+                })
+                .catch(err => {
+                    console.error(err);
+                    Swal.fire('Gagal!', 'Terjadi kesalahan.', 'error');
+                });
+            }
+        });
+    }
     </script>
 
 </body>

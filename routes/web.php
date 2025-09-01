@@ -103,6 +103,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/kegiatan/{id}/edit', [AgendaController::class, 'arsipUpdate']);
     Route::post('/news/destroy/{id}', [AgendaController::class, 'newsDestroy']);
     Route::get('/otorisasi-arsip', [AdminController::class, 'otor'])->name('admin.otor');
+    Route::post('/ubah-status', [AdminController::class, 'ubahStatus'])->name('admin.ubahStatus');
 
     // panitia Routes
     Route::post('kegiatan/panitia/{id}', [AnggotaController::class, 'panitiaKegiatan']);
