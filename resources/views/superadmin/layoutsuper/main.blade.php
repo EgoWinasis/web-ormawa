@@ -415,19 +415,27 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
             });
         }
 
-        function ubahStatus(tipe, id) {
+       function ubahStatus(tipe, id) {
     Swal.fire({
         title: `Ubah Status ${tipe.toUpperCase()}`,
-        html:
-            `<select id="swal-status" class="swal2-select" style="width: 100%; margin-bottom: 1rem;">
-                <option value="" selected disabled>Pilih status</option>
-                <option value="1">Disetujui</option>
-                <option value="3">Ditolak</option>
-            </select>
-            <textarea id="swal-catatan" class="swal2-textarea" placeholder="Masukkan catatan untuk pengajuan ini..."></textarea>`,
+        html: `
+            <div style="text-align: left;">
+                <label for="swal-status" style="display:block; margin-bottom: 0.5rem;">Pilih Status:</label>
+                <select id="swal-status" class="swal2-select" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;">
+                    <option value="" selected disabled>-- Pilih Status --</option>
+                    <option value="1">Disetujui</option>
+                    <option value="3">Ditolak</option>
+                </select>
+
+                <label for="swal-catatan" style="display:block; margin-bottom: 0.5rem;">Catatan:</label>
+                <textarea id="swal-catatan" class="swal2-textarea" placeholder="Masukkan catatan untuk pengajuan ini..." 
+                    style="width: 100%; height: 100px; padding: 0.5rem;"></textarea>
+            </div>
+        `,
         focusConfirm: false,
         showCancelButton: true,
         confirmButtonText: 'Update',
+        cancelButtonText: 'Batal',
         preConfirm: () => {
             const status = Swal.getPopup().querySelector('#swal-status').value;
             const catatan = Swal.getPopup().querySelector('#swal-catatan').value.trim();
@@ -471,6 +479,8 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
         }
     });
 }
+
+
 
 
     </script>
