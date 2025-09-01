@@ -87,7 +87,7 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
                 ['route' => 'admin.dashboard', 'icon' => 'fa-home', 'label' => 'Dashboard'],
                 ['route' => 'admin.news', 'icon' => 'fa-bullhorn', 'label' => 'News'],
                 ['route' => 'admin.arsip', 'icon' => 'fa-bookmark', 'label' => 'Arsip'],
-                    ['route' => 'admin.otor', 'icon' => 'fa-bookmark', 'label' => 'Otorisasi Arsip'],
+                ['route' => 'admin.otor', 'icon' => 'fa-bookmark', 'label' => 'Otorisasi Arsip'],
                 ['route' => 'admin.absensi', 'icon' => 'fa-box', 'label' => 'Data Ormawa'],
                 ['route' => 'admin.tambahAdminView', 'icon' => 'fa-user-plus', 'label' => 'Create User'],
                 ['route' => 'admin.profile', 'icon' => 'fa-user-circle', 'label' => 'Data Profile'],
@@ -382,7 +382,7 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
 
 
 
-         function showStatusInfo(status, keterangan) {
+        function showStatusInfo(status, keterangan) {
             let icon, title, text;
 
             switch (status) {
@@ -416,58 +416,63 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
         }
 
         function ubahStatus(tipe, id) {
-        Swal.fire({
-            title: `Ubah Status ${tipe.toUpperCase()}`,
-            input: 'textarea',
-            inputLabel: 'Catatan',
-            inputPlaceholder: 'Masukkan catatan untuk pengajuan ini...',
-            inputAttributes: {
-                'aria-label': 'Catatan'
-            },
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Setujui',
-            denyButtonText: `Tolak`,
-            cancelButtonText: 'Batal',
-            inputValidator: (value) => {
-                if (!value) {
-                    return 'Catatan harus diisi!';
-                }
-            }
-        }).then((result) => {
-            if (result.isConfirmed || result.isDenied) {
-                const status = result.isConfirmed ? 1 : 3;
-                const catatan = result.value;
+    Swal.fire({
+        title: `Ubah Status ${tipe.toUpperCase()}`,
+        html:
+            `<select id="swal-status" class="swal2-select" style="width: 100%; margin-bottom: 1rem;">
+                <option value="" selected disabled>Pilih status</option>
+                <option value="1">Disetujui</option>
+                <option value="3">Ditolak</option>
+            </select>
+            <textarea id="swal-catatan" class="swal2-textarea" placeholder="Masukkan catatan untuk pengajuan ini..."></textarea>`,
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: 'Update',
+        preConfirm: () => {
+            const status = Swal.getPopup().querySelector('#swal-status').value;
+            const catatan = Swal.getPopup().querySelector('#swal-catatan').value.trim();
 
-                console.log({ id, tipe, status, catatan });
-                
-                // Kirim via AJAX
-                fetch(`/admin/ubah-status`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        id: id,
-                        tipe: tipe,
-                        status: status,
-                        catatan: catatan
-                    })
-                })
-                .then(res => res.json())
-                .then(res => {
-                    Swal.fire('Berhasil!', res.message, 'success').then(() => {
-                        location.reload();
-                    });
-                })
-                .catch(err => {
-                    console.error(err);
-                    Swal.fire('Gagal!', 'Terjadi kesalahan.', 'error');
-                });
+            if (!status) {
+                Swal.showValidationMessage('Status harus dipilih!');
             }
-        });
-    }
+            if (!catatan) {
+                Swal.showValidationMessage('Catatan harus diisi!');
+            }
+
+            return { status, catatan };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const { status, catatan } = result.value;
+
+            fetch(`/admin/ubah-status`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    id: id,
+                    tipe: tipe,
+                    status: status,
+                    catatan: catatan
+                })
+            })
+            .then(res => res.json())
+            .then(res => {
+                Swal.fire('Berhasil!', res.message, 'success').then(() => {
+                    location.reload();
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                Swal.fire('Gagal!', 'Terjadi kesalahan.', 'error');
+            });
+        }
+    });
+}
+
+
     </script>
 
 </body>
