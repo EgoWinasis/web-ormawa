@@ -17,11 +17,9 @@
                                 <th>No</th>
                                 <th>Nama Kegiatan</th>
                                 <th>Tempat</th>
-                                <th>Gambar</th>
                                 <th>Proposal</th>
                                 <th>LPJ</th>
-                                <th>Keterangan</th>
-                                <th>Panitia</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,23 +30,6 @@
                                 <td>{{ $count }}</td>
                                 <td>{{ $k->nama_kegiatan }}</td>
                                 <td>{{ $k->tempat_kegiatan }}</td>
-
-                                <!-- Gambar -->
-                                <td class="text-center">
-                                    @if ($k->gambar)
-                                    <div class="d-inline-flex align-items-center gap-2">
-                                        <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank"
-                                            title="Lihat Gambar">
-                                            <i class="fas fa-eye fa-lg text-primary"></i>
-                                        </a>
-                                        <a href="{{ asset('storage/' . $k->gambar) }}" download title="Download Gambar">
-                                            <i class="fas fa-download fa-lg text-success"></i>
-                                        </a>
-                                    </div>
-                                    @else
-                                    <span class="text-muted">Tidak ada</span>
-                                    @endif
-                                </td>
 
                                 <!-- Proposal -->
                                 <td class="text-center">
@@ -97,18 +78,30 @@
                                     <span class="badge bg-secondary">Belum Ada File</span>
                                     @endif
                                 </td>
+<!-- Aksi -->
+<td class="text-center">
+    <div class="d-flex justify-content-center gap-2">
+        {{-- Ubah Status Proposal --}}
+        @if ($k->proposal)
+            <a href="javascript:void(0);" 
+               onclick="ubahStatus('proposal', {{ $k->id }})"
+               title="Ubah Status Proposal">
+                <i class="fas fa-edit text-warning"></i>
+            </a>
+        @endif
 
-                                <!-- Panitia -->
-                                <td class="text-center">
-                                    @if ($k->users && count($k->users) > 0)
-                                    <button class="btn btn-sm btn-primary show-agendas-btn"
-                                        data-anggota='@json($k->users)'>
-                                        {{ count($k->users) }}
-                                    </button>
-                                    @else
-                                    <span class="text-muted">Belum Ada Panitia</span>
-                                    @endif
-                                </td>
+        {{-- Ubah Status LPJ --}}
+        @if ($k->lpj)
+            <a href="javascript:void(0);" 
+               onclick="ubahStatus('lpj', {{ $k->id }})"
+               title="Ubah Status LPJ">
+                <i class="fas fa-file-alt text-info"></i>
+            </a>
+        @endif
+    </div>
+</td>
+
+                              
                             </tr>
                             @endforeach
                         </tbody>

@@ -852,7 +852,10 @@ class AdminController extends Controller
     public function otor()
     {
         if (Auth::user()->role == 'super_admin') {
-            $kegiatan = Agenda::all();
+            $kegiatan = Agenda::where(function ($query) {
+                $query->whereIn('status_proposal', [0, 3])
+                      ->orWhere('status_lpj', [0, 3]);
+            })->get();
             $anggota = User::all();
             $admin = Admin::all();
             $user = Auth::user(); // lebih simpel daripada find()
