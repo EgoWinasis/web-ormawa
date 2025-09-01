@@ -7,7 +7,7 @@
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white text-center">
-                    <h4 class="mb-0">Form Pendaftaran Anggota</h4>
+                    <h4 class="mb-0">Histori Pendaftaran</h4>
                 </div>
                 <div class="card-body overflow-auto">
                     <div class="table-responsive">

@@ -10,7 +10,7 @@
                     <h4 class="mb-0">Pengumuman Pendaftaran</h4>
                 </div>
                 <div class="card-body overflow-auto">
-                    <div id="history" class="container-history d-flex active">
+                    <div id="history">
                         @if ($user->status == 'calon')
                         <h1>Sedang DiProses Tahap Administrasi..<h1>
                                 @elseif ($user->status == 'Lolos ke Wawancara')
