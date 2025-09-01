@@ -381,6 +381,41 @@ $user = Auth::user();
             });
         });
 
+
+         function showStatusInfo(status, keterangan) {
+        let icon, title, text;
+
+        switch (status) {
+            case 0:
+                icon = 'info';
+                title = 'LPJ Sedang Direview';
+                text = 'LPJ kamu sedang dalam proses pemeriksaan.';
+                break;
+            case 1:
+                icon = 'success';
+                title = 'LPJ Disetujui';
+                text = 'LPJ kamu telah disetujui.';
+                break;
+            case 2:
+                icon = 'error';
+                title = 'LPJ Ditolak';
+                text = 'LPJ kamu ditolak.';
+                break;
+            default:
+                icon = 'warning';
+                title = 'Status Tidak Diketahui';
+                text = 'Status LPJ tidak valid.';
+        }
+
+        Swal.fire({
+            icon: icon,
+            title: title,
+            html: `<p>${text}</p><hr><p><strong>Keterangan:</strong> ${keterangan}</p>`,
+            confirmButtonColor: '#3085d6',
+        });
+    }
+
+    
     </script>
 </body>
 

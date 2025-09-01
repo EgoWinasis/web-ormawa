@@ -84,6 +84,12 @@
                                             title="Download LPJ">
                                             <i class="fas fa-download fa-lg text-success"></i>
                                         </a>
+                                         {{-- Tombol Info Status --}}
+            <button class="btn btn-sm btn-info text-white"
+                onclick="showStatusInfo({{ $k->status_lpj }}, '{{ $k->keterangan_lpj ?? 'Tidak ada keterangan' }}')"
+                title="Info Status LPJ">
+                <i class="fas fa-info-circle"></i>
+            </button>
                                     </div>
                                     @else
                                     <span class="text-muted">Tidak ada</span>
