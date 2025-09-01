@@ -102,7 +102,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/arsip/store', [AgendaController::class, 'arsipStore'])->name('arsip.store');
     Route::post('/kegiatan/{id}/edit', [AgendaController::class, 'arsipUpdate']);
     Route::post('/news/destroy/{id}', [AgendaController::class, 'newsDestroy']);
-
+    Route::get('/otorisasi-arsip', [AdminController::class, 'otor'])->name('admin.otor');
 
     // panitia Routes
     Route::post('kegiatan/panitia/{id}', [AnggotaController::class, 'panitiaKegiatan']);
