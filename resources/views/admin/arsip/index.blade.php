@@ -70,7 +70,7 @@
 
                                         {{-- status propsal --}}
                                         <a href="javascript:void(0);"
-    onclick="showStatusInfo({{ $k->status_proposal }}, '{{ e($k->keterangan_proposal ?? 'Tidak ada keterangan') }}')"
+    onclick="showStatusInfo({{ $k->status_proposal }}, '{{ e($k->ket_proposal ?? 'Tidak ada keterangan') }}')"
     class="text-info"
     title="Info Status Proposal">
     <i class="fas fa-info-circle fa-lg"></i>
@@ -95,7 +95,7 @@
                                         </a>
                                          {{-- Tombol Info Status --}}
                                                 <a href="javascript:void(0);"
-                                            onclick="showStatusInfo({{ $k->status_lpj }}, '{{ e($k->keterangan_lpj ?? 'Tidak ada keterangan') }}')"
+                                            onclick="showStatusInfo({{ $k->status_lpj }}, '{{ e($k->ket_lpj ?? 'Tidak ada keterangan') }}')"
                                             class="text-info"
                                             title="Info Status LPJ">
                                             <i class="fas fa-info-circle fa-lg"></i>

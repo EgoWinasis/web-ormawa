@@ -892,10 +892,10 @@ class AdminController extends Controller
 
         if ($request->tipe === 'proposal') {
             $updateData['status_proposal'] = $request->status;
-            $updateData['keterangan_proposal'] = $request->catatan;
+            $updateData['ket_proposal'] = $request->catatan;
         } else {
             $updateData['status_lpj'] = $request->status;
-            $updateData['keterangan_lpj'] = $request->catatan;
+            $updateData['ket_lpj'] = $request->catatan;
         }
 
         DB::table('agendas')->where('id', $request->id)->update($updateData);
