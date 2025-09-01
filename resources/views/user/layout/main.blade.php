@@ -195,7 +195,7 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
         document.addEventListener('DOMContentLoaded', function () {
             Swal.fire({
                 icon: 'warning',
-                title: 'Sukses!',
+                title: 'Tidak Bisa Mendaftar',
                 text: '{{ session('swal_success') }}',
                 confirmButtonColor: '#3085d6',
             });
