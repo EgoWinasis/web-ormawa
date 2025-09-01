@@ -888,22 +888,22 @@ class AdminController extends Controller
             'catatan' => 'required|string'
         ]);
 
-        $agenda = Agenda::findOrFail($request->id);
-
+        // Tentukan kolom yang akan diperbarui
+        $updateData = [];
         if ($request->tipe === 'proposal') {
-            $agenda->status_proposal = $request->status;
-            $agenda->keterangan_proposal = $request->catatan;
+            $updateData['status_proposal'] = $request->status;
+            $updateData['keterangan_proposal'] = $request->catatan;
         } else {
-            $agenda->status_lpj = $request->status;
-            $agenda->keterangan_lpj = $request->catatan;
+            $updateData['status_lpj'] = $request->status;
+            $updateData['keterangan_lpj'] = $request->catatan;
         }
 
-        $agenda->save();
+        // Update ke database tanpa model
+        DB::table('agendas')->where('id', $request->id)->update($updateData);
 
         return response()->json([
             'message' => ucfirst($request->tipe) . ' berhasil diperbarui!'
         ]);
     }
-
 
 }
