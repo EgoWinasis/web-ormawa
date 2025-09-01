@@ -388,23 +388,23 @@ $user = Auth::user();
         switch (status) {
             case 0:
                 icon = 'info';
-                title = 'LPJ Sedang Direview';
-                text = 'LPJ kamu sedang dalam proses pemeriksaan.';
+                title = 'Berkas Sedang Direview';
+                text = 'Berkas kamu sedang dalam proses pemeriksaan.';
                 break;
             case 1:
                 icon = 'success';
-                title = 'LPJ Disetujui';
-                text = 'LPJ kamu telah disetujui.';
+                title = 'Berkas Disetujui';
+                text = 'Berkas kamu telah disetujui.';
                 break;
             case 2:
                 icon = 'error';
-                title = 'LPJ Ditolak';
-                text = 'LPJ kamu ditolak.';
+                title = 'Berkas Ditolak';
+                text = 'Berkas kamu ditolak.';
                 break;
             default:
                 icon = 'warning';
                 title = 'Status Tidak Diketahui';
-                text = 'Status LPJ tidak valid.';
+                text = 'Status Berkas tidak valid.';
         }
 
         Swal.fire({
@@ -415,7 +415,7 @@ $user = Auth::user();
         });
     }
 
-    
+
     </script>
 </body>
 
