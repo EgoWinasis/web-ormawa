@@ -71,6 +71,14 @@
                                                 download="{{ $k->slug ?? 'proposal' }}" title="Download Proposal">
                                                 <i class="fas fa-download fa-lg text-success"></i>
                                             </a>
+
+                                              {{-- status propsal --}}
+                                        <a href="javascript:void(0);"
+    onclick="showStatusInfo({{ $k->status_proposal }}, '{{ e($k->keterangan_proposal ?? 'Tidak ada keterangan') }}')"
+    class="text-info"
+    title="Info Status Proposal">
+    <i class="fas fa-info-circle fa-lg"></i>
+</a>
                                         </div>
                                         @else
                                         <span class="text-muted">Tidak ada</span>
@@ -89,6 +97,14 @@
                                                 download="{{ $k->slug ?? 'lpj' }}" title="Download LPJ">
                                                 <i class="fas fa-download fa-lg text-success"></i>
                                             </a>
+
+                                               {{-- Tombol Info Status --}}
+                                                <a href="javascript:void(0);"
+                                            onclick="showStatusInfo({{ $k->status_lpj }}, '{{ e($k->keterangan_lpj ?? 'Tidak ada keterangan') }}')"
+                                            class="text-info"
+                                            title="Info Status LPJ">
+                                            <i class="fas fa-info-circle fa-lg"></i>
+                                        </a>
                                         </div>
                                         @else
                                         <span class="text-muted">Tidak ada</span>

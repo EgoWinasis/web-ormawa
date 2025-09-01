@@ -131,7 +131,7 @@ $user = Auth::user();
     <div class="container-fluid">
         <div class="row min-vh-100">
             <!-- SIDEBAR DESKTOP -->
-           <div class="col-lg-2 d-none d-lg-block bg-light d-flex flex-column min-vh-100 p-0">
+            <div class="col-lg-2 d-none d-lg-block bg-light d-flex flex-column min-vh-100 p-0">
 
                 <ul class="nav flex-column px-2 pt-3">
                     @foreach($menuItems as $item)
@@ -382,39 +382,38 @@ $user = Auth::user();
         });
 
 
-         function showStatusInfo(status, keterangan) {
-        let icon, title, text;
+        function showStatusInfo(status, keterangan) {
+            let icon, title, text;
 
-        switch (status) {
-            case 0:
-                icon = 'info';
-                title = 'Berkas Sedang Direview';
-                text = 'Berkas kamu sedang dalam proses pemeriksaan.';
-                break;
-            case 1:
-                icon = 'success';
-                title = 'Berkas Disetujui';
-                text = 'Berkas kamu telah disetujui.';
-                break;
-            case 2:
-                icon = 'error';
-                title = 'Berkas Ditolak';
-                text = 'Berkas kamu ditolak.';
-                break;
-            default:
-                icon = 'warning';
-                title = 'Status Tidak Diketahui';
-                text = 'Status Berkas tidak valid.';
+            switch (status) {
+                case 0:
+                    icon = 'info';
+                    title = 'Berkas Sedang Direview';
+                    text = 'Berkas kamu sedang dalam proses pemeriksaan.';
+                    break;
+                case 1:
+                    icon = 'success';
+                    title = 'Berkas Disetujui';
+                    text = 'Berkas kamu telah disetujui.';
+                    break;
+                case 2:
+                    icon = 'error';
+                    title = 'Berkas Ditolak';
+                    text = 'Berkas kamu ditolak.';
+                    break;
+                default:
+                    icon = 'warning';
+                    title = 'Status Tidak Diketahui';
+                    text = 'Status Berkas tidak valid.';
+            }
+
+            Swal.fire({
+                icon: icon,
+                title: title,
+                html: `<p>${text}</p><hr><p><strong>Keterangan:</strong> ${keterangan}</p>`,
+                confirmButtonColor: '#3085d6',
+            });
         }
-
-        Swal.fire({
-            icon: icon,
-            title: title,
-            html: `<p>${text}</p><hr><p><strong>Keterangan:</strong> ${keterangan}</p>`,
-            confirmButtonColor: '#3085d6',
-        });
-    }
-
 
     </script>
 </body>
