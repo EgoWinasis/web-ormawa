@@ -430,7 +430,7 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
                 </div>
                 <div>
                     <label for="swal-catatan" style="font-weight: 600; margin-bottom: 0.5rem;">Catatan:</label>
-                    <textarea id="swal-catatan" class="swal2-textarea" placeholder="Masukkan catatan untuk pengajuan ini..." style="width: 100%; height: 100px;"></textarea>
+                    <input type="text" id="swal-catatan" class="swal2-input" placeholder="Masukkan catatan..." />
                 </div>
             </div>
         `,
