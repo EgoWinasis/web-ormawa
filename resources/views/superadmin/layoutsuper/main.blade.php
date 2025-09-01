@@ -439,6 +439,8 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
                 const status = result.isConfirmed ? 1 : 3;
                 const catatan = result.value;
 
+                console.log({ id, tipe, status, catatan });
+                
                 // Kirim via AJAX
                 fetch(`/admin/ubah-status`, {
                     method: 'POST',
