@@ -120,7 +120,8 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
     <div class="container-fluid">
         <div class="row min-vh-100">
             <!-- SIDEBAR: DESKTOP -->
-            <div class="col-lg-2 d-none d-lg-block bg-light vh-100 p-0">
+            <div class="col-lg-2 d-none d-lg-block bg-light d-flex flex-column min-vh-100 p-0">
+
                 <ul class="nav flex-column px-2 pt-3">
                     @foreach([
                     ['route' => 'user.index', 'icon' => 'fa-edit', 'label' => 'Form'],
