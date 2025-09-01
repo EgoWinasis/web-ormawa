@@ -1,11 +1,12 @@
 @extends('admin.layoutadmin.main')
 @section('konten')
-<div class="container py-4" style="margin-top: 2rem">
+<div class="container py-4" style="margin-top: 2rem ">
+
 
     <div class="row justify-content-center">
         <div class="col-lg-10 col-md-12">
             <div class="card shadow-sm">
-                <div class="card-body">
+                <div class="card-body overflow-auto">
                     <h4 class="card-title mb-4 text-center">Edit Profile</h4>
 
                     <form method="POST" enctype="multipart/form-data"

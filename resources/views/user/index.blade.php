@@ -2,14 +2,14 @@
 
 
 @section('konten')
-<div class="container py-4" >
+<div class="container py-4" style="margin-top: 2rem">
     <div class="row justify-content-center" style="padding-top: 7%;padding-bottom: 7%">
         <div class="col-md-8">
             <div class="card shadow" >
                 <div class="card-header bg-primary text-white text-center">
                     <h4 class="mb-0">Form Pendaftaran Anggota</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body overflow-auto">
                     <form method="post" enctype="multipart/form-data" action="/anggota/store/{{ $user->id }}">
                         @csrf
 
