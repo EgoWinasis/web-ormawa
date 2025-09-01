@@ -1,9 +1,15 @@
 @extends('user.layout.main')
 
-
+@section('js')
+    @if (session()->has('succes'))
+    <script>
+        alert('Berhasil Mendaftar');
+    </script>
+@endif
+@endsection
 @section('konten')
-<div class="container py-4" style="margin-top: 2rem">
-    <div class="row justify-content-center" style="padding-top: 7%;padding-bottom: 7%">
+<div class="container py-4" style="margin-top: 2rem;">
+    <div class="row justify-content-center" style="padding-top: 7%; padding-bottom: 7%;">
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white text-center">
@@ -12,47 +18,56 @@
                 <div class="card-body overflow-auto">
                     <div id="history">
                         @if ($user->status == 'calon')
-                        <h1>Sedang DiProses Tahap Administrasi..<h1>
-                                @elseif ($user->status == 'Lolos ke Wawancara')
-                                <h1 style="text-decoration:underline">{{ $user->keterangan }}</h1>
-                                <h3>Selamat {{ $user->name }} Anda Lolos Tahap Administrasi</h3>
+                            <div class="alert alert-info text-center">
+                                <h5 class="mb-0">Sedang Diproses Tahap Administrasi...</h5>
+                            </div>
 
-                                <h4 style="margin-bottom: 10px;">Selanjutnya anda akan dijadwalkan wawancara berikut
-                                    detailnya:</h4>
-                                <h4><span>Tempat</span> <span
-                                        style="display: inline-block; width: 10px; text-align: center;">:</span>
-                                    <span>{{ $user->tempat_wawancara }}</span>
-                                </h4>
-                                <h4><span>Hari, Tanggal</span> <span
-                                        style="display: inline-block; width: 10px; text-align: center;">:</span>
-                                    <span>{{ \Carbon\Carbon::parse($user->tgl_wawancara)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</span>
-                                </h4>
-                                <h4><span>Jam</span> <span
-                                        style="display: inline-block; width: 10px; text-align: center;">:</span>
-                                    <span>{{ $user->jam_wawancara }}</span>
-                                </h4>
-                                @elseif($user->status == 'aktif')
-                                <h1 style="text-decoration:underline">{{ $user->keterangan }}</h1>
-                                <h3>Selamat {{ $user->name }} Anda Lolos Tahap Wawancara </h3>
-                                <h3>Sekarang anda Adalah {{ $user->jabatan }} {{ $user->nama_organisasi }}</h3>
-                                @elseif($user->status == 'gagal tahap administrasi')
-                                <h1 style="text-decoration:underline">{{ $user->keterangan }}</h1>
-                                <h3>Mohon Maaf {{ $user->name }} kamu belum lolos menjadi anggota
-                                    {{ $user->nama_organisasi }} </h3>
-                                <h3>kamu {{ $user->status }}</h3>
-                                @elseif($user->status == 'gagal tahap wawancara')
-                                <h1 style="text-decoration:underline">{{ $user->keterangan }}</h1>
-                                <h3>Mohon Maaf {{ $user->name }} kamu belum lolos menjadi anggota
-                                    {{ $user->nama_organisasi }} </h3>
-                                <h3>kamu {{ $user->status }}</h3>
-                                @else
-                                <h1>Silahkan Lengkapi Berkas...</h1>
-                                @endif
+                        @elseif ($user->status == 'Lolos ke Wawancara')
+                            <div class="alert alert-success text-center">
+                                <h5 class="text-decoration-underline">{{ $user->keterangan }}</h5>
+                                <h5 class="fw-bold">Selamat {{ $user->name }}, Anda Lolos Tahap Administrasi!</h5>
+                            </div>
 
+                            <div class="mt-4">
+                                <h6 class="fw-bold">Detail Wawancara:</h6>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <strong>Tempat:</strong> {{ $user->tempat_wawancara }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Hari, Tanggal:</strong>
+                                        {{ \Carbon\Carbon::parse($user->tgl_wawancara)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Jam:</strong> {{ $user->jam_wawancara }}
+                                    </li>
+                                </ul>
+                            </div>
+
+                        @elseif($user->status == 'aktif')
+                            <div class="alert alert-success text-center">
+                                <h5 class="text-decoration-underline">{{ $user->keterangan }}</h5>
+                                <h5 class="fw-bold">Selamat {{ $user->name }}, Anda Lolos Tahap Wawancara!</h5>
+                                <h6>Anda sekarang adalah <strong>{{ $user->jabatan }} {{ $user->nama_organisasi }}</strong>.</h6>
+                            </div>
+
+                        @elseif($user->status == 'gagal tahap administrasi' || $user->status == 'gagal tahap wawancara')
+                            <div class="alert alert-danger text-center">
+                                <h5 class="text-decoration-underline">{{ $user->keterangan }}</h5>
+                                <h5>Mohon Maaf {{ $user->name }}, Anda belum lolos menjadi anggota {{ $user->nama_organisasi }}.</h5>
+                                <p>Status: <strong>{{ $user->status }}</strong></p>
+                            </div>
+
+                        @else
+                            <div class="alert alert-warning text-center">
+                                <h5>Silakan lengkapi berkas terlebih dahulu.</h5>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
