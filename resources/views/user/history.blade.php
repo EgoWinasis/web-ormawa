@@ -1,83 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- link ke css root -->
-    <link rel="stylesheet" href='{{ asset('/css/root.css') }}'>
-
-    <!-- link ke css landing -->
-    <link rel="stylesheet" href='{{ asset('/css/admin.css') }}'>
+@extends('user.layout.main')
 
 
-
-    <!-- google icons -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>Dashboard Pendaftaran</title>
-</head>
-@if (session()->has('succes'))
-    <script>
-        alert('Berhasil Mendaftar');
-    </script>
-@endif
-@php
-    use Illuminate\Support\Facades\DB;
-
-    $brandImage = DB::table('brand_image')->latest('id')->first();
-@endphp
-<body>
-    <header>
-        <div class="nav-container">
-            <div class="nav-logo">
-                <div class="logo-container">
-                    <img class='logo-ormawa'
-                        src={{ asset('storage/file-logo/' . ($brandImage->path ?? 'landing-page.png')) }}
-                        alt="poto profile" width="100px">
+@section('konten')
+<div class="container py-4" style="margin-top: 2rem">
+    <div class="row justify-content-center" style="padding-top: 7%;padding-bottom: 7%">
+        <div class="col-md-8">
+            <div class="card shadow" >
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Pengumuman Pendaftaran</h4>
                 </div>
-            </div>
-
-            <div class="nav-profile d-flex">
-                <p class="nama">{{ $user->name }}</p>
-                <div class="foto-container">
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- container -->
-    <div class="container-main d-flex">
-        <div class="sidebar">
-            <div class="link-bar d-flex">
-                <li class="{{ Route::is('user.index') ? 'active' : '' }}">
-                    <a href="{{ route('user.index') }}">
-                        <span class="material-symbols-outlined">edit</span>Form
-                    </a>
-                </li>
-                <li class="{{ Route::is('user.history') ? 'active' : '' }}">
-                    <a href="{{ route('user.history') }}">
-                        <span class="material-symbols-outlined">inventory</span>Tahap Pendaftaran
-                    </a>
-                </li>
-                <li class="{{ Route::is('user.riwayat') ? 'active' : '' }}">
-                    <a href="{{ route('user.riwayat') }}">
-                        <span class="material-symbols-outlined">history</span>Riwayat
-                    </a>
-                </li>
-                <li>
-                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                        @csrf
-                        <button type="submit"
-                            style="background: none; border: none; display: flex; align-items: center; justify-content: center; color: black;">
-                            <span class="material-symbols-outlined">close</span>Keluar
-                        </button>
-                    </form>
-                </li>
-            </div>
-        </div>
-        <div class="container-content" id="container-dashboard-anggota">
-            <div id="history" class="container-history d-flex active">
+                <div class="card-body overflow-auto">
+                    <div id="history" class="container-history d-flex active">
                 @if ($user->status == 'calon')
                     <h1>Sedang DiProses Tahap Administrasi..<h1>
                         @elseif ($user->status == 'Lolos ke Wawancara')
@@ -117,11 +50,9 @@
                 @endif
 
             </div>
-
+                </div>
+            </div>
         </div>
     </div>
-    {{-- <script src={{ asset('js/user.js') }}></script> --}}
-    
-</body>
-
-</html>
+</div>
+@endsection
