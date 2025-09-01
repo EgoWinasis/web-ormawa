@@ -419,23 +419,28 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
     Swal.fire({
         title: `Ubah Status ${tipe.toUpperCase()}`,
         html: `
-            <div style="text-align: left;">
-                <label for="swal-status" style="display:block; margin-bottom: 0.5rem;">Pilih Status:</label>
-                <select id="swal-status" class="swal2-select" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;">
-                    <option value="" selected disabled>-- Pilih Status --</option>
-                    <option value="1">Disetujui</option>
-                    <option value="3">Ditolak</option>
-                </select>
-
-                <label for="swal-catatan" style="display:block; margin-bottom: 0.5rem;">Catatan:</label>
-                <textarea id="swal-catatan" class="swal2-textarea" placeholder="Masukkan catatan untuk pengajuan ini..." 
-                    style="width: 100%; height: 100px; padding: 0.5rem;"></textarea>
+            <div style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
+                <div>
+                    <label for="swal-status" style="font-weight: 600; margin-bottom: 0.5rem;">Pilih Status:</label>
+                    <select id="swal-status" class="swal2-input" style="width: 100%;">
+                        <option value="" selected disabled>-- Pilih Status --</option>
+                        <option value="1">Disetujui</option>
+                        <option value="2">Ditolak</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="swal-catatan" style="font-weight: 600; margin-bottom: 0.5rem;">Catatan:</label>
+                    <textarea id="swal-catatan" class="swal2-textarea" placeholder="Masukkan catatan untuk pengajuan ini..." style="width: 100%; height: 100px;"></textarea>
+                </div>
             </div>
         `,
-        focusConfirm: false,
+        customClass: {
+            popup: 'swal-wide'
+        },
         showCancelButton: true,
         confirmButtonText: 'Update',
         cancelButtonText: 'Batal',
+        focusConfirm: false,
         preConfirm: () => {
             const status = Swal.getPopup().querySelector('#swal-status').value;
             const catatan = Swal.getPopup().querySelector('#swal-catatan').value.trim();
@@ -479,6 +484,7 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
         }
     });
 }
+
 
 
 

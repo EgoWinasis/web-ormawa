@@ -854,10 +854,10 @@ class AdminController extends Controller
         if (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::where(function ($query) {
                 $query->where(function ($q) {
-                    $q->whereIn('status_proposal', [0, 3])
+                    $q->whereIn('status_proposal', [0, 2])
                       ->whereNotNull('proposal');
                 })->orWhere(function ($q) {
-                    $q->whereIn('status_lpj', [0, 3])
+                    $q->whereIn('status_lpj', [0, 2])
                       ->whereNotNull('lpj');
                 });
             })->get();
@@ -884,7 +884,7 @@ class AdminController extends Controller
         $request->validate([
             'id' => 'required|exists:agendas,id',
             'tipe' => 'required|in:proposal,lpj',
-            'status' => 'required|in:1,3',
+            'status' => 'required|in:1,2',
             'catatan' => 'required|string'
         ]);
 
