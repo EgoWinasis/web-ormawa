@@ -882,14 +882,14 @@ class AdminController extends Controller
     public function ubahStatus(Request $request)
     {
         $request->validate([
-            'id' => 'required|exists:agenda,id',
+            'id' => 'required|exists:agendas,id',
             'tipe' => 'required|in:proposal,lpj',
             'status' => 'required|in:1,3',
             'catatan' => 'required|string'
         ]);
 
-        // Tentukan kolom yang akan diperbarui
         $updateData = [];
+
         if ($request->tipe === 'proposal') {
             $updateData['status_proposal'] = $request->status;
             $updateData['keterangan_proposal'] = $request->catatan;
@@ -898,12 +898,12 @@ class AdminController extends Controller
             $updateData['keterangan_lpj'] = $request->catatan;
         }
 
-        // Update ke database tanpa model
         DB::table('agendas')->where('id', $request->id)->update($updateData);
 
         return response()->json([
             'message' => ucfirst($request->tipe) . ' berhasil diperbarui!'
         ]);
     }
+
 
 }
