@@ -50,3 +50,20 @@
 </div>
 @endsection
 
+
+@section('js')
+    @if (session('swal_success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Sukses!',
+                text: '{{ session('swal_success') }}',
+                confirmButtonColor: '#3085d6',
+            });
+        });
+    </script>
+@endif
+
+    
+@endsection
