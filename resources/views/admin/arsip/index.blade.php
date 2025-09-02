@@ -1,6 +1,19 @@
 @extends('admin.layoutadmin.main')
 
 @section('konten')
+
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: '{{ session('success') }}',
+        confirmButtonColor: '#3085d6'
+    });
+</script>
+@endif
+
+
 <div class="container py-4" style="margin-top: 2rem">
 
     <div class="row">
