@@ -62,3 +62,50 @@
 @endsection
 
 
+@section('js')
+    <script>
+        $(document).on('click', '.simpan-nilai-btn', function () {
+            const pertanyaan_index = $(this).data('pertanyaan');
+            const dropdown = $(`#dropdown-${pertanyaan_index}`);
+            const nilai = dropdown.val();
+            const user_id = dropdown.data('user-id');
+            console.log(user_id, pertanyaan_index, nilai, );
+
+            if (!nilai) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops!',
+                    text: 'Silakan pilih nilai terlebih dahulu.'
+                });
+                return;
+            }
+
+            $.ajax({
+                url: `/admin/kegiatan/panitia/${user_id}/penilaian/ajax`,
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    user_id: user_id,
+                    pertanyaan: pertanyaan_index,
+                    nilai: nilai
+                },
+                success: function (response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Tersimpan!',
+                        text: response.message,
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: 'Gagal menyimpan nilai. Coba lagi.'
+                    });
+                }
+            });
+        });
+    </script>
+@endsection
