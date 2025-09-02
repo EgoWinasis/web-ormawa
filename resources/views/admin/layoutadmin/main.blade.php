@@ -14,7 +14,7 @@ $user = Auth::user();
     {{-- <link rel="stylesheet" href="../../css/root.css"> --}}
 
     <!-- link ke css landing -->
-    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="/css/admin.css">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
