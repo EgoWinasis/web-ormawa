@@ -174,7 +174,7 @@ class AgendaController extends Controller
         $agenda->users()->attach($idsToAttach);
 
         // {{-- update -- }} selesai update
-        return redirect('/admin/arsip')->with('success', 'Berhasil Update Data Panitia');
+        return redirect('/admin/arsip')->with('success', 'Berhasil Update Data');
     }
     //end bagian arsip
 
