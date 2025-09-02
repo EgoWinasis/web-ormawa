@@ -4,6 +4,18 @@
 @section('konten')
 
 <div class="container py-4" style="margin-top: 2rem">
+
+    
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: '{{ session('success') }}',
+        confirmButtonColor: '#3085d6'
+    });
+</script>
+@endif
     <h2 class="text-center"></h2>
 
     <div class="row">

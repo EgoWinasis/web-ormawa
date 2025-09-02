@@ -4,6 +4,18 @@
   <div class="container-arsip d-flex active">
 
 <div class="container"  style="padding-top:7%">
+
+    
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: '{{ session('success') }}',
+        confirmButtonColor: '#3085d6'
+    });
+</script>
+@endif
         <div class="row">
             <div class="col-12">
                 <div class="card shadow-sm">
