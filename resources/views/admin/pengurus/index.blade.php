@@ -141,3 +141,58 @@
 </div>
 
 @endsection
+
+
+@section('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.show-agendas-btn');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const agendas = JSON.parse(btn.getAttribute('data-agendas'));
+
+            console.log(agendas);
+            
+            if (agendas.length === 0) {
+                Swal.fire('Belum Ada Kegiatan');
+                return;
+            }
+
+            let htmlTable = `
+                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                    <thead>
+                        <tr style="background-color: #f0f0f0;">
+                            <th style="border: 1px solid #ddd; padding: 8px;">Kegiatan</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            agendas.forEach(agenda => {
+                const date = new Date(agenda.tanggal_mulai);
+                const formattedDate = date.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+
+                htmlTable += `
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${agenda.nama_kegiatan}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${formattedDate}</td>
+                    </tr>
+                `;
+            });
+
+            htmlTable += '</tbody></table>';
+
+            Swal.fire({
+                title: 'Daftar Kegiatan',
+                html: htmlTable,
+                width: '600px',
+                confirmButtonText: 'Tutup',
+                scrollbarPadding: false,
+            });
+        });
+    });
+});
+    </script>
+@endsection

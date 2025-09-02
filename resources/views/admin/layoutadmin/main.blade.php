@@ -191,57 +191,61 @@ $user = Auth::user();
             $('.toggle-agendas').click(function () {
                 const userId = $(this).data('user');
                 const target = $('#agenda-' + userId);
-                target.toggle(); // simple show/hide toggle
+                target.toggle(); 
             });
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const buttons = document.querySelectorAll('.show-agendas-btn');
 
-            buttons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const anggotas = JSON.parse(btn.getAttribute('data-anggota'));
+        // show anggota
+       document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.show-agendas-btn');
 
-                    // console.log(anggotas);
-                    index = 1;
-                    if (anggotas.length === 0) {
-                        Swal.fire('Belum Ada Panitia');
-                        return;
-                    }
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const agendas = JSON.parse(btn.getAttribute('data-agendas'));
 
-                    let htmlTable = `
+            console.log(agendas);
+            
+            if (agendas.length === 0) {
+                Swal.fire('Belum Ada Kegiatan');
+                return;
+            }
+
+            let htmlTable = `
                 <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
                     <thead>
                         <tr style="background-color: #f0f0f0;">
-                            <th style="border: 1px solid #ddd; padding: 8px;">No</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Nama</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Kegiatan</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Tanggal</th>
                         </tr>
                     </thead>
                     <tbody>
             `;
 
-                    anggotas.forEach(anggota => {
-                        htmlTable += `
+            agendas.forEach(agenda => {
+                const date = new Date(agenda.tanggal_mulai);
+                const formattedDate = date.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+
+                htmlTable += `
                     <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${index++}</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${anggota.name}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${agenda.nama_kegiatan}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${formattedDate}</td>
                     </tr>
                 `;
-                    });
+            });
 
-                    htmlTable += '</tbody></table>';
+            htmlTable += '</tbody></table>';
 
-                    Swal.fire({
-                        title: 'Daftar Panitia',
-                        html: htmlTable,
-                        width: '600px',
-                        confirmButtonText: 'Tutup',
-                        scrollbarPadding: false,
-                    });
-                });
+            Swal.fire({
+                title: 'Daftar Kegiatan',
+                html: htmlTable,
+                width: '600px',
+                confirmButtonText: 'Tutup',
+                scrollbarPadding: false,
             });
         });
-
+    });
+});
         $(document).ready(function () {
             $('.btn-edit-jabatan').click(function () {
                 const $row = $(this).closest('tr');
