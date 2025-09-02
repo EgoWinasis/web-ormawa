@@ -15,7 +15,12 @@ class PenilaianController extends Controller
 {
     public function create($user_id)
     {
-        return view('admin.penilaian.index', compact('user_id'));
+        // Ambil semua penilaian user ini, index berdasarkan pertanyaan_index
+        $penilaians = Penilaian::where('user_id', $user_id)
+                        ->pluck('nilai', 'pertanyaan_index')
+                        ->toArray(); // hasil: [0 => 7, 1 => 8, dst...]
+
+        return view('admin.penilaian.index', compact('user_id', 'penilaians'));
     }
     public function ajaxStore(Request $request, $user_id)
     {
