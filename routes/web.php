@@ -80,6 +80,7 @@ Route::prefix('admin')->group(function () {
 
     // penilaian
     Route::get('/kegiatan/panitia/{user_id}/penilaian', [PenilaianController::class, 'create']);
+    Route::post('/kegiatan/panitia/{user_id}/penilaian/ajax', [PenilaianController::class, 'ajaxStore']);
 
     // import data
     Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');

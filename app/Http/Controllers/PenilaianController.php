@@ -16,5 +16,25 @@ class PenilaianController extends Controller
     {
         return view('admin.penilaian.index', compact('user_id'));
     }
+    public function ajaxStore(Request $request, $user_id)
+    {
+        $validated = $request->validate([
+            'pertanyaan' => 'required|integer|min:0|max:9',
+            'nilai' => 'required|integer|min:1|max:10',
+        ]);
+
+        // Simpan ke database (tabel penilaians, bisa disesuaikan)
+        \App\Models\Penilaian::updateOrCreate(
+            [
+                'user_id' => $user_id,
+                'pertanyaan_index' => $validated['pertanyaan']
+            ],
+            [
+                'nilai' => $validated['nilai']
+            ]
+        );
+
+        return response()->json(['message' => 'Nilai berhasil disimpan.']);
+    }
 
 }
