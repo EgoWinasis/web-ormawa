@@ -417,35 +417,41 @@ $user = Auth::user();
 
 
 
-         $('.nilai-dropdown').on('change', function () {
-        const nilai = $(this).val();
-        const user_id = $(this).data('user-id');
-        const pertanyaan_index = $(this).data('pertanyaan');
+        $('.nilai-dropdown').on('change', function () {
+    const nilai = $(this).val();
+    const user_id = $(this).data('user-id');
+    const pertanyaan_index = $(this).data('pertanyaan');
 
-        $.ajax({
-            url: `/admin/kegiatan/panitia/${user_id}/penilaian/ajax`,
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                user_id: user_id,
-                pertanyaan: pertanyaan_index,
-                nilai: nilai
-            },
-            success: function (response) {
-                $('#success-message').removeClass('d-none').text(response.message).fadeIn();
-
-                setTimeout(() => {
-                    $('#success-message').fadeOut().addClass('d-none');
-                }, 2000);
-            },
-            error: function () {
-                alert('Gagal menyimpan nilai. Coba lagi.');
-            }
-        });
+    $.ajax({
+        url: `/admin/kegiatan/panitia/${user_id}/penilaian/ajax`,
+        type: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            user_id: user_id,
+            pertanyaan: pertanyaan_index,
+            nilai: nilai
+        },
+        success: function (response) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: response.message,
+                timer: 1500,
+                showConfirmButton: false
+            });
+        },
+        error: function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: 'Gagal menyimpan nilai. Coba lagi.',
+                confirmButtonText: 'OK'
+            });
+        }
     });
+});
 
 
-    
     </script>
 </body>
 
