@@ -78,15 +78,7 @@
                                 *Pastikan file berekstensi PDF saja.
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="lpj" class="form-label">LPJ</label>
-                            <input type="file" class="form-control @error('lpj') is-invalid @enderror"
-                                id="lpj" name="lpj"
-                                accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf">
-                            <div class="form-text @error('lpj') text-danger @enderror">
-                                *Pastikan file berekstensi PDF saja.
-                            </div>
-                        </div>
+                      
 
 
 

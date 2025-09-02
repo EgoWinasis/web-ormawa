@@ -74,14 +74,12 @@ class AgendaController extends Controller
             'tempat_kegiatan' => 'required',
             'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:2000',
             'proposal' => 'required|file|mimes:pdf',
-            'lpj' => 'required|file|mimes:pdf',
             'tanggal_mulai' => 'required',
             'keterangan' => 'required',
         ]);
         $slug = SlugService::createSlug(Agenda::class, 'slug', $request->nama_kegiatan);
         $gambar = request()->file('gambar')->store('file-gambar', 'public');
         $proposal = request()->file('proposal')->store('file-proposal', 'public');
-        $lpj = request()->file('lpj')->store('file-lpj', 'public');
 
         // Ambil data admin berdasarkan user_id
         $organisasi = Admin::where('user_id', Auth::user()->id)->first();
@@ -96,7 +94,6 @@ class AgendaController extends Controller
             'tempat_kegiatan' => $request->tempat_kegiatan,
             'gambar' => $gambar,
             'proposal' => $proposal,
-            'lpj' => $lpj,
         ]);
 
         return redirect('/admin/arsip')->with('success', 'Arsip Kegiatan Berhasil Ditambahkan');
