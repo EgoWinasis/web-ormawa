@@ -27,19 +27,29 @@
                         ];
                     @endphp
 
-                    @foreach($pertanyaan as $index => $tanya)
-                    <div class="mb-3">
-                        <label class="form-label">{{ ($index + 1) . '. ' . $tanya }}</label>
-                        <select class="form-select nilai-dropdown"
-                            data-user-id="{{ $user_id }}"
-                            data-pertanyaan="{{ $index }}">
-                            <option value="">-- Pilih Nilai --</option>
-                            @for($i = 1; $i <= 10; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor
-                        </select>
-                    </div>
-                    @endforeach
+                  @foreach($pertanyaan as $index => $tanya)
+<div class="mb-3">
+    <label class="form-label">{{ ($index + 1) . '. ' . $tanya }}</label>
+    <div class="d-flex gap-2">
+        <select class="form-select nilai-dropdown w-auto"
+                id="dropdown-{{ $index }}"
+                data-user-id="{{ $user_id }}"
+                data-pertanyaan="{{ $index }}">
+            <option value="">-- Pilih Nilai --</option>
+            @for($i = 1; $i <= 10; $i++)
+                <option value="{{ $i }}">{{ $i }}</option>
+            @endfor
+        </select>
+
+        <button type="button"
+                class="btn btn-sm btn-success simpan-nilai-btn"
+                data-pertanyaan="{{ $index }}">
+            Simpan
+        </button>
+    </div>
+</div>
+@endforeach
+
 
                     <div id="success-message" class="alert alert-success d-none">
                         Nilai berhasil disimpan!

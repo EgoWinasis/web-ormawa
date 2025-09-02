@@ -417,10 +417,20 @@ $user = Auth::user();
 
 
 
-        $('.nilai-dropdown').on('change', function () {
-    const nilai = $(this).val();
-    const user_id = $(this).data('user-id');
+        $(document).on('click', '.simpan-nilai-btn', function () {
     const pertanyaan_index = $(this).data('pertanyaan');
+    const dropdown = $(`#dropdown-${pertanyaan_index}`);
+    const nilai = dropdown.val();
+    const user_id = dropdown.data('user-id');
+
+    if (!nilai) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops!',
+            text: 'Silakan pilih nilai terlebih dahulu.'
+        });
+        return;
+    }
 
     $.ajax({
         url: `/admin/kegiatan/panitia/${user_id}/penilaian/ajax`,
@@ -434,7 +444,7 @@ $user = Auth::user();
         success: function (response) {
             Swal.fire({
                 icon: 'success',
-                title: 'Berhasil!',
+                title: 'Tersimpan!',
                 text: response.message,
                 timer: 1500,
                 showConfirmButton: false
@@ -444,45 +454,12 @@ $user = Auth::user();
             Swal.fire({
                 icon: 'error',
                 title: 'Gagal!',
-                text: 'Gagal menyimpan nilai. Coba lagi.',
-                confirmButtonText: 'OK'
+                text: 'Gagal menyimpan nilai. Coba lagi.'
             });
         }
     });
 });
 
-$(document).on('click', '.show-agendas-btn', function () {
-    const agendasRaw = $(this).data('agendas');
-    const agendas = Array.isArray(agendasRaw) ? agendasRaw : JSON.parse(agendasRaw);
-
-    if (agendas.length === 0) {
-        Swal.fire({
-            icon: 'info',
-            title: 'Tidak ada agenda',
-            text: 'Belum ada agenda untuk panitia ini.'
-        });
-        return;
-    }
-
-    let htmlContent = '<ul class="text-start" style="padding-left: 1.2rem;">';
-    agendas.forEach((agenda, index) => {
-        htmlContent += `
-            <li class="mb-2">
-                <strong>${agenda.nama_kegiatan}</strong><br>
-                📅 ${agenda.tanggal_mulai}<br>
-                📍 ${agenda.tempat_kegiatan}<br>
-            </li>
-        `;
-    });
-    htmlContent += '</ul>';
-
-    Swal.fire({
-        title: 'Daftar Agenda',
-        html: htmlContent,
-        width: 600,
-        confirmButtonText: 'Tutup'
-    });
-});
     </script>
 </body>
 
