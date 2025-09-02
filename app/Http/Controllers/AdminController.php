@@ -770,7 +770,7 @@ class AdminController extends Controller
                 $a->total_nilai = Penilaian::where('user_id', $a->user_id)->sum('nilai');
             }
 
-            dd($anggota);
+
 
             return view('admin.wawancara.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
