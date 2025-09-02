@@ -422,7 +422,8 @@ $user = Auth::user();
     const dropdown = $(`#dropdown-${pertanyaan_index}`);
     const nilai = dropdown.val();
     const user_id = dropdown.data('user-id');
-
+            console.log(user_id, pertanyaan_index, nilai,);
+            
     if (!nilai) {
         Swal.fire({
             icon: 'warning',
