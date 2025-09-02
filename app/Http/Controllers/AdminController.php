@@ -767,7 +767,7 @@ class AdminController extends Controller
             // nilai
 
             foreach ($anggota as $a) {
-                $a->total_nilai = Penilaian::where('user_id', $a->id)->sum('nilai');
+                $a->total_nilai = Penilaian::where('user_id', $userId)->sum('nilai');
             }
 
             dd($anggota);
