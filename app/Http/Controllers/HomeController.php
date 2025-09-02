@@ -10,6 +10,7 @@ use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Penilaian;
 
 class HomeController extends Controller
 {
@@ -24,9 +25,9 @@ class HomeController extends Controller
         $this->middleware(function ($request, $next) {
             if (Auth::check() && is_null(Auth::user()->email_verified_at)) {
                 // Redirect user ke halaman verifikasi
-                return redirect()->route('verification.notice'); 
+                return redirect()->route('verification.notice');
             }
-            
+
             if (Auth::check() && Auth::user()->role !== 'user') {
                 // Redirect if role is 'user'
 
@@ -48,24 +49,25 @@ class HomeController extends Controller
         $admin = Admin::all();
         $userId = Auth::user()->id;
 
-$user = DB::table('users')
-    ->join('anggota', 'anggota.user_id', '=', 'users.id')
-    ->select('users.*', 'anggota.*') 
-    ->where('users.id', $userId)
-    ->first(); 
+        $user = DB::table('users')
+            ->join('anggota', 'anggota.user_id', '=', 'users.id')
+            ->select('users.*', 'anggota.*')
+            ->where('users.id', $userId)
+            ->first();
 
 
-$hasAktif = DB::table('riwayat')
-    ->where('user_id', $userId)
-    ->where('status', 'aktif')
-    ->exists();
+        $hasAktif = DB::table('riwayat')
+            ->where('user_id', $userId)
+            ->where('status', 'aktif')
+            ->exists();
 
+        $total_nilai = Penilaian::where('user_id', $userId)->sum('nilai');
 
         if ($hasAktif) {
             // Redirect if active riwayat found
             return redirect('/riwayat')->with('swal_success', 'Anda sudah menjadi anggota aktif!');
         }
-        return view('user.index', compact('user', 'admin'));
+        return view('user.index', compact('user', 'admin', 'total_nilai'));
     }
 
     public function history()
@@ -75,10 +77,10 @@ $hasAktif = DB::table('riwayat')
 
         $user = DB::table('users')
             ->join('anggota', 'anggota.user_id', '=', 'users.id')
-            ->select('users.*', 'anggota.*') 
+            ->select('users.*', 'anggota.*')
             ->where('users.id', $userId)
-            ->first(); 
-            
+            ->first();
+
         return view('user.history', compact('user', 'admin'));
     }
 

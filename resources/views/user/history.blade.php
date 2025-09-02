@@ -44,19 +44,33 @@
                                 </ul>
                             </div>
 
-                        @elseif($user->status == 'aktif')
-                            <div class="alert alert-success text-center">
-                                <h5 class="text-decoration-underline">{{ $user->keterangan }}</h5>
-                                <h5 class="fw-bold">Selamat {{ $user->name }}, Anda Lolos Tahap Wawancara!</h5>
-                                <h6>Anda sekarang adalah <strong>{{ $user->jabatan }} {{ $user->nama_organisasi }}</strong>.</h6>
-                            </div>
+                     @elseif($user->status == 'aktif')
+    <div class="alert alert-success text-center">
+        <h5 class="text-decoration-underline">{{ $user->keterangan }}</h5>
+        <h5 class="fw-bold">Selamat {{ $user->name }}, Anda Lolos Tahap Wawancara!</h5>
+        <h6>Anda sekarang adalah <strong>{{ $user->jabatan }} {{ $user->nama_organisasi }}</strong>.</h6>
+
+        {{-- Total Nilai --}}
+        <p class="mt-3">
+            <strong>Total Nilai Wawancara:</strong>
+            <span class="badge bg-primary">{{ $total_nilai }} / 100</span>
+        </p>
+    </div>
+
 
                         @elseif($user->status == 'gagal tahap administrasi' || $user->status == 'gagal tahap wawancara')
-                            <div class="alert alert-danger text-center">
-                                <h5 class="text-decoration-underline">{{ $user->keterangan }}</h5>
-                                <h5>Mohon Maaf {{ $user->name }}, Anda belum lolos menjadi anggota {{ $user->nama_organisasi }}.</h5>
-                                <p>Status: <strong>{{ $user->status }}</strong></p>
-                            </div>
+    <div class="alert alert-danger text-center">
+        <h5 class="text-decoration-underline">{{ $user->keterangan }}</h5>
+        <h5>Mohon Maaf {{ $user->name }}, Anda belum lolos menjadi anggota {{ $user->nama_organisasi }}.</h5>
+        <p>Status: <strong>{{ $user->status }}</strong></p>
+
+        {{-- Total Nilai --}}
+        <p class="mt-3">
+            <strong>Total Nilai Wawancara:</strong>
+            <span class="badge bg-secondary">{{ $total_nilai ?? 0 }} / 100</span>
+        </p>
+    </div>
+
 
                         @else
                             <div class="alert alert-warning text-center">

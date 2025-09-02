@@ -58,7 +58,7 @@
                                 </tr>
                                 <tr>
                                     <th>Nilai Wawancara</th>
-                                    <td>{{ $total_nilai }}</td>
+                                    <td>{{ $total_nilai }} / 100</td>
                                 </tr>
                             </tbody>
                         </table>
