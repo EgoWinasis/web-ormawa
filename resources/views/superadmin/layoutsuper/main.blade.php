@@ -91,7 +91,7 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
                 ['route' => 'admin.absensi', 'icon' => 'fa-box', 'label' => 'Data Ormawa'],
                 ['route' => 'admin.tambahAdminView', 'icon' => 'fa-user-plus', 'label' => 'Create User'],
                 ['route' => 'admin.profile', 'icon' => 'fa-user-circle', 'label' => 'Data Profile'],
-                ['route' => 'mahasiswa', 'icon' => 'fa-user-graduate', 'label' => 'Data Mahasiswa'],
+                // ['route' => 'mahasiswa', 'icon' => 'fa-user-graduate', 'label' => 'Data Mahasiswa'],
                 ['route' => 'admin.setting', 'icon' => 'fa-cog', 'label' => 'Pengaturan'],
                 ] as $item)
                 <li class="nav-item {{ Route::is($item['route']) ? 'active' : '' }}">
@@ -133,7 +133,7 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
                     ['route' => 'admin.absensi', 'icon' => 'fa-box', 'label' => 'Data Ormawa'],
                     ['route' => 'admin.tambahAdminView', 'icon' => 'fa-user-plus', 'label' => 'Create User'],
                     ['route' => 'admin.profile', 'icon' => 'fa-user-circle', 'label' => 'Data Profile'],
-                    ['route' => 'mahasiswa', 'icon' => 'fa-user-graduate', 'label' => 'Data Mahasiswa'],
+                    // ['route' => 'mahasiswa', 'icon' => 'fa-user-graduate', 'label' => 'Data Mahasiswa'],
                     ['route' => 'admin.setting', 'icon' => 'fa-cog', 'label' => 'Pengaturan'],
                     ] as $item)
                     <li class="nav-item {{ Route::is($item['route']) ? 'active' : '' }}">

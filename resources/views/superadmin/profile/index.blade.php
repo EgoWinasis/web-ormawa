@@ -90,6 +90,16 @@
                                     @error('logo')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+
+
+                                     @if ($user->foto)
+        <div class="mt-3">
+            <label class="form-label">Logo Saat Ini:</label><br>
+            <img src="{{ asset('storage/' . $user->foto) }}"
+                 alt="Logo {{ $user->name }}"
+                 style="max-height: 120px; border: 1px solid #ccc; padding: 4px;">
+        </div>
+    @endif
                                 </div>
                             </div>
                         </div>
