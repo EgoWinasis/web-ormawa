@@ -56,6 +56,10 @@
                                     <th>Nomor WA</th>
                                     <td>{{ $panitia->nomor }}</td>
                                 </tr>
+                                <tr>
+                                    <th>Nilai Wawancara</th>
+                                    <td>{{ $total_nilai }}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
