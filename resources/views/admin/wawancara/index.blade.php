@@ -20,6 +20,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
+                                <th>Nilai</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -31,6 +32,7 @@
                             <tr>
                                 <td>{{ $count }}</td>
                                 <td>{{ $p->name }}</td>
+                                   <td>{{ $p->total_nilai ?? 0 }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
                                         <!-- Edit button -->

@@ -80,5 +80,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->role === 'user';
     }
 
-
+    public function penilaian()
+    {
+        return $this->hasMany(\App\Models\Penilaian::class, 'user_id');
+    }
 }

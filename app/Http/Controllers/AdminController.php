@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Notifications\AcceptedNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use App\Models\Penilaian;
 
 class AdminController extends Controller
 {
@@ -761,6 +762,15 @@ class AdminController extends Controller
             $kegiatan = Agenda::where('nama_organisasi', $org)->get();
 
             $rutin = Rutin::all();
+
+
+            // nilai
+
+            foreach ($anggota as $a) {
+                $a->total_nilai = Penilaian::where('user_id', $a->id)->sum('nilai');
+            }
+
+
             return view('admin.wawancara.index', ['user' => $user, 'rutin' => $rutin, 'anggota' => $anggota, 'kegiatan' => $kegiatan]);
         } elseif (Auth::user()->role == 'super_admin') {
             $kegiatan = Agenda::all();
