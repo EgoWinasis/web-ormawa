@@ -30,46 +30,42 @@
                             </thead>
                             <tbody>
                                 @php($count = 0)
-                                @foreach ($kegiatan as $k)
-                                @isset($k->lpj)
-                                @php($count++)
-                                <tr>
-                                    <td>{{ $count }}</td>
-                                    <td>{{ $k->tanggal_mulai }}</td>
-                                    <td class="text-center">
-                                        <div class="d-inline-flex align-items-center gap-4">
-                                            <!-- View Icon -->
-                                            <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank"
-                                                title="Lihat Gambar">
-                                                <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
-                                            </a>
+                               @foreach ($kegiatan as $k)
+    @if ($k->status_lpj == 1 && $k->status_proposal == 1)
+        @php($count++)
+        <tr>
+            <td>{{ $count }}</td>
+            <td>{{ $k->tanggal_mulai }}</td>
+            <td class="text-center">
+                <div class="d-inline-flex align-items-center gap-4">
+                    <!-- View Icon -->
+                    <a href="{{ asset('storage/' . $k->gambar) }}" target="_blank"
+                        title="Lihat Gambar">
+                        <i class="fas fa-eye fa-lg text-primary" style="cursor: pointer;"></i>
+                    </a>
 
-                                            <!-- Download Icon -->
-                                            <a href="{{ asset('storage/' . $k->gambar) }}" download
-                                                title="Unduh Gambar">
-                                                <i class="fas fa-download fa-lg text-success"
-                                                    style="cursor: pointer;"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                    <!-- Download Icon -->
+                    <a href="{{ asset('storage/' . $k->gambar) }}" download
+                        title="Unduh Gambar">
+                        <i class="fas fa-download fa-lg text-success" style="cursor: pointer;"></i>
+                    </a>
+                </div>
+            </td>
+            <td>{{ $k->nama_kegiatan }}</td>
+            <td>{{ $k->tempat_kegiatan }}</td>
+            <td>
+                <form action="{{ url('admin/news/destroy/' . $k->id) }}" method="POST"
+                    onsubmit="return confirm('Yakin ingin menghapus news?')" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash-alt"></i> Hapus
+                    </button>
+                </form>
+            </td>
+        </tr>
+    @endif
+@endforeach
 
-
-
-                                    <td>{{ $k->nama_kegiatan }}</td>
-                                    <td>{{ $k->tempat_kegiatan }}</td>
-                                    <td>
-                                        <form action="{{ url('admin/news/destroy/' . $k->id) }}" method="POST"
-                                            onsubmit="return confirm('Yakin ingin menghapus news?')"
-                                            style="display: inline;">
-                                            @csrf
-                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash-alt"></i> Hapus
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endisset
-                                @endforeach
                             </tbody>
                         </table>
                     </div>

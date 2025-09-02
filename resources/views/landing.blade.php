@@ -62,13 +62,13 @@
     <h2 class="text-center fw-bold mb-4">NEWS</h2>
     <div class="row g-4">
         @foreach ($kegiatan as $k)
-            @isset($k->lpj)
+            @if ($k->lpj && $k->status_lpj == 1 && $k->status_proposal == 1)
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card h-100 shadow-sm">
                         <img src="{{ asset('storage/' . $k->gambar) }}"
-                             class="card-img-top"
-                             alt="Gambar {{ $k->nama_kegiatan }}"
-                             style="height: 220px; object-fit: cover;">
+                            class="card-img-top"
+                            alt="Gambar {{ $k->nama_kegiatan }}"
+                            style="height: 220px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title text-uppercase fw-bold">{{ $k->nama_kegiatan }}</h5>
                             <p class="card-text">
@@ -82,8 +82,9 @@
                         </div>
                     </div>
                 </div>
-            @endisset
+            @endif
         @endforeach
+
     </div>
 </div>
 
