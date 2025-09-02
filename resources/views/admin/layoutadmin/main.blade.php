@@ -451,7 +451,38 @@ $user = Auth::user();
     });
 });
 
+$(document).on('click', '.show-agendas-btn', function () {
+    const agendasRaw = $(this).data('agendas');
+    const agendas = Array.isArray(agendasRaw) ? agendasRaw : JSON.parse(agendasRaw);
 
+    if (agendas.length === 0) {
+        Swal.fire({
+            icon: 'info',
+            title: 'Tidak ada agenda',
+            text: 'Belum ada agenda untuk panitia ini.'
+        });
+        return;
+    }
+
+    let htmlContent = '<ul class="text-start" style="padding-left: 1.2rem;">';
+    agendas.forEach((agenda, index) => {
+        htmlContent += `
+            <li class="mb-2">
+                <strong>${agenda.nama_kegiatan}</strong><br>
+                📅 ${agenda.tanggal_mulai}<br>
+                📍 ${agenda.tempat_kegiatan}<br>
+            </li>
+        `;
+    });
+    htmlContent += '</ul>';
+
+    Swal.fire({
+        title: 'Daftar Agenda',
+        html: htmlContent,
+        width: 600,
+        confirmButtonText: 'Tutup'
+    });
+});
     </script>
 </body>
 
