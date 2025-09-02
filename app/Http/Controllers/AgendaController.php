@@ -10,10 +10,10 @@ use App\Models\Anggota;
 use Illuminate\Http\Request;
 use App\Models\Anggota_Agenda;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Facades\Auth;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+
 use function PHPUnit\Framework\isEmpty;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class AgendaController extends Controller
 {
@@ -50,7 +50,7 @@ class AgendaController extends Controller
         return redirect('/admin');
     }
 
-  
+
 
 
     // bagian Arsip
@@ -74,13 +74,15 @@ class AgendaController extends Controller
             'tempat_kegiatan' => 'required',
             'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:2000',
             'proposal' => 'required|file|mimes:pdf',
+            'lpj' => 'required|file|mimes:pdf',
             'tanggal_mulai' => 'required',
             'keterangan' => 'required',
         ]);
         $slug = SlugService::createSlug(Agenda::class, 'slug', $request->nama_kegiatan);
         $gambar = request()->file('gambar')->store('file-gambar', 'public');
         $proposal = request()->file('proposal')->store('file-proposal', 'public');
-        
+        $lpj = request()->file('lpj')->store('file-lpj', 'public');
+
         // Ambil data admin berdasarkan user_id
         $organisasi = Admin::where('user_id', Auth::user()->id)->first();
 
@@ -94,6 +96,7 @@ class AgendaController extends Controller
             'tempat_kegiatan' => $request->tempat_kegiatan,
             'gambar' => $gambar,
             'proposal' => $proposal,
+            'lpj' => $lpj,
         ]);
 
         return redirect('/admin/arsip')->with('success', 'Arsip Kegiatan Berhasil Ditambahkan');
@@ -117,19 +120,19 @@ class AgendaController extends Controller
         } else {
             $gambar = $kegiatan->gambar;
         }
-        
+
         if ($request->hasFile('proposal')) {
             $proposal = $request->file('proposal')->store('file-proposal', 'public');
         } else {
             $proposal = $kegiatan->proposal;
         }
-        
+
         if ($request->hasFile('lpj')) {
             $lpj = $request->file('lpj')->store('file-lpj', 'public');
         } else {
             $lpj = $kegiatan->lpj;
         }
-        
+
 
 
         $slug = SlugService::createSlug(Agenda::class, 'slug', request()->nama_kegiatan);
@@ -146,31 +149,31 @@ class AgendaController extends Controller
         ]);
 
         $agenda = Agenda::find($id);
-        // Validasi input dari request  
+        // Validasi input dari request
         $request->validate([
-            'panitia' => 'array|nullable', // memastikan `panitia` adalah array dan bisa null  
-            'panitia.*' => 'exists:users,id', // memastikan setiap ID ada dalam tabel anggota  
+            'panitia' => 'array|nullable', // memastikan `panitia` adalah array dan bisa null
+            'panitia.*' => 'exists:users,id', // memastikan setiap ID ada dalam tabel anggota
         ]);
 
-        // Mencari agenda berdasarkan ID  
+        // Mencari agenda berdasarkan ID
         $agenda = Agenda::findOrFail($id);
 
-        // Dapatkan anggota yang terhubung dengan agenda  
+        // Dapatkan anggota yang terhubung dengan agenda
         $currentPanitiaIds = $agenda->users()->pluck('user_id')->toArray();
 
-        // Dapatkan anggota yang saat ini dipilih dari request  
+        // Dapatkan anggota yang saat ini dipilih dari request
         $panitiaIds = $request->input('panitia', []);
 
-        // Anggota yang perlu dihapus (yang ada di database tetapi tidak dicentang)  
+        // Anggota yang perlu dihapus (yang ada di database tetapi tidak dicentang)
         $idsToDetach = array_diff($currentPanitiaIds, $panitiaIds);
 
-        // Anggota yang perlu ditambahkan (yang dicentang tetapi tidak ada di database)  
+        // Anggota yang perlu ditambahkan (yang dicentang tetapi tidak ada di database)
         $idsToAttach = array_diff($panitiaIds, $currentPanitiaIds);
 
-        // Hapus relasi untuk anggota yang tidak dicentang  
+        // Hapus relasi untuk anggota yang tidak dicentang
         $agenda->users()->detach($idsToDetach);
 
-        // Tambahkan relasi untuk anggota yang baru dicentang  
+        // Tambahkan relasi untuk anggota yang baru dicentang
         $agenda->users()->attach($idsToAttach);
 
         // {{-- update -- }} selesai update
@@ -185,7 +188,7 @@ class AgendaController extends Controller
     public function detail($id)
     {
         $kegiatan = Agenda::find($id);
-          $userId = Auth::id();
+        $userId = Auth::id();
 
         $org = DB::table('users')
             ->join('admin', 'admin.user_id', '=', 'users.id')
@@ -194,12 +197,12 @@ class AgendaController extends Controller
 
 
 
-            $panitia = DB::table('users')
-                 ->join('anggota', 'anggota.user_id', '=', 'users.id')
-                 ->where('anggota.nama_organisasi', $org)
-                 ->where('anggota.status', 'aktif')
-                 ->select('users.*', 'anggota.*')  
-                 ->get();
+        $panitia = DB::table('users')
+             ->join('anggota', 'anggota.user_id', '=', 'users.id')
+             ->where('anggota.nama_organisasi', $org)
+             ->where('anggota.status', 'aktif')
+             ->select('users.*', 'anggota.*')
+             ->get();
 
         // return view ('kegiatan');
         return view('admin/kegiatan', [
@@ -220,4 +223,3 @@ class AgendaController extends Controller
 
     }
 }
-

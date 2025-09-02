@@ -394,12 +394,12 @@ $user = Auth::user();
                 case 1:
                     icon = 'success';
                     title = 'Berkas Disetujui';
-                    text = 'Berkas kamu telah disetujui.';
+                    text = 'Terima kasih telah mengirimkan berkas.';
                     break;
                 case 2:
                     icon = 'error';
                     title = 'Berkas Ditolak';
-                    text = 'Berkas kamu ditolak.';
+                    text = 'Silahkan perbaiki dan kirim ulang.';
                     break;
                 default:
                     icon = 'warning';
