@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Models\Penilaian;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -24,7 +25,7 @@ class PenilaianController extends Controller
         ]);
 
         // Simpan ke database (tabel penilaians, bisa disesuaikan)
-        \App\Models\Penilaian::updateOrCreate(
+        Penilaian::updateOrCreate(
             [
                 'user_id' => $user_id,
                 'pertanyaan_index' => $validated['pertanyaan']
