@@ -61,13 +61,12 @@ class HomeController extends Controller
             ->where('status', 'aktif')
             ->exists();
 
-        $total_nilai = Penilaian::where('user_id', $userId)->sum('nilai');
 
         if ($hasAktif) {
             // Redirect if active riwayat found
             return redirect('/riwayat')->with('swal_success', 'Anda sudah menjadi anggota aktif!');
         }
-        return view('user.index', compact('user', 'admin', 'total_nilai'));
+        return view('user.index', compact('user', 'admin'));
     }
 
     public function history()
@@ -81,7 +80,9 @@ class HomeController extends Controller
             ->where('users.id', $userId)
             ->first();
 
-        return view('user.history', compact('user', 'admin'));
+        $total_nilai = Penilaian::where('user_id', $userId)->sum('nilai');
+
+        return view('user.history', compact('user', 'admin', 'total_nilai'));
     }
 
     public function riwayat()
