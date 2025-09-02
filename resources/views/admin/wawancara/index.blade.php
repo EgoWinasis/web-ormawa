@@ -43,7 +43,7 @@
                                         </form>
                                         <!-- Penilaian button -->
                                             <a href="{{ url('admin/kegiatan/panitia/' . $p->user_id . '/penilaian') }}"
-                                        class="btn btn-sm btn-primary" title="Penilaian">
+                                        class="btn btn-sm btn-info" title="Penilaian">
                                             <span class="material-symbols-outlined align-middle">check_circle</span>
                                         </a>
 

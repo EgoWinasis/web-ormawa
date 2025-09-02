@@ -51,34 +51,4 @@
 </div>
 @endsection
 
-@section('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $('.nilai-dropdown').on('change', function () {
-        const nilai = $(this).val();
-        const user_id = $(this).data('user-id');
-        const pertanyaan_index = $(this).data('pertanyaan');
 
-        $.ajax({
-            url: `/admin/kegiatan/panitia/${user_id}/penilaian/ajax`,
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                user_id: user_id,
-                pertanyaan: pertanyaan_index,
-                nilai: nilai
-            },
-            success: function (response) {
-                $('#success-message').removeClass('d-none').text(response.message).fadeIn();
-
-                setTimeout(() => {
-                    $('#success-message').fadeOut().addClass('d-none');
-                }, 2000);
-            },
-            error: function () {
-                alert('Gagal menyimpan nilai. Coba lagi.');
-            }
-        });
-    });
-</script>
-@endsection
