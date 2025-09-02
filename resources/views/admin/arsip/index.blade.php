@@ -133,16 +133,16 @@
                                 </td>
 
                                 <!-- Panitia -->
-                                <td class="text-center">
-                                    @if ($k->users && count($k->users) > 0)
-                                    <button class="btn btn-sm btn-primary show-agendas-btn"
-                                        data-anggota='@json($k->users)'>
-                                        {{ count($k->users) }}
-                                    </button>
-                                    @else
-                                    <span class="text-muted">Belum Ada Panitia</span>
-                                    @endif
-                                </td>
+                                <td>
+                                        <a href="/admin/kegiatan/{{ $k->id }}" class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-users"></i>
+                                            @if (count($k->users) > 0)
+                                            {{ count($k->users) }}
+                                            @else
+                                            Belum Ada Panitia
+                                            @endif
+                                        </a>
+                                    </td>
                             </tr>
                             @endforeach
                         </tbody>
