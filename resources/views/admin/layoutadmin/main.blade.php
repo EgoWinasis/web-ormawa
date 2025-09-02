@@ -427,12 +427,7 @@ $user = Auth::user();
 
 
 
-        flatpickr("#date-start-input", {
-        dateFormat: "Y-m-d",
-        minDate: new Date(new Date().setMonth(new Date().getMonth() - 3)),
-        maxDate: new Date(new Date().setMonth(new Date().getMonth() + 3)),
-        defaultDate: "{{ old('tanggal_mulai') ?? '' }}"
-    });
+        
 
     </script>
 </body>
