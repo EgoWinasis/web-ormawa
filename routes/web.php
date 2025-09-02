@@ -14,6 +14,7 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\Auth\RegisterController;
 
 /*
