@@ -69,12 +69,24 @@
                                         </a>
 
                                         {{-- status propsal --}}
-                                        <a href="javascript:void(0);"
-    onclick="showStatusInfo({{ $k->status_proposal }}, '{{ e($k->ket_proposal ?? 'Tidak ada keterangan') }}')"
-    class="text-info"
-    title="Info Status Proposal">
-    <i class="fas fa-info-circle fa-lg"></i>
+                                       {{-- status proposal --}}
+@php
+    $statusProposal = $k->status_proposal;
+    $warnaProposal = match($statusProposal) {
+        0 => 'text-info',
+        1 => 'text-success',
+        2 => 'text-danger',
+        default => 'text-secondary',
+    };
+@endphp
+
+<a href="javascript:void(0);"
+   onclick="showStatusInfo({{ $statusProposal }}, '{{ e($k->ket_proposal ?? 'Tidak ada keterangan') }}')"
+   class="text-info"
+   title="Info Status Proposal">
+   <i class="fas fa-info-circle fa-lg {{ $warnaProposal }}"></i>
 </a>
+
 
                                     </div>
                                     @else
@@ -94,12 +106,22 @@
                                             <i class="fas fa-download fa-lg text-success"></i>
                                         </a>
                                          {{-- Tombol Info Status --}}
-                                                <a href="javascript:void(0);"
-                                            onclick="showStatusInfo({{ $k->status_lpj }}, '{{ e($k->ket_lpj ?? 'Tidak ada keterangan') }}')"
+                                              @php
+                                                $status = $k->status_lpj;
+                                                $warnaIkon = match($status) {
+                                                    0 => 'text-info',     // Sedang direview
+                                                    1 => 'text-success',  // Disetujui
+                                                    2 => 'text-danger',   // Ditolak
+                                                    default => 'text-secondary', // fallback
+                                                };
+                                            @endphp
+
+                                            <a href="javascript:void(0);"
+                                            onclick="showStatusInfo({{ $status }}, '{{ e($k->ket_lpj ?? 'Tidak ada keterangan') }}')"
                                             class="text-info"
                                             title="Info Status LPJ">
-                                            <i class="fas fa-info-circle fa-lg"></i>
-                                        </a>
+                                            <i class="fas fa-info-circle fa-lg {{ $warnaIkon }}"></i>
+                                            </a>
 
                                     </div>
                                     @else
