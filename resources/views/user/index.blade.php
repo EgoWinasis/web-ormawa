@@ -71,9 +71,9 @@
 
                         <!-- Pas Foto -->
                         <div class="mb-3">
-                            <label for="foto" class="form-label">Pas Foto <span class="text-danger">*</span></label>
+                            <label for="foto" class="form-label">Pas Foto (3x4)<span class="text-danger">*</span></label>
                             <input type="file" class="form-control w-100" id="foto" name="foto" accept="image/*">
-                            <small class="text-muted">File harus .jpg atau .png, max 2MB.</small>
+                            <small class="text-muted">File harus .jpg atau .png, max 2MB.(baground merah)</small>
                             @error('foto')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -81,12 +81,12 @@
 
                         <!-- Riwayat Studi -->
                         <div class="mb-3">
-                            <label for="riwayat_studi" class="form-label">Riwayat Studi <span class="text-danger">*</span></label>
+                            <label for="riwayat_studi" class="form-label">Riwayat Studi (Screenshot)<span class="text-danger">*</span></label>
                             <input type="file" class="form-control w-100" id="riwayat_studi"
                                 accept="image/*"
                                 name="riwayat_studi">
-                            <small class="text-muted">File harus .jpg atau .png, max 2MB.
-                                <a href="https://oase.poltekharber.ac.id/" target="_blank" class="text-primary">Klik di sini</a>
+                            <small class="text-muted">File harus .jpg atau .png, max 2MB.(dapat dilihat pada oase
+                                <a href="https://oase.poltekharber.ac.id/" target="_blank" class="text-primary">Klik di sini</a>)
                             </small>
                             @error('riwayat_studi')
                                 <div class="text-danger">{{ $message }}</div>
@@ -110,7 +110,7 @@
                             <label for="sertif" class="form-label">Sertifikasi <span class="text-danger">*</span></label>
                             <input type="file" class="form-control w-100" id="sertif" name="sertif" multiple
                                 accept=".rar,.pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-                            <small class="text-muted">File harus .pdf.</small>
+                            <small class="text-muted">File harus .pdf.(Sertifikat Prestasi,Webinar,Talkshow dll)</small>
                             @error('sertif')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
