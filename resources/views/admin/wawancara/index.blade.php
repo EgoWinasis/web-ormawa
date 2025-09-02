@@ -41,6 +41,11 @@
                                                 <span class="material-symbols-outlined align-middle">edit</span>
                                             </button>
                                         </form>
+                                        <!-- Penilaian button -->
+                                            <a href="{{ url('admin/kegiatan/panitia/' . $p->user_id . '/penilaian') }}"
+                                        class="btn btn-sm btn-primary" title="Penilaian">
+                                            <span class="material-symbols-outlined align-middle">check_circle</span>
+                                        </a>
 
                                         <!-- Delete button -->
                                         <form action="{{ url('admin/kegiatan/panitia/' . $p->user_id . '/destroy') }}"

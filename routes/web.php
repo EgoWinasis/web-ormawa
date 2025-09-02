@@ -77,6 +77,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/tambahAdminView', [AdminController::class, 'tambahAdminView'])->name('admin.tambahAdminView');
     Route::post('/kegiatan/panitia/{user}/update-jabatan', [AdminController::class, 'updateJabatan']);
 
+    // penilaian
+    Route::get('/kegiatan/panitia/{user_id}/penilaian', [PenilaianController::class, 'create']);
+
     // import data
     Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
     Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
