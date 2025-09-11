@@ -189,6 +189,11 @@
                     key: "alur_lpj"
                 },
             ],
+            "Aspirasi": [{
+                    label: "Alur Penyampaian Aspirasi",
+                    key: "alur_penyampaian_aspirasi"
+                },
+            ],
            
 
             "Punishment": [{
