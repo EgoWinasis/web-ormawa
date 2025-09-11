@@ -209,14 +209,14 @@
         const responses = {
             proposal: `<p>
   Untuk melihat alur proposal, klik
-  <a href="/proposal.pdf" class="btn btn-danger btn-sm" target="_blank">
-    <i class="fas fa-file-pdf"></i> di sini
+  <a href="/proposal.jpeg" class="btn btn-danger btn-sm" target="_blank">
+    <i class="fas fa-image"></i> di sini
   </a>.
 </p>`,
             lpj: `<p>
   Untuk melihat alur lpj, klik
-  <a href="/lpj.pdf" class="btn btn-danger btn-sm" target="_blank">
-    <i class="fas fa-file-pdf"></i> di sini
+  <a href="/lpj.jpeg" class="btn btn-danger btn-sm" target="_blank">
+    <i class="fas fa-image"></i> di sini
   </a>.
 </p>`,
            
