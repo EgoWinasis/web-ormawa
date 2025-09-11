@@ -111,7 +111,7 @@
         'Jumlah Anggota',
         @json($anggota->pluck('tanggal')),
         @json($anggota->pluck('total')),
-        @json(Array($anggota->count()).fill('')),
+               @json(array_fill(0, $anggota->count(), '')),,
         'rgba(54, 162, 235, 1)',
         'rgba(54, 162, 235, 0.5)'
     );
