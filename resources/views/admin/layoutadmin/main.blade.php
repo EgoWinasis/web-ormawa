@@ -171,7 +171,7 @@ $user = Auth::user();
     </div>
 
 
-    @include('chatbot')
+    @include('chatbot_admin')
 
 
     <!-- Bootstrap JS -->

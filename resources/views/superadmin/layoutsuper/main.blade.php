@@ -168,7 +168,7 @@ $brandImage = DB::table('brand_image')->latest('id')->first();
 
 
 
-    @include('chatbot')
+    @include('chatbot_admin')
 
 
     <!-- Bootstrap JS -->
