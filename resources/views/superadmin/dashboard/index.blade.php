@@ -60,103 +60,110 @@
     }
 
     function buatChartWithTooltip(id, label, labels, data, detailLabels, borderColor, backgroundColor) {
-        const formattedLabels = labels.map(formatTanggal);
+    const formattedLabels = labels.map(formatTanggal);
 
-        const ctx = document.getElementById(id).getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: formattedLabels,
-                datasets: [{
-                    label: label,
-                    data: data,
-                    borderColor: borderColor,
-                    backgroundColor: backgroundColor,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'bottom'
-                    },
-                    tooltip: {
-  callbacks: {
-    title: function(context) {
-      return 'Tanggal: ' + context[0].label;
-    },
-   label: function(context) {
-  const idx = context.dataIndex;
-  const detail = detailLabels[idx] || 'Tidak ada detail';
-  const detailItems = detail.split(', ').map((item, i) => `${i + 1}. ${item.trim()}`);
-  return [
-    context.dataset.label + ': ' + context.parsed.y,
-    'Detail:',
-    ...detailItems
-  ];
-}
-
-  }
-}
-
+    const ctx = document.getElementById(id).getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: formattedLabels,
+            datasets: [{
+                label: label,
+                data: data,
+                borderColor: borderColor,
+                backgroundColor: backgroundColor,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
+                tooltip: {
+                    callbacks: {
+                        title: function(context) {
+                            return 'Tanggal: ' + context[0].label;
+                        },
+                        label: function(context) {
+                            const idx = context.dataIndex;
+                            const detail = detailLabels[idx];
+                            // Cek kalau detail ada dan bukan string kosong
+                            if (detail && detail.trim() !== '') {
+                                const detailItems = detail.split(', ').map((item, i) => `${i + 1}. ${item.trim()}`);
+                                return [
+                                    context.dataset.label + ': ' + context.parsed.y,
+                                    'Detail:',
+                                    ...detailItems
+                                ];
+                            } else {
+                                // Kalau gak ada detail, hanya tampil label dan value saja
+                                return context.dataset.label + ': ' + context.parsed.y;
+                            }
                         }
                     }
                 }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
             }
-        });
-    }
+        }
+    });
+}
 
-    // Grafik Anggota
-    buatChartWithTooltip(
-        'anggotaChart',
-        'Jumlah Anggota',
-        @json($anggota->pluck('tanggal')),
-        @json($anggota->pluck('total')),
-        @json(array_fill(0, $anggota->count(), '')),
-        'rgba(54, 162, 235, 1)',
-        'rgba(54, 162, 235, 0.5)'
-    );
+// Panggilan chart
 
-    // Grafik Kegiatan
-    buatChartWithTooltip(
-        'kegiatanChart',
-        'Jumlah Kegiatan',
-        @json($kegiatan->pluck('tanggal')),
-        @json($kegiatan->pluck('total')),
-        @json($kegiatan->pluck('nama_kegiatan')),
-        'rgba(255, 206, 86, 1)',
-        'rgba(255, 206, 86, 0.5)'
-    );
+// Grafik Anggota - tanpa detail
+buatChartWithTooltip(
+    'anggotaChart',
+    'Jumlah Anggota',
+    @json($anggota->pluck('tanggal')),
+    @json($anggota->pluck('total')),
+    @json(array_fill(0, $anggota->count(), '')), // kosong
+    'rgba(54, 162, 235, 1)',
+    'rgba(54, 162, 235, 0.5)'
+);
 
-    // Grafik News
-    buatChartWithTooltip(
-        'newsChart',
-        'Jumlah News',
-        @json($news->pluck('tanggal')),
-        @json($news->pluck('total')),
-        @json($news->pluck('nama_kegiatan')),
-        'rgba(75, 192, 192, 1)',
-        'rgba(75, 192, 192, 0.5)'
-    );
+// Grafik Kegiatan - ada detail
+buatChartWithTooltip(
+    'kegiatanChart',
+    'Jumlah Kegiatan',
+    @json($kegiatan->pluck('tanggal')),
+    @json($kegiatan->pluck('total')),
+    @json($kegiatan->pluck('nama_kegiatan')), // ada detail
+    'rgba(255, 206, 86, 1)',
+    'rgba(255, 206, 86, 0.5)'
+);
 
-    // Grafik Admin
-    buatChartWithTooltip(
-        'adminChart',
-        'Jumlah Admin',
-        @json($userTotal->pluck('tanggal')),
-        @json($userTotal->pluck('total')),
-        @json(array_fill(0, $userTotal->count(), '')),
-        'rgba(153, 102, 255, 1)',
-        'rgba(153, 102, 255, 0.5)'
-    );
+// Grafik News - ada detail
+buatChartWithTooltip(
+    'newsChart',
+    'Jumlah News',
+    @json($news->pluck('tanggal')),
+    @json($news->pluck('total')),
+    @json($news->pluck('nama_kegiatan')), // ada detail
+    'rgba(75, 192, 192, 1)',
+    'rgba(75, 192, 192, 0.5)'
+);
+
+// Grafik Admin - tanpa detail
+buatChartWithTooltip(
+    'adminChart',
+    'Jumlah Admin',
+    @json($userTotal->pluck('tanggal')),
+    @json($userTotal->pluck('total')),
+    @json(array_fill(0, $userTotal->count(), '')), // kosong
+    'rgba(153, 102, 255, 1)',
+    'rgba(153, 102, 255, 0.5)'
+);
+
 </script>
 
 @endsection
