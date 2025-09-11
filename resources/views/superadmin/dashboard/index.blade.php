@@ -47,13 +47,14 @@
     </div>
 </div>
 
+<!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     function buatChart(id, label, labels, data, borderColor, backgroundColor) {
         const ctx = document.getElementById(id).getContext('2d');
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
@@ -61,14 +62,16 @@
                     data: data,
                     borderColor: borderColor,
                     backgroundColor: backgroundColor,
-                    fill: false,
-                    tension: 0.3
+                    borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
                 plugins: {
-                    legend: { display: false }
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
                 },
                 scales: {
                     y: {
@@ -85,41 +88,41 @@
     // Grafik Anggota
     buatChart(
         'anggotaChart',
-        'Anggota',
+        'Jumlah Anggota',
         @json($anggota->pluck('tahun')),
         @json($anggota->pluck('total')),
         'rgba(54, 162, 235, 1)',
-        'rgba(54, 162, 235, 0.2)'
+        'rgba(54, 162, 235, 0.5)'
     );
 
     // Grafik Kegiatan
     buatChart(
         'kegiatanChart',
-        'Kegiatan',
+        'Jumlah Kegiatan',
         @json($kegiatan->pluck('tahun')),
         @json($kegiatan->pluck('total')),
         'rgba(255, 206, 86, 1)',
-        'rgba(255, 206, 86, 0.2)'
+        'rgba(255, 206, 86, 0.5)'
     );
 
     // Grafik News
     buatChart(
         'newsChart',
-        'News',
+        'Jumlah News',
         @json($news->pluck('tahun')),
         @json($news->pluck('total')),
         'rgba(75, 192, 192, 1)',
-        'rgba(75, 192, 192, 0.2)'
+        'rgba(75, 192, 192, 0.5)'
     );
 
     // Grafik Admin
     buatChart(
         'adminChart',
-        'Admin',
+        'Jumlah Admin',
         @json($userTotal->pluck('tahun')),
         @json($userTotal->pluck('total')),
-        'rgba(40, 192, 192, 1)',
-        'rgba(75, 192, 192, 0.2)'
+        'rgba(153, 102, 255, 1)',
+        'rgba(153, 102, 255, 0.5)'
     );
 </script>
 @endsection
