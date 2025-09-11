@@ -37,12 +37,19 @@
     </div>
 </div>
 
+<pre>
+Anggota: {{ json_encode($anggota) }} <br>
+Kegiatan: {{ json_encode($kegiatan) }} <br>
+News: {{ json_encode($news) }}
+</pre>
+
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     function formatTanggal(tanggal) {
         const dateObj = new Date(tanggal);
+        if (isNaN(dateObj)) return tanggal;
         const dd = String(dateObj.getDate()).padStart(2, '0');
         const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
         const yy = String(dateObj.getFullYear()).slice(-2);
@@ -68,10 +75,7 @@
             options: {
                 responsive: true,
                 plugins: {
-                    legend: {
-                        display: true,
-                        position: 'bottom'
-                    },
+                    legend: { display: true, position: 'bottom' },
                     tooltip: {
                         mode: 'index',
                         intersect: false,
@@ -95,24 +99,13 @@
                     }
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            autoSkip: true,
-                            maxTicksLimit: 10
-                        }
-                    }
+                    y: { beginAtZero: true, ticks: { stepSize: 1 } },
+                    x: { ticks: { autoSkip: true, maxTicksLimit: 10 } }
                 }
             }
         });
     }
 
-    // Anggota (tidak ada detail)
     buatChart(
         'anggotaChart',
         'Jumlah Anggota',
@@ -123,7 +116,6 @@
         'rgba(54, 162, 235, 0.5)'
     );
 
-    // Kegiatan (detail nama kegiatan)
     buatChart(
         'kegiatanChart',
         'Jumlah Kegiatan',
@@ -134,7 +126,6 @@
         'rgba(255, 206, 86, 0.5)'
     );
 
-    // News (detail nama news)
     buatChart(
         'newsChart',
         'Jumlah News',
