@@ -440,17 +440,18 @@ class AdminController extends Controller
 
             // === Kegiatan per hari ===
             $kegiatan = Agenda::where('nama_organisasi', $org)
-    ->selectRaw('DATE(created_at) as tanggal, GROUP_CONCAT(nama_kegiatan SEPARATOR ", ") as nama_kegiatan')
+    ->selectRaw('DATE(created_at) as tanggal, COUNT(*) as total, GROUP_CONCAT(nama_kegiatan SEPARATOR ", ") as nama_kegiatan')
     ->groupBy('tanggal')
     ->orderBy('tanggal', 'asc')
     ->get();
 
             $news = Agenda::where('nama_organisasi', $org)
                 ->whereNotNull('lpj')
-                ->selectRaw('DATE(created_at) as tanggal, GROUP_CONCAT(nama_kegiatan SEPARATOR ", ") as nama_kegiatan')
+                ->selectRaw('DATE(created_at) as tanggal, COUNT(*) as total, GROUP_CONCAT(nama_kegiatan SEPARATOR ", ") as nama_kegiatan')
                 ->groupBy('tanggal')
                 ->orderBy('tanggal', 'asc')
                 ->get();
+
 
 
 

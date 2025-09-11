@@ -37,11 +37,7 @@
     </div>
 </div>
 
-<pre>
-Anggota: {{ json_encode($anggota) }} <br>
-Kegiatan: {{ json_encode($kegiatan) }} <br>
-News: {{ json_encode($news) }}
-</pre>
+>
 
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -116,25 +112,28 @@ News: {{ json_encode($news) }}
         'rgba(54, 162, 235, 0.5)'
     );
 
-    buatChart(
-        'kegiatanChart',
-        'Jumlah Kegiatan',
-        @json($kegiatan->pluck('tanggal')),
-        @json($kegiatan->pluck('total')),
-        @json($kegiatan->pluck('nama_kegiatan')),
-        'rgba(255, 206, 86, 1)',
-        'rgba(255, 206, 86, 0.5)'
-    );
+    // Kegiatan
+buatChart(
+    'kegiatanChart',
+    'Jumlah Kegiatan',
+    @json($kegiatan->pluck('tanggal')),
+    @json($kegiatan->pluck('total')),
+    @json($kegiatan->pluck('nama_kegiatan')),
+    'rgba(255, 206, 86, 1)',
+    'rgba(255, 206, 86, 0.5)'
+);
 
-    buatChart(
-        'newsChart',
-        'Jumlah News',
-        @json($news->pluck('tanggal')),
-        @json($news->pluck('total')),
-        @json($news->pluck('nama_news')),
-        'rgba(75, 192, 192, 1)',
-        'rgba(75, 192, 192, 0.5)'
-    );
+// News
+buatChart(
+    'newsChart',
+    'Jumlah News',
+    @json($news->pluck('tanggal')),
+    @json($news->pluck('total')),
+    @json($news->pluck('nama_kegiatan')),  // pastikan ini sesuai, kalau di news itu nama_news, sesuaikan
+    'rgba(75, 192, 192, 1)',
+    'rgba(75, 192, 192, 0.5)'
+);
+
 </script>
 
 @endsection
