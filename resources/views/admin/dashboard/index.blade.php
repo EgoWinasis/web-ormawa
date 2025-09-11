@@ -37,7 +37,7 @@
     </div>
 </div>
 
->
+
 
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -73,26 +73,29 @@
                 plugins: {
                     legend: { display: true, position: 'bottom' },
                     tooltip: {
-                        mode: 'index',
-                        intersect: false,
-                        callbacks: {
-                            title: function(context) {
-                                return 'Tanggal: ' + context[0].label;
-                            },
-                            label: function(context) {
-                                const idx = context.dataIndex;
-                                let detail = detailLabels[idx] || 'Tidak ada detail';
+    mode: 'index',
+    intersect: false,
+    callbacks: {
+        title: function(context) {
+            return 'Tanggal: ' + context[0].label;
+        },
+        label: function(context) {
+            const idx = context.dataIndex;
+            let detail = detailLabels[idx] || 'Tidak ada detail';
 
-                                if (Array.isArray(detail)) {
-                                    detail = detail.join('\n');
-                                } else if (typeof detail === 'string') {
-                                    detail = detail.replace(/, /g, '\n');
-                                }
+            if (typeof detail === 'string' && detail.includes(',')) {
+                detail = detail.split(',').map(item => item.trim());
+            }
 
-                                return context.dataset.label + ': ' + context.parsed.y + '\nDetail:\n' + detail;
-                            }
-                        }
-                    }
+            if (Array.isArray(detail)) {
+                detail = detail.join('\n');
+            }
+
+            return context.dataset.label + ': ' + context.parsed.y + '\nDetail:\n' + detail;
+        }
+    }
+}
+
                 },
                 scales: {
                     y: { beginAtZero: true, ticks: { stepSize: 1 } },
