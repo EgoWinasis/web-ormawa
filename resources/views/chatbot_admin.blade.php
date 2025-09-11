@@ -201,8 +201,8 @@
            
 
             "Punishment": [{
-                    label: "Punishment",
-                    key: "punishment"
+                    label: "Check",
+                    key: "check"
                 },
                
             ],
@@ -235,9 +235,9 @@
   </a>.
 </p>`,
             link: `<p>
-  berikut adalah alur untuk penyampaian aspirasi dan advokasi, klik
+  berikut adalah link untuk penyampaian aspirasi dan advokasi, klik
   <a href="https://qr.me-qr.com/wTctrGfn" class="btn btn-danger btn-sm" target="_blank">
-    <i class="fas fa-image"></i> di sini
+    <i class="fas fa-arrow-right"></i> di sini
   </a>.
 </p>`,
             lihat: `<p>
@@ -246,7 +246,7 @@
     <i class="fas fa-file-pdf"></i> di sini
   </a>.
 </p>`,
-            punishment: `<p>
+            check: `<p>
   Jika terlambat mengumpulkan LPJ dikenakan denda 5% dari dana cair.
 </p>`,
            
