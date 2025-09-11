@@ -181,7 +181,7 @@
         const menuGroups = {
             "Proposal": [{
                     label: "Alur Proposal",
-                    key: "proposal"
+                    key: "alur_proposal"
                 },
             ],
             "LPJ": [{
@@ -359,15 +359,9 @@
             // Pemetaan langsung untuk keyword seperti "bem visi"
             const directKeywordMap = {
                 // BEM & BPM
-                'bem visi': 'bem_visi',
-                'bem misi': 'bem_misi',
-                'bem struktur': 'bem_struktur',
-                'bem kegiatan': 'bem_kegiatan',
-                'bem tugas': 'bem_tugas',
-                'bpm visi': 'bpm_visi',
-                'bpm misi': 'bpm_misi',
-                'bpm struktur': 'bpm_struktur',
-                'bpm tugas': 'bpm_tugas',
+                'alur proposal': 'alur_proposal',
+                'alur lpj': 'alur_lpj',
+               
 
                 
             };
