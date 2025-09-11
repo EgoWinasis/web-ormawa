@@ -51,12 +51,22 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+    function formatTanggal(tanggal) {
+        const date = new Date(tanggal);
+        const dd = String(date.getDate()).padStart(2, '0');
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const yy = String(date.getFullYear()).slice(-2);
+        return `${dd}-${mm}-${yy}`;
+    }
+
     function buatChart(id, label, labels, data, borderColor, backgroundColor) {
+        const formattedLabels = labels.map(tgl => formatTanggal(tgl));
+
         const ctx = document.getElementById(id).getContext('2d');
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: labels,
+                labels: formattedLabels,
                 datasets: [{
                     label: label,
                     data: data,
@@ -71,6 +81,16 @@
                     legend: {
                         display: true,
                         position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                return 'Tanggal: ' + context[0].label;
+                            },
+                            label: function(context) {
+                                return label + ': ' + context.raw;
+                            }
+                        }
                     }
                 },
                 scales: {
@@ -95,27 +115,27 @@
         'rgba(54, 162, 235, 0.5)'
     );
 
-    // Grafik Kegiatan
+    // Grafik Kegiatan - tampilkan nama kegiatan
     buatChart(
         'kegiatanChart',
-        'Jumlah Kegiatan',
+        'Nama Kegiatan',
         @json($kegiatan->pluck('tanggal')),
-        @json($kegiatan->pluck('total')),
+        @json($kegiatan->pluck('nama_kegiatan')),
         'rgba(255, 206, 86, 1)',
         'rgba(255, 206, 86, 0.5)'
     );
 
-    // Grafik News
+    // Grafik News - tampilkan nama news (lpj)
     buatChart(
         'newsChart',
-        'Jumlah News',
+        'Nama News',
         @json($news->pluck('tanggal')),
-        @json($news->pluck('total')),
+        @json($news->pluck('nama_news')),
         'rgba(75, 192, 192, 1)',
         'rgba(75, 192, 192, 0.5)'
     );
 
-    // Grafik Admin
+    // Grafik Admin - tetap pakai jumlah
     buatChart(
         'adminChart',
         'Jumlah Admin',
