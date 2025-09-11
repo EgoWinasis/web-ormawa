@@ -192,13 +192,13 @@
            
 
             "Punishment": [{
-                    label: "Visi",
-                    key: "visi"
+                    label: "Punishment",
+                    key: "punishment"
                 },
                
             ],
             "Kontak Person": [{
-                    label: "Daftar",
+                    label: "Daftar Kontak Person",
                     key: "daftar"
                 },
 
@@ -207,13 +207,13 @@
         };
 
         const responses = {
-            proposal: `<p>
+            alur_proposal: `<p>
   Untuk melihat alur proposal, klik
   <a href="/proposal.jpeg" class="btn btn-danger btn-sm" target="_blank">
     <i class="fas fa-image"></i> di sini
   </a>.
 </p>`,
-            lpj: `<p>
+            alur_lpj: `<p>
   Untuk melihat alur lpj, klik
   <a href="/lpj.jpeg" class="btn btn-danger btn-sm" target="_blank">
     <i class="fas fa-image"></i> di sini
