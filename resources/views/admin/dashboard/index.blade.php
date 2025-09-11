@@ -72,29 +72,29 @@
                 responsive: true,
                 plugins: {
                     legend: { display: true, position: 'bottom' },
-                    tooltip: {
-    mode: 'index',
-    intersect: false,
-    callbacks: {
-        title: function(context) {
-            return 'Tanggal: ' + context[0].label;
-        },
-        label: function(context) {
-            const idx = context.dataIndex;
-            let detail = detailLabels[idx] || 'Tidak ada detail';
-
-            if (typeof detail === 'string' && detail.includes(',')) {
-                detail = detail.split(',').map(item => item.trim());
-            }
-
-            if (Array.isArray(detail)) {
-                detail = detail.join('\n');
-            }
-
-            return context.dataset.label + ': ' + context.parsed.y + '\nDetail:\n' + detail;
-        }
-    }
-}
+                   tooltip: {
+                    callbacks: {
+                        title: function(context) {
+                            return 'Tanggal: ' + context[0].label;
+                        },
+                        label: function(context) {
+                            const idx = context.dataIndex;
+                            const detail = detailLabels[idx];
+                            // Cek kalau detail ada dan bukan string kosong
+                            if (detail && detail.trim() !== '') {
+                                const detailItems = detail.split(', ').map((item, i) => `${i + 1}. ${item.trim()}`);
+                                return [
+                                    context.dataset.label + ': ' + context.parsed.y,
+                                    'Detail:',
+                                    ...detailItems
+                                ];
+                            } else {
+                                // Kalau gak ada detail, hanya tampil label dan value saja
+                                return context.dataset.label + ': ' + context.parsed.y;
+                            }
+                        }
+                    }
+                }
 
                 },
                 scales: {
