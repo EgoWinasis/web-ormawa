@@ -83,28 +83,22 @@
                         position: 'bottom'
                     },
                     tooltip: {
-                        mode: 'index',
-                        intersect: false,
-                        callbacks: {
-                            title: function(context) {
-                                return 'Tanggal: ' + context[0].label;
-                            },
-                            label: function(context) {
-                                const idx = context.dataIndex;
-                                let detail = detailLabels[idx] || 'Tidak ada detail';
+  callbacks: {
+    title: function(context) {
+      return 'Tanggal: ' + context[0].label;
+    },
+    label: function(context) {
+      const idx = context.dataIndex;
+      const detail = detailLabels[idx] || 'Tidak ada detail';
+      return [
+        context.dataset.label + ': ' + context.parsed.y,
+        'Detail:',
+        ...detail.split(', ').map(item => item.trim())
+      ];
+    }
+  }
+}
 
-                                // Jika detail array, gabungkan dengan newline
-                                if (Array.isArray(detail)) {
-                                    detail = detail.join('\n');
-                                } else if (typeof detail === 'string') {
-                                    // Ganti koma dan spasi jadi newline supaya multiline tooltip
-                                    detail = detail.replace(/, /g, '\n');
-                                }
-
-                                return context.dataset.label + ': ' + context.parsed.y + '\nDetail:\n' + detail;
-                            }
-                        }
-                    }
                 },
                 scales: {
                     y: {
