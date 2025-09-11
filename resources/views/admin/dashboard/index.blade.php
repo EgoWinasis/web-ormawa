@@ -83,11 +83,9 @@
                                 const idx = context.dataIndex;
                                 let detail = detailLabels[idx] || 'Tidak ada detail';
 
-                                // Pastikan detail berupa string, jika array gabungkan jadi string
                                 if (Array.isArray(detail)) {
                                     detail = detail.join('\n');
                                 } else if (typeof detail === 'string') {
-                                    // Ganti koma + spasi jadi newline agar multiline tooltip
                                     detail = detail.replace(/, /g, '\n');
                                 }
 
@@ -114,7 +112,7 @@
         });
     }
 
-    // Grafik Anggota (jumlah biasa, detail kosong)
+    // Anggota (tidak ada detail)
     buatChart(
         'anggotaChart',
         'Jumlah Anggota',
@@ -125,7 +123,7 @@
         'rgba(54, 162, 235, 0.5)'
     );
 
-    // Grafik Kegiatan (jumlah + tooltip nama kegiatan)
+    // Kegiatan (detail nama kegiatan)
     buatChart(
         'kegiatanChart',
         'Jumlah Kegiatan',
@@ -136,7 +134,7 @@
         'rgba(255, 206, 86, 0.5)'
     );
 
-    // Grafik News (jumlah + tooltip nama news)
+    // News (detail nama news)
     buatChart(
         'newsChart',
         'Jumlah News',
@@ -147,6 +145,5 @@
         'rgba(75, 192, 192, 0.5)'
     );
 </script>
-
 
 @endsection
