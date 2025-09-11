@@ -89,7 +89,7 @@
     buatChart(
         'anggotaChart',
         'Jumlah Anggota',
-        @json($anggota->pluck('tahun')),
+        @json($anggota->pluck('tanggal')),
         @json($anggota->pluck('total')),
         'rgba(54, 162, 235, 1)',
         'rgba(54, 162, 235, 0.5)'
@@ -99,7 +99,7 @@
     buatChart(
         'kegiatanChart',
         'Jumlah Kegiatan',
-        @json($kegiatan->pluck('tahun')),
+        @json($kegiatan->pluck('tanggal')),
         @json($kegiatan->pluck('total')),
         'rgba(255, 206, 86, 1)',
         'rgba(255, 206, 86, 0.5)'
@@ -109,7 +109,7 @@
     buatChart(
         'newsChart',
         'Jumlah News',
-        @json($news->pluck('tahun')),
+        @json($news->pluck('tanggal')),
         @json($news->pluck('total')),
         'rgba(75, 192, 192, 1)',
         'rgba(75, 192, 192, 0.5)'
@@ -119,7 +119,7 @@
     buatChart(
         'adminChart',
         'Jumlah Admin',
-        @json($userTotal->pluck('tahun')),
+        @json($userTotal->pluck('tanggal')),
         @json($userTotal->pluck('total')),
         'rgba(153, 102, 255, 1)',
         'rgba(153, 102, 255, 0.5)'

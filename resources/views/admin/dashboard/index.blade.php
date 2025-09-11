@@ -44,7 +44,7 @@
     function buatChart(id, label, labels, data, borderColor, backgroundColor) {
         const ctx = document.getElementById(id).getContext('2d');
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
@@ -52,14 +52,16 @@
                     data: data,
                     borderColor: borderColor,
                     backgroundColor: backgroundColor,
-                    fill: false,
-                    tension: 0.3
+                    borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
                 plugins: {
-                    legend: { display: false }
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
                 },
                 scales: {
                     y: {
@@ -67,40 +69,46 @@
                         ticks: {
                             stepSize: 1
                         }
+                    },
+                    x: {
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 10
+                        }
                     }
                 }
             }
         });
     }
 
-    // Anggota
+    // Anggota per hari
     buatChart(
         'anggotaChart',
-        'Anggota',
-        @json($anggota->pluck('tahun')),
+        'Jumlah Anggota',
+        @json($anggota->pluck('tanggal')),
         @json($anggota->pluck('total')),
         'rgba(54, 162, 235, 1)',
-        'rgba(54, 162, 235, 0.2)'
+        'rgba(54, 162, 235, 0.5)'
     );
 
-    // Kegiatan
+    // Kegiatan per hari
     buatChart(
         'kegiatanChart',
-        'Kegiatan',
-        @json($kegiatan->pluck('tahun')),
+        'Jumlah Kegiatan',
+        @json($kegiatan->pluck('tanggal')),
         @json($kegiatan->pluck('total')),
         'rgba(255, 206, 86, 1)',
-        'rgba(255, 206, 86, 0.2)'
+        'rgba(255, 206, 86, 0.5)'
     );
 
-    // News
+    // News per hari
     buatChart(
         'newsChart',
-        'News',
-        @json($news->pluck('tahun')),
+        'Jumlah News',
+        @json($news->pluck('tanggal')),
         @json($news->pluck('total')),
         'rgba(75, 192, 192, 1)',
-        'rgba(75, 192, 192, 0.2)'
+        'rgba(75, 192, 192, 0.5)'
     );
 </script>
 @endsection

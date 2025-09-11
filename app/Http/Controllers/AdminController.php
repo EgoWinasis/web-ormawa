@@ -429,61 +429,60 @@ class AdminController extends Controller
                 ->where('users.id', $userId)
                 ->value('admin.nama_organisasi');
 
-            // === Anggota per tahun ===
+            // === Anggota per hari ===
             $anggota = DB::table('users')
                 ->join('anggota', 'anggota.user_id', '=', 'users.id')
                 ->where('anggota.nama_organisasi', $org)
-                ->select(DB::raw('YEAR(anggota.created_at) as tahun'), DB::raw('COUNT(*) as total'))
-                ->groupBy('tahun')
-                ->orderBy('tahun', 'asc')
+                ->select(DB::raw('DATE(anggota.created_at) as tanggal'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tanggal')
+                ->orderBy('tanggal', 'asc')
                 ->get();
 
-            // === Kegiatan per tahun ===
+            // === Kegiatan per hari ===
             $kegiatan = Agenda::where('nama_organisasi', $org)
-                ->select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
-                ->groupBy('tahun')
-                ->orderBy('tahun', 'asc')
+                ->select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tanggal')
+                ->orderBy('tanggal', 'asc')
                 ->get();
 
-            // === News (LPJ) per tahun ===
+            // === News (LPJ) per hari ===
             $news = Agenda::where('nama_organisasi', $org)
                 ->whereNotNull('lpj')
-                ->select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
-                ->groupBy('tahun')
-                ->orderBy('tahun', 'asc')
+                ->select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tanggal')
+                ->orderBy('tanggal', 'asc')
                 ->get();
 
             $rutin = Rutin::all();
 
             $user = DB::table('users')
-               ->join('admin', 'admin.user_id', '=', 'users.id')
-               ->where('users.id', $userId)
-               ->first();
+                ->join('admin', 'admin.user_id', '=', 'users.id')
+                ->where('users.id', $userId)
+                ->first();
 
             return view('admin.dashboard.index', compact('user', 'rutin', 'anggota', 'kegiatan', 'news'));
-
         } elseif (Auth::user()->role == 'super_admin') {
 
-            // Semua organisasi
-            $anggota = Anggota::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
-                ->groupBy('tahun')
-                ->orderBy('tahun', 'asc')
+            // Semua organisasi (per hari)
+            $anggota = Anggota::select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tanggal')
+                ->orderBy('tanggal', 'asc')
                 ->get();
 
-            $userTotal = Admin::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
-                ->groupBy('tahun')
-                ->orderBy('tahun', 'asc')
+            $userTotal = Admin::select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tanggal')
+                ->orderBy('tanggal', 'asc')
                 ->get();
 
-            $kegiatan = Agenda::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
-                ->groupBy('tahun')
-                ->orderBy('tahun', 'asc')
+            $kegiatan = Agenda::select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tanggal')
+                ->orderBy('tanggal', 'asc')
                 ->get();
 
             $news = Agenda::whereNotNull('lpj')
-                ->select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
-                ->groupBy('tahun')
-                ->orderBy('tahun', 'asc')
+                ->select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as total'))
+                ->groupBy('tanggal')
+                ->orderBy('tanggal', 'asc')
                 ->get();
 
             $admin = Admin::all();
@@ -491,6 +490,7 @@ class AdminController extends Controller
 
             return view('superadmin.dashboard.index', compact('user', 'userTotal', 'anggota', 'kegiatan', 'news', 'admin'));
         }
+
 
     }
 
