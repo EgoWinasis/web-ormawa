@@ -234,65 +234,65 @@
                     }
                 ],
                 "AKUNTANSI": [
-        { label: "Visi", key: "akuntansi_visi" },
-        { label: "Misi", key: "akuntansi_misi" },
-        { label: "Struktur", key: "akuntansi_struktur" },
-        { label: "Tugas", key: "akuntansi_tugas" }
-    ],
-    "ASP": [
-        { label: "Visi", key: "asp_visi" },
-        { label: "Misi", key: "asp_misi" },
-        { label: "Struktur", key: "asp_struktur" },
-        { label: "Tugas", key: "asp_tugas" }
-    ],
-    "DKV": [
-        { label: "Visi", key: "dkv_visi" },
-        { label: "Misi", key: "dkv_misi" },
-        { label: "Struktur", key: "dkv_struktur" },
-        { label: "Tugas", key: "dkv_tugas" }
-    ],
-    "ELEKTRO": [
-        { label: "Visi", key: "elektro_visi" },
-        { label: "Misi", key: "elektro_misi" },
-        { label: "Struktur", key: "elektro_struktur" },
-        { label: "Tugas", key: "elektro_tugas" }
-    ],
-    "FARMASI": [
-        { label: "Visi", key: "farmasi_visi" },
-        { label: "Misi", key: "farmasi_misi" },
-        { label: "Struktur", key: "farmasi_struktur" },
-        { label: "Tugas", key: "farmasi_tugas" }
-    ],
-    "KEBIDANAN": [
-        { label: "Visi", key: "kebidanan_visi" },
-        { label: "Misi", key: "kebidanan_misi" },
-        { label: "Struktur", key: "kebidanan_struktur" },
-        { label: "Tugas", key: "kebidanan_tugas" }
-    ],
-    "KOMPUTER": [
-        { label: "Visi", key: "komputer_visi" },
-        { label: "Misi", key: "komputer_misi" },
-        { label: "Struktur", key: "komputer_struktur" },
-        { label: "Tugas", key: "komputer_tugas" }
-    ],
-    "MESIN": [
-        { label: "Visi", key: "mesin_visi" },
-        { label: "Misi", key: "mesin_misi" },
-        { label: "Struktur", key: "mesin_struktur" },
-        { label: "Tugas", key: "mesin_tugas" }
-    ],
-    "PERHOTELAN": [
-        { label: "Visi", key: "perhotelan_visi" },
-        { label: "Misi", key: "perhotelan_misi" },
-        { label: "Struktur", key: "perhotelan_struktur" },
-        { label: "Tugas", key: "perhotelan_tugas" }
-    ],
-    "TI": [
-        { label: "Visi", key: "ti_visi" },
-        { label: "Misi", key: "ti_misi" },
-        { label: "Struktur", key: "ti_struktur" },
-        { label: "Tugas", key: "ti_tugas" }
-    ],
+                    { label: "Visi", key: "akuntansi_visi" },
+                    { label: "Misi", key: "akuntansi_misi" },
+                    { label: "Struktur", key: "akuntansi_struktur" },
+                    { label: "Tugas", key: "akuntansi_tugas" }
+                ],
+                "ASP": [
+                    { label: "Visi", key: "asp_visi" },
+                    { label: "Misi", key: "asp_misi" },
+                    { label: "Struktur", key: "asp_struktur" },
+                    { label: "Tugas", key: "asp_tugas" }
+                ],
+                "DKV": [
+                    { label: "Visi", key: "dkv_visi" },
+                    { label: "Misi", key: "dkv_misi" },
+                    { label: "Struktur", key: "dkv_struktur" },
+                    { label: "Tugas", key: "dkv_tugas" }
+                ],
+                "ELEKTRO": [
+                    { label: "Visi", key: "elektro_visi" },
+                    { label: "Misi", key: "elektro_misi" },
+                    { label: "Struktur", key: "elektro_struktur" },
+                    { label: "Tugas", key: "elektro_tugas" }
+                ],
+                "FARMASI": [
+                    { label: "Visi", key: "farmasi_visi" },
+                    { label: "Misi", key: "farmasi_misi" },
+                    { label: "Struktur", key: "farmasi_struktur" },
+                    { label: "Tugas", key: "farmasi_tugas" }
+                ],
+                "KEBIDANAN": [
+                    { label: "Visi", key: "kebidanan_visi" },
+                    { label: "Misi", key: "kebidanan_misi" },
+                    { label: "Struktur", key: "kebidanan_struktur" },
+                    { label: "Tugas", key: "kebidanan_tugas" }
+                ],
+                "KOMPUTER": [
+                    { label: "Visi", key: "komputer_visi" },
+                    { label: "Misi", key: "komputer_misi" },
+                    { label: "Struktur", key: "komputer_struktur" },
+                    { label: "Tugas", key: "komputer_tugas" }
+                ],
+                "MESIN": [
+                    { label: "Visi", key: "mesin_visi" },
+                    { label: "Misi", key: "mesin_misi" },
+                    { label: "Struktur", key: "mesin_struktur" },
+                    { label: "Tugas", key: "mesin_tugas" }
+                ],
+                "PERHOTELAN": [
+                    { label: "Visi", key: "perhotelan_visi" },
+                    { label: "Misi", key: "perhotelan_misi" },
+                    { label: "Struktur", key: "perhotelan_struktur" },
+                    { label: "Tugas", key: "perhotelan_tugas" }
+                ],
+                "TI": [
+                    { label: "Visi", key: "ti_visi" },
+                    { label: "Misi", key: "ti_misi" },
+                    { label: "Struktur", key: "ti_struktur" },
+                    { label: "Tugas", key: "ti_tugas" }
+                ],
             },
             "Struktur & Tugas": [{
                     label: "Struktur",
@@ -307,7 +307,7 @@
                     key: "ketua"
                 }
             ],
-            "Visi & Misi": [{
+            "Punishment": [{
                     label: "Visi",
                     key: "visi"
                 },
@@ -316,7 +316,7 @@
                     key: "misi"
                 }
             ],
-            "Pendaftaran": [{
+            "Kontak Person": [{
                     label: "Daftar",
                     key: "daftar"
                 },
