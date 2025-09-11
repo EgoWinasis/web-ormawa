@@ -50,7 +50,6 @@
     }
 
     function buatChart(id, label, labels, data, detailLabels, borderColor, backgroundColor) {
-        // Format tanggal jika label adalah tanggal
         const formattedLabels = labels.map(tgl => formatTanggal(tgl));
 
         const ctx = document.getElementById(id).getContext('2d');
@@ -74,18 +73,28 @@
                         position: 'bottom'
                     },
                     tooltip: {
-    callbacks: {
-        title: function(context) {
-            return 'Tanggal: ' + context[0].label;
-        },
-        label: function(context) {
-            const idx = context.dataIndex;
-            const detail = detailLabels[idx] || 'Tidak ada detail';
-            return context.dataset.label + ': ' + context.parsed.y + '\nDetail:\n' + detail.replace(/, /g, '\n');
-        }
-    }
-}
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            title: function(context) {
+                                return 'Tanggal: ' + context[0].label;
+                            },
+                            label: function(context) {
+                                const idx = context.dataIndex;
+                                let detail = detailLabels[idx] || 'Tidak ada detail';
 
+                                // Pastikan detail berupa string, jika array gabungkan jadi string
+                                if (Array.isArray(detail)) {
+                                    detail = detail.join('\n');
+                                } else if (typeof detail === 'string') {
+                                    // Ganti koma + spasi jadi newline agar multiline tooltip
+                                    detail = detail.replace(/, /g, '\n');
+                                }
+
+                                return context.dataset.label + ': ' + context.parsed.y + '\nDetail:\n' + detail;
+                            }
+                        }
+                    }
                 },
                 scales: {
                     y: {
@@ -105,13 +114,13 @@
         });
     }
 
-    // Grafik Anggota (jumlah biasa)
+    // Grafik Anggota (jumlah biasa, detail kosong)
     buatChart(
         'anggotaChart',
         'Jumlah Anggota',
         @json($anggota->pluck('tanggal')),
         @json($anggota->pluck('total')),
-               @json(array_fill(0, $anggota->count(), '')),,
+        @json(array_fill(0, $anggota->count(), '')),
         'rgba(54, 162, 235, 1)',
         'rgba(54, 162, 235, 0.5)'
     );
@@ -138,5 +147,6 @@
         'rgba(75, 192, 192, 0.5)'
     );
 </script>
+
 
 @endsection

@@ -51,15 +51,25 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+    function formatTanggal(tanggal) {
+        const dateObj = new Date(tanggal);
+        const dd = String(dateObj.getDate()).padStart(2, '0');
+        const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const yy = String(dateObj.getFullYear()).slice(-2);
+        return `${dd}-${mm}-${yy}`;
+    }
+
     function buatChartWithTooltip(id, label, labels, data, detailLabels, borderColor, backgroundColor) {
+        const formattedLabels = labels.map(formatTanggal);
+
         const ctx = document.getElementById(id).getContext('2d');
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: labels, // tanggal
+                labels: formattedLabels,
                 datasets: [{
                     label: label,
-                    data: data, // total
+                    data: data,
                     borderColor: borderColor,
                     backgroundColor: backgroundColor,
                     borderWidth: 1
@@ -73,18 +83,28 @@
                         position: 'bottom'
                     },
                     tooltip: {
-    callbacks: {
-        title: function(context) {
-            return 'Tanggal: ' + context[0].label;
-        },
-        label: function(context) {
-            const idx = context.dataIndex;
-            const detail = detailLabels[idx] || 'Tidak ada detail';
-            return context.dataset.label + ': ' + context.parsed.y + '\nDetail:\n' + detail.replace(/, /g, '\n');
-        }
-    }
-}
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            title: function(context) {
+                                return 'Tanggal: ' + context[0].label;
+                            },
+                            label: function(context) {
+                                const idx = context.dataIndex;
+                                let detail = detailLabels[idx] || 'Tidak ada detail';
 
+                                // Jika detail array, gabungkan dengan newline
+                                if (Array.isArray(detail)) {
+                                    detail = detail.join('\n');
+                                } else if (typeof detail === 'string') {
+                                    // Ganti koma dan spasi jadi newline supaya multiline tooltip
+                                    detail = detail.replace(/, /g, '\n');
+                                }
+
+                                return context.dataset.label + ': ' + context.parsed.y + '\nDetail:\n' + detail;
+                            }
+                        }
+                    }
                 },
                 scales: {
                     y: {
@@ -98,7 +118,7 @@
         });
     }
 
-    // Grafik Anggota (tidak ada detail nama kegiatan)
+    // Grafik Anggota
     buatChartWithTooltip(
         'anggotaChart',
         'Jumlah Anggota',
@@ -109,7 +129,7 @@
         'rgba(54, 162, 235, 0.5)'
     );
 
-    // Grafik Kegiatan (tooltip tampilkan nama_kegiatan)
+    // Grafik Kegiatan
     buatChartWithTooltip(
         'kegiatanChart',
         'Jumlah Kegiatan',
@@ -120,7 +140,7 @@
         'rgba(255, 206, 86, 0.5)'
     );
 
-    // Grafik News (tooltip tampilkan nama_kegiatan sebagai news)
+    // Grafik News
     buatChartWithTooltip(
         'newsChart',
         'Jumlah News',
@@ -131,7 +151,7 @@
         'rgba(75, 192, 192, 0.5)'
     );
 
-    // Grafik Admin (tidak ada detail nama kegiatan)
+    // Grafik Admin
     buatChartWithTooltip(
         'adminChart',
         'Jumlah Admin',
@@ -142,4 +162,5 @@
         'rgba(153, 102, 255, 0.5)'
     );
 </script>
+
 @endsection
