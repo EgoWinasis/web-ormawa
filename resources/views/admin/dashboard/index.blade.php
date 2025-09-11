@@ -74,17 +74,18 @@
                         position: 'bottom'
                     },
                     tooltip: {
-                        callbacks: {
-                            title: function(context) {
-                                return 'Tanggal: ' + context[0].label;
-                            },
-                            label: function(context) {
-                                const idx = context.dataIndex;
-                                const detail = detailLabels[idx] || 'Tidak ada detail';
-                                return context.dataset.label + ': ' + context.parsed.y + '\nDetail: ' + detail;
-                            }
-                        }
-                    }
+    callbacks: {
+        title: function(context) {
+            return 'Tanggal: ' + context[0].label;
+        },
+        label: function(context) {
+            const idx = context.dataIndex;
+            const detail = detailLabels[idx] || 'Tidak ada detail';
+            return context.dataset.label + ': ' + context.parsed.y + '\nDetail:\n' + detail.replace(/, /g, '\n');
+        }
+    }
+}
+
                 },
                 scales: {
                     y: {
