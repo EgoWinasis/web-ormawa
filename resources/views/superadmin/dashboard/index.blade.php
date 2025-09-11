@@ -51,15 +51,15 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    function buatChart(id, label, labels, data, borderColor, backgroundColor) {
+    function buatChartWithTooltip(id, label, labels, data, detailLabels, borderColor, backgroundColor) {
         const ctx = document.getElementById(id).getContext('2d');
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: labels,
+                labels: labels, // tanggal
                 datasets: [{
                     label: label,
-                    data: data,
+                    data: data, // total
                     borderColor: borderColor,
                     backgroundColor: backgroundColor,
                     borderWidth: 1
@@ -71,6 +71,15 @@
                     legend: {
                         display: true,
                         position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const idx = context.dataIndex;
+                                const detail = detailLabels[idx] || 'Tidak ada detail';
+                                return label + ': ' + context.parsed.y + '\nDetail: ' + detail;
+                            }
+                        }
                     }
                 },
                 scales: {
@@ -85,42 +94,46 @@
         });
     }
 
-    // Grafik Anggota
-    buatChart(
+    // Grafik Anggota (tidak ada detail nama kegiatan)
+    buatChartWithTooltip(
         'anggotaChart',
         'Jumlah Anggota',
         @json($anggota->pluck('tanggal')),
         @json($anggota->pluck('total')),
+        @json(array_fill(0, $anggota->count(), '')),
         'rgba(54, 162, 235, 1)',
         'rgba(54, 162, 235, 0.5)'
     );
 
-    // Grafik Kegiatan
-    buatChart(
+    // Grafik Kegiatan (tooltip tampilkan nama_kegiatan)
+    buatChartWithTooltip(
         'kegiatanChart',
         'Jumlah Kegiatan',
         @json($kegiatan->pluck('tanggal')),
         @json($kegiatan->pluck('total')),
+        @json($kegiatan->pluck('nama_kegiatan')),
         'rgba(255, 206, 86, 1)',
         'rgba(255, 206, 86, 0.5)'
     );
 
-    // Grafik News
-    buatChart(
+    // Grafik News (tooltip tampilkan nama_kegiatan sebagai news)
+    buatChartWithTooltip(
         'newsChart',
         'Jumlah News',
         @json($news->pluck('tanggal')),
         @json($news->pluck('total')),
+        @json($news->pluck('nama_kegiatan')),
         'rgba(75, 192, 192, 1)',
         'rgba(75, 192, 192, 0.5)'
     );
 
-    // Grafik Admin
-    buatChart(
+    // Grafik Admin (tidak ada detail nama kegiatan)
+    buatChartWithTooltip(
         'adminChart',
         'Jumlah Admin',
         @json($userTotal->pluck('tanggal')),
         @json($userTotal->pluck('total')),
+        @json(array_fill(0, $userTotal->count(), '')),
         'rgba(153, 102, 255, 1)',
         'rgba(153, 102, 255, 0.5)'
     );

@@ -440,17 +440,18 @@ class AdminController extends Controller
 
             // === Kegiatan per hari ===
             $kegiatan = Agenda::where('nama_organisasi', $org)
-    ->select(DB::raw('DATE(created_at) as tanggal'), 'nama_kegiatan')
+    ->selectRaw('DATE(created_at) as tanggal, GROUP_CONCAT(nama_kegiatan SEPARATOR ", ") as nama_kegiatan')
+    ->groupBy('tanggal')
     ->orderBy('tanggal', 'asc')
     ->get();
 
-
-            // === News (LPJ) per hari ===
             $news = Agenda::where('nama_organisasi', $org)
-    ->whereNotNull('lpj')
-    ->select(DB::raw('DATE(created_at) as tanggal'), 'lpj as nama_news')
-    ->orderBy('tanggal', 'asc')
-    ->get();
+                ->whereNotNull('lpj')
+                ->selectRaw('DATE(created_at) as tanggal, GROUP_CONCAT(nama_kegiatan SEPARATOR ", ") as nama_kegiatan')
+                ->groupBy('tanggal')
+                ->orderBy('tanggal', 'asc')
+                ->get();
+
 
 
             $rutin = Rutin::all();
@@ -473,17 +474,19 @@ class AdminController extends Controller
                 ->groupBy('tanggal')
                 ->orderBy('tanggal', 'asc')
                 ->get();
-            $kegiatan = Agenda::select(DB::raw('DATE(created_at) as tanggal'), 'nama_kegiatan')
-                ->orderBy('tanggal', 'asc')
-                ->get();
+
+            $kegiatan = Agenda::selectRaw('DATE(created_at) as tanggal, COUNT(*) as total, GROUP_CONCAT(nama_kegiatan SEPARATOR ", ") as nama_kegiatan')
+    ->groupBy('tanggal')
+    ->orderBy('tanggal', 'asc')
+    ->get();
 
 
 
             $news = Agenda::whereNotNull('lpj')
-    ->select(DB::raw('DATE(created_at) as tanggal'), 'lpj as nama_news')
+    ->selectRaw('DATE(created_at) as tanggal, COUNT(*) as total, GROUP_CONCAT(nama_kegiatan SEPARATOR ", ") as nama_kegiatan, GROUP_CONCAT(lpj SEPARATOR ", ") as nama_news')
+    ->groupBy('tanggal')
     ->orderBy('tanggal', 'asc')
     ->get();
-
 
 
             $admin = Admin::all();

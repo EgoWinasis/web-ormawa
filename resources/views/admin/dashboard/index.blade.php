@@ -49,7 +49,7 @@
         return `${dd}-${mm}-${yy}`;
     }
 
-    function buatChart(id, label, labels, data, borderColor, backgroundColor) {
+    function buatChart(id, label, labels, data, detailLabels, borderColor, backgroundColor) {
         // Format tanggal jika label adalah tanggal
         const formattedLabels = labels.map(tgl => formatTanggal(tgl));
 
@@ -79,7 +79,9 @@
                                 return 'Tanggal: ' + context[0].label;
                             },
                             label: function(context) {
-                                return context.dataset.label + ': ' + context.raw;
+                                const idx = context.dataIndex;
+                                const detail = detailLabels[idx] || 'Tidak ada detail';
+                                return context.dataset.label + ': ' + context.parsed.y + '\nDetail: ' + detail;
                             }
                         }
                     }
@@ -102,31 +104,34 @@
         });
     }
 
-    // Anggota per hari
+    // Grafik Anggota (jumlah biasa)
     buatChart(
         'anggotaChart',
         'Jumlah Anggota',
         @json($anggota->pluck('tanggal')),
         @json($anggota->pluck('total')),
+        @json(Array($anggota->count()).fill('')),
         'rgba(54, 162, 235, 1)',
         'rgba(54, 162, 235, 0.5)'
     );
 
-    // Kegiatan per hari - tampilkan nama kegiatan
+    // Grafik Kegiatan (jumlah + tooltip nama kegiatan)
     buatChart(
         'kegiatanChart',
-        'Nama Kegiatan',
+        'Jumlah Kegiatan',
         @json($kegiatan->pluck('tanggal')),
+        @json($kegiatan->pluck('total')),
         @json($kegiatan->pluck('nama_kegiatan')),
         'rgba(255, 206, 86, 1)',
         'rgba(255, 206, 86, 0.5)'
     );
 
-    // News per hari - tampilkan nama news
+    // Grafik News (jumlah + tooltip nama news)
     buatChart(
         'newsChart',
-        'Nama News',
+        'Jumlah News',
         @json($news->pluck('tanggal')),
+        @json($news->pluck('total')),
         @json($news->pluck('nama_news')),
         'rgba(75, 192, 192, 1)',
         'rgba(75, 192, 192, 0.5)'
