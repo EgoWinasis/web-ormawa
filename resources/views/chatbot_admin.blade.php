@@ -189,9 +189,13 @@
                     key: "alur_lpj"
                 },
             ],
-            "Aspirasi": [{
-                    label: "Alur Penyampaian Aspirasi",
-                    key: "alur_penyampaian_aspirasi"
+            "Penyampaian Aspirasi": [{
+                    label: "Alur",
+                    key: "alur"
+                },
+                {
+                    label: "Link",
+                    key: "link"
                 },
             ],
            
@@ -203,8 +207,8 @@
                
             ],
             "Kontak Person": [{
-                    label: "Daftar Kontak Person",
-                    key: "daftar"
+                    label: "lihat",
+                    key: "lihat"
                 },
 
             ],
@@ -223,6 +227,27 @@
   <a href="/lpj.jpeg" class="btn btn-danger btn-sm" target="_blank">
     <i class="fas fa-image"></i> di sini
   </a>.
+</p>`,
+            alur: `<p>
+  Untuk melihat alur penyampaian aspirasi dan advokasi, klik
+  <a href="/aspirasi.jpeg" class="btn btn-danger btn-sm" target="_blank">
+    <i class="fas fa-image"></i> di sini
+  </a>.
+</p>`,
+            link: `<p>
+  berikut adalah alur untuk penyampaian aspirasi dan advokasi, klik
+  <a href="https://qr.me-qr.com/wTctrGfn" class="btn btn-danger btn-sm" target="_blank">
+    <i class="fas fa-image"></i> di sini
+  </a>.
+</p>`,
+            lihat: `<p>
+  Untuk melihat kontak person, klik
+  <a href="/kontak.pdf" class="btn btn-danger btn-sm" target="_blank">
+    <i class="fas fa-file-pdf"></i> di sini
+  </a>.
+</p>`,
+            punishment: `<p>
+  Jika terlambat mengumpulkan LPJ dikenakan denda 5% dari dana cair.
 </p>`,
            
 
