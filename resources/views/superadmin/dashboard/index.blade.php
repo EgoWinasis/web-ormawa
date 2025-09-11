@@ -87,15 +87,17 @@
     title: function(context) {
       return 'Tanggal: ' + context[0].label;
     },
-    label: function(context) {
-      const idx = context.dataIndex;
-      const detail = detailLabels[idx] || 'Tidak ada detail';
-      return [
-        context.dataset.label + ': ' + context.parsed.y,
-        'Detail:',
-        ...detail.split(', ').map(item => item.trim())
-      ];
-    }
+   label: function(context) {
+  const idx = context.dataIndex;
+  const detail = detailLabels[idx] || 'Tidak ada detail';
+  const detailItems = detail.split(', ').map((item, i) => `${i + 1}. ${item.trim()}`);
+  return [
+    context.dataset.label + ': ' + context.parsed.y,
+    'Detail:',
+    ...detailItems
+  ];
+}
+
   }
 }
 
