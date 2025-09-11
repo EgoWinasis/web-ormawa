@@ -179,53 +179,23 @@
         let activeMenu = null;
 
         const menuGroups = {
-            "Alur Proposal": [{
-                    label: "Pengertian",
-                    key: "pengertian"
+            "Proposal": [{
+                    label: "Alur Proposal",
+                    key: "proposal"
                 },
-                {
-                    label: "Tujuan",
-                    key: "tujuan"
-                },
-                {
-                    label: "Ciri",
-                    key: "ciri"
-                }
             ],
-            "Alur LPJ": {
-                "BEM": [{
-                        label: "Visi",
-                        key: "bem_visi"
-                    },
-                    {
-                        label: "Misi",
-                        key: "bem_misi"
-                    },
-                    {
-                        label: "Struktur",
-                        key: "bem_struktur"
-                    },
-                    {
-                        label: "Tugas",
-                        key: "bem_tugas"
-                    },
-                    {
-                        label: "anggota",
-                        key: "bem_anggota"
-                    },
-
-                ],
-                
-            },
+            "LPJ": [{
+                    label: "Alur LPJ",
+                    key: "alur_lpj"
+                },
+            ],
+           
 
             "Punishment": [{
                     label: "Visi",
                     key: "visi"
                 },
-                {
-                    label: "Misi",
-                    key: "misi"
-                }
+               
             ],
             "Kontak Person": [{
                     label: "Daftar",
@@ -237,19 +207,15 @@
         };
 
         const responses = {
-            pengertian: "Menurut Prof. Dr. Sondang P. Siagian, organisasi adalah suatu bentuk persekutuan antara dua orang atau lebih yang bekerja bersama serta secara formal terikat dalam rangka pencapaian tujuan yang telah ditentukan dan dalam ikatan itu terdapat seorang atau sekelompok orang yang disebut bawahan.",
-            tujuan: "Tujuan dibentuknya organisasi secara umum antara lain meningkatkan kemandirian, merealisasikan keinginan dan cita-cita bersama, memperoleh keuntungan atau penghasilan bersama, meningkatkan pengalaman serta interaksi dengan anggota lainnya, memperoleh pengakuan serta penghargaan, hingga mengatasi keterbatasan kemampuan guna meraih tujuan bersama.",
-            ciri: "Terdapat beberapa ciri organisasi antara lain terdiri dari dua orang atau lebih, memiliki tujuan yang sama dan ingin mewujudkannya, saling bekerja sama, memiliki peraturan, serta ada pembagian tugas juga tanggung jawab bagi anggotanya.",
-            struktur: "Struktur organisasi terdiri dari ketua, sekretaris, bendahara, dan divisi lainnya.",
-            tugas: "Setiap anggota memiliki tugas sesuai struktur.",
-            ketua: "Ketua adalah pemimpin utama.",
-            visi: "Visi adalah gambaran jangka panjang.",
-            misi: "Misi adalah langkah untuk mencapai visi.",
-            daftar: 'Untuk mendaftar sebagai anggota baru, klik <a href="/register" class="linkDaftar">di sini</a>.',
-            regist: "Silakan registrasi melalui link resmi.",
-            jadwal: `<p>
-  Untuk melihat jadwal, klik
-  <a href="/jadwal.pdf" class="btn btn-danger btn-sm" target="_blank">
+            proposal: `<p>
+  Untuk melihat alur proposal, klik
+  <a href="/proposal.pdf" class="btn btn-danger btn-sm" target="_blank">
+    <i class="fas fa-file-pdf"></i> di sini
+  </a>.
+</p>`,
+            lpj: `<p>
+  Untuk melihat alur lpj, klik
+  <a href="/lpj.pdf" class="btn btn-danger btn-sm" target="_blank">
     <i class="fas fa-file-pdf"></i> di sini
   </a>.
 </p>`,
