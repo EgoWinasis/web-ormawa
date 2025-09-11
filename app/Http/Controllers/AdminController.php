@@ -461,6 +461,7 @@ class AdminController extends Controller
                 ->where('users.id', $userId)
                 ->first();
 
+            dd($kegiatan, $news, $anggota, $user, $rutin);
             return view('admin.dashboard.index', compact('user', 'rutin', 'anggota', 'kegiatan', 'news'));
         } elseif (Auth::user()->role == 'super_admin') {
 
